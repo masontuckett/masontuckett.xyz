@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://masontuckett.xyz/</loc>
+    <lastmod>2024-12-28T00:34:17-07:00</lastmod>
+  </url><url>
+    <loc>https://masontuckett.xyz/about/</loc>
+    <lastmod>2024-12-28T00:38:44-07:00</lastmod>
+  </url><url>
+    <loc>https://masontuckett.xyz/contact/</loc>
+    <lastmod>2024-12-28T00:38:44-07:00</lastmod>
+  </url><url>
+    <loc>https://masontuckett.xyz/posts/</loc>
+    <lastmod>2024-12-28T00:38:44-07:00</lastmod>
+  </url><url>
+    <loc>https://masontuckett.xyz/tags/css/</loc>
+    <lastmod>2024-12-28T00:38:44-07:00</lastmod>
+  </url><url>
+    <loc>https://masontuckett.xyz/tags/html/</loc>
+    <lastmod>2024-12-28T00:38:44-07:00</lastmod>
+  </url><url>
+    <loc>https://masontuckett.xyz/posts/hugo/</loc>
+    <lastmod>2024-12-28T00:38:44-07:00</lastmod>
+  </url><url>
+    <loc>https://masontuckett.xyz/tags/markdown/</loc>
+    <lastmod>2024-12-28T00:38:44-07:00</lastmod>
+  </url><url>
+    <loc>https://masontuckett.xyz/tags/</loc>
+    <lastmod>2024-12-28T00:38:44-07:00</lastmod>
+  </url><url>
+    <loc>https://masontuckett.xyz/categories/</loc>
+  </url>
+</urlset>
