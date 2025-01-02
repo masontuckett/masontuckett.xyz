@@ -2,36 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://masontuckett.xyz/</loc>
     <lastmod>2024-12-28T00:34:17-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://masontuckett.xyz/about/</loc>
     <lastmod>2024-12-28T00:38:44-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>https://masontuckett.xyz/contact/</loc>
     <lastmod>2024-12-28T00:38:44-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://masontuckett.xyz/posts/</loc>
     <lastmod>2024-12-28T00:38:44-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://masontuckett.xyz/projects/</loc>
     <lastmod>2024-12-28T00:38:44-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/css/</loc>
+    <loc>https://masontuckett.xyz/tags/css/</loc>
     <lastmod>2024-12-28T00:38:44-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/html/</loc>
+    <loc>https://masontuckett.xyz/tags/html/</loc>
     <lastmod>2024-12-28T00:38:44-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/hugo/</loc>
+    <loc>https://masontuckett.xyz/posts/hugo/</loc>
     <lastmod>2024-12-28T00:38:44-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/markdown/</loc>
+    <loc>https://masontuckett.xyz/tags/markdown/</loc>
     <lastmod>2024-12-28T00:38:44-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://masontuckett.xyz/tags/</loc>
     <lastmod>2024-12-28T00:38:44-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://masontuckett.xyz/categories/</loc>
   </url>
 </urlset>
