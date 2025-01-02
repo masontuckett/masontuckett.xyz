@@ -10,5 +10,5 @@ tags = [
     "html",
 ]
 +++
-
+Hugo is a static site generator written in Go.
 

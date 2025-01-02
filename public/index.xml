@@ -90,21 +90,23 @@ t6vN2CWgUgXvgQM=
 -----END PGP PUBLIC KEY BLOCK-----</code></pre>]]></content:encoded>
     </item>
     <item>
-      <title>Projects</title>
-      <link>https://masontuckett.xyz/projects/</link>
+      <title>Publications</title>
+      <link>https://masontuckett.xyz/publications/</link>
       <pubDate>Sat, 28 Dec 2024 00:38:44 -0700</pubDate><author>masontuckett@proton.me (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/projects/</guid>
-      <description>WIP </description>
-      <content:encoded><![CDATA[<h1 id="wip">WIP</h1>
+      <guid>https://masontuckett.xyz/publications/</guid>
+      <description>Publications This page will host my publications when I progress through academia.</description>
+      <content:encoded><![CDATA[<h1 id="publications">Publications</h1>
+<p>This page will host my publications when I progress through academia.</p>
 ]]></content:encoded>
     </item>
     <item>
       <title>Hugo</title>
-      <link>https://masontuckett.xyz/posts/hugo/</link>
+      <link>https://masontuckett.xyz/projects/hugo/</link>
       <pubDate>Sat, 28 Dec 2024 00:38:44 -0700</pubDate><author>masontuckett@proton.me (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/posts/hugo/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
+      <guid>https://masontuckett.xyz/projects/hugo/</guid>
+      <description>Hugo is a static site generator written in Go.</description>
+      <content:encoded><![CDATA[<p>Hugo is a static site generator written in Go.</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>
