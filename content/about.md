@@ -4,6 +4,8 @@ title = 'About'
 menu = "main"
 weight = 2
 hideReply = true
+author = "Mason Tuckett"
+description = "Mason Tuckett's About Page"
 +++
 # About Me
 ![Weber State Campus - Winter](/images/weber-state-campus-winter.jpg)

@@ -3,6 +3,8 @@ date = '2024-12-28T00:34:17-07:00'
 title = 'Home'
 weight = 1
 menu = "main"
+author = "Mason Tuckett"
+description = "Mason Tuckett's Contact Page"
 +++
 # Hello
 ## Welcome to My Webpage!

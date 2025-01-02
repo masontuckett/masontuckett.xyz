@@ -4,6 +4,8 @@ title = 'Contact'
 menu = "main"
 weight = 3
 hideReply = true
+author = "Mason Tuckett"
+description = "Mason Tuckett's Contact Page"
 +++
 # Contact
 Socials: [LinkedIn](https://linkedin.com/in/mason-tuckett), [GitHub](https://github.com/masontuckett)
