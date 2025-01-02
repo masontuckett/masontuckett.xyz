@@ -4,7 +4,7 @@ title = 'Home'
 weight = 1
 menu = "main"
 author = "Mason Tuckett"
-description = "Mason Tuckett's Contact Page"
+description = "Mason Tuckett's Home Page"
 +++
 # Hello
 ## Welcome to My Webpage!
