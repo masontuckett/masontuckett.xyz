@@ -15,7 +15,7 @@ If you need to contact me via email: [mason@tuckett.xyz](mailto:mason@tuckett.xy
 
 ```
 https://github.com/masontuckett/masontuckett.gpg
-Fingerprint: F073 DE45 6FA6 15C2 4CEA  7A1E 75E9 06A4 7A5D 6052
+Fingerprint: 7272 B803 6060 E459 0218  A95D 11F5 8765 E7B2 1193
 
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
