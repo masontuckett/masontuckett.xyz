@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>masontuckett.xyz</title>
+    <link>https://masontuckett.xyz/</link>
+    <description>Recent content on masontuckett.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>masontuckett@proton.me (Mason Tuckett)</managingEditor>
+    <webMaster>masontuckett@proton.me (Mason Tuckett)</webMaster>
+    <copyright>Copyright ©2024 Mason Tuckett All Rights Reserved</copyright>
+    <lastBuildDate>Sat, 28 Dec 2024 00:34:17 -0700</lastBuildDate>
+    <atom:link href="https://masontuckett.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://masontuckett.xyz/about/</link>
+      <pubDate>Sat, 28 Dec 2024 00:38:44 -0700</pubDate><author>masontuckett@proton.me (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/about/</guid>
+      <description>About Me I am currently a full-time student at Weber State University, diligently studying Cybersecurity and Network Management.&#xA;While attending university, I have made it a key priority to self-study and attain any applicable industry-standard certifications; I constantly strive to expand my knowledge.&#xA;Certifications CompTIA Linux+ - L6JS88LT3FEEQHS1 CompTIA Security+ - R6EZ8J86MMB1QKWP CompTIA Network+ - EBMQ8Z0TGJ411F9Y CompTIA A+ - 26DTYN06MFB4QMC7 ISC2 CC - 2068665 CompTIA ITF+ - 7KXDBYRYQFFQ1ESQ Google IT Support - 69J675FU9XSO Course Related Certifications CCNA: Switching, Routing, and Wireless Essentials AWS Academy Cloud Security Builder AWS Academy Cloud Foundations Education BS, Cybersecurity and Network Management - Weber State University</description>
+      <content:encoded><![CDATA[<h1 id="about-me">About Me</h1>
+<p><img alt="Weber State Campus - Winter (benjaminzack@weber.edu)" src="/images/weber-state-campus-winter.webp">
+I am currently a full-time student at <a href="https://www.weber.edu/AboutWSU/">Weber State University</a>, diligently studying Cybersecurity and Network Management.</p>
+<p>While attending university, I have made it a key priority to self-study and attain any applicable industry-standard certifications; <em>I constantly strive to expand my knowledge.</em></p>
+<h2 id="certifications">Certifications</h2>
+<ul>
+<li><a href="https://www.credly.com/badges/f203f7cf-4878-46bc-9ecc-59bbac368615">CompTIA Linux+</a> - L6JS88LT3FEEQHS1</li>
+<li><a href="https://www.credly.com/badges/e5c5f35c-9955-44db-b70d-42515e078c03">CompTIA Security+</a> - R6EZ8J86MMB1QKWP</li>
+<li><a href="https://www.credly.com/badges/621a387b-db51-41db-ae54-b802260cff9f/public_url">CompTIA Network+</a> - EBMQ8Z0TGJ411F9Y</li>
+<li><a href="https://www.credly.com/badges/abd3d622-44a8-47fe-87b2-71af6b0df9d9">CompTIA A+</a> - 26DTYN06MFB4QMC7</li>
+<li><a href="https://www.credly.com/badges/510ba232-b6b8-4280-b215-8d4315bc5dd0/public_url">ISC2 CC</a> - 2068665</li>
+<li><a href="https://www.credly.com/badges/6929a3fd-cf3e-4d0b-9a04-00f904d0d6ae">CompTIA ITF+</a> - 7KXDBYRYQFFQ1ESQ</li>
+<li><a href="https://www.coursera.org/account/accomplishments/specialization/69J675FU9XSO">Google IT Support</a> - 69J675FU9XSO</li>
+</ul>
+<h3 id="course-related-certifications">Course Related Certifications</h3>
+<ul>
+<li><a href="https://www.credly.com/badges/2e00ff4f-7b94-4272-80fe-44b9d21db3b1">CCNA: Switching, Routing, and Wireless Essentials</a></li>
+<li><a href="https://www.credly.com/badges/2732c774-28fd-4616-b411-389633ef65b9">AWS Academy Cloud Security Builder</a></li>
+<li><a href="https://www.credly.com/badges/f86e3988-fa87-4cec-baff-f49d77471ac2">AWS Academy Cloud Foundations</a></li>
+</ul>
+<h2 id="education">Education</h2>
+<blockquote>
+<p><strong>BS, Cybersecurity and Network Management - Weber State University</strong><br>
+August, 2022 - April, 2025</p>
+<p><strong>AAS, Cybersecurity and Network Management - Weber State University</strong><br>
+August, 2022 - April, 2025</p>
+</blockquote>
+<h3 id="lesser-education">Lesser Education</h3>
+<blockquote>
+<p><strong>CP, Cybersecurity and Policy Management - Weber State University</strong><br>
+August, 2022 - April, 2025</p>
+<p><strong>CP, Cloud Computing Security - Weber State University</strong><br>
+August, 2022 - December, 2024</p>
+<p><strong>CP, Network Technologies - Weber State University</strong><br>
+August, 2022 - December, 2024</p>
+<p><strong>CP, Cybersecurity Essentials - Weber State University</strong><br>
+August, 2022 - April, 2023</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>https://masontuckett.xyz/contact/</link>
+      <pubDate>Sat, 28 Dec 2024 00:38:44 -0700</pubDate><author>masontuckett@proton.me (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/contact/</guid>
+      <description>Contact Socials: LinkedIn, GitHub&#xA;If you need to contact me via email: mason@tuckett.xyz&#xA;https://github.com/masontuckett/masontuckett.gpg Fingerprint: 7272 B803 6060 E459 0218 A95D 11F5 8765 E7B2 1193 -----BEGIN PGP PUBLIC KEY BLOCK----- mDMEZ3XrbxYJKwYBBAHaRw8BAQdAz+/91ie1lkab6ejN48xj8C0yM82SaH8ydwPS oQrkvpK0O01hc29uIFR1Y2tldHQgKE1hc29uIFR1Y2tldHQncyBHUEcgS2V5KSA8 bWFzb25AdHVja2V0dC54eXo+iJMEExYKADsWIQRycrgDYGDkWQIYqV0R9Ydl57IR kwUCZ3XrbwIbAwULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIXgAAKCRAR9Ydl57IR k05KAQCy9etjm+j4XX26mPfnUie6Q0eQ4kRhCbzvii0HqsmhfgEA29kBHodFIKgB e8WLjjnH9t586rv/vZWusJTM6IVqqQ64OARndetvEgorBgEEAZdVAQUBAQdAxDju 2v2k8NHg8okRHgBQT6I2KSEt5gPCHNBAicNqwQMDAQgHiHgEGBYKACAWIQRycrgD YGDkWQIYqV0R9Ydl57IRkwUCZ3XrbwIbDAAKCRAR9Ydl57IRk7LRAQCvogMCAqqM f3tW2mzkXxTb/aaqwikvNtLULtiXbxmcsAD/dUsAHGpenYJ5Kh8XNUteyhm+zADm t6vN2CWgUgXvgQM= =GG33 -----END PGP PUBLIC KEY BLOCK-----</description>
+      <content:encoded><![CDATA[<h1 id="contact">Contact</h1>
+<p>Socials: <a href="https://linkedin.com/in/mason-tuckett">LinkedIn</a>, <a href="https://github.com/masontuckett">GitHub</a></p>
+<p>If you need to contact me via email: <a href="mailto:mason@tuckett.xyz">mason@tuckett.xyz</a></p>
+
+
+
+
+
+<pre tabindex="0"><code>https://github.com/masontuckett/masontuckett.gpg
+Fingerprint: 7272 B803 6060 E459 0218  A95D 11F5 8765 E7B2 1193
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEZ3XrbxYJKwYBBAHaRw8BAQdAz+/91ie1lkab6ejN48xj8C0yM82SaH8ydwPS
+oQrkvpK0O01hc29uIFR1Y2tldHQgKE1hc29uIFR1Y2tldHQncyBHUEcgS2V5KSA8
+bWFzb25AdHVja2V0dC54eXo+iJMEExYKADsWIQRycrgDYGDkWQIYqV0R9Ydl57IR
+kwUCZ3XrbwIbAwULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIXgAAKCRAR9Ydl57IR
+k05KAQCy9etjm+j4XX26mPfnUie6Q0eQ4kRhCbzvii0HqsmhfgEA29kBHodFIKgB
+e8WLjjnH9t586rv/vZWusJTM6IVqqQ64OARndetvEgorBgEEAZdVAQUBAQdAxDju
+2v2k8NHg8okRHgBQT6I2KSEt5gPCHNBAicNqwQMDAQgHiHgEGBYKACAWIQRycrgD
+YGDkWQIYqV0R9Ydl57IRkwUCZ3XrbwIbDAAKCRAR9Ydl57IRk7LRAQCvogMCAqqM
+f3tW2mzkXxTb/aaqwikvNtLULtiXbxmcsAD/dUsAHGpenYJ5Kh8XNUteyhm+zADm
+t6vN2CWgUgXvgQM=
+=GG33
+-----END PGP PUBLIC KEY BLOCK-----</code></pre>]]></content:encoded>
+    </item>
+    <item>
+      <title>T440p Coreboot</title>
+      <link>https://masontuckett.xyz/projects/t440p-coreboot/</link>
+      <pubDate>Fri, 03 Jan 2025 22:49:22 -0700</pubDate><author>masontuckett@proton.me (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/projects/t440p-coreboot/</guid>
+      <description>T440p Coreboot Guide</description>
+      <content:encoded><![CDATA[<p>T440p Coreboot Guide</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Hugo</title>
+      <link>https://masontuckett.xyz/projects/hugo/</link>
+      <pubDate>Sat, 28 Dec 2024 00:38:44 -0700</pubDate><author>masontuckett@proton.me (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/projects/hugo/</guid>
+      <description>Hugo is a static site generator written in Go.</description>
+      <content:encoded><![CDATA[<p>Hugo is a static site generator written in Go.</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

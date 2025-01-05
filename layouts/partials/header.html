@@ -1,0 +1,8 @@
+{{ range .Site.Params.custom_css -}}
+    <link rel="stylesheet" href="{{ . | absURL }}">
+{{- end }}
+<a class="skip-link" href="#main-content">{{ i18n "skip-link" }}</a>
+<a href="{{ relURL .Site.Home.RelPermalink }}" class="title">
+<div id="logo" style="background-image: url({{ .Site.Params.logo | absURL }})"></div>
+<h1>{{ .Site.Title }}</h1></a>
+<nav>{{- partial "nav.html" . -}}</nav>
