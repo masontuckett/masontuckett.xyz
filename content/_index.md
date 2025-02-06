@@ -23,10 +23,10 @@ This page serves as a personal project and is intended to showcase my:
 > August, 2022 - April, 2025
 >
 > __MS, Cybersecurity and Information Assurance - Western Govenors University__\
-> April, 2025 - July, 2025
+> May, 2025 - August, 2025
 >
 > __DCS, Cybersecurity and Information Assurance - Colorado Technical University__\
-> August, 2025 - April, 2028
+> September, 2025 - April, 2028
 
 
 
