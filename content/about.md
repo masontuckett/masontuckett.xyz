@@ -31,6 +31,9 @@ While attending university, I have made it a key priority to self-study and atta
 - [AWS Academy Cloud Foundations](https://www.credly.com/badges/f86e3988-fa87-4cec-baff-f49d77471ac2)
  
 ## Education
+> __High School Diploma - Davis Connect 7-12__\
+> May, 2025
+>
 > __BS, Cybersecurity and Network Management - Weber State University__\
 > August, 2022 - April, 2025
 >
