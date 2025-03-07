@@ -19,14 +19,17 @@ This page serves as a personal project and is intended to showcase my:
 {{< small >}}I am constantly undertaking new projects and strive to self-study as much as possible.{{< /small >}}
 
 ### Grad Map
+> __High School Diploma - Davis Connect 7-12__\
+> May, 2022
+>
 > __BS, Cybersecurity and Network Management - Weber State University__\
 > August, 2022 - April, 2025
 >
 > __MS, Cybersecurity and Information Assurance - Western Govenors University__\
-> May, 2025 - August, 2025
+> June, 2025
 >
-> __DCS, Cybersecurity and Information Assurance - Colorado Technical University__\
-> September, 2025 - April, 2028
+> __PhDCD, Cyber Defense Doctor of Philosophy - Dakota State University__\
+> January, 2026 - January, 2029 (EST)
 
 
 
