@@ -2,7 +2,7 @@ baseURL = 'https://masontuckett.xyz/'
 languageCode = 'en-us'
 title = 'masontuckett.xyz'
 theme = "hugo-bearcub"
-copyright = "Copyright ©2024 Mason Tuckett All Rights Reserved"
+copyright = "Copyright ©2025 Mason Tuckett All Rights Reserved"
 defaultContentLanguage = "en"
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true
