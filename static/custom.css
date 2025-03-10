@@ -14,12 +14,19 @@ color: white;
 }
 #rss {
 margin-top: 12.5px;
+width: 30px;
+height: 30px;
+padding: 0px 10px 0 10px;
 }
 #linkedin {
-width: 21px;
-height: 21px;
+margin-top: 12.5px;
+width: 30px;
+height: 30px;
+padding: 0px 10px 0 10px;
 }
 #github {
-width: 21px;
-height: 21px;
+margin-top: 12.5px;
+width: 30px;
+height: 30px;
+padding: 0px 10px 0 10px;
 }
