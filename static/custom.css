@@ -5,13 +5,21 @@
     height: 50px;
 	float: left;
 }
-#rss {
-margin-top: 12.5px;
-}
 #small-text {
 font-size: 1px;
 }
-#foot a{
+footer a{
 text-decoration: none;
-color: white
+color: white;
+}
+#rss {
+margin-top: 12.5px;
+}
+#linkedin {
+width: 21px;
+height: 21px;
+}
+#github {
+width: 21px;
+height: 21px;
 }
