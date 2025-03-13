@@ -9,15 +9,15 @@
     <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
     <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
     <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 03 Jan 2025 22:49:22 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 12 Mar 2025 00:38:44 -0700</lastBuildDate>
     <atom:link href="https://masontuckett.xyz/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>T440p Coreboot</title>
-      <link>https://masontuckett.xyz/projects/t440p-coreboot/</link>
-      <pubDate>Fri, 03 Jan 2025 22:49:22 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/projects/t440p-coreboot/</guid>
-      <description>&lt;p&gt;T440p Coreboot Guide&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>T440p Coreboot Guide</p>
+      <title>T440p - Libreboot</title>
+      <link>https://masontuckett.xyz/projects/t440p-libreboot/</link>
+      <pubDate>Wed, 12 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/projects/t440p-libreboot/</guid>
+      <description>&lt;p&gt;Librebooting a Lenovo Thinkpad T440p&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>Librebooting a Lenovo Thinkpad T440p</p>
 ]]></content:encoded>
     </item>
   </channel>

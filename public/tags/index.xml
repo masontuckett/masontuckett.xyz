@@ -9,12 +9,12 @@
     <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
     <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
     <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 03 Jan 2025 22:49:22 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 12 Mar 2025 00:38:44 -0700</lastBuildDate>
     <atom:link href="https://masontuckett.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Coreboot</title>
       <link>https://masontuckett.xyz/tags/coreboot/</link>
-      <pubDate>Fri, 03 Jan 2025 22:49:22 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <pubDate>Wed, 12 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/tags/coreboot/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
@@ -22,7 +22,7 @@
     <item>
       <title>Firmware</title>
       <link>https://masontuckett.xyz/tags/firmware/</link>
-      <pubDate>Fri, 03 Jan 2025 22:49:22 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <pubDate>Wed, 12 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/tags/firmware/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
@@ -30,31 +30,31 @@
     <item>
       <title>Hardware</title>
       <link>https://masontuckett.xyz/tags/hardware/</link>
-      <pubDate>Fri, 03 Jan 2025 22:49:22 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <pubDate>Wed, 12 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/tags/hardware/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    <item>
-      <title>Css</title>
-      <link>https://masontuckett.xyz/tags/css/</link>
-      <pubDate>Sat, 28 Dec 2024 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/tags/css/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Html</title>
       <link>https://masontuckett.xyz/tags/html/</link>
-      <pubDate>Sat, 28 Dec 2024 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <pubDate>Mon, 10 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/tags/html/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Hugo</title>
+      <link>https://masontuckett.xyz/tags/hugo/</link>
+      <pubDate>Mon, 10 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/tags/hugo/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
       <title>Markdown</title>
       <link>https://masontuckett.xyz/tags/markdown/</link>
-      <pubDate>Sat, 28 Dec 2024 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <pubDate>Mon, 10 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/tags/markdown/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
