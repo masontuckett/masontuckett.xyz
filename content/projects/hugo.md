@@ -57,4 +57,4 @@ But their integration only scratches the surface—not fully utilizing the frame
 
 It does not impress me to have an extensive homelab just to use technologies _you believe make you appear technically accomplished_.
 
-For my use case, I wanted something secure yet simple to host my projects while automating some content creation; security should be my end goal.
+For my use case, I wanted something secure yet simple to host my projects while automating some content creation; security is my end goal.

@@ -9,9 +9,18 @@ description = "Mason Tuckett's About Page"
 +++
 # About Me
 ![Weber State Campus - Winter (benjaminzack@weber.edu)](/images/weber-state-campus-winter.webp)
-I am currently a full-time student at [Weber State University](https://www.weber.edu/AboutWSU/), diligently studying Cybersecurity and Network Management.
+I am currently a 21-year-old full-time student at [Weber State University](https://www.weber.edu/AboutWSU/), diligently studying Cybersecurity and Network Management.
 
-While attending university, I have made it a key priority to self-study and attain any applicable industry-standard certifications; *I constantly strive to expand my knowledge.*
+While attending university, I made considerable sacrifices to achieve my dreams. 
+
+I worked around the clock—sacrificing summers and the majority of my free time towards completing my undergraduate degree. 
+
+Unlike most other young undergraduate students—I did not start with college credits; I was consistently a full-time student, enduring high course loads.
+
+In addition to completing my undergraduate degree in approximately 2.5 years—I studied constantly, procuring a plethora of advanced cybersecurity certifications.
+
+{{< small >}}I have worked tirelessly towards accomplishing my goals.{{< /small >}}
+
 
 ## Certifications
 - [CompTIA CASP+ (SecurityX)](https://www.credly.com/badges/6e264660-65c8-4361-9da8-5b953c0a9772/public_url) - 8S50JTL5Y2FQ1ZSZ
@@ -32,7 +41,7 @@ While attending university, I have made it a key priority to self-study and atta
  
 ## Education
 > __High School Diploma - Davis Connect 7-12__\
-> May, 2025
+> May, 2022
 >
 > __BS, Cybersecurity and Network Management - Weber State University__\
 > August, 2022 - April, 2025
