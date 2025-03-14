@@ -33,7 +33,7 @@
 <p><img src="/images/projects/t440p-libreboot/wiring.webp" alt="SOIC-8 Wiring"></p>
 <h3 id="ch341a-wiring">CH341A Wiring</h3>
 <p><img src="/images/projects/t440p-libreboot/ch341a.webp" alt="CH341A Instructions"></p>
-<p><em><strong>For my installation, I used the ch341a programmer—though, <a href="https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a">this is not advised</a>.</strong></em></p>
+<p><em><strong>For my installation, I used the CH341A programmer—though, <a href="https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a">this is not advised</a>.</strong></em></p>
 <h2 id="software">Software</h2>
 <p>Preferably, you will need a device with Linux installed; if you are using an SBC, install SSH for flashing.</p>
 <h3 id="obtaining-build-files">Obtaining Build Files</h3>

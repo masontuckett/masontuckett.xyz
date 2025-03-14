@@ -42,7 +42,7 @@ OR a SOIC/SOP 8 test clip, eight female DuPont wires, and a compatible SBC (such
 ### CH341A Wiring
 ![CH341A Instructions](/images/projects/t440p-libreboot/ch341a.webp)
 
-_**For my installation, I used the ch341a programmer—though, [this is not advised](https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a).**_
+_**For my installation, I used the CH341A programmer—though, [this is not advised](https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a).**_
 
 ## Software
 
