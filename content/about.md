@@ -25,7 +25,7 @@ In addition to completing my undergraduate degree in approximately 2.5 years—I
 ## Certifications
 - [CompTIA CASP+ (SecurityX)](https://www.credly.com/badges/6e264660-65c8-4361-9da8-5b953c0a9772/public_url) - 8S50JTL5Y2FQ1ZSZ
 - [CompTIA CySA+](https://www.credly.com/badges/d8c984bc-21cd-453a-85eb-57ae6aeafc4a) - HJGBKZQ5TM411WWF
-- [CompTIA Pentest+](https://www.credly.com/badges/5b36bf6a-fbd6-42ca-82e6-f33d55ec6e40) - L06MGB7QYBF41S9B
+- [CompTIA PenTest+](https://www.credly.com/badges/5b36bf6a-fbd6-42ca-82e6-f33d55ec6e40) - L06MGB7QYBF41S9B
 - [CompTIA Linux+](https://www.credly.com/badges/f203f7cf-4878-46bc-9ecc-59bbac368615) - L6JS88LT3FEEQHS1
 - [CompTIA Security+](https://www.credly.com/badges/e5c5f35c-9955-44db-b70d-42515e078c03) - R6EZ8J86MMB1QKWP
 - [CompTIA Network+](https://www.credly.com/badges/621a387b-db51-41db-ae54-b802260cff9f/public_url) - EBMQ8Z0TGJ411F9Y
