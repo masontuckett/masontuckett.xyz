@@ -9,7 +9,7 @@ description = "Mason Tuckett's About Page"
 +++
 # About Me
 ![Weber State Campus - Winter (benjaminzack@weber.edu)](/images/weber-state-campus-winter.webp)
-I am currently a 21-year-old full-time student at [Weber State University](https://www.weber.edu/AboutWSU/), diligently studying Cybersecurity and Network Management.
+I am currently a 21-year-old, full-time student at [Weber State University](https://www.weber.edu/AboutWSU/)—diligently studying Cybersecurity and Network Management.
 
 While attending university, I made considerable sacrifices to achieve my dreams. 
 

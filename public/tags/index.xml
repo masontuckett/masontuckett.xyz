@@ -9,20 +9,12 @@
     <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
     <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
     <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
-    <lastBuildDate>Wed, 12 Mar 2025 00:38:44 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 13 Mar 2025 00:38:44 -0700</lastBuildDate>
     <atom:link href="https://masontuckett.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Coreboot</title>
-      <link>https://masontuckett.xyz/tags/coreboot/</link>
-      <pubDate>Wed, 12 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/tags/coreboot/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
     <item>
       <title>Firmware</title>
       <link>https://masontuckett.xyz/tags/firmware/</link>
-      <pubDate>Wed, 12 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <pubDate>Thu, 13 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/tags/firmware/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
@@ -30,8 +22,16 @@
     <item>
       <title>Hardware</title>
       <link>https://masontuckett.xyz/tags/hardware/</link>
-      <pubDate>Wed, 12 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <pubDate>Thu, 13 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/tags/hardware/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    <item>
+      <title>Libreboot</title>
+      <link>https://masontuckett.xyz/tags/libreboot/</link>
+      <pubDate>Thu, 13 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/tags/libreboot/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>

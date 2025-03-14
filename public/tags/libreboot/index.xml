@@ -1,101 +1,23 @@
-<!DOCTYPE html>
-<html lang="en-US">
-
-<head>
-  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="shortcut icon" href="https://masontuckett.xyz/images/favicon.ico" />
-<title>Librebooting a Thinkpad T440p | masontuckett.xyz</title>
-<meta name="title" content="Librebooting a Thinkpad T440p" />
-<meta name="description" content="A Guide for Installing Libreboot on the Lenovo Thinkpad T440p" />
-<meta name="author" content="Mason Tuckett" />
-<meta name="keywords" content="hardware,libreboot,firmware," />
-
-
-
-
-
-
-  
-  <meta property="og:url" content="https://masontuckett.xyz/projects/t440p-libreboot/">
-  <meta property="og:site_name" content="masontuckett.xyz">
-  <meta property="og:title" content="Librebooting a Thinkpad T440p">
-  <meta property="og:description" content="A Guide for Installing Libreboot on the Lenovo Thinkpad T440p">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="projects">
-    <meta property="article:published_time" content="2025-03-13T00:38:44-07:00">
-    <meta property="article:modified_time" content="2025-03-13T00:38:44-07:00">
-    <meta property="article:tag" content="Hardware">
-    <meta property="article:tag" content="Libreboot">
-    <meta property="article:tag" content="Firmware">
-    <meta property="og:image" content="https://masontuckett.xyz/images/share.webp">
-
-
-  
-  
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://masontuckett.xyz/images/share.webp">
-  <meta name="twitter:title" content="Librebooting a Thinkpad T440p">
-  <meta name="twitter:description" content="A Guide for Installing Libreboot on the Lenovo Thinkpad T440p">
-
-
-  
-  
-  <meta itemprop="name" content="Librebooting a Thinkpad T440p">
-  <meta itemprop="description" content="A Guide for Installing Libreboot on the Lenovo Thinkpad T440p">
-  <meta itemprop="datePublished" content="2025-03-13T00:38:44-07:00">
-  <meta itemprop="dateModified" content="2025-03-13T00:38:44-07:00">
-  <meta itemprop="wordCount" content="397">
-  <meta itemprop="image" content="https://masontuckett.xyz/images/share.webp">
-  <meta itemprop="keywords" content="Hardware,Libreboot,Firmware">
-
-<meta name="referrer" content="no-referrer-when-downgrade" />
-
-  
-  <link href="/original.min.css" rel="stylesheet">
-
-  
-    
-    <link href="/syntax.min.css" rel="stylesheet">
-  
-
-  
-
-  
-</head>
-
-<body>
-  <header><link rel="stylesheet" href="https://masontuckett.xyz/custom.css">
-<a class="skip-link" href="#main-content">Skip to main content</a>
-<a href="/" class="title">
-<div id="logo" style="background-image: url(https://masontuckett.xyz/images/redhat.png)"></div>
-<h1>masontuckett.xyz</h1></a>
-<nav>
-  <a href="/">Home</a>
-
-  <a href="/about/">About</a>
-
-  <a href="/contact/">Contact</a>
-
-  <a href="/projects/">Projects</a>
-
-
-
-
-
-
-
-
-</nav>
-</header>
-  <main id="main-content">
-
-<h1>Librebooting a Thinkpad T440p</h1>
-
-<content>
-  <p>A Guide for Installing Libreboot on the Lenovo Thinkpad T440p</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Libreboot on masontuckett.xyz</title>
+    <link>https://masontuckett.xyz/tags/libreboot/</link>
+    <description>Recent content in Libreboot on masontuckett.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
+    <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
+    <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 13 Mar 2025 00:38:44 -0700</lastBuildDate>
+    <atom:link href="https://masontuckett.xyz/tags/libreboot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Librebooting a Thinkpad T440p</title>
+      <link>https://masontuckett.xyz/projects/t440p-libreboot/</link>
+      <pubDate>Thu, 13 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/projects/t440p-libreboot/</guid>
+      <description>&lt;p&gt;A Guide for Installing Libreboot on the Lenovo Thinkpad T440p&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-libreboot&#34;&gt;What is Libreboot?&lt;/h2&gt;&#xA;&lt;p&gt;Libreboot is a free and open-source replacement for proprietary UEFI/BIOS firmware—neutering invasive technologies like &lt;a href=&#34;https://itsfoss.com/fact-intel-minix-case/&#34;&gt;Intel ME&lt;/a&gt; in the process.&lt;/p&gt;&#xA;&lt;p&gt;The project seeks to remove proprietary &lt;a href=&#34;https://libreboot.org/news/policy.html#what-is-a-binary-blob&#34;&gt;binary blobs&lt;/a&gt; included in firmware (required for key components to function)—providing a privacy-respecting alternative for users.&lt;/p&gt;&#xA;&lt;p&gt;Libreboot is primarily geared towards enthusiasts—though it does have limited hardware support; however, many devices are now compatible.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>A Guide for Installing Libreboot on the Lenovo Thinkpad T440p</p>
 <h2 id="what-is-libreboot">What is Libreboot?</h2>
 <p>Libreboot is a free and open-source replacement for proprietary UEFI/BIOS firmware—neutering invasive technologies like <a href="https://itsfoss.com/fact-intel-minix-case/">Intel ME</a> in the process.</p>
 <p>The project seeks to remove proprietary <a href="https://libreboot.org/news/policy.html#what-is-a-binary-blob">binary blobs</a> included in firmware (required for key components to function)—providing a privacy-respecting alternative for users.</p>
@@ -187,43 +109,7 @@
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Write the bottom ROM</span>
 </span></span><span class="line"><span class="ln">5</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q64BV/W25Q64CV/W25Q64FV -w ~/lbmk/bot.rom</span></span></code></pre></div><p><em><strong>Reassemble the unit—and voilà! Your laptop now sports Libreboot!</strong></em></p>
 <p><img src="/images/projects/t440p-libreboot/libreboot-installed.webp" alt="Libreboot successfully Installed - (Lenovo Thinkpad T440p)"></p>
-
-</content>
-
-<p class="byline">
-  <time datetime='2025-03-13' pubdate>
-    03-13-2025
-  </time>
-  · Mason Tuckett
-</p>
-
-<p>
-  
-    <a class="blog-tags" href="/tags/hardware/">#hardware</a>
-  
-    <a class="blog-tags" href="/tags/libreboot/">#libreboot</a>
-  
-    <a class="blog-tags" href="/tags/firmware/">#firmware</a>
-  
-</p>
-
-
-  </main>
-  <footer><small id="foot">
-  <a href="https://github.com/masontuckett/masontuckett.xyz">Copyright ©2025 Mason Tuckett All Rights Reserved<br>
-</small>
-<a href='https://masontuckett.xyz/index.xml'>
-    <img id="rss" src="/images/rss.svg" alt="button for my RSS feed">
-</a>
-<a href="https://linkedin.com/in/mason-tuckett">
-    <img id="linkedin" src="/images/linkedin.png" alt="button for my LinkedIn profile">
-</a>
-<a href="https://github.com/masontuckett">
-    <img id="github" src="/images/github.png" alt="button for my Github profile">
-</a>
-</footer>
-
-    
-</body>
-
-</html>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>
