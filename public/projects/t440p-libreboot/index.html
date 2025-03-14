@@ -47,7 +47,7 @@
   <meta itemprop="description" content="A Guide for Installing Libreboot on the Lenovo Thinkpad T440p">
   <meta itemprop="datePublished" content="2025-03-13T00:38:44-07:00">
   <meta itemprop="dateModified" content="2025-03-13T00:38:44-07:00">
-  <meta itemprop="wordCount" content="397">
+  <meta itemprop="wordCount" content="412">
   <meta itemprop="image" content="https://masontuckett.xyz/images/share.webp">
   <meta itemprop="keywords" content="Hardware,Libreboot,Firmware">
 
@@ -100,7 +100,7 @@
 <p>Libreboot is a free and open-source replacement for proprietary UEFI/BIOS firmware—neutering invasive technologies like <a href="https://itsfoss.com/fact-intel-minix-case/">Intel ME</a> in the process.</p>
 <p>The project seeks to remove proprietary <a href="https://libreboot.org/news/policy.html#what-is-a-binary-blob">binary blobs</a> included in firmware (required for key components to function)—providing a privacy-respecting alternative for users.</p>
 <p>Libreboot is primarily geared towards enthusiasts—though it does have limited hardware support; however, many devices are now compatible.</p>
-<p><em>Libreboot is a distribution of Coreboot—wherein all updates come from upstream <a href="https://https://www.coreboot.org/">Coreboot</a> development.</em></p>
+<p><em>Libreboot is a distribution of Coreboot—wherein all updates come from upstream <a href="https://www.coreboot.org/">Coreboot</a> development.</em></p>
 <p>Unlike Coreboot, Libreboot is designed to be completely free and open-source, including only essential <a href="https://libreboot.org/news/microcode.html">CPU microcode updates</a>.</p>
 <p><em><strong>For more details, visit <a href="https://libreboot.org/">here</a></strong></em></p>
 <h1 id="installation">Installation</h1>
@@ -111,7 +111,7 @@
 <p><img src="/images/projects/t440p-libreboot/wiring.webp" alt="SOIC-8 Wiring"></p>
 <h3 id="ch341a-wiring">CH341A Wiring</h3>
 <p><img src="/images/projects/t440p-libreboot/ch341a.webp" alt="CH341A Instructions"></p>
-<p><em><strong>For my installation, I used the ch341a programmer—though <a href="https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a">this is not advised</a>.</strong></em></p>
+<p><em><strong>For my installation, I used the ch341a programmer—though, <a href="https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a">this is not advised</a>.</strong></em></p>
 <h2 id="software">Software</h2>
 <p>Preferably, you will need a device with Linux installed; if you are using an SBC, install SSH for flashing.</p>
 <h3 id="obtaining-build-files">Obtaining Build Files</h3>
@@ -161,6 +161,8 @@
 <p>Refer to <a href="https://www.myfixguide.com/manual/lenovo-thinkpad-t440-disassembly/">this guide</a> for disassembling the laptop; make sure both the main battery and CMOS battery are unplugged.</p>
 <p><img src="/images/projects/t440p-libreboot/t440p-chips.webp" alt="T440p top (4MB) and bottom (8MB) ROM locations"></p>
 <h3 id="backing-up-stock-roms">Backing Up Stock ROMs</h3>
+<p><img src="/images/projects/t440p-libreboot/connected.webp" alt="CH341A reading ROMs"></p>
+<p><em><strong>Your setup will look different; my casing was fused together, so I had to improvise.</strong></em></p>
 
 
 

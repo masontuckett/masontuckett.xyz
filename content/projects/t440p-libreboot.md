@@ -22,7 +22,7 @@ The project seeks to remove proprietary [binary blobs](https://libreboot.org/new
 
 Libreboot is primarily geared towards enthusiasts—though it does have limited hardware support; however, many devices are now compatible.
 
-_Libreboot is a distribution of Coreboot—wherein all updates come from upstream [Coreboot](https://https://www.coreboot.org/) development._
+_Libreboot is a distribution of Coreboot—wherein all updates come from upstream [Coreboot](https://www.coreboot.org/) development._
 
 Unlike Coreboot, Libreboot is designed to be completely free and open-source, including only essential [CPU microcode updates](https://libreboot.org/news/microcode.html).
 
@@ -42,7 +42,7 @@ OR a SOIC/SOP 8 test clip, eight female DuPont wires, and a compatible SBC (such
 ### CH341A Wiring
 ![CH341A Instructions](/images/projects/t440p-libreboot/ch341a.webp)
 
-_**For my installation, I used the ch341a programmer—though [this is not advised](https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a).**_
+_**For my installation, I used the ch341a programmer—though, [this is not advised](https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a).**_
 
 ## Software
 
@@ -96,6 +96,10 @@ Refer to [this guide](https://www.myfixguide.com/manual/lenovo-thinkpad-t440-dis
 ![T440p top (4MB) and bottom (8MB) ROM locations](/images/projects/t440p-libreboot/t440p-chips.webp)
 
 ### Backing Up Stock ROMs
+
+![CH341A reading ROMs](/images/projects/t440p-libreboot/connected.webp)
+
+_**Your setup will look different; my casing was fused together, so I had to improvise.**_
 
 ```bash
 # Backup top stock ROMs
