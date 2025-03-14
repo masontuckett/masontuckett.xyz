@@ -32,7 +32,7 @@ In addition to completing my undergraduate degree in approximately 2.5 years—I
 - [CompTIA A+](https://www.credly.com/badges/abd3d622-44a8-47fe-87b2-71af6b0df9d9) - 26DTYN06MFB4QMC7
 - [ISC2 CC](https://www.credly.com/badges/510ba232-b6b8-4280-b215-8d4315bc5dd0/public_url) - 2068665
  - [CompTIA ITF+](https://www.credly.com/badges/6929a3fd-cf3e-4d0b-9a04-00f904d0d6ae) - 7KXDBYRYQFFQ1ESQ
- - [Google IT Support](https://www.coursera.org/account/accomplishments/specialization/69J675FU9XSO) - 69J675FU9XSO
+ - [Google IT Support](https://www.credly.com/badges/6e61ac72-5cc9-4f03-98c9-85b8ecac6e38) - 69J675FU9XSO
 
 ### Course Related Certifications
 - [CCNA: Switching, Routing, and Wireless Essentials](https://www.credly.com/badges/2e00ff4f-7b94-4272-80fe-44b9d21db3b1)
