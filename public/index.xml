@@ -16,12 +16,12 @@
       <link>https://masontuckett.xyz/about/</link>
       <pubDate>Sat, 28 Dec 2024 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/about/</guid>
-      <description>&lt;h1 id=&#34;about-me&#34;&gt;About Me&lt;/h1&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/weber-state-campus-winter.webp&#34; alt=&#34;Weber State Campus - Winter (benjaminzack@weber.edu)&#34;&gt;&#xA;I am currently a 21-year-old, full-time student at &lt;a href=&#34;https://www.weber.edu/AboutWSU/&#34;&gt;Weber State University&lt;/a&gt;—diligently studying Cybersecurity and Network Management.&lt;/p&gt;&#xA;&lt;p&gt;While attending university, I made considerable sacrifices to achieve my dreams.&lt;/p&gt;&#xA;&lt;p&gt;I worked around the clock—sacrificing summers and the majority of my free time towards completing my undergraduate degree.&lt;/p&gt;&#xA;&lt;p&gt;Unlike most other young undergraduate students—I did not start with college credits; I was consistently a full-time student, enduring high course loads.&lt;/p&gt;</description>
+      <description>&lt;h1 id=&#34;about-me&#34;&gt;About Me&lt;/h1&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/weber-state-campus-winter.webp&#34; alt=&#34;Weber State Campus - Winter (benjaminzack@weber.edu)&#34;&gt;&#xA;I am currently a 21-year-old, full-time student at &lt;a href=&#34;https://www.weber.edu/AboutWSU/&#34;&gt;Weber State University&lt;/a&gt;—diligently studying Cybersecurity and Network Management.&lt;/p&gt;&#xA;&lt;p&gt;While attending university, I made considerable sacrifices to achieve my dreams.&lt;/p&gt;&#xA;&lt;p&gt;I worked around the clock—investing summers and the majority of my free time towards completing my undergraduate degree.&lt;/p&gt;&#xA;&lt;p&gt;Unlike most other young undergraduate students—I did not start with college credits; I was consistently a full-time student, enduring high course loads.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h1 id="about-me">About Me</h1>
 <p><img src="/images/weber-state-campus-winter.webp" alt="Weber State Campus - Winter (benjaminzack@weber.edu)">
 I am currently a 21-year-old, full-time student at <a href="https://www.weber.edu/AboutWSU/">Weber State University</a>—diligently studying Cybersecurity and Network Management.</p>
 <p>While attending university, I made considerable sacrifices to achieve my dreams.</p>
-<p>I worked around the clock—sacrificing summers and the majority of my free time towards completing my undergraduate degree.</p>
+<p>I worked around the clock—investing summers and the majority of my free time towards completing my undergraduate degree.</p>
 <p>Unlike most other young undergraduate students—I did not start with college credits; I was consistently a full-time student, enduring high course loads.</p>
 <p>In addition to completing my undergraduate degree in approximately 2.5 years—I studied constantly, procuring a plethora of advanced cybersecurity certifications.</p>
 <small><i><b>I have worked tirelessly towards accomplishing my goals.</b></i></small>
@@ -50,17 +50,17 @@ I am currently a 21-year-old, full-time student at <a href="https://www.weber.ed
 <p><strong>High School Diploma - Davis Connect 7-12</strong><br>
 May, 2022</p>
 <p><strong>BS, Cybersecurity and Network Management - Weber State University</strong><br>
-August, 2022 - April, 2025</p>
+August, 2022 - August, 2025</p>
 <p><strong>AAS, Cybersecurity and Network Management - Weber State University</strong><br>
-August, 2022 - April, 2025</p></blockquote>
+August, 2022 - August, 2025</p></blockquote>
 <h3 id="lesser-education">Lesser Education</h3>
 <blockquote>
 <p><strong>CP, Cybersecurity and Policy Management - Weber State University</strong><br>
 August, 2022 - April, 2025</p>
 <p><strong>CP, Cloud Computing Security - Weber State University</strong><br>
-August, 2022 - December, 2024</p>
+August, 2022 - April, 2025</p>
 <p><strong>CP, Network Technologies - Weber State University</strong><br>
-August, 2022 - December, 2024</p>
+August, 2022 - April, 2025</p>
 <p><strong>CP, Cybersecurity Essentials - Weber State University</strong><br>
 August, 2022 - April, 2023</p></blockquote>
 ]]></content:encoded>
@@ -130,11 +130,11 @@ t6vN2CWgUgXvgQM=
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Prerequisites</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt install -y git wget build-essentials
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Prerequisites</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt install -y git wget build-essential
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Obtain Libreboot&#39;s build system</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">git clone https://codeberg.org/libreboot/lbmk ~
+</span></span><span class="line"><span class="ln">5</span><span class="cl">git clone https://codeberg.org/libreboot/lbmk ~/lbmk
 </span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="nb">cd</span> ~/lbmk
 </span></span><span class="line"><span class="ln">7</span><span class="cl">
 </span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="c1"># Obtain Libreboot T440p image</span>
@@ -144,20 +144,21 @@ t6vN2CWgUgXvgQM=
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Set available threads for faster compilation</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">EXPORT <span class="nv">XBMK_THREADS</span><span class="o">=</span><span class="m">12</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Set available threads for faster compilation</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nb">export</span> <span class="nv">XBMK_THREADS</span><span class="o">=</span><span class="m">12</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Set your distro and build necessary dependencies</span>
 </span></span><span class="line"><span class="ln">5</span><span class="cl">sudo ./mk dependencies mint
 </span></span><span class="line"><span class="ln">6</span><span class="cl">
 </span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"># Build flashprog</span>
-</span></span><span class="line"><span class="ln">8</span><span class="cl">./mk -b flashprog</span></span></code></pre></div><h3 id="preparing-images">Preparing Images</h3>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">./mk -b flashprog
+</span></span><span class="line"><span class="ln">9</span><span class="cl">mv ~/lbmk/elf/flashprog/flashprog ../..</span></span></code></pre></div><h3 id="preparing-images">Preparing Images</h3>
 
 
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Inject necessary vendor files</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Inject necessary vendor files</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">./mk inject libreboot-20241206rev10_t440plibremrc_12mb.tar.xz
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># Unpack the injected image</span>
@@ -178,7 +179,7 @@ t6vN2CWgUgXvgQM=
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Backup top stock ROMs</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Backup top stock ROMs</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -r top-stock-bk.rom
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -r top-stock-bk2.rom
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">
@@ -193,7 +194,7 @@ t6vN2CWgUgXvgQM=
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Write the top ROM</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Write the top ROM</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -w ~/lbmk/top.rom
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Write the bottom ROM</span>

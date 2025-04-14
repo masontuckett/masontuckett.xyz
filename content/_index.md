@@ -23,13 +23,13 @@ This page serves as a personal project and is intended to showcase my:
 > May, 2022
 >
 > __BS, Cybersecurity and Network Management - Weber State University__\
-> August, 2022 - April, 2025
+> August, 2022 - August, 2025
 >
 > __MS, Cybersecurity and Information Assurance - Western Govenors University__\
-> June, 2025
+> October, 2025 (EST)
 >
 > __PhDCD, Cyber Defense Doctor of Philosophy - Dakota State University__\
-> January, 2026 - January, 2029 (EST)
+> August, 2026 - May, 2030 (EST)
 
 
 

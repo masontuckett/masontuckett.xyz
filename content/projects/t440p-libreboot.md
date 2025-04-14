@@ -51,12 +51,12 @@ Preferably, you will need a device with Linux installed; if you are using an SBC
 
 ### Obtaining Build Files
 
-```bash
+```sh
 # Prerequisites
-sudo apt install -y git wget build-essentials
+sudo apt install -y git wget build-essential
 
 # Obtain Libreboot's build system
-git clone https://codeberg.org/libreboot/lbmk ~
+git clone https://codeberg.org/libreboot/lbmk ~/lbmk
 cd ~/lbmk
 
 # Obtain Libreboot T440p image
@@ -64,19 +64,20 @@ wget https://mirror.math.princeton.edu/pub/libreboot/stable/20241206/roms/libreb
 ```
 ### Making the Libreboot Build System
 
-```bash
+```sh
 # Set available threads for faster compilation
-EXPORT XBMK_THREADS=12
+export XBMK_THREADS=12
 
 # Set your distro and build necessary dependencies
 sudo ./mk dependencies mint
 
 # Build flashprog
 ./mk -b flashprog
+mv ~/lbmk/elf/flashprog/flashprog ../..
 ```
 ### Preparing Images
 
-```bash
+```sh
 # Inject necessary vendor files
 ./mk inject libreboot-20241206rev10_t440plibremrc_12mb.tar.xz
 
@@ -101,7 +102,7 @@ Refer to [this guide](https://www.myfixguide.com/manual/lenovo-thinkpad-t440-dis
 
 _**Your setup will look different; my casing was fused together, so I had to improvise.**_
 
-```bash
+```sh
 # Backup top stock ROMs
 sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -r top-stock-bk.rom
 sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -r top-stock-bk2.rom
@@ -115,7 +116,7 @@ sha512sum top-stock* bot-stock*
 ```
 ### Flashing Libreboot Images
 
-```bash
+```sh
 # Write the top ROM
 sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -w ~/lbmk/top.rom
 

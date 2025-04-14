@@ -42,11 +42,11 @@
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Prerequisites</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt install -y git wget build-essentials
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Prerequisites</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt install -y git wget build-essential
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Obtain Libreboot&#39;s build system</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">git clone https://codeberg.org/libreboot/lbmk ~
+</span></span><span class="line"><span class="ln">5</span><span class="cl">git clone https://codeberg.org/libreboot/lbmk ~/lbmk
 </span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="nb">cd</span> ~/lbmk
 </span></span><span class="line"><span class="ln">7</span><span class="cl">
 </span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="c1"># Obtain Libreboot T440p image</span>
@@ -56,20 +56,21 @@
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Set available threads for faster compilation</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">EXPORT <span class="nv">XBMK_THREADS</span><span class="o">=</span><span class="m">12</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Set available threads for faster compilation</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nb">export</span> <span class="nv">XBMK_THREADS</span><span class="o">=</span><span class="m">12</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Set your distro and build necessary dependencies</span>
 </span></span><span class="line"><span class="ln">5</span><span class="cl">sudo ./mk dependencies mint
 </span></span><span class="line"><span class="ln">6</span><span class="cl">
 </span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"># Build flashprog</span>
-</span></span><span class="line"><span class="ln">8</span><span class="cl">./mk -b flashprog</span></span></code></pre></div><h3 id="preparing-images">Preparing Images</h3>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">./mk -b flashprog
+</span></span><span class="line"><span class="ln">9</span><span class="cl">mv ~/lbmk/elf/flashprog/flashprog ../..</span></span></code></pre></div><h3 id="preparing-images">Preparing Images</h3>
 
 
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Inject necessary vendor files</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Inject necessary vendor files</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">./mk inject libreboot-20241206rev10_t440plibremrc_12mb.tar.xz
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># Unpack the injected image</span>
@@ -90,7 +91,7 @@
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Backup top stock ROMs</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Backup top stock ROMs</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -r top-stock-bk.rom
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -r top-stock-bk2.rom
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">
@@ -105,7 +106,7 @@
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Write the top ROM</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Write the top ROM</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -w ~/lbmk/top.rom
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Write the bottom ROM</span>

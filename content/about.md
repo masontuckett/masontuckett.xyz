@@ -13,7 +13,7 @@ I am currently a 21-year-old, full-time student at [Weber State University](http
 
 While attending university, I made considerable sacrifices to achieve my dreams. 
 
-I worked around the clock—sacrificing summers and the majority of my free time towards completing my undergraduate degree. 
+I worked around the clock—investing summers and the majority of my free time towards completing my undergraduate degree. 
 
 Unlike most other young undergraduate students—I did not start with college credits; I was consistently a full-time student, enduring high course loads.
 
@@ -44,20 +44,20 @@ In addition to completing my undergraduate degree in approximately 2.5 years—I
 > May, 2022
 >
 > __BS, Cybersecurity and Network Management - Weber State University__\
-> August, 2022 - April, 2025
+> August, 2022 - August, 2025
 >
 > __AAS, Cybersecurity and Network Management - Weber State University__\
-> August, 2022 - April, 2025
+> August, 2022 - August, 2025
 
 ### Lesser Education
 > __CP, Cybersecurity and Policy Management - Weber State University__\
 > August, 2022 - April, 2025
 >
 > __CP, Cloud Computing Security - Weber State University__\
-> August, 2022 - December, 2024
+> August, 2022 - April, 2025
 >
 > __CP, Network Technologies - Weber State University__\
-> August, 2022 - December, 2024
+> August, 2022 - April, 2025
 >
 > __CP, Cybersecurity Essentials - Weber State University__\
 > August, 2022 - April, 2023
