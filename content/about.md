@@ -40,14 +40,14 @@ In addition to completing my undergraduate degree in approximately 2.5 years—I
 - [AWS Academy Cloud Foundations](https://www.credly.com/badges/f86e3988-fa87-4cec-baff-f49d77471ac2)
  
 ## Education
-> __High School Diploma - Davis Connect 7-12__\
-> May, 2022
->
 > __BS, Cybersecurity and Network Management - Weber State University__\
 > August, 2022 - August, 2025
 >
 > __AAS, Cybersecurity and Network Management - Weber State University__\
 > August, 2022 - August, 2025
+>
+> __High School Diploma - Davis Connect 7-12__\
+> May, 2022
 
 ### Lesser Education
 > __CP, Cybersecurity and Policy Management - Weber State University__\
