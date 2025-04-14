@@ -17,7 +17,7 @@ I worked around the clock—investing summers and the majority of my free time t
 
 Unlike most other young undergraduate students—I did not start with college credits; I was consistently a full-time student, enduring high course loads.
 
-In addition to completing my undergraduate degree in approximately 2.5 years—I studied constantly, procuring a plethora of advanced cybersecurity certifications.
+In addition to completing my undergraduate degree in approximately 3 years—I studied constantly, procuring a plethora of advanced cybersecurity certifications.
 
 {{< small >}}I have worked tirelessly towards accomplishing my goals.{{< /small >}}
 
