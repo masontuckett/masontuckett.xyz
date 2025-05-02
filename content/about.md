@@ -38,12 +38,19 @@ In addition to completing my undergraduate degree in approximately 3 years—I s
 - [CCNA: Switching, Routing, and Wireless Essentials](https://www.credly.com/badges/2e00ff4f-7b94-4272-80fe-44b9d21db3b1)
 - [AWS Academy Cloud Security Builder](https://www.credly.com/badges/2732c774-28fd-4616-b411-389633ef65b9)
 - [AWS Academy Cloud Foundations](https://www.credly.com/badges/f86e3988-fa87-4cec-baff-f49d77471ac2)
+
+### Competitions
+- Cyber Skyline - NCL Spring 2025 Team Game — **TBD** ~ 67/4783 (Top 1.4%)
+- [Cyber Skyline - NCL Spring 2025 Individual Game](https://www.linkedin.com/in/mason-tuckett/details/projects/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAEeZ-DwBPRZ1BIE2bO7H9iqYaYiXWMPxbNE) — 296/8570 (Top 3.45%)
  
 ## Education
 > __BS, Cybersecurity and Network Management - Weber State University__\
 > August, 2022 - August, 2025
 >
 > __AAS, Cybersecurity and Network Management - Weber State University__\
+> August, 2022 - August, 2025
+>
+> __AS, General Studies - Weber State University__\
 > August, 2022 - August, 2025
 >
 > __High School Diploma - Davis Connect 7-12__\
