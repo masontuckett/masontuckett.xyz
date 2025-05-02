@@ -14,6 +14,8 @@ A Brief Overview of GNU Privacy Guard (GPG)
 
 ## What is GPG?
 
+![Public Key Encryption Diagram](/images/projects/gpg/pgp.svg)
+
 GNU Privacy Guard (GPG) is largely a modern replacement—or rather, an extension—of Pretty Good Privacy (PGP), which has been effectively abandoned by Symantec.
 
 GPG is a modern implementation of the OpenPGP standard, often utilized on both *nix and Windows systems. 
