@@ -10,8 +10,6 @@ tags = [
 ]
 hideReply = true
 +++
-
-
 A Guide for Installing Libreboot on the Lenovo Thinkpad T440p
 
 ## What is Libreboot?
@@ -26,7 +24,7 @@ _Libreboot is a distribution of Coreboot—wherein all updates come from upstrea
 
 Unlike Coreboot, Libreboot is designed to be completely free and open-source, including only essential [CPU microcode updates](https://libreboot.org/news/microcode.html).
 
-_**For more details, visit [here](https://libreboot.org/)**_
+_**For more details, visit [here](https://libreboot.org/).**_
 
 # Installation
 

@@ -24,7 +24,7 @@
 <p>Libreboot is primarily geared towards enthusiasts—though it does have limited hardware support; however, many devices are now compatible.</p>
 <p><em>Libreboot is a distribution of Coreboot—wherein all updates come from upstream <a href="https://www.coreboot.org/">Coreboot</a> development.</em></p>
 <p>Unlike Coreboot, Libreboot is designed to be completely free and open-source, including only essential <a href="https://libreboot.org/news/microcode.html">CPU microcode updates</a>.</p>
-<p><em><strong>For more details, visit <a href="https://libreboot.org/">here</a></strong></em></p>
+<p><em><strong>For more details, visit <a href="https://libreboot.org/">here</a>.</strong></em></p>
 <h1 id="installation">Installation</h1>
 <h2 id="tools">Tools</h2>
 <p>You will need an EEPROM flash programmer.</p>
