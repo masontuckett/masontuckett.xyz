@@ -44,7 +44,7 @@
 </span></span><span class="line"><span class="ln">6</span><span class="cl">   <span class="o">(</span>9<span class="o">)</span> ECC <span class="o">(</span>sign and encrypt<span class="o">)</span> *default*
 </span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="o">(</span>10<span class="o">)</span> ECC <span class="o">(</span>sign only<span class="o">)</span>
 </span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="o">(</span>14<span class="o">)</span> Existing key from card
-</span></span><span class="line"><span class="ln">9</span><span class="cl">Your selection? </span></span></code></pre></div><p>Choose <strong>(9)</strong> — this creates an Eliptic Curve Cryptography (ECC) key pair, which is far more modern and efficient compared to RSA.</p>
+</span></span><span class="line"><span class="ln">9</span><span class="cl">Your selection? </span></span></code></pre></div><p>Choose <strong>(9)</strong> — this creates an Elliptic Curve Cryptography (ECC) key pair, which is far more modern and efficient compared to RSA.</p>
 <p>Generally speaking, ECC keys are considered more secure per bit <a href="https://sslinsights.com/ecc-vs-rsa/">compared to RSA keys</a>—offering equivalent security while being far faster/portable.</p>
 
 
@@ -264,7 +264,13 @@
 </span></span><span class="line"><span class="ln">16</span><span class="cl">gpg --decrypt file.asc
 </span></span><span class="line"><span class="ln">17</span><span class="cl">gpg: encrypted with cv25519 key, ID 98659A24F32C199E, created 2025-05-02
 </span></span><span class="line"><span class="ln">18</span><span class="cl">      <span class="s2">&#34;recipient (test) &lt;recipient@mail.com&gt;&#34;</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">file</span></span></code></pre></div>]]></content:encoded>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">file</span></span></code></pre></div><h2 id="closing">Closing</h2>
+<p>GPG is an essential tool for anyone looking to ensure both integrity and authenticity by adding a secure layer to digital communication.</p>
+<p>GPG or OpenPGP tools are useful for establishing chains of trust and for preventing man-in-the-middle attacks—limiting access to sensitive information.</p>
+<p>It is a fantastic idea to communicate via GPG-encrypted messages or files, which many privacy-conscious providers like <a href="https://proton.me/support/how-to-use-pgp">Proton Mail</a> natively support.</p>
+<p>Remember to always use encryption when necessary, even if it may not appear convenient at first; <em>you are in control of your data</em>.</p>
+<p><em><strong>Encrypt away!</strong></em></p>
+]]></content:encoded>
     </item>
     <item>
       <title>Librebooting a Thinkpad T440p</title>

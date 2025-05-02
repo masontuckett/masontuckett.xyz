@@ -43,7 +43,7 @@ Please select what kind of key you want:
   (14) Existing key from card
 Your selection? 
 ```
-Choose **(9)** — this creates an Eliptic Curve Cryptography (ECC) key pair, which is far more modern and efficient compared to RSA.
+Choose **(9)** — this creates an Elliptic Curve Cryptography (ECC) key pair, which is far more modern and efficient compared to RSA.
 
 Generally speaking, ECC keys are considered more secure per bit [compared to RSA keys](https://sslinsights.com/ecc-vs-rsa/)—offering equivalent security while being far faster/portable.
 
@@ -282,6 +282,19 @@ gpg: encrypted with cv25519 key, ID 98659A24F32C199E, created 2025-05-02
       "recipient (test) <recipient@mail.com>"
 file
 ```
+
+## Closing 
+
+GPG is an essential tool for anyone looking to ensure both integrity and authenticity by adding a secure layer to digital communication.
+
+GPG or OpenPGP tools are useful for establishing chains of trust and for preventing man-in-the-middle attacks—limiting access to sensitive information.
+
+It is a fantastic idea to communicate via GPG-encrypted messages or files, which many privacy-conscious providers like [Proton Mail](https://proton.me/support/how-to-use-pgp) natively support.
+
+Remember to always use encryption when necessary, even if it may not appear convenient at first; _you are in control of your data_.
+
+_**Encrypt away!**_
+
 
 
 
