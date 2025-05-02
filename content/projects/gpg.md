@@ -2,7 +2,7 @@
 date = '2025-05-01T16:36:37-06:00'
 title = 'GNU Privacy Guard'
 author = "Mason Tuckett"
-description = "A Brief Guide on managing GPG keys"
+description = "A Brief Guide on Managing GPG keys"
 tags = [
     "gpg",
     "crypto",
