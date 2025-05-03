@@ -149,7 +149,7 @@ t6vN2CWgUgXvgQM=
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">Please <span class="k">select</span> which elliptic curve you want:
 </span></span><span class="line"><span class="ln">2</span><span class="cl">   <span class="o">(</span>1<span class="o">)</span> Curve <span class="m">25519</span> *default*
 </span></span><span class="line"><span class="ln">3</span><span class="cl">   <span class="o">(</span>4<span class="o">)</span> NIST P-384
-</span></span><span class="line"><span class="ln">4</span><span class="cl">   <span class="o">(</span>6<span class="o">)</span> Brainpool P-256</span></span></code></pre></div><p>Choose <strong>(1)</strong> — ED25519 is a sane default, and is widely adopted.</p>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">   <span class="o">(</span>6<span class="o">)</span> Brainpool P-256</span></span></code></pre></div><p>Choose <strong>(1)</strong> — ED25519 is a sane default and is widely adopted.</p>
 
 
 
@@ -245,9 +245,9 @@ t6vN2CWgUgXvgQM=
 </span></span><span class="line"><span class="ln">10</span><span class="cl">-----END PGP PRIVATE KEY BLOCK-----</span></span></code></pre></div><p>It&rsquo;s best to utilize the fingerprint when exporting keys, especially if you have multiple keys tied to the same email address; <em>this ensures you are exporting the correct key.</em></p>
 <p>Naturally, you will be sharing your public key quite frequently—but <strong>NEVER SHARE YOUR PRIVATE KEY!</strong></p>
 <p>Public keys are safe to distribute, but private keys should remain <strong>PRIVATE</strong>.</p>
-<p>Private keys are really, only functionally used for decryption, and making backups ensures that you have redudancy; only do this when transferring or restoring keys.</p>
+<p>Private keys are really only functionally used for decryption, and making backups ensures that you have redundancy; only do this when transferring or restoring keys.</p>
 <h3 id="importing-keys">Importing Keys</h3>
-<p>Typically, you will only import a recipient&rsquo;s public key—but you may also need to import redudant copies of private keys.</p>
+<p>Typically, you will only import a recipient&rsquo;s public key—but you may also need to import redundant copies of private keys.</p>
 
 
 

@@ -53,7 +53,7 @@ Please select which elliptic curve you want:
    (4) NIST P-384
    (6) Brainpool P-256
 ```
-Choose **(1)** — ED25519 is a sane default, and is widely adopted.
+Choose **(1)** — ED25519 is a sane default and is widely adopted.
 
 ```bash
 Please specify how long the key should be valid.
@@ -159,11 +159,11 @@ Naturally, you will be sharing your public key quite frequently—but **NEVER SH
 
 Public keys are safe to distribute, but private keys should remain **PRIVATE**.
 
-Private keys are really, only functionally used for decryption, and making backups ensures that you have redudancy; only do this when transferring or restoring keys.
+Private keys are really only functionally used for decryption, and making backups ensures that you have redundancy; only do this when transferring or restoring keys.
 
 ### Importing Keys
 
-Typically, you will only import a recipient's public key—but you may also need to import redudant copies of private keys.
+Typically, you will only import a recipient's public key—but you may also need to import redundant copies of private keys.
 
 ```bash
 # Public key
