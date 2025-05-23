@@ -57,14 +57,14 @@ In addition to completing my undergraduate degree in approximately 3 years—I s
 > May, 2022
 
 ### Lesser Education
-> __CP, Cybersecurity and Policy Management - Weber State University__\
+> __[CP, Cybersecurity and Policy Management - Weber State University](https://apps.weber.edu/verify/?dvid=EZ4A6KOU)__\
 > August, 2022 - April, 2025
 >
-> __CP, Cloud Computing Security - Weber State University__\
+> __[CP, Cloud Computing Security - Weber State University](https://apps.weber.edu/verify/?dvid=WJ8MCABL)__\
 > August, 2022 - April, 2025
 >
-> __CP, Network Technologies - Weber State University__\
+> __[CP, Network Technologies - Weber State University](https://apps.weber.edu/verify/?dvid=4TL9N2DW)__\
 > August, 2022 - April, 2025
 >
-> __CP, Cybersecurity Essentials - Weber State University__\
+> __[CP, Cybersecurity Essentials - Weber State University](https://apps.weber.edu/verify/?dvid=74KAGS9J)__\
 > August, 2022 - April, 2023
