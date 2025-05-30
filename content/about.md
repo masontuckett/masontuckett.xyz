@@ -21,6 +21,13 @@ In addition to completing my undergraduate degree in approximately 3 years—I s
 
 {{< small >}}I have worked tirelessly towards accomplishing my goals.{{< /small >}}
 
+## Experience
+__Ken Garff Esports - Summer Tech Track Mentorship__\
+__*Success in Education*__\
+*Summer 2025*
+- Instructed students (grades 7–12) in foundational cybersecurity, using the CyberPatriot curriculum.
+- Guided hands-on game development projects to teach logic, design, and teamwork.
+- Led drone technology workshops focused on safety, flight basics, and applications.
 
 ## Certifications
 - [CompTIA CASP+ (SecurityX)](https://www.credly.com/badges/6e264660-65c8-4361-9da8-5b953c0a9772/public_url) - 8S50JTL5Y2FQ1ZSZ
@@ -57,7 +64,7 @@ In addition to completing my undergraduate degree in approximately 3 years—I s
 > May, 2022
 
 ### Lesser Education
-> __[CP, Cybersecurity and Policy Management - Weber State University](https://apps.weber.edu/verify/?dvid=EZ4A6KOU)__\
+> __[CP, Cybersecurity Policy and Management - Weber State University](https://apps.weber.edu/verify/?dvid=EZ4A6KOU)__\
 > August, 2022 - April, 2025
 >
 > __[CP, Cloud Computing Security - Weber State University](https://apps.weber.edu/verify/?dvid=WJ8MCABL)__\
