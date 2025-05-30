@@ -10,11 +10,10 @@ description = "Mason Tuckett's Home Page"
 ## Welcome to My Webpage!
 ![Weber State Campus - Fall (benjaminzack@weber.edu)](/images/weber-state-campus-fall.webp)
 I am Mason Tuckett—__*a senior Cybersecurity student*__ at [Weber State University](https://www.weber.edu/AboutWSU/).\
-This page serves as a personal project and is intended to showcase my:
-- Publications
+This page serves as my portfolio and is intended to showcase my:
 - Projects
-- Portfolio
-- Resume
+- Publications
+- Professional Profile
 
 {{< small >}}I am constantly undertaking new projects and strive to self-study as much as possible.{{< /small >}}
 
@@ -26,10 +25,10 @@ This page serves as a personal project and is intended to showcase my:
 > August, 2022 - August, 2025
 >
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
-> October, 2025 (EST)
+> August, 2025 - December, 2025 (Exp.)
 >
 > __PhD, Cyber Defense - Dakota State University__\
-> August, 2026 - May, 2030 (EST)
+> August, 2026 - May, 2030 (Exp.)
 
 
 
