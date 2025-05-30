@@ -25,10 +25,10 @@ This page serves as a personal project and is intended to showcase my:
 > __BS, Cybersecurity and Network Management - Weber State University__\
 > August, 2022 - August, 2025
 >
-> __MS, Cybersecurity and Information Assurance - Western Govenors University__\
+> __MS, Cybersecurity and Information Assurance - Western Governors University__\
 > October, 2025 (EST)
 >
-> __PhDCD, Cyber Defense Doctor of Philosophy - Dakota State University__\
+> __PhD, Cyber Defense - Dakota State University__\
 > August, 2026 - May, 2030 (EST)
 
 
