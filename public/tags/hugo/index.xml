@@ -13,9 +13,9 @@
     <atom:link href="https://masontuckett.xyz/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo</title>
-      <link>https://masontuckett.xyz/projects/hugo/</link>
+      <link>https://masontuckett.xyz/posts/hugo/</link>
       <pubDate>Mon, 10 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/projects/hugo/</guid>
+      <guid>https://masontuckett.xyz/posts/hugo/</guid>
       <description>&lt;p&gt;For my personal website, I opted to use a static site generator.&lt;/p&gt;&#xA;&lt;p&gt;Not only would this allow me to automate content creation—it avoids the needless clunkiness of content management systems such as WordPress.&lt;/p&gt;&#xA;&lt;p&gt;For the modern web, it makes no sense to implement a &lt;em&gt;largely static blog&lt;/em&gt; through a content management system; it unnecessarily increases your &lt;a href=&#34;https://www.cvedetails.com/product/4096/Wordpress-Wordpress.html?vendor_id=2337_&#34;&gt;attack surface&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;That being said, there are a plethora of static site generators and frameworks available—but many ultimately defeat the purpose of a true static site generator.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>For my personal website, I opted to use a static site generator.</p>
 <p>Not only would this allow me to automate content creation—it avoids the needless clunkiness of content management systems such as WordPress.</p>

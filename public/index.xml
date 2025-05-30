@@ -117,9 +117,9 @@ t6vN2CWgUgXvgQM=
     </item>
     <item>
       <title>GNU Privacy Guard</title>
-      <link>https://masontuckett.xyz/projects/gpg/</link>
+      <link>https://masontuckett.xyz/posts/gpg/</link>
       <pubDate>Thu, 01 May 2025 16:36:37 -0600</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/projects/gpg/</guid>
+      <guid>https://masontuckett.xyz/posts/gpg/</guid>
       <description>&lt;p&gt;A Brief Overview of GNU Privacy Guard (GPG)&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-gpg&#34;&gt;What is GPG?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/projects/gpg/pgp.svg&#34; alt=&#34;Public Key Encryption Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;GNU Privacy Guard (GPG) is largely a modern replacement—or rather, an extension—of Pretty Good Privacy (PGP), which has been effectively abandoned by Symantec.&lt;/p&gt;&#xA;&lt;p&gt;GPG is a modern implementation of the OpenPGP standard, often utilized on both *nix and Windows systems.&lt;/p&gt;&#xA;&lt;p&gt;Many modern platforms and services are designed to be compatible with both GPG and OpenPGP tools, facilitating secure communication and non-repudiation via cryptographic signatures.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>A Brief Overview of GNU Privacy Guard (GPG)</p>
 <h2 id="what-is-gpg">What is GPG?</h2>
@@ -378,9 +378,9 @@ t6vN2CWgUgXvgQM=
     </item>
     <item>
       <title>Librebooting a Thinkpad T440p</title>
-      <link>https://masontuckett.xyz/projects/t440p-libreboot/</link>
+      <link>https://masontuckett.xyz/posts/t440p-libreboot/</link>
       <pubDate>Thu, 13 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/projects/t440p-libreboot/</guid>
+      <guid>https://masontuckett.xyz/posts/t440p-libreboot/</guid>
       <description>&lt;p&gt;A Guide for Installing Libreboot on the Lenovo Thinkpad T440p&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-libreboot&#34;&gt;What is Libreboot?&lt;/h2&gt;&#xA;&lt;p&gt;Libreboot is a free and open-source replacement for proprietary UEFI/BIOS firmware—neutering invasive technologies like &lt;a href=&#34;https://itsfoss.com/fact-intel-minix-case/&#34;&gt;Intel ME&lt;/a&gt; in the process.&lt;/p&gt;&#xA;&lt;p&gt;The project seeks to remove proprietary &lt;a href=&#34;https://libreboot.org/news/policy.html#what-is-a-binary-blob&#34;&gt;binary blobs&lt;/a&gt; included in firmware (required for key components to function)—providing a privacy-respecting alternative for users.&lt;/p&gt;&#xA;&lt;p&gt;Libreboot is primarily geared towards enthusiasts—though it does have limited hardware support; however, many devices are now compatible.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>A Guide for Installing Libreboot on the Lenovo Thinkpad T440p</p>
 <h2 id="what-is-libreboot">What is Libreboot?</h2>
@@ -481,9 +481,9 @@ t6vN2CWgUgXvgQM=
     </item>
     <item>
       <title>Hugo</title>
-      <link>https://masontuckett.xyz/projects/hugo/</link>
+      <link>https://masontuckett.xyz/posts/hugo/</link>
       <pubDate>Mon, 10 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/projects/hugo/</guid>
+      <guid>https://masontuckett.xyz/posts/hugo/</guid>
       <description>&lt;p&gt;For my personal website, I opted to use a static site generator.&lt;/p&gt;&#xA;&lt;p&gt;Not only would this allow me to automate content creation—it avoids the needless clunkiness of content management systems such as WordPress.&lt;/p&gt;&#xA;&lt;p&gt;For the modern web, it makes no sense to implement a &lt;em&gt;largely static blog&lt;/em&gt; through a content management system; it unnecessarily increases your &lt;a href=&#34;https://www.cvedetails.com/product/4096/Wordpress-Wordpress.html?vendor_id=2337_&#34;&gt;attack surface&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;That being said, there are a plethora of static site generators and frameworks available—but many ultimately defeat the purpose of a true static site generator.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>For my personal website, I opted to use a static site generator.</p>
 <p>Not only would this allow me to automate content creation—it avoids the needless clunkiness of content management systems such as WordPress.</p>

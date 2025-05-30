@@ -13,9 +13,9 @@
     <atom:link href="https://masontuckett.xyz/tags/privacy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GNU Privacy Guard</title>
-      <link>https://masontuckett.xyz/projects/gpg/</link>
+      <link>https://masontuckett.xyz/posts/gpg/</link>
       <pubDate>Thu, 01 May 2025 16:36:37 -0600</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/projects/gpg/</guid>
+      <guid>https://masontuckett.xyz/posts/gpg/</guid>
       <description>&lt;p&gt;A Brief Overview of GNU Privacy Guard (GPG)&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-gpg&#34;&gt;What is GPG?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/projects/gpg/pgp.svg&#34; alt=&#34;Public Key Encryption Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;GNU Privacy Guard (GPG) is largely a modern replacement—or rather, an extension—of Pretty Good Privacy (PGP), which has been effectively abandoned by Symantec.&lt;/p&gt;&#xA;&lt;p&gt;GPG is a modern implementation of the OpenPGP standard, often utilized on both *nix and Windows systems.&lt;/p&gt;&#xA;&lt;p&gt;Many modern platforms and services are designed to be compatible with both GPG and OpenPGP tools, facilitating secure communication and non-repudiation via cryptographic signatures.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>A Brief Overview of GNU Privacy Guard (GPG)</p>
 <h2 id="what-is-gpg">What is GPG?</h2>

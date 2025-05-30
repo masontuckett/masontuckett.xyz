@@ -13,9 +13,9 @@
     <atom:link href="https://masontuckett.xyz/tags/libreboot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Librebooting a Thinkpad T440p</title>
-      <link>https://masontuckett.xyz/projects/t440p-libreboot/</link>
+      <link>https://masontuckett.xyz/posts/t440p-libreboot/</link>
       <pubDate>Thu, 13 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
-      <guid>https://masontuckett.xyz/projects/t440p-libreboot/</guid>
+      <guid>https://masontuckett.xyz/posts/t440p-libreboot/</guid>
       <description>&lt;p&gt;A Guide for Installing Libreboot on the Lenovo Thinkpad T440p&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-libreboot&#34;&gt;What is Libreboot?&lt;/h2&gt;&#xA;&lt;p&gt;Libreboot is a free and open-source replacement for proprietary UEFI/BIOS firmware—neutering invasive technologies like &lt;a href=&#34;https://itsfoss.com/fact-intel-minix-case/&#34;&gt;Intel ME&lt;/a&gt; in the process.&lt;/p&gt;&#xA;&lt;p&gt;The project seeks to remove proprietary &lt;a href=&#34;https://libreboot.org/news/policy.html#what-is-a-binary-blob&#34;&gt;binary blobs&lt;/a&gt; included in firmware (required for key components to function)—providing a privacy-respecting alternative for users.&lt;/p&gt;&#xA;&lt;p&gt;Libreboot is primarily geared towards enthusiasts—though it does have limited hardware support; however, many devices are now compatible.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>A Guide for Installing Libreboot on the Lenovo Thinkpad T440p</p>
 <h2 id="what-is-libreboot">What is Libreboot?</h2>
