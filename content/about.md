@@ -48,7 +48,7 @@ __*Success in Education*__\
 
 ## Competitions
 - [Cyber Skyline - NCL Spring 2025 Team Game](https://cyberskyline.com/report/HPN1KTYNV6BU) — 66/4779 (Top 1.4%)
-- [Cyber Skyline - NCL Spring 2025 Individual Game](https://cyberskyline.com/report/UD1M4AHQXCUB) — 296/8570 (Top 3.45%)
+- [Cyber Skyline - NCL Spring 2025 Individual Game](https://cyberskyline.com/report/UD1M4AHQXCUB) — 296/8573 (Top 3.45%)
  
 ## Education
 > __BS, Cybersecurity and Network Management - Weber State University__\
