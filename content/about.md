@@ -22,12 +22,18 @@ In addition to completing my undergraduate degree in approximately 3 years—I s
 {{< small >}}I have worked tirelessly towards accomplishing my goals.{{< /small >}}
 
 ## Experience
+__Network Technician Intern__\
+__*RAD WiFi*__\
+*Summer 2025*
+- WIP
+
 __Ken Garff Esports - Summer Tech Track Mentorship__\
 __*Success in Education*__\
 *Summer 2025*
-- Instructed students (grades 7–12) in foundational cybersecurity, using the CyberPatriot curriculum.
-- Guided hands-on game development projects to teach logic, design, and teamwork.
-- Led drone technology workshops focused on safety, flight basics, and applications.
+- Instructed students (grades 7–12) in foundational cybersecurity using the CyberPatriot curriculum, resulting in increased student confidence and performance in computer science.
+- Facilitated hands-on game development projects that improved students’ understanding of logic, design thinking, and collaborative problem-solving.
+- Led drone technology workshops that equipped students with practical knowledge in flight operations, safety protocols, and real-world drone applications.
+- Collaboratively designed and implemented curriculum materials, including PowerPoints, Kahoots, interactive activities, and icebreakers—that enhanced student participation and learning outcomes.
 
 ## Certifications
 - [CompTIA CASP+ (SecurityX)](https://www.credly.com/badges/6e264660-65c8-4361-9da8-5b953c0a9772/public_url) - 8S50JTL5Y2FQ1ZSZ
