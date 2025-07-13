@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="https://masontuckett.xyz/images/favicon.ico" />
+<title>Mentee Lab | masontuckett.xyz</title>
+<meta name="title" content="Mentee Lab" />
+<meta name="description" content="An Overview of a Homelab I designed for My Mentee" />
+<meta name="author" content="Mason Tuckett" />
+<meta name="keywords" content="self-hosting,home-lab,security," />
+
+
+
+
+
+
+  
+  <meta property="og:url" content="https://masontuckett.xyz/posts/mentee-lab/">
+  <meta property="og:site_name" content="masontuckett.xyz">
+  <meta property="og:title" content="Mentee Lab">
+  <meta property="og:description" content="An Overview of a Homelab I designed for My Mentee">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-12T21:50:48-06:00">
+    <meta property="article:modified_time" content="2025-07-12T21:50:48-06:00">
+    <meta property="article:tag" content="Self-Hosting">
+    <meta property="article:tag" content="Home-Lab">
+    <meta property="article:tag" content="Security">
+    <meta property="og:image" content="https://masontuckett.xyz/images/share.webp">
+
+
+  
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://masontuckett.xyz/images/share.webp">
+  <meta name="twitter:title" content="Mentee Lab">
+  <meta name="twitter:description" content="An Overview of a Homelab I designed for My Mentee">
+
+
+  
+  
+  <meta itemprop="name" content="Mentee Lab">
+  <meta itemprop="description" content="An Overview of a Homelab I designed for My Mentee">
+  <meta itemprop="datePublished" content="2025-07-12T21:50:48-06:00">
+  <meta itemprop="dateModified" content="2025-07-12T21:50:48-06:00">
+  <meta itemprop="wordCount" content="733">
+  <meta itemprop="image" content="https://masontuckett.xyz/images/share.webp">
+  <meta itemprop="keywords" content="Self-Hosting,Home-Lab,Security">
+
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  
+  <link href="/original.min.css" rel="stylesheet">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  <header><link rel="stylesheet" href="https://masontuckett.xyz/custom.css">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<a href="/" class="title">
+<div id="logo" style="background-image: url(https://masontuckett.xyz/images/gnu.png)"></div>
+<h1>masontuckett.xyz</h1></a>
+<nav>
+  <a href="/">Home</a>
+
+  <a href="/about/">About</a>
+
+  <a href="/contact/">Contact</a>
+
+  <a href="/posts/">Posts</a>
+
+  <a href="https://tuckettlab.xyz">Services</a>
+
+
+
+
+
+
+
+
+</nav>
+</header>
+  <main id="main-content">
+
+<h1>Mentee Lab</h1>
+
+<content>
+  <h2 id="my-thought-process">My Thought Process</h2>
+<p>Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an <strong>outstanding</strong> student who showed <strong>exceptional</strong> curiosity in the cybersecurity field.</p>
+<p>To further his learning, I designed and implemented a home lab tailored around <em>a loosely inspired real-world enterprise environment.</em></p>
+<h2 id="network-infrastructure">Network Infrastructure</h2>
+<p><img src="/images/posts/mentee-lab/Smith-Network-Diagram.png" alt="Smith’s Home Lab Diagram"></p>
+<h3 id="subnetting">Subnetting</h3>
+<p>I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.</p>
+<p>I decided to keep subnet assignments tight and centered around a usable pool that heavily prevents lateral movement—ensuring a security-first mindset.</p>
+<p>/29 was used for the native VLAN <strong>(VLAN 1)</strong>—primarily due to it being the trusted subnet and making troubleshooting far easier; <em>I thought that it was far more appropriate for his needs.</em></p>
+<p><strong>VLAN 2</strong> is on a /30 subnet, which limits potential attack surface, and is solely for the Proxmox management interface.</p>
+<p><strong>VLAN 3</strong> needs little to no usable hosts because it is intended only for logging services.</p>
+<p><strong>VLAN 5</strong> is far more generous with a /27 subnet, which would be best for tightening and expandability.</p>
+<p>Segmenting services would&rsquo;ve been best, but again—<em>this setup needs to be accessible for independent troubleshooting.</em></p>
+<p>With that in mind, DHCP is enabled on VLAN 1 in case his network configuration interferes with deliverability; <strong>my mentee has three &ldquo;free&rdquo; untagged ports on VLAN 1 for troubleshooting purposes.</strong></p>
+<p>My mentee has a keen interest in penetration testing, so I integrated a SOC lab into his home lab for learning purposes.</p>
+<p>It is entirely virtual, isolated on to <strong>vmbr4</strong> with no physical network integration; <em>this VLAN is fully air gapped.</em></p>
+<h3 id="network-hardware">Network Hardware</h3>
+<p>OPNsense was used as a central router/firewall with extensive ACLs to prevent unnecessary inter-VLAN traffic and exposure.</p>
+<p><em>I found it very beginner-friendly while exposing my mentee to real-world toolsets.</em></p>
+<p>A simple Netgear gigabit managed switch <strong>(GS308Ev4)</strong> was used to establish trunk ports between OPNsense and his Proxmox &ldquo;outputs.&rdquo;</p>
+<p>Three trunk ports were utilized for carrying traffic out of his Proxmox node: an upstream trunk for VLANs <strong>(ibg0)</strong> 1, 2, 3, and 5, and two independent ports <strong>(enp1sfp0 and enp1sfp1)</strong> for VLANs 3 and 5.</p>
+<p><em>A dummy <strong>PVID of 4094</strong> was used for untagged traffic on the three trunk ports—limiting potential traffic errors/security risks.</em></p>
+<p>Every other port—including the Proxmox management interface—was kept untagged.</p>
+<h3 id="virtualization">Virtualization</h3>
+<p><strong><em>I cannot state how asinine it is to run everything on bare metal</em></strong>—a mistake I see far too frequently in student-led home labs.</p>
+<p>It makes management/expansion an absolute headache and leaves every process on a <em>&ldquo;level playing field&rdquo;</em>—severely increasing potential attack surface.</p>
+<p>With that in mind, I opted for <a href="https://www.proxmox.com/en/products/proxmox-virtual-environment/overview">Proxmox</a>, an open-source competitor to VMware&rsquo;s EsXi platform—offering an enterprise experience without VMware&rsquo;s absurd licensing fees.</p>
+<p><em>Linux bridges were created to match each trunk port and were tagged appropriately within Proxmox.</em></p>
+<h3 id="linux-bridges">Linux Bridges</h3>
+<p><img src="/images/posts/mentee-lab/vmbr0.png" alt="Bridge 0 Config"></p>
+<p><strong>vmbr0</strong> is native to Proxmox (VLAN 2)—untagged and <em>purposefully <strong>not</strong> VLAN aware</em>.</p>
+<p><img src="/images/posts/mentee-lab/vmbr0.png" alt="Bridge 1 Config"></p>
+<p><strong>vmbr1</strong> is for logging purposes (VLAN 3).</p>
+<p><img src="/images/posts/mentee-lab/vmbr2.png" alt="Bridge 2 Config"></p>
+<p><strong>vmbr2</strong> is used for self-hosted services (VLAN 5).</p>
+<p><img src="/images/posts/mentee-lab/vmbr4.png" alt="Bridge 4 Config"></p>
+<p><strong>vmbr4</strong> is for internal use only (VLAN 4).</p>
+<h3 id="implementing-virtual-machines">Implementing Virtual Machines</h3>
+<p>For most home labs, I would implement a hardened frontend reverse proxy—though for his setup, it&rsquo;s largely unnecessary <em>(for now)</em>.</p>
+<p>The lab mostly consists of LXC containers and KVM virtual machines—as most services would be inoperable/inefficient if using Docker containers.</p>
+<p>Each machine is manually assigned an IP address to avoid unnecessary DHCP servers running on each VLAN interface.</p>
+<p><img src="/images/posts/mentee-lab/example-config.png" alt="Example Networking Config"></p>
+<p>VLAN tagging also occurs on each virtual network interface—his PaperMC server, as noted above, is rate limited to avoid exhausting his network; granted his hardware is more than capable, I found it to be highly important.</p>
+<h2 id="future-plans">Future Plans</h2>
+<p>Eventually, we will tunnel all relevant traffic through a WireGuard server hosted on the cloud so his services are masked.</p>
+<h5 id="likely-two-hardened-nginx-reverse-proxies-on-each-endwith-tls-13-termination-on-the-vps"><em>Likely two hardened Nginx reverse proxies on each end—with TLS 1.3 termination on the VPS</em></h5>
+<p>For now, the only service that is exposed is his PaperMC instance <em>(on a nonstandard port of 65555)</em>—though that will likely expand given his needs will increase.</p>
+<p>OpenMediaVault will likely remain for internal use only, although Nextcloud may replace that in the future (tunneled).</p>
+<h2 id="documentation">Documentation</h2>
+<p><em>I want to stress that this was co-designed with my mentee, and he was actively involved in this process.</em></p>
+<h5 id="i-am-extremely-proud-of-his-performance-and-technical-aptitude-in-implementingmaintaining-this-home-lab"><em>I am extremely proud of his performance and technical aptitude in implementing/maintaining this home lab.</em></h5>
+<p>Extensive documentation, including interface configs, switch configs, ACLs, and Proxmox scripts/configs, may be found <a href="https://github.com/masontuckett/Smith-Home-Lab">here</a> or at <a href="https://smithbarlow.xyz">smithbarlow.xyz</a>.</p>
+
+</content>
+
+<p class="byline">
+  <time datetime='2025-07-12' pubdate>
+    07-12-2025
+  </time>
+  · Mason Tuckett
+</p>
+
+<p>
+  
+    <a class="blog-tags" href="/tags/self-hosting/">#self-hosting</a>
+  
+    <a class="blog-tags" href="/tags/home-lab/">#home-lab</a>
+  
+    <a class="blog-tags" href="/tags/security/">#security</a>
+  
+</p>
+
+
+  </main>
+  <footer><small id="foot">
+  <a href="https://github.com/masontuckett/masontuckett.xyz">Copyright ©2025 Mason Tuckett All Rights Reserved<br>
+</small>
+<a href='https://masontuckett.xyz/index.xml'>
+    <img id="rss" src="/images/rss.svg" alt="button for my RSS feed">
+</a>
+<a href="https://linkedin.com/in/mason-tuckett">
+    <img id="linkedin" src="/images/linkedin.png" alt="button for my LinkedIn profile">
+</a>
+<a href="https://github.com/masontuckett">
+    <img id="github" src="/images/github.png" alt="button for my Github profile">
+</a>
+</footer>
+
+    
+</body>
+
+</html>

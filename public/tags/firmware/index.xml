@@ -30,9 +30,9 @@
 <p>You will need an EEPROM flash programmer.</p>
 <p>OR a SOIC/SOP 8 test clip, eight female DuPont wires, and a compatible SBC (such as a Raspberry Pi w GPIO pins).</p>
 <h3 id="soic-8-wiring">SOIC 8 Wiring</h3>
-<p><img src="/images/projects/t440p-libreboot/wiring.webp" alt="SOIC-8 Wiring"></p>
+<p><img src="/images/posts/t440p-libreboot/wiring.webp" alt="SOIC-8 Wiring"></p>
 <h3 id="ch341a-wiring">CH341A Wiring</h3>
-<p><img src="/images/projects/t440p-libreboot/ch341a.webp" alt="CH341A Instructions"></p>
+<p><img src="/images/posts/t440p-libreboot/ch341a.webp" alt="CH341A Instructions"></p>
 <p><em><strong>For my installation, I used the CH341A programmer—though, <a href="https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a">this is not advised</a>.</strong></em></p>
 <h2 id="software">Software</h2>
 <p>Preferably, you will need a device with Linux installed; if you are using an SBC, install SSH for flashing.</p>
@@ -82,9 +82,9 @@
 </span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"># Split the bottom ROM (8MB)</span>
 </span></span><span class="line"><span class="ln">11</span><span class="cl">dd <span class="k">if</span><span class="o">=</span>~/lbmk/bin/t440plibremrc_12mb/seagrub_t440plibremrc_12mb_libgfxinit_corebootfb_usqwerty.rom <span class="nv">of</span><span class="o">=</span>bot.rom <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">8</span></span></span></code></pre></div><h3 id="disassembling-the-laptop">Disassembling the Laptop</h3>
 <p>Refer to <a href="https://www.myfixguide.com/manual/lenovo-thinkpad-t440-disassembly/">this guide</a> for disassembling the laptop; make sure both the main battery and CMOS battery are unplugged.</p>
-<p><img src="/images/projects/t440p-libreboot/t440p-chips.webp" alt="T440p top (4MB) and bottom (8MB) ROM locations"></p>
+<p><img src="/images/posts/t440p-libreboot/t440p-chips.webp" alt="T440p top (4MB) and bottom (8MB) ROM locations"></p>
 <h3 id="backing-up-stock-roms">Backing Up Stock ROMs</h3>
-<p><img src="/images/projects/t440p-libreboot/connected.webp" alt="CH341A reading ROMs"></p>
+<p><img src="/images/posts/t440p-libreboot/connected.webp" alt="CH341A reading ROMs"></p>
 <p><em><strong>Your setup will look different; my casing was fused together, so I had to improvise.</strong></em></p>
 
 
@@ -111,7 +111,7 @@
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Write the bottom ROM</span>
 </span></span><span class="line"><span class="ln">5</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q64BV/W25Q64CV/W25Q64FV -w ~/lbmk/bot.rom</span></span></code></pre></div><p><em><strong>Reassemble the unit—and voilà! Your laptop now sports Libreboot!</strong></em></p>
-<p><img src="/images/projects/t440p-libreboot/libreboot-installed.webp" alt="Libreboot successfully Installed - (Lenovo Thinkpad T440p)"></p>
+<p><img src="/images/posts/t440p-libreboot/libreboot-installed.webp" alt="Libreboot successfully Installed - (Lenovo Thinkpad T440p)"></p>
 ]]></content:encoded>
     </item>
   </channel>

@@ -12,14 +12,74 @@
     <lastBuildDate>Sat, 28 Dec 2024 00:38:44 -0700</lastBuildDate>
     <atom:link href="https://masontuckett.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Mentee Lab</title>
+      <link>https://masontuckett.xyz/posts/mentee-lab/</link>
+      <pubDate>Sat, 12 Jul 2025 21:50:48 -0600</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/mentee-lab/</guid>
+      <description>&lt;h2 id=&#34;my-thought-process&#34;&gt;My Thought Process&lt;/h2&gt;&#xA;&lt;p&gt;Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an &lt;strong&gt;outstanding&lt;/strong&gt; student who showed &lt;strong&gt;exceptional&lt;/strong&gt; curiosity in the cybersecurity field.&lt;/p&gt;&#xA;&lt;p&gt;To further his learning, I designed and implemented a home lab tailored around &lt;em&gt;a loosely inspired real-world enterprise environment.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;network-infrastructure&#34;&gt;Network Infrastructure&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/posts/mentee-lab/Smith-Network-Diagram.png&#34; alt=&#34;Smith’s Home Lab Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;subnetting&#34;&gt;Subnetting&lt;/h3&gt;&#xA;&lt;p&gt;I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="my-thought-process">My Thought Process</h2>
+<p>Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an <strong>outstanding</strong> student who showed <strong>exceptional</strong> curiosity in the cybersecurity field.</p>
+<p>To further his learning, I designed and implemented a home lab tailored around <em>a loosely inspired real-world enterprise environment.</em></p>
+<h2 id="network-infrastructure">Network Infrastructure</h2>
+<p><img src="/images/posts/mentee-lab/Smith-Network-Diagram.png" alt="Smith’s Home Lab Diagram"></p>
+<h3 id="subnetting">Subnetting</h3>
+<p>I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.</p>
+<p>I decided to keep subnet assignments tight and centered around a usable pool that heavily prevents lateral movement—ensuring a security-first mindset.</p>
+<p>/29 was used for the native VLAN <strong>(VLAN 1)</strong>—primarily due to it being the trusted subnet and making troubleshooting far easier; <em>I thought that it was far more appropriate for his needs.</em></p>
+<p><strong>VLAN 2</strong> is on a /30 subnet, which limits potential attack surface, and is solely for the Proxmox management interface.</p>
+<p><strong>VLAN 3</strong> needs little to no usable hosts because it is intended only for logging services.</p>
+<p><strong>VLAN 5</strong> is far more generous with a /27 subnet, which would be best for tightening and expandability.</p>
+<p>Segmenting services would&rsquo;ve been best, but again—<em>this setup needs to be accessible for independent troubleshooting.</em></p>
+<p>With that in mind, DHCP is enabled on VLAN 1 in case his network configuration interferes with deliverability; <strong>my mentee has three &ldquo;free&rdquo; untagged ports on VLAN 1 for troubleshooting purposes.</strong></p>
+<p>My mentee has a keen interest in penetration testing, so I integrated a SOC lab into his home lab for learning purposes.</p>
+<p>It is entirely virtual, isolated on to <strong>vmbr4</strong> with no physical network integration; <em>this VLAN is fully air gapped.</em></p>
+<h3 id="network-hardware">Network Hardware</h3>
+<p>OPNsense was used as a central router/firewall with extensive ACLs to prevent unnecessary inter-VLAN traffic and exposure.</p>
+<p><em>I found it very beginner-friendly while exposing my mentee to real-world toolsets.</em></p>
+<p>A simple Netgear gigabit managed switch <strong>(GS308Ev4)</strong> was used to establish trunk ports between OPNsense and his Proxmox &ldquo;outputs.&rdquo;</p>
+<p>Three trunk ports were utilized for carrying traffic out of his Proxmox node: an upstream trunk for VLANs <strong>(ibg0)</strong> 1, 2, 3, and 5, and two independent ports <strong>(enp1sfp0 and enp1sfp1)</strong> for VLANs 3 and 5.</p>
+<p><em>A dummy <strong>PVID of 4094</strong> was used for untagged traffic on the three trunk ports—limiting potential traffic errors/security risks.</em></p>
+<p>Every other port—including the Proxmox management interface—was kept untagged.</p>
+<h3 id="virtualization">Virtualization</h3>
+<p><strong><em>I cannot state how asinine it is to run everything on bare metal</em></strong>—a mistake I see far too frequently in student-led home labs.</p>
+<p>It makes management/expansion an absolute headache and leaves every process on a <em>&ldquo;level playing field&rdquo;</em>—severely increasing potential attack surface.</p>
+<p>With that in mind, I opted for <a href="https://www.proxmox.com/en/products/proxmox-virtual-environment/overview">Proxmox</a>, an open-source competitor to VMware&rsquo;s EsXi platform—offering an enterprise experience without VMware&rsquo;s absurd licensing fees.</p>
+<p><em>Linux bridges were created to match each trunk port and were tagged appropriately within Proxmox.</em></p>
+<h3 id="linux-bridges">Linux Bridges</h3>
+<p><img src="/images/posts/mentee-lab/vmbr0.png" alt="Bridge 0 Config"></p>
+<p><strong>vmbr0</strong> is native to Proxmox (VLAN 2)—untagged and <em>purposefully <strong>not</strong> VLAN aware</em>.</p>
+<p><img src="/images/posts/mentee-lab/vmbr0.png" alt="Bridge 1 Config"></p>
+<p><strong>vmbr1</strong> is for logging purposes (VLAN 3).</p>
+<p><img src="/images/posts/mentee-lab/vmbr2.png" alt="Bridge 2 Config"></p>
+<p><strong>vmbr2</strong> is used for self-hosted services (VLAN 5).</p>
+<p><img src="/images/posts/mentee-lab/vmbr4.png" alt="Bridge 4 Config"></p>
+<p><strong>vmbr4</strong> is for internal use only (VLAN 4).</p>
+<h3 id="implementing-virtual-machines">Implementing Virtual Machines</h3>
+<p>For most home labs, I would implement a hardened frontend reverse proxy—though for his setup, it&rsquo;s largely unnecessary <em>(for now)</em>.</p>
+<p>The lab mostly consists of LXC containers and KVM virtual machines—as most services would be inoperable/inefficient if using Docker containers.</p>
+<p>Each machine is manually assigned an IP address to avoid unnecessary DHCP servers running on each VLAN interface.</p>
+<p><img src="/images/posts/mentee-lab/example-config.png" alt="Example Networking Config"></p>
+<p>VLAN tagging also occurs on each virtual network interface—his PaperMC server, as noted above, is rate limited to avoid exhausting his network; granted his hardware is more than capable, I found it to be highly important.</p>
+<h2 id="future-plans">Future Plans</h2>
+<p>Eventually, we will tunnel all relevant traffic through a WireGuard server hosted on the cloud so his services are masked.</p>
+<h5 id="likely-two-hardened-nginx-reverse-proxies-on-each-endwith-tls-13-termination-on-the-vps"><em>Likely two hardened Nginx reverse proxies on each end—with TLS 1.3 termination on the VPS</em></h5>
+<p>For now, the only service that is exposed is his PaperMC instance <em>(on a nonstandard port of 65555)</em>—though that will likely expand given his needs will increase.</p>
+<p>OpenMediaVault will likely remain for internal use only, although Nextcloud may replace that in the future (tunneled).</p>
+<h2 id="documentation">Documentation</h2>
+<p><em>I want to stress that this was co-designed with my mentee, and he was actively involved in this process.</em></p>
+<h5 id="i-am-extremely-proud-of-his-performance-and-technical-aptitude-in-implementingmaintaining-this-home-lab"><em>I am extremely proud of his performance and technical aptitude in implementing/maintaining this home lab.</em></h5>
+<p>Extensive documentation, including interface configs, switch configs, ACLs, and Proxmox scripts/configs, may be found <a href="https://github.com/masontuckett/Smith-Home-Lab">here</a> or at <a href="https://smithbarlow.xyz">smithbarlow.xyz</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
       <title>GNU Privacy Guard</title>
       <link>https://masontuckett.xyz/posts/gpg/</link>
       <pubDate>Thu, 01 May 2025 16:36:37 -0600</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/posts/gpg/</guid>
-      <description>&lt;p&gt;A Brief Overview of GNU Privacy Guard (GPG)&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-gpg&#34;&gt;What is GPG?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/projects/gpg/pgp.svg&#34; alt=&#34;Public Key Encryption Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;GNU Privacy Guard (GPG) is largely a modern replacement—or rather, an extension—of Pretty Good Privacy (PGP), which has been effectively abandoned by Symantec.&lt;/p&gt;&#xA;&lt;p&gt;GPG is a modern implementation of the OpenPGP standard, often utilized on both *nix and Windows systems.&lt;/p&gt;&#xA;&lt;p&gt;Many modern platforms and services are designed to be compatible with both GPG and OpenPGP tools, facilitating secure communication and non-repudiation via cryptographic signatures.&lt;/p&gt;</description>
+      <description>&lt;p&gt;A Brief Overview of GNU Privacy Guard (GPG)&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-gpg&#34;&gt;What is GPG?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/posts/gpg/pgp.svg&#34; alt=&#34;Public Key Encryption Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;GNU Privacy Guard (GPG) is largely a modern replacement—or rather, an extension—of Pretty Good Privacy (PGP), which has been effectively abandoned by Symantec.&lt;/p&gt;&#xA;&lt;p&gt;GPG is a modern implementation of the OpenPGP standard, often utilized on both *nix and Windows systems.&lt;/p&gt;&#xA;&lt;p&gt;Many modern platforms and services are designed to be compatible with both GPG and OpenPGP tools, facilitating secure communication and non-repudiation via cryptographic signatures.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>A Brief Overview of GNU Privacy Guard (GPG)</p>
 <h2 id="what-is-gpg">What is GPG?</h2>
-<p><img src="/images/projects/gpg/pgp.svg" alt="Public Key Encryption Diagram"></p>
+<p><img src="/images/posts/gpg/pgp.svg" alt="Public Key Encryption Diagram"></p>
 <p>GNU Privacy Guard (GPG) is largely a modern replacement—or rather, an extension—of Pretty Good Privacy (PGP), which has been effectively abandoned by Symantec.</p>
 <p>GPG is a modern implementation of the OpenPGP standard, often utilized on both *nix and Windows systems.</p>
 <p>Many modern platforms and services are designed to be compatible with both GPG and OpenPGP tools, facilitating secure communication and non-repudiation via cryptographic signatures.</p>
@@ -291,9 +351,9 @@
 <p>You will need an EEPROM flash programmer.</p>
 <p>OR a SOIC/SOP 8 test clip, eight female DuPont wires, and a compatible SBC (such as a Raspberry Pi w GPIO pins).</p>
 <h3 id="soic-8-wiring">SOIC 8 Wiring</h3>
-<p><img src="/images/projects/t440p-libreboot/wiring.webp" alt="SOIC-8 Wiring"></p>
+<p><img src="/images/posts/t440p-libreboot/wiring.webp" alt="SOIC-8 Wiring"></p>
 <h3 id="ch341a-wiring">CH341A Wiring</h3>
-<p><img src="/images/projects/t440p-libreboot/ch341a.webp" alt="CH341A Instructions"></p>
+<p><img src="/images/posts/t440p-libreboot/ch341a.webp" alt="CH341A Instructions"></p>
 <p><em><strong>For my installation, I used the CH341A programmer—though, <a href="https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a">this is not advised</a>.</strong></em></p>
 <h2 id="software">Software</h2>
 <p>Preferably, you will need a device with Linux installed; if you are using an SBC, install SSH for flashing.</p>
@@ -343,9 +403,9 @@
 </span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"># Split the bottom ROM (8MB)</span>
 </span></span><span class="line"><span class="ln">11</span><span class="cl">dd <span class="k">if</span><span class="o">=</span>~/lbmk/bin/t440plibremrc_12mb/seagrub_t440plibremrc_12mb_libgfxinit_corebootfb_usqwerty.rom <span class="nv">of</span><span class="o">=</span>bot.rom <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">8</span></span></span></code></pre></div><h3 id="disassembling-the-laptop">Disassembling the Laptop</h3>
 <p>Refer to <a href="https://www.myfixguide.com/manual/lenovo-thinkpad-t440-disassembly/">this guide</a> for disassembling the laptop; make sure both the main battery and CMOS battery are unplugged.</p>
-<p><img src="/images/projects/t440p-libreboot/t440p-chips.webp" alt="T440p top (4MB) and bottom (8MB) ROM locations"></p>
+<p><img src="/images/posts/t440p-libreboot/t440p-chips.webp" alt="T440p top (4MB) and bottom (8MB) ROM locations"></p>
 <h3 id="backing-up-stock-roms">Backing Up Stock ROMs</h3>
-<p><img src="/images/projects/t440p-libreboot/connected.webp" alt="CH341A reading ROMs"></p>
+<p><img src="/images/posts/t440p-libreboot/connected.webp" alt="CH341A reading ROMs"></p>
 <p><em><strong>Your setup will look different; my casing was fused together, so I had to improvise.</strong></em></p>
 
 
@@ -372,7 +432,7 @@
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Write the bottom ROM</span>
 </span></span><span class="line"><span class="ln">5</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q64BV/W25Q64CV/W25Q64FV -w ~/lbmk/bot.rom</span></span></code></pre></div><p><em><strong>Reassemble the unit—and voilà! Your laptop now sports Libreboot!</strong></em></p>
-<p><img src="/images/projects/t440p-libreboot/libreboot-installed.webp" alt="Libreboot successfully Installed - (Lenovo Thinkpad T440p)"></p>
+<p><img src="/images/posts/t440p-libreboot/libreboot-installed.webp" alt="Libreboot successfully Installed - (Lenovo Thinkpad T440p)"></p>
 ]]></content:encoded>
     </item>
     <item>

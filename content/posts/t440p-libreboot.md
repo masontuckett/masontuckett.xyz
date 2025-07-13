@@ -35,10 +35,10 @@ You will need an EEPROM flash programmer.
 OR a SOIC/SOP 8 test clip, eight female DuPont wires, and a compatible SBC (such as a Raspberry Pi w GPIO pins).
 
 ### SOIC 8 Wiring
-![SOIC-8 Wiring](/images/projects/t440p-libreboot/wiring.webp)
+![SOIC-8 Wiring](/images/posts/t440p-libreboot/wiring.webp)
 
 ### CH341A Wiring
-![CH341A Instructions](/images/projects/t440p-libreboot/ch341a.webp)
+![CH341A Instructions](/images/posts/t440p-libreboot/ch341a.webp)
 
 _**For my installation, I used the CH341A programmer—though, [this is not advised](https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a).**_
 
@@ -92,11 +92,11 @@ dd if=~/lbmk/bin/t440plibremrc_12mb/seagrub_t440plibremrc_12mb_libgfxinit_corebo
 
 Refer to [this guide](https://www.myfixguide.com/manual/lenovo-thinkpad-t440-disassembly/) for disassembling the laptop; make sure both the main battery and CMOS battery are unplugged. 
 
-![T440p top (4MB) and bottom (8MB) ROM locations](/images/projects/t440p-libreboot/t440p-chips.webp)
+![T440p top (4MB) and bottom (8MB) ROM locations](/images/posts/t440p-libreboot/t440p-chips.webp)
 
 ### Backing Up Stock ROMs
 
-![CH341A reading ROMs](/images/projects/t440p-libreboot/connected.webp)
+![CH341A reading ROMs](/images/posts/t440p-libreboot/connected.webp)
 
 _**Your setup will look different; my casing was fused together, so I had to improvise.**_
 
@@ -123,4 +123,4 @@ sudo ./flashprog --programmer ch341a_spi -c W25Q64BV/W25Q64CV/W25Q64FV -w ~/lbmk
 ```
 _**Reassemble the unit—and voilà! Your laptop now sports Libreboot!**_
 
-![Libreboot successfully Installed - (Lenovo Thinkpad T440p)](/images/projects/t440p-libreboot/libreboot-installed.webp)
+![Libreboot successfully Installed - (Lenovo Thinkpad T440p)](/images/posts/t440p-libreboot/libreboot-installed.webp)
