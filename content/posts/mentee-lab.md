@@ -71,7 +71,7 @@ With that in mind, I opted for [Proxmox](https://www.proxmox.com/en/products/pro
 
 **vmbr0** is native to Proxmox (VLAN 2)—untagged and *purposefully **not** VLAN aware*.
 
-![Bridge 1 Config](/images/posts/mentee-lab/vmbr0.png)
+![Bridge 1 Config](/images/posts/mentee-lab/vmbr1.png)
 
 **vmbr1** is for logging purposes (VLAN 3).
 
