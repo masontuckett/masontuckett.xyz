@@ -22,14 +22,19 @@ In addition to completing my undergraduate degree in approximately 3 years—I s
 {{< small >}}I have worked tirelessly towards accomplishing my goals.{{< /small >}}
 
 ## Experience
-__Network Technician Intern__\
+__Network Deployment Specialist__\
 __*RAD WiFi*__\
-*Summer 2025*
-- WIP
+*June 2025 - Present*
+- Performed full-scope enterprise wireless and Cisco Meraki deployments—ensuring optimal signal coverage, bandwidth efficiency, and minimal client/customer disruption.
+- Conducted site surveys using Sidos wireless measurement devices to validate signal integrity, access point placement, and RF interference mitigation strategies.
+- Installed and configured Cisco Meraki integrated access points, switches, routers, and IP cameras, with full L2/L3 integration and central, cloud-based management.
+- Prioritized Quality of Service (QoS) configurations to support optimal voice, video, and critical applications across segmented 802.1Q VLAN environments.
+- Collaborated with IT teams with a strong focus on uptime, and reliability—validating configurations and testing fail-over scenarios post deployment.
+- Documented installation procedures and provided detailed hand offs to clients—including network topology, device inventory, and access credentials.
 
 __Ken Garff Esports - Summer Tech Track Mentorship__\
 __*Success in Education*__\
-*Summer 2025*
+*May - June 2025*
 - Instructed students (grades 7–12) in foundational cybersecurity using the CyberPatriot curriculum, resulting in increased student confidence and performance in computer science.
 - Facilitated hands-on game development projects that improved students’ understanding of logic, design thinking, and collaborative problem-solving.
 - Led drone technology workshops that equipped students with practical knowledge in flight operations, safety protocols, and real-world drone applications.
@@ -69,7 +74,7 @@ __*Success in Education*__\
 > __High School Diploma - Davis Connect 7-12__\
 > May, 2022
 
-### Lesser Education
+### Educational Certificates
 > __[CP, Cybersecurity Policy and Management - Weber State University](https://apps.weber.edu/verify/?dvid=EZ4A6KOU)__\
 > August, 2022 - April, 2025
 >
