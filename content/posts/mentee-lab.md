@@ -3,7 +3,7 @@ date = '2025-07-12T21:50:48-06:00'
 title = 'Mentee Lab'
 hideReply = true
 author = "Mason Tuckett"
-description = "An Overview of a Homelab I designed for My Mentee"
+description = "An Overview of a Home Lab I Designed for My Mentee"
 tags = [
     "self-hosting",
     "home-lab",
