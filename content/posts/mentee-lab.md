@@ -61,7 +61,7 @@ Every other port—including the Proxmox management interface—was kept untagge
 
 It makes management/expansion an absolute headache and leaves every process on a *"level playing field"*—severely increasing potential attack surface.
 
-With that in mind, I opted for [Proxmox](https://www.proxmox.com/en/products/proxmox-virtual-environment/overview), an open-source competitor to VMware's EsXi platform—offering an enterprise experience without VMware's absurd licensing fees.
+With that in mind, I opted for [Proxmox](https://www.proxmox.com/en/products/proxmox-virtual-environment/overview), an open-source competitor to VMware's ESXi platform—offering an enterprise experience without VMware's absurd licensing fees.
 
 *Linux bridges were created to match each trunk port and were tagged appropriately within Proxmox.*
 

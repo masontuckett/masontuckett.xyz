@@ -159,7 +159,7 @@ t6vN2CWgUgXvgQM=
 <h3 id="virtualization">Virtualization</h3>
 <p><strong><em>I cannot state how asinine it is to run everything on bare metal</em></strong>—a mistake I see far too frequently in student-led home labs.</p>
 <p>It makes management/expansion an absolute headache and leaves every process on a <em>&ldquo;level playing field&rdquo;</em>—severely increasing potential attack surface.</p>
-<p>With that in mind, I opted for <a href="https://www.proxmox.com/en/products/proxmox-virtual-environment/overview">Proxmox</a>, an open-source competitor to VMware&rsquo;s EsXi platform—offering an enterprise experience without VMware&rsquo;s absurd licensing fees.</p>
+<p>With that in mind, I opted for <a href="https://www.proxmox.com/en/products/proxmox-virtual-environment/overview">Proxmox</a>, an open-source competitor to VMware&rsquo;s ESXi platform—offering an enterprise experience without VMware&rsquo;s absurd licensing fees.</p>
 <p><em>Linux bridges were created to match each trunk port and were tagged appropriately within Proxmox.</em></p>
 <h3 id="linux-bridges">Linux Bridges</h3>
 <p><img src="/images/posts/mentee-lab/vmbr0.png" alt="Bridge 0 Config"></p>
