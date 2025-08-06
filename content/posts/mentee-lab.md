@@ -33,6 +33,10 @@ I decided to keep subnet assignments tight and centered around a usable pool tha
 
 **VLAN 5** is far more generous with a /27 subnet, which would be best for tightening and expandability.
 
+**VLAN 6** is on a /30 subnet—allowing space only for a single instance of Nginx.
+
+**VLAN 7** is also on a /30 subnet, intended for a singular Wireguard client.
+
 Segmenting services would've been best, but again—*this setup needs to be accessible for independent troubleshooting.*
 
 With that in mind, DHCP is enabled on VLAN 1 in case his network configuration interferes with deliverability; **my mentee has three "free" untagged ports on VLAN 1 for troubleshooting purposes.**
@@ -49,7 +53,7 @@ OPNsense was used as a central router/firewall with extensive ACLs to prevent un
 
 A simple Netgear gigabit managed switch **(GS308Ev4)** was used to establish trunk ports between OPNsense and his Proxmox "outputs."
 
-Three trunk ports were utilized for carrying traffic out of his Proxmox node: an upstream trunk for VLANs **(ibg0)** 1, 2, 3, and 5, and two independent ports **(enp1sfp0 and enp1sfp1)** for VLANs 3 and 5.
+Three trunk ports were utilized for carrying traffic out of his Proxmox node: an upstream trunk for VLANs **(ibg0)** 1, 2, 3, 5, 6, and 7, and two independent ports **(enp1sfp0 and enp1sfp1)** for VLANs 3, 5 | 6, 7.
 
 *A dummy __PVID of 4094__ was used for untagged traffic on the three trunk ports—limiting potential traffic errors/security risks.*
 
@@ -73,11 +77,11 @@ With that in mind, I opted for [Proxmox](https://www.proxmox.com/en/products/pro
 
 ![Bridge 1 Config](/images/posts/mentee-lab/vmbr1.png)
 
-**vmbr1** is for logging purposes (VLAN 3).
+**vmbr1** is for logging and self-hosted services (VLANs 3 and 5).
 
 ![Bridge 2 Config](/images/posts/mentee-lab/vmbr2.png)
 
-**vmbr2** is used for self-hosted services (VLAN 5). 
+**vmbr2** is used for proxying his self-hosted traffic—safely to his VPS (VLANs 6 and 7). 
  
 ![Bridge 4 Config](/images/posts/mentee-lab/vmbr4.png)
 

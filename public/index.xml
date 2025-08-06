@@ -145,6 +145,8 @@ t6vN2CWgUgXvgQM=
 <p><strong>VLAN 2</strong> is on a /30 subnet, which limits potential attack surface, and is solely for the Proxmox management interface.</p>
 <p><strong>VLAN 3</strong> needs little to no usable hosts because it is intended only for logging services.</p>
 <p><strong>VLAN 5</strong> is far more generous with a /27 subnet, which would be best for tightening and expandability.</p>
+<p><strong>VLAN 6</strong> is on a /30 subnet—allowing space only for a single instance of Nginx.</p>
+<p><strong>VLAN 7</strong> is also on a /30 subnet, intended for a singular Wireguard client.</p>
 <p>Segmenting services would&rsquo;ve been best, but again—<em>this setup needs to be accessible for independent troubleshooting.</em></p>
 <p>With that in mind, DHCP is enabled on VLAN 1 in case his network configuration interferes with deliverability; <strong>my mentee has three &ldquo;free&rdquo; untagged ports on VLAN 1 for troubleshooting purposes.</strong></p>
 <p>My mentee has a keen interest in penetration testing, so I integrated a SOC lab into his home lab for learning purposes.</p>
@@ -153,7 +155,7 @@ t6vN2CWgUgXvgQM=
 <p>OPNsense was used as a central router/firewall with extensive ACLs to prevent unnecessary inter-VLAN traffic and exposure.</p>
 <p><em>I found it very beginner-friendly while exposing my mentee to real-world toolsets.</em></p>
 <p>A simple Netgear gigabit managed switch <strong>(GS308Ev4)</strong> was used to establish trunk ports between OPNsense and his Proxmox &ldquo;outputs.&rdquo;</p>
-<p>Three trunk ports were utilized for carrying traffic out of his Proxmox node: an upstream trunk for VLANs <strong>(ibg0)</strong> 1, 2, 3, and 5, and two independent ports <strong>(enp1sfp0 and enp1sfp1)</strong> for VLANs 3 and 5.</p>
+<p>Three trunk ports were utilized for carrying traffic out of his Proxmox node: an upstream trunk for VLANs <strong>(ibg0)</strong> 1, 2, 3, 5, 6, and 7, and two independent ports <strong>(enp1sfp0 and enp1sfp1)</strong> for VLANs 3, 5 | 6, 7.</p>
 <p><em>A dummy <strong>PVID of 4094</strong> was used for untagged traffic on the three trunk ports—limiting potential traffic errors/security risks.</em></p>
 <p>Every other port—including the Proxmox management interface—was kept untagged.</p>
 <h3 id="virtualization">Virtualization</h3>
@@ -165,9 +167,9 @@ t6vN2CWgUgXvgQM=
 <p><img src="/images/posts/mentee-lab/vmbr0.png" alt="Bridge 0 Config"></p>
 <p><strong>vmbr0</strong> is native to Proxmox (VLAN 2)—untagged and <em>purposefully <strong>not</strong> VLAN aware</em>.</p>
 <p><img src="/images/posts/mentee-lab/vmbr1.png" alt="Bridge 1 Config"></p>
-<p><strong>vmbr1</strong> is for logging purposes (VLAN 3).</p>
+<p><strong>vmbr1</strong> is for logging and self-hosted services (VLANs 3 and 5).</p>
 <p><img src="/images/posts/mentee-lab/vmbr2.png" alt="Bridge 2 Config"></p>
-<p><strong>vmbr2</strong> is used for self-hosted services (VLAN 5).</p>
+<p><strong>vmbr2</strong> is used for proxying his self-hosted traffic—safely to his VPS (VLANs 6 and 7).</p>
 <p><img src="/images/posts/mentee-lab/vmbr4.png" alt="Bridge 4 Config"></p>
 <p><strong>vmbr4</strong> is for internal use only (VLAN 4).</p>
 <h3 id="implementing-virtual-machines">Implementing Virtual Machines</h3>
