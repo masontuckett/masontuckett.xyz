@@ -16,17 +16,23 @@ color: white;
 margin-top: 12.5px;
 width: 30px;
 height: 30px;
-padding: 0px 10px 0 10px;
+padding: 0px 10px 0px 10px;
 }
 #linkedin {
 margin-top: 12.5px;
 width: 30px;
 height: 30px;
-padding: 0px 10px 0 10px;
+padding: 0px 10px 0px 10px;
 }
 #github {
 margin-top: 12.5px;
 width: 30px;
 height: 30px;
-padding: 0px 10px 0 10px;
+padding: 0px 10px 0px 10px;
+}
+#tor {
+margin-top: 12.5px;
+width: 30px;
+height: 30px;
+padding: 0px 10px 0px 10px;
 }
