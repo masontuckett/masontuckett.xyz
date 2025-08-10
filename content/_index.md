@@ -8,7 +8,6 @@ description = "Mason Tuckett's Home Page"
 +++
 # Hello
 ## Welcome to My Webpage!
-![Weber State Campus - Fall (benjaminzack@weber.edu)](/images/weber-state-campus-fall.webp)
 I am Mason Tuckett—__*a senior Cybersecurity student*__ at [Weber State University](https://www.weber.edu/AboutWSU/).\
 This website serves as my personal portfolio and is intended to highlight my:
 - Projects
