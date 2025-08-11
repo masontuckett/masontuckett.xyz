@@ -41,17 +41,16 @@ enableRobotsTXT = true
     #madeWith = "Feito com [Bear Cub](https://github.com/clente/hugo-bearcub)"
 
 [params]
-  custom_css = ["/custom.css"]
   # The description of your website
   description = "masontuckett.xyz"
   # The path to your favicon
   favicon = "/images/favicon.ico"
-  logo = "/images/gnu.png"
+  #logo = "/images/gnu.png" | moved to /assets/original.css
   # These images will show up when services want to generate a preview of a link
   # to your site. Ignored if `generateSocialCard = true`. For more information
   # about previews, see https://gohugo.io/templates/internal#twitter-cards and
   # https://gohugo.io/templates/internal#open-graph
-  images = ["/images/share.webp"]
+  #images = ["/images/share.webp"]
     
   # This title is used as the site_name on the Hugo's internal opengraph
   # structured data template
