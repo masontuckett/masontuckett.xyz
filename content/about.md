@@ -21,7 +21,7 @@ __Network Deployment Specialist__\
 __*RAD WiFi*__\
 *June 2025 - Present*
 - Performed full-scope enterprise wireless and Cisco Meraki deployments—ensuring optimal signal coverage, bandwidth efficiency, and minimal client/customer disruption.
-- Conducted site surveys using Sidos wireless measurement devices to validate signal integrity, access point placement, and RF interference mitigation strategies.
+- Conducted site surveys utilizing Sidos wireless measurement devices to validate signal integrity, access point placement, and RF interference mitigation strategies.
 - Installed and configured Cisco Meraki integrated access points, switches, routers, and IP cameras, with full L2/L3 integration and central, cloud-based management.
 - Prioritized Quality of Service (QoS) configurations to support optimal voice, video, and critical applications across segmented 802.1Q VLAN environments.
 - Collaborated with IT teams with a strong focus on uptime, and reliability—validating configurations and testing fail-over scenarios post deployment.
@@ -30,7 +30,7 @@ __*RAD WiFi*__\
 __Ken Garff Esports - Summer Tech Track Mentorship__\
 __*Success in Education*__\
 *May - June 2025*
-- Instructed students (grades 7–12) in foundational cybersecurity using the CyberPatriot curriculum, resulting in increased student confidence and performance in computer science.
+- Instructed students (grades 7–12) in foundational cybersecurity utilizing the CyberPatriot curriculum, resulting in increased student confidence and performance in computer science.
 - Facilitated hands-on game development projects that improved students’ understanding of logic, design thinking, and collaborative problem-solving.
 - Led drone technology workshops that equipped students with practical knowledge in flight operations, safety protocols, and real-world drone applications.
 - Collaboratively designed and implemented curriculum materials, including PowerPoints, Kahoots, interactive activities, and icebreakers—that enhanced student participation and learning outcomes.
