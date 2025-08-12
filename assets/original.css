@@ -121,6 +121,8 @@ pre code {
   font-size: 14px;
   overflow-x: auto;
   text-wrap: nowrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 blockquote {

@@ -8,17 +8,13 @@ author = "Mason Tuckett"
 description = "Mason Tuckett's About Page"
 +++
 # About Me
-I am currently a 21-year-old, full-time student at [Weber State University](https://www.weber.edu/AboutWSU/)—diligently studying Cybersecurity and Network Management.
+I am currently a 21-year-old, full-time graduate student at [Western Governors University](https://www.weber.edu/AboutWSU/)—diligently pursuing an MS in Cybersecurity and Information Assurance.
 
-While attending university, I made considerable sacrifices to achieve my dreams. 
+At Weber State University, I completed my undergraduate degree in just under three years—with no incoming credits—undertaking heavy course loads, using summers, and my free time to propel myself forward.
 
-I worked around the clock—investing summers and the majority of my free time towards completing my undergraduate degree. 
+In addition to a rigorous, year-round course schedule, I worked ahead on WGU's MS program through [certification equivalency](https://partners.wgu.edu/master-of-science-in-cyber-security-and-information-assurance)—effectively expediting my degree.
 
-Unlike most other young undergraduate students—I did not start with college credits; I was consistently a full-time student, enduring high course loads.
-
-In addition to completing my undergraduate degree in approximately 3 years—I studied constantly, procuring a plethora of advanced cybersecurity certifications.
-
-{{< small >}}I have worked tirelessly towards accomplishing my goals.{{< /small >}}
+{{< small >}}I have worked tirelessly to accomplish my goals.{{< /small >}}
 
 ## Experience
 __Network Deployment Specialist__\
@@ -61,6 +57,9 @@ __*Success in Education*__\
 - [Cyber Skyline - NCL Spring 2025 Individual Game](https://cyberskyline.com/report/UD1M4AHQXCUB) — 296/8573 (Top 3.45%)
  
 ## Education
+> __MS, Cybersecurity and Information Assurance - Western Governors University__\
+> August, 2025 - December, 2025
+>
 > __BS, Cybersecurity and Network Management - Weber State University__\
 > August, 2022 - August, 2025
 >

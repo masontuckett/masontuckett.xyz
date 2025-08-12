@@ -8,13 +8,13 @@ description = "Mason Tuckett's Home Page"
 +++
 # Hello
 ## Welcome to My Webpage!
-I am Mason Tuckett—__*a senior Cybersecurity student*__ at [Weber State University](https://www.weber.edu/AboutWSU/).\
+I am Mason Tuckett—__*a Cybersecurity Master's student*__ at [Western Governors University](https://www.wgu.edu/online-it-degrees/cybersecurity-information-assurance-masters-program.html).\
 This website serves as my personal portfolio and is intended to highlight my:
 - Projects
 - Publications
 - Professional Profile
 
-{{< small >}}I am constantly undertaking new projects and strive to self-study as much as possible.{{< /small >}}
+{{< small >}}I am constantly undertaking new projects and strive to self-study to the greatest extent I can.{{< /small >}}
 
 ### Grad Map
 > __High School Diploma - Davis Connect 7-12__\
