@@ -6,10 +6,7 @@ copyright = "Copyright ©2025 Mason Tuckett All Rights Reserved"
 defaultContentLanguage = "en"
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true
-[[menu.main]]
-  name = "Services"
-  url = "https://tuckettlab.xyz"
-  weight = 5
+
 # Setup syntax highlighting without inline styles. For more information about
 # why you'd want to avoid inline styles, see
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src#unsafe_inline_styles

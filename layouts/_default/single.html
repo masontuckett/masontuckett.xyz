@@ -5,7 +5,7 @@
 <content>
   {{ .Content }}
 </content>
-{{ if ne .Title "About" "Contact" "Publications" }}
+{{ if ne .Title "About" "Contact" "Posts" "Services" }}
 <p class="byline">
   <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
     {{ .Date.Format (default "2006-01-02" .Site.Params.dateFormat) }}

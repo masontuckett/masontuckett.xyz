@@ -127,6 +127,41 @@ t6vN2CWgUgXvgQM=
 -----END PGP PUBLIC KEY BLOCK-----</code></pre>]]></content:encoded>
     </item>
     <item>
+      <title>Services</title>
+      <link>https://masontuckett.xyz/services/</link>
+      <pubDate>Wed, 13 Aug 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/services/</guid>
+      <description>&lt;h1 id=&#34;self-hosted-services&#34;&gt;Self-Hosted Services&lt;/h1&gt;&#xA;&lt;div class=&#34;services&#34;&gt;&#xD;&#xA;        &lt;div class=&#34;service&#34;&gt;&#xD;&#xA;          &lt;div class=&#34;service-icon&#34;&gt;&#xD;&#xA;            &lt;img src=&#34;https://masontuckett.xyz/images/searxng.svg&#34; alt=&#34;SearXNG&#34; loading=&#34;lazy&#34; decoding=&#34;async&#34;&gt;&#xD;&#xA;          &lt;/div&gt;&#xD;&#xA;&#xD;&#xA;          &lt;div class=&#34;service-body&#34;&gt;&#xD;&#xA;            &lt;h3 class=&#34;service-title&#34;&gt;SearXNG&lt;/h3&gt;&#xD;&#xA;            &lt;div class=&#34;service-text&#34;&gt;Free and open source privacy respecting metasearch engine.&lt;/div&gt;&#xD;&#xA;              &lt;div class=&#34;service-links&#34;&gt;&lt;a href=&#34;WIP&#34;&gt;search.tuckettlab.xyz&lt;/a&gt;&lt;a href=&#34;WIP&#34;&gt;Tor Mirror&lt;/a&gt;&#xD;&#xA;              &lt;/div&gt;&#xD;&#xA;          &lt;/div&gt;&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;        &lt;div class=&#34;service&#34;&gt;&#xD;&#xA;          &lt;div class=&#34;service-icon&#34;&gt;&#xD;&#xA;            &lt;img src=&#34;https://masontuckett.xyz/images/papermc.webp&#34; alt=&#34;PaperMC&#34; loading=&#34;lazy&#34; decoding=&#34;async&#34;&gt;&#xD;&#xA;          &lt;/div&gt;&#xD;&#xA;&#xD;&#xA;          &lt;div class=&#34;service-body&#34;&gt;&#xD;&#xA;            &lt;h3 class=&#34;service-title&#34;&gt;PaperMC&lt;/h3&gt;&#xD;&#xA;            &lt;div class=&#34;service-text&#34;&gt;Lightweight bukkit/spigot compatible vanilla Minecraft server.&lt;/div&gt;&#xD;&#xA;              &lt;div class=&#34;service-links&#34;&gt;&lt;a href=&#34;mailto:mason@tuckett.xyz&#34;&gt;mc.tuckettlab.xyz&lt;/a&gt;&#xD;&#xA;              &lt;/div&gt;&#xD;&#xA;          &lt;/div&gt;&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;</description>
+      <content:encoded><![CDATA[<h1 id="self-hosted-services">Self-Hosted Services</h1>
+<div class="services">
+        <div class="service">
+          <div class="service-icon">
+            <img src="/images/searxng.svg" alt="SearXNG" loading="lazy" decoding="async">
+          </div>
+
+          <div class="service-body">
+            <h3 class="service-title">SearXNG</h3>
+            <div class="service-text">Free and open source privacy respecting metasearch engine.</div>
+              <div class="service-links"><a href="WIP">search.tuckettlab.xyz</a><a href="WIP">Tor Mirror</a>
+              </div>
+          </div>
+        </div>
+        <div class="service">
+          <div class="service-icon">
+            <img src="/images/papermc.webp" alt="PaperMC" loading="lazy" decoding="async">
+          </div>
+
+          <div class="service-body">
+            <h3 class="service-title">PaperMC</h3>
+            <div class="service-text">Lightweight bukkit/spigot compatible vanilla Minecraft server.</div>
+              <div class="service-links"><a href="mailto:mason@tuckett.xyz">mc.tuckettlab.xyz</a>
+              </div>
+          </div>
+        </div>
+</div>
+]]></content:encoded>
+    </item>
+    <item>
       <title>Mentee Lab</title>
       <link>https://masontuckett.xyz/posts/mentee-lab/</link>
       <pubDate>Sat, 12 Jul 2025 21:50:48 -0600</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
