@@ -34,13 +34,13 @@ Tor Mirror: curl -vkI http://izsq26kus3oo53hia253f3cvk5m2g3bdqi4o4obevxucln6zm2x
 
 # DNS
 ! Main Domain !
-dig @ns1.vultr.com masontuckett.xyz any +dnssec
+dig @9.9.9.9 masontuckett.xyz any +dnssec
 
 ! Self-Hosted Services !
-dig @ns1.vultr.com tuckettlab.xyz any +dnssec
+dig @9.9.9.9 tuckettlab.xyz any +dnssec
 
 ! Email !
-dig @ns1.vultr.com tuckett.xyz any +dnssec
+dig @9.9.9.9 tuckett.xyz any +dnssec
 
 # Documentation
 Write Up: https://github.com/masontuckett/home-lab
