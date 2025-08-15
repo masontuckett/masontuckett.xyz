@@ -2,7 +2,7 @@
 date = '2025-08-13T00:38:44-07:00'
 title = 'Services'
 menu = "main"
-weight = 4
+weight = 6
 hideReply = true
 author = "Mason Tuckett"
 description = "Mason Tuckett's Services Page"
