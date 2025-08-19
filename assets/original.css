@@ -303,6 +303,7 @@ figcaption > p {
   }
   nav a {
     margin-right: 0;
+    font-size: 16px;
   }
 }
 
