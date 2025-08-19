@@ -9,6 +9,8 @@ description = "Mason Tuckett's Project Page"
 +++
 # Projects
 
+## Personal
+
 __Homelab__\
 *August 2025*
 - Deployed and configured OPNsense as the main router and firewall, setting up VLANs, appropriate subnets, DHCP, and firewall rules to segment and secure homelab traffic.
@@ -25,7 +27,7 @@ __VPS__\
 - Deployed kernel-level security via extensive sysctl settings, unused protocol and module blacklisting (modprobe blocklist), and AppArmor confinement for Nginx and Tor to limit post-exploit impact.
 - Incorporated a strong chain of trust: a signed Tor mirror statement, mirrored public GPG keys, and SHA-512 checksum proofs—all implemented across DNS TXT records and a [GitHub mirror](https://github.com/masontuckett/masontuckett.gpg).
 
-## Verification
+### Verification
 
 ```sh
 # Web Hosting (Headers)
@@ -46,7 +48,7 @@ dig @9.9.9.9 tuckett.xyz any +dnssec
 Write Up: https://github.com/masontuckett/home-lab
 ```
 
-# Volunteering
+## Volunteering
 
 __Active Mentorship__\
 *July 2025*
@@ -57,7 +59,7 @@ __Active Mentorship__\
 - 802.1Q VLANs were implemented ensuring a secure and realistic learning environment with appropriate WireGuard tunneling for public services.
 - DNSSEC, CAA hardening, Nginx hardening (CSP/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.
 
-## Verification
+### Verification
 
 ```sh
 # Web Hosting (Headers)
@@ -71,4 +73,3 @@ dig @9.9.9.9 smithbarlow.xyz any +dnssec
 Post: https://masontuckett.xyz/posts/mentee-lab
 Write Up: https://github.com/smithbarlow/Home-Lab
 ```
-
