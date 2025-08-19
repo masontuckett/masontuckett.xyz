@@ -300,14 +300,9 @@ figcaption > p {
     align-items: center;
     flex-wrap: nowrap;
     gap: 8px;
-    font-size: 14px;
   }
   nav a {
     margin-right: 0;
-    white-space: nowrap;
-  }
-  .brand .site-title {
-    font-size: 22px;
   }
 }
 
