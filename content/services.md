@@ -11,6 +11,6 @@ description = "Mason Tuckett's Services Page"
 
 {{< services >}}
 /images/searxng.svg|SearXNG|Free and open-source privacy-respecting metasearch engine.|search.tuckettlab.xyz::https://search.tuckettlab.xyz|Tor Mirror::http://ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd.onion
-/images/calibre.png|Calibre|Cross-platform, free and open-source eBook virtual library suite.|library.tuckettlab.xyz::https://library.tuckettlab.xyz|Tor Mirror::http://ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd.onion
+/images/calibre.png|Calibre|Cross-platform, free and open-source eBook virtual library suite.|library.tuckettlab.xyz::https://library.tuckettlab.xyz|Tor Library::http://ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd.onion
 /images/papermc.webp|PaperMC|Lightweight Bukkit/Spigot-compatible vanilla Minecraft server.|mc.tuckettlab.xyz::mailto:mason@tuckett.xyz
 {{< /services >}}

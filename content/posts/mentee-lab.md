@@ -31,6 +31,8 @@ I decided to keep subnet assignments tight and centered around a usable pool tha
 
 **VLAN 3** needs little to no usable hosts because it is intended only for logging services.
 
+**VLAN 4** is for internal use only, firewalled extensively with a restrictive /29 subnet.
+
 **VLAN 5** is far more generous with a /27 subnet, which would be best for tightening and expandability.
 
 **VLAN 6** is on a /30 subnet—allowing space only for a single instance of Nginx.
@@ -43,7 +45,7 @@ With that in mind, DHCP is enabled on VLAN 1 in case his network configuration i
 
 My mentee has a keen interest in penetration testing, so I integrated a SOC lab into his home lab for learning purposes.
 
-It is entirely virtual, isolated on to **vmbr4** with no physical network integration; *this VLAN is fully air gapped.*
+It is largely entirely virtual (beholden to OPNsense), firewalled, and mapped to **vmbr2**; *this VLAN is fully air gapped.*
 
 ### Network Hardware
 
@@ -53,7 +55,7 @@ OPNsense was used as a central router/firewall with extensive ACLs to prevent un
 
 A simple Netgear gigabit managed switch **(GS308Ev4)** was used to establish trunk ports between OPNsense and his Proxmox "outputs."
 
-Three trunk ports were utilized for carrying traffic out of his Proxmox node: an upstream trunk for VLANs **(ibg0)** 1, 2, 3, 5, 6, and 7, and two independent ports **(enp1sfp0 and enp1sfp1)** for VLANs 3, 5 | 6, 7.
+Three trunk ports were utilized for carrying traffic out of his Proxmox node: an upstream trunk for VLANs **(ibg0)** 1, 2, 3, 5, 6, and 7, and two independent ports **(enp1sfp0 and enp1sfp1)** for VLANs 3, 4 | 5, 6, 7.
 
 *A dummy __PVID of 4094__ was used for untagged traffic on the three trunk ports—limiting potential traffic errors/security risks.*
 
@@ -77,15 +79,11 @@ With that in mind, I opted for [Proxmox](https://www.proxmox.com/en/products/pro
 
 ![Bridge 1 Config](/images/posts/mentee-lab/vmbr1.png)
 
-**vmbr1** is for logging and self-hosted services (VLANs 3 and 5).
+**vmbr1** is for logging and SOC infrastructure (VLANs 3 and 4).
 
 ![Bridge 2 Config](/images/posts/mentee-lab/vmbr2.png)
 
-**vmbr2** is used for proxying his self-hosted traffic—safely to his VPS (VLANs 6 and 7). 
- 
-![Bridge 4 Config](/images/posts/mentee-lab/vmbr4.png)
-
-**vmbr4** is for internal use only (VLAN 4).
+**vmbr2** is intended for self-hosted services, and proxying traffic—safely to his VPS (VLANs 5, 6, and 7). 
 
 ### Implementing Virtual Machines
 
@@ -105,9 +103,9 @@ Eventually, we will tunnel all relevant traffic through a WireGuard server hoste
 
 ##### *Likely two hardened Nginx reverse proxies on each end—with TLS 1.3 termination on the VPS*
 
-For now, the only service that is exposed is his PaperMC instance *(on a nonstandard port of 65555)*—though that will likely expand given his needs will increase.
+For now, the only service that is exposed is his PaperMC instance—though that will likely expand given his needs will increase.
 
-OpenMediaVault will likely remain for internal use only, although Nextcloud may replace that in the future (tunneled).
+OpenMediaVault will likely remain for internal use only, although Nextcloud may replace that in the future (tunneled); possibly just a basic NFS share.
 
 ## Documentation
 
@@ -116,4 +114,27 @@ OpenMediaVault will likely remain for internal use only, although Nextcloud may 
 ##### *I am extremely proud of his performance and technical aptitude in implementing/maintaining this home lab.*
 
 Extensive documentation, including interface configs, switch configs, ACLs, and Proxmox scripts/configs, may be found [here](https://github.com/masontuckett/Smith-Home-Lab) or at [smithbarlow.xyz](https://smithbarlow.xyz).
+
+## UPDATE (8/25/2025)
+
+While we were setting up the remainder of the lab, we opted to use a reverse SSH tunnel for proxying his services to the web.
+
+I am delighted to announce that WireGuard has finally been implemented (non-standard port)—utilizing Nginx's stream module to proxy traffic from the tunnel.
+
+![WireGuard Server VPS](/images/posts/mentee-lab/wg.png)
+
+![Nginx Stream Config](/images/posts/mentee-lab/nginx.png)
+
+I intentionally chose not to use a Minecraft focused reverse proxy, as we plan on implementing an additional IP address to essentially _lock_ the service to **mc.smithbarlow.xyz**—_avoiding a bloated setup_.
+
+The PaperMC server operates with a **whitelist**, and server status **OFF**—for both game security, and to lessen _some_ automated scanning (Shodan/MCStatus).
+
+Otherwise, we kept Minecraft on its default port so players could easily connect.
+ 
+### Verification
+
+```sh
+# Quick Netcat Scan (May Be Periodically Down)
+nc -vz smithbarlow.xyz 25565
+```
 
