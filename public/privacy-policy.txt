@@ -29,15 +29,13 @@ http://ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd.onion
 http://ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd.onion
 
 ! Privacy Statement !
-I, the undersigned, assert that access logging only occurs on my portfolio (https://masontuckett.xyz). Error logging is enabled for all operated sites—not impacting your privacy. Any future change of this privacy policy will be announced in a new statement signed by the same primary key (or its designated successor key) and published on both clearnet and onion sites.
+I, the undersigned, assert that access logging only occurs on my clearnet portfolio (https://masontuckett.xyz). Error logging is enabled for all operated sites, therein not impacting your privacy. Any future change of this privacy policy will be announced in a new statement signed by the same primary key (or its designated successor key) and published on both clearnet and onion sites.
 
 ### End of Statement ###
-
-
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRycrgDYGDkWQIYqV0R9Ydl57IRkwUCaLGSLQAKCRAR9Ydl57IR
-k9rTAQDf+LcEOH7cuuM1FwCoYKtQDqW5suAW0r+cpkjFlUXmcQD9FZp6LADk2FQN
-tkAdCdhaQsIQbg6y9rXTzT6kMz1jFwE=
-=mKkm
+iHUEARYKAB0WIQRycrgDYGDkWQIYqV0R9Ydl57IRkwUCaLHpuwAKCRAR9Ydl57IR
+k4xEAQCGw/69ZRk1u4HKPoSIAtuVZrSxPumTOQJB6kRfuze47gD9FFZxGqMH+R9N
+I1Rr9bs672moshv+At8GSFCf3GklegM=
+=OTrs
 -----END PGP SIGNATURE-----

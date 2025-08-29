@@ -4,7 +4,7 @@ Hash: SHA512
 ### Beginning of Statement ###
 
 Subject: Tor Mirror Authenticity Statement
-Date: 2025-08-13
+Date: 2025-08-29
 
 Operator: Mason Tuckett mason@tuckett.xyz 
 
@@ -25,7 +25,7 @@ https://library.tuckettlab.xyz
 
 Tor mirror(s) covered by this statement:
 
-http://izsq26kus3oo53hia253f3cvk5m2g3bdqi4o4obevxucln6zm2xasaid.onion
+http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion
 http://ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd.onion
 http://ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd.onion
 
@@ -35,8 +35,8 @@ I, the undersigned, assert that the Tor onion address listed above is an officia
 ### End of Statement ###
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRycrgDYGDkWQIYqV0R9Ydl57IRkwUCaKN6fAAKCRAR9Ydl57IR
-k+i9AQCai9SNRwfn8TrlGJldmSEp+HeY3grxTUMooQ1JX6N8UwD/ZOT1RW4N3NLb
-XLYG5uBjdSbVjOYCm8x+Qi6fOOpJsAE=
-=NKGS
+iHUEARYKAB0WIQRycrgDYGDkWQIYqV0R9Ydl57IRkwUCaLHpxgAKCRAR9Ydl57IR
+kxIwAQCGUL4iudzSfcKoaYq+MgLai/Ni/j8cgmmOogaWXMIaDQD/WMMLMVk1S5qN
+os6b2OMBTJLnrxrTDAktY5JHBVSxfg4=
+=PWGv
 -----END PGP SIGNATURE-----
