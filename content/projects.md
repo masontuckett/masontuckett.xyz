@@ -23,9 +23,9 @@ __VPS__\
 *August 2025*
 - Deployed a strict firewall policy: default-deny incoming, a strict iptables ruleset only allowing essential ports (non-standard IP-bound SSH port), with Tor service bound to localhost and isolated from public interfaces.
 - Obtained an [A+ SSL Labs Score](https://www.ssllabs.com/ssltest/analyze.html?d=masontuckett.xyz), configured Let's Encrypt TLS (TLS 1.2/1.3) with strong AEAD ciphers, implemented HSTS preload, instituted DNSSEC to prevent MITM attacks, and restrictive CAA policies to prevent rogue issuance.
-- Secured Nginx with tight content security policies, method restrictions (GET/HEAD only), rate-limiting, appropriate header limits, and privacy-respecting security headers.
+- Secured Nginx with tight [content security policies](https://developer.mozilla.org/en-US/observatory/analyze?host=masontuckett.xyz), method restrictions (GET/HEAD only), rate-limiting, appropriate header limits, and privacy-respecting security headers.
 - Deployed kernel-level security via extensive sysctl settings, unused protocol and module blacklisting (modprobe blocklist), and AppArmor confinement for Nginx and Tor to limit post-exploit impact.
-- Incorporated a strong chain of trust: a signed Tor mirror statement, mirrored public GPG keys, and SHA-512 checksum proofs—all implemented across DNS TXT records and a [GitHub mirror](https://github.com/masontuckett/masontuckett.gpg).
+- Incorporated a strong chain of trust: a signed [Tor mirror statement](https://github.com/masontuckett/masontuckett.gpg/blob/main/tor-mirror-statement.txt), mirrored public GPG keys, and [SHA-512 checksum proofs](https://github.com/masontuckett/masontuckett.gpg/blob/main/sha512-hashes.txt)—all implemented across DNS TXT records and a [GitHub mirror](https://github.com/masontuckett/masontuckett.gpg).
 
 ### Verification
 
@@ -57,7 +57,7 @@ __Active Mentorship__\
 - I offered continuous support—guiding my mentee through the process of studying/obtaining foundational IT certifications, and exploring his area of interest (penetration testing).
 - A fully air-gapped SOC lab was created in Proxmox—allowing my mentee to gain exposure to critical industry toolsets (SIEM/IDS/IPS - Wazuh).
 - 802.1Q VLANs were implemented ensuring a secure and realistic learning environment with appropriate WireGuard tunneling for public services.
-- DNSSEC, CAA hardening, Nginx hardening (CSP/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.
+- DNSSEC, CAA hardening, Nginx hardening ([CSP](https://developer.mozilla.org/en-US/observatory/analyze?host=smithbarlow.xyz)/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.
 
 ### Verification
 
