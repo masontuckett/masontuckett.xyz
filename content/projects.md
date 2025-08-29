@@ -29,7 +29,7 @@ __VPS__\
 - Deployed kernel-level security via extensive sysctl settings, unused protocol and module blacklisting (modprobe blocklist), and AppArmor confinement for Nginx and Tor to limit post-exploit impact.
 - Incorporated a strong chain of trust: a signed [Tor mirror statement](https://github.com/masontuckett/masontuckett.gpg/blob/main/tor-mirror-statement.txt), mirrored public GPG keys, and [SHA-512 checksum proofs](https://github.com/masontuckett/masontuckett.gpg/blob/main/sha512-hashes.txt)—all implemented across DNS TXT records and a [GitHub mirror](https://github.com/masontuckett/masontuckett.gpg).
 
-![Mason Tuckett's Home Lab](/images/mason-tuckett-home-lab.png)
+![Mason Tuckett's Home Lab](/images/mason-tuckett-home-lab.webp)
 
 ### Verification
 
