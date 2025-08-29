@@ -24,7 +24,7 @@ This website serves as my personal portfolio and is intended to highlight my:
 > August, 2022 - August, 2025
 >
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
-> September, 2025 - December, 2025 (Exp.)
+> October, 2025 - December, 2025 (Exp.)
 >
 > __PhD, Cyber Defense - Dakota State University__\
 > August, 2026 - May, 2030 (Exp.)

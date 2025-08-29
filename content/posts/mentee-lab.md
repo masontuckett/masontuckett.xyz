@@ -115,7 +115,7 @@ OpenMediaVault will likely remain for internal use only, although Nextcloud may 
 
 Extensive documentation, including interface configs, switch configs, ACLs, and Proxmox scripts/configs, may be found [here](https://github.com/masontuckett/Smith-Home-Lab) or at [smithbarlow.xyz](https://smithbarlow.xyz).
 
-## UPDATE (8/25/2025)
+## UPDATE (8/25/25)
 
 While we were setting up the remainder of the lab, we opted to use a reverse SSH tunnel for proxying his services to the web.
 

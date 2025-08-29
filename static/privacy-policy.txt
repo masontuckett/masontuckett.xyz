@@ -1,0 +1,43 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+### Beginning of Statement ###
+
+Subject: Privacy Policy
+Date: 2025-08-29
+
+Operator Mason Tuckett mason@tuckett.xyz
+
+Primary GPG fingerprint: 7272 B803 6060 E459 0218  A95D 11F5 8765 E7B2 1193
+
+Public key URL (clearnet): https://masontuckett.xyz/masontuckett.gpg 
+
+Public key URL (onion): http://izsq26kus3oo53hia253f3cvk5m2g3bdqi4o4obevxucln6zm2xasaid.onion/masontuckett.gpg
+
+GitHub key mirror: https://github.com/masontuckett/masontuckett.gpg
+
+Clearnet site(s) covered by this statement:
+
+https://masontuckett.xyz
+https://search.tuckettlab.xyz
+https://library.tuckettlab.xyz
+
+Tor mirror(s) covered by this statement:
+
+http://izsq26kus3oo53hia253f3cvk5m2g3bdqi4o4obevxucln6zm2xasaid.onion
+http://ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd.onion
+http://ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd.onion
+
+! Privacy Statement !
+I, the undersigned, assert that access logging only occurs on my portfolio (https://masontuckett.xyz). Error logging is enabled for all operated sites—not impacting your privacy. Any future change of this privacy policy will be announced in a new statement signed by the same primary key (or its designated successor key) and published on both clearnet and onion sites.
+
+### End of Statement ###
+
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRycrgDYGDkWQIYqV0R9Ydl57IRkwUCaLGSLQAKCRAR9Ydl57IR
+k9rTAQDf+LcEOH7cuuM1FwCoYKtQDqW5suAW0r+cpkjFlUXmcQD9FZp6LADk2FQN
+tkAdCdhaQsIQbg6y9rXTzT6kMz1jFwE=
+=mKkm
+-----END PGP SIGNATURE-----

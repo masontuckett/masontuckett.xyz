@@ -29,7 +29,7 @@ __*RAD WiFi*__\
 
 __Ken Garff Esports - Summer Tech Track Mentorship__\
 __*Success in Education*__\
-*May - June 2025*
+*May 2025 - June 2025*
 - Instructed students (grades 7–12) in foundational cybersecurity utilizing the CyberPatriot curriculum, resulting in increased student confidence and performance in computer science.
 - Facilitated hands-on game development projects that improved students’ understanding of logic, design thinking, and collaborative problem-solving.
 - Led drone technology workshops that equipped students with practical knowledge in flight operations, safety protocols, and real-world drone applications.
@@ -58,7 +58,7 @@ __*Success in Education*__\
  
 ## Education
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
-> September, 2025 - December, 2025
+> October, 2025 - December, 2025
 >
 > __BS, Cybersecurity and Network Management - Weber State University__\
 > August, 2022 - August, 2025

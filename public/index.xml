@@ -37,7 +37,7 @@
 </ul>
 <p><strong>Ken Garff Esports - Summer Tech Track Mentorship</strong><br>
 <strong><em>Success in Education</em></strong><br>
-<em>May - June 2025</em></p>
+<em>May 2025 - June 2025</em></p>
 <ul>
 <li>Instructed students (grades 7–12) in foundational cybersecurity utilizing the CyberPatriot curriculum, resulting in increased student confidence and performance in computer science.</li>
 <li>Facilitated hands-on game development projects that improved students’ understanding of logic, design thinking, and collaborative problem-solving.</li>
@@ -71,7 +71,7 @@
 <h2 id="education">Education</h2>
 <blockquote>
 <p><strong>MS, Cybersecurity and Information Assurance - Western Governors University</strong><br>
-September, 2025 - December, 2025</p>
+October, 2025 - December, 2025</p>
 <p><strong>BS, Cybersecurity and Network Management - Weber State University</strong><br>
 August, 2022 - August, 2025</p>
 <p><strong>AAS, Cybersecurity and Network Management - Weber State University</strong><br>
@@ -307,7 +307,7 @@ t6vN2CWgUgXvgQM=
 <p><em>I want to stress that this was co-designed with my mentee, and he was actively involved in this process.</em></p>
 <h5 id="i-am-extremely-proud-of-his-performance-and-technical-aptitude-in-implementingmaintaining-this-home-lab"><em>I am extremely proud of his performance and technical aptitude in implementing/maintaining this home lab.</em></h5>
 <p>Extensive documentation, including interface configs, switch configs, ACLs, and Proxmox scripts/configs, may be found <a href="https://github.com/masontuckett/Smith-Home-Lab">here</a> or at <a href="https://smithbarlow.xyz">smithbarlow.xyz</a>.</p>
-<h2 id="update-8252025">UPDATE (8/25/2025)</h2>
+<h2 id="update-82525">UPDATE (8/25/25)</h2>
 <p>While we were setting up the remainder of the lab, we opted to use a reverse SSH tunnel for proxying his services to the web.</p>
 <p>I am delighted to announce that WireGuard has finally been implemented (non-standard port)—utilizing Nginx&rsquo;s stream module to proxy traffic from the tunnel.</p>
 <p><img src="/images/posts/mentee-lab/wg.png" alt="WireGuard Server VPS"></p>
