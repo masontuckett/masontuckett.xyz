@@ -19,6 +19,8 @@ __Homelab__\
 - Configured OPNsense firewalling with strict baselines—ensuring intervlan traffic is strict and within scope.
 - Utilized Wireguard to secure sensitive traffic from self-hosted services to VPS proxy—terminated with TLS 1.2/1.3 certificates.
 
+
+
 __VPS__\
 *August 2025*
 - Deployed a strict firewall policy: default-deny incoming, a strict iptables ruleset only allowing essential ports (non-standard IP-bound SSH port), with Tor service bound to localhost and isolated from public interfaces.
@@ -27,24 +29,29 @@ __VPS__\
 - Deployed kernel-level security via extensive sysctl settings, unused protocol and module blacklisting (modprobe blocklist), and AppArmor confinement for Nginx and Tor to limit post-exploit impact.
 - Incorporated a strong chain of trust: a signed [Tor mirror statement](https://github.com/masontuckett/masontuckett.gpg/blob/main/tor-mirror-statement.txt), mirrored public GPG keys, and [SHA-512 checksum proofs](https://github.com/masontuckett/masontuckett.gpg/blob/main/sha512-hashes.txt)—all implemented across DNS TXT records and a [GitHub mirror](https://github.com/masontuckett/masontuckett.gpg).
 
+![Mason Tuckett's Home Lab](/images/mason-tuckett-home-lab.png)
+
 ### Verification
 
 ```sh
-# Web Hosting (Headers)
-Clearnet: curl -vkI https://masontuckett.xyz
-Tor Mirror: curl -vkI http://izsq26kus3oo53hia253f3cvk5m2g3bdqi4o4obevxucln6zm2xasaid.onion
+### Web Hosting (Headers) ###
+# ! Clearnet ! #
+curl -vkI https://masontuckett.xyz
 
-# DNS
-! Main Domain !
+# ! Tor ! #
+curl -vI --socks5-hostname 127.0.0.1:9050 http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion
+
+### DNS ###
+# ! Main Domain ! #
 dig @9.9.9.9 masontuckett.xyz any +dnssec
 
-! Self-Hosted Services !
+# ! Self-Hosted Services ! #
 dig @9.9.9.9 tuckettlab.xyz any +dnssec
 
-! Email !
+# ! Email ! #
 dig @9.9.9.9 tuckett.xyz any +dnssec
 
-# Documentation
+### Documentation ###
 Write Up: https://github.com/masontuckett/home-lab
 ```
 
@@ -62,14 +69,17 @@ __Active Mentorship__\
 ### Verification
 
 ```sh
-# Web Hosting (Headers)
-Clearnet: curl -vkI https://smithbarlow.xyz
-Tor Mirror: curl -vkI http://v55dqkmukq7hl6hty5sn6wlbcfn6ldadxt3h4wuynb2dyonpu5hrcmyd.onion
+### Web Hosting (Headers) ###
+# ! Clearnet ! #
+curl -vkI https://smithbarlow.xyz
 
-# DNS
+# ! Tor ! #
+curl -vI --socks5-hostname 127.0.0.1:9050 http://v55dqkmukq7hl6hty5sn6wlbcfn6ldadxt3h4wuynb2dyonpu5hrcmyd.onion
+
+### DNS ###
 dig @9.9.9.9 smithbarlow.xyz any +dnssec
 
-# Documentation
+### Documentation ###
 Post: https://masontuckett.xyz/posts/mentee-lab
 Write Up: https://github.com/smithbarlow/Home-Lab
 ```
