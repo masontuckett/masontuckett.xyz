@@ -16,6 +16,7 @@ Public key URL (onion): http://izsq26kus3oo53hia253f3cvk5m2g3bdqi4o4obevxucln6zm
 
 GitHub key mirror: https://github.com/masontuckett/masontuckett.gpg
 
+OpenPGP key mirror: https://keys.openpgp.org/vks/v1/by-fingerprint/7272B8036060E4590218A95D11F58765E7B21193
 
 Clearnet site(s) covered by this statement:
 
@@ -35,8 +36,8 @@ I, the undersigned, assert that the Tor onion address listed above is an officia
 ### End of Statement ###
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRycrgDYGDkWQIYqV0R9Ydl57IRkwUCaLHpxgAKCRAR9Ydl57IR
-kxIwAQCGUL4iudzSfcKoaYq+MgLai/Ni/j8cgmmOogaWXMIaDQD/WMMLMVk1S5qN
-os6b2OMBTJLnrxrTDAktY5JHBVSxfg4=
-=PWGv
+iHUEARYKAB0WIQRycrgDYGDkWQIYqV0R9Ydl57IRkwUCaLRROQAKCRAR9Ydl57IR
+k07GAP0WliKsWY9aBCvGBj3j8Z6q4Setpc4JDqtPhTQRaREv6AD6A7M4P/40+4Sl
+eaKqHmS4+miXhuM6MWqXlloXMzVXIws=
+=WgL6
 -----END PGP SIGNATURE-----

@@ -4,7 +4,7 @@ Hash: SHA512
 ### Beginning of Statement ###
 
 Subject: Privacy Policy
-Date: 2025-08-29
+Date: 2025-08-31
 
 Operator Mason Tuckett mason@tuckett.xyz
 
@@ -12,9 +12,11 @@ Primary GPG fingerprint: 7272 B803 6060 E459 0218  A95D 11F5 8765 E7B2 1193
 
 Public key URL (clearnet): https://masontuckett.xyz/masontuckett.gpg 
 
-Public key URL (onion): http://izsq26kus3oo53hia253f3cvk5m2g3bdqi4o4obevxucln6zm2xasaid.onion/masontuckett.gpg
+Public key URL (onion): http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion/masontuckett.gpg
 
 GitHub key mirror: https://github.com/masontuckett/masontuckett.gpg
+
+OpenPGP key Mirror: https://keys.openpgp.org/vks/v1/by-fingerprint/7272B8036060E4590218A95D11F58765E7B21193
 
 Clearnet site(s) covered by this statement:
 
@@ -24,7 +26,7 @@ https://library.tuckettlab.xyz
 
 Tor mirror(s) covered by this statement:
 
-http://izsq26kus3oo53hia253f3cvk5m2g3bdqi4o4obevxucln6zm2xasaid.onion
+http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion
 http://ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd.onion
 http://ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd.onion
 
@@ -34,8 +36,8 @@ I, the undersigned, assert that access logging only occurs on my clearnet portfo
 ### End of Statement ###
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRycrgDYGDkWQIYqV0R9Ydl57IRkwUCaLHpuwAKCRAR9Ydl57IR
-k4xEAQCGw/69ZRk1u4HKPoSIAtuVZrSxPumTOQJB6kRfuze47gD9FFZxGqMH+R9N
-I1Rr9bs672moshv+At8GSFCf3GklegM=
-=OTrs
+iHUEARYKAB0WIQRycrgDYGDkWQIYqV0R9Ydl57IRkwUCaLRRNQAKCRAR9Ydl57IR
+k5fjAQC275F0dQCqgnihyjzN5a+AAgxWj8YvaampqkYmGHi7uAD8Cf41Ezt8aHtA
+W370Od433F/S3xeiGXH3NTBM+X3kdwI=
+=q1Xq
 -----END PGP SIGNATURE-----
