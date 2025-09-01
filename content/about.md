@@ -58,7 +58,7 @@ __*Success in Education*__\
  
 ## Education
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
-> October, 2025 - December, 2025
+> November, 2025 - March, 2026
 >
 > __BS, Cybersecurity and Network Management - Weber State University__\
 > August, 2022 - August, 2025
