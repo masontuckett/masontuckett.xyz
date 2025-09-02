@@ -60,13 +60,13 @@ __*Success in Education*__\
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
 > November, 2025 - March, 2026
 >
-> __BS, Cybersecurity and Network Management - Weber State University__\
+> __[BS, Cybersecurity and Network Management - Weber State University](https://apps.weber.edu/verify/?dvid=J3SNL5PO)__\
 > August, 2022 - August, 2025
 >
-> __AAS, Cybersecurity and Network Management - Weber State University__\
+> __[AAS, Cybersecurity and Network Management - Weber State University](https://apps.weber.edu/verify/?dvid=YFSMOPG8)__\
 > August, 2022 - August, 2025
 >
-> __AS, General Studies - Weber State University__\
+> __[AS, General Studies - Weber State University](https://apps.weber.edu/verify/?dvid=ZA1FPWGT)__\
 > August, 2022 - August, 2025
 >
 > __High School Diploma - Davis Connect 7-12__\
