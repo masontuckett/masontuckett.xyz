@@ -323,7 +323,9 @@ server {
         try_files $uri $uri/ =404;
     }
 }
+```
 
+```sh
 ### Enable Web Page ###
 # ! Avoids Conflicts ! #
 sudo rm /etc/nginx/sites-enabled/default

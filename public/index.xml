@@ -544,14 +544,17 @@ t6vN2CWgUgXvgQM=
 </span></span><span class="line"><span class="ln">35</span><span class="cl">    location / {
 </span></span><span class="line"><span class="ln">36</span><span class="cl">        try_files $uri $uri/ =404;
 </span></span><span class="line"><span class="ln">37</span><span class="cl">    }
-</span></span><span class="line"><span class="ln">38</span><span class="cl">}
-</span></span><span class="line"><span class="ln">39</span><span class="cl">
-</span></span><span class="line"><span class="ln">40</span><span class="cl">### Enable Web Page ###
-</span></span><span class="line"><span class="ln">41</span><span class="cl"># ! Avoids Conflicts ! #
-</span></span><span class="line"><span class="ln">42</span><span class="cl">sudo rm /etc/nginx/sites-enabled/default
-</span></span><span class="line"><span class="ln">43</span><span class="cl">
-</span></span><span class="line"><span class="ln">44</span><span class="cl"># ! Symbolic Link ! #
-</span></span><span class="line"><span class="ln">45</span><span class="cl">sudo ln -s /etc/nginx/sites-available/webpage /etc/nginx/sites-enabled/webpage</span></span></code></pre></div><h3 id="html-test">HTML Test</h3>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">}</span></span></code></pre></div>
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Enable Web Page ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"># ! Avoids Conflicts ! #</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">sudo rm /etc/nginx/sites-enabled/default
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"># ! Symbolic Link ! #</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">sudo ln -s /etc/nginx/sites-available/webpage /etc/nginx/sites-enabled/webpage</span></span></code></pre></div><h3 id="html-test">HTML Test</h3>
 
 
 
