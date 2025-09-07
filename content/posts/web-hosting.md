@@ -285,8 +285,8 @@ Key is saved at:         /etc/letsencrypt/live/tuckett-test.xyz/privkey.pem
 Now we'll need to configure Nginx so we may publish our web page.
 
 ```txt
-### /etc/nginx/nginx.conf
-#! Turn Off Server Token (Bare Minimum) ! #
+### /etc/nginx/nginx.conf ###
+#! Turn Off Server Tokens (Bare Minimum) ! #
 server_tokens off;
 
 ### /etc/nginx/sites-available/webpage ###
@@ -323,6 +323,13 @@ server {
         try_files $uri $uri/ =404;
     }
 }
+
+### Enable Web Page ###
+# ! Avoids Conflicts ! #
+sudo rm /etc/nginx/sites-enabled/default
+
+# ! Symbolic Link ! #
+sudo ln -s /etc/nginx/sites-available/webpage /etc/nginx/sites-enabled/webpage
 ```
 
 ### HTML Test
