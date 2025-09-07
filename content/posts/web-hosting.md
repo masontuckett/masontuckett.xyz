@@ -371,6 +371,8 @@ GROUP="www-data"
 sudo chown -R "$USER:$GROUP" "$WEBROOT"
 sudo find "$WEBROOT" -type d -exec chmod 755 {} \;
 sudo find "$WEBROOT" -type f -exec chmod 644 {} \;
+
+sudo systemctl restart --now nginx
 ```
 
 ## Congratulations!

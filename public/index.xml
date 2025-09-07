@@ -593,7 +593,9 @@ t6vN2CWgUgXvgQM=
 </span></span><span class="line"><span class="ln"> 9</span><span class="cl">
 </span></span><span class="line"><span class="ln">10</span><span class="cl">sudo chown -R <span class="s2">&#34;</span><span class="nv">$USER</span><span class="s2">:</span><span class="nv">$GROUP</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$WEBROOT</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="ln">11</span><span class="cl">sudo find <span class="s2">&#34;</span><span class="nv">$WEBROOT</span><span class="s2">&#34;</span> -type d -exec chmod <span class="m">755</span> <span class="o">{}</span> <span class="se">\;</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">sudo find <span class="s2">&#34;</span><span class="nv">$WEBROOT</span><span class="s2">&#34;</span> -type f -exec chmod <span class="m">644</span> <span class="o">{}</span> <span class="se">\;</span></span></span></code></pre></div><h2 id="congratulations">Congratulations!</h2>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">sudo find <span class="s2">&#34;</span><span class="nv">$WEBROOT</span><span class="s2">&#34;</span> -type f -exec chmod <span class="m">644</span> <span class="o">{}</span> <span class="se">\;</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">sudo systemctl restart --now nginx</span></span></code></pre></div><h2 id="congratulations">Congratulations!</h2>
 <p><img src="/images/posts/web-hosting/finalized.webp" alt="Finalized Web Page"></p>
 <p>We finally have a working web page published—though we are <em>far</em> from finished.</p>
 <p>This site is still highly vulnerable, and we&rsquo;ll need to implement CSP policies and some configuration changes to Nginx itself; this needs to be <strong>production grade</strong>.</p>
