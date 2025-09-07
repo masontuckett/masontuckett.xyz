@@ -7,7 +7,7 @@ description = "An Overview of a Home Lab I Designed for My Mentee"
 tags = [
     "self-hosting",
     "home-lab",
-    "security",
+    "cybersecurity",
 ]
 +++
 ## My Thought Process
