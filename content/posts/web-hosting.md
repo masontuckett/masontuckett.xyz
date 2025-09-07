@@ -233,7 +233,7 @@ sudo apt update && sudo apt install -y nginx python3-certbot-nginx
 sudo systemctl enable --now nginx
 
 ### Create a New Web Directory ###
-sudo mkdir -p /var/www/myweb
+sudo mkdir -p /var/www/webpage
 
 ### Obtain a Certificate ###
 certbot certonly -d tuckett-test.xyz

@@ -208,7 +208,7 @@
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now nginx
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1">### Create a New Web Directory ###</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">sudo mkdir -p /var/www/myweb
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">sudo mkdir -p /var/www/webpage
 </span></span><span class="line"><span class="ln"> 7</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### Obtain a Certificate ###</span>
 </span></span><span class="line"><span class="ln"> 9</span><span class="cl">certbot certonly -d tuckett-test.xyz
