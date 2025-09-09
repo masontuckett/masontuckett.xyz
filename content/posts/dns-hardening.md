@@ -117,7 +117,7 @@ Within the managed zone, records are applied to guide users towards specific ser
 
 {{< small >}}Concise for the Sake of Brevity{{< /small >}} 
 
-- **NS** - Name Server _(Delegates Authority for domains)_.
+- **NS** - Name Server _(Delegates authority for domains)_.
 - **SOA** - Start of Authority (Provides administrative information about the zone)
 - **A/AAAA** - IPv4/6 Addresses _(Points to the designated IP address.)_.
 - **CNAME** - Canonical Name _(Points a name to another name; A/AAAA record is after the target)_.

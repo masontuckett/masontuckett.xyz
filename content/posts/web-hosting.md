@@ -214,6 +214,39 @@ StrictModes yes
 # ! Permit User ! #
 AllowUsers user
 
+# ! Fallback Prevention ! #
+ChallengeResponseAuthentication no
+
+# ! Disable Forwarding (We Are Not a Router) ! #
+AllowTcpForwarding no
+GatewayPorts no
+
+# ! Prevent Zombie Sessions ! #
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
+# ! Prevent Session Abuse ! #
+MaxSessions 1
+
+# ! Brute Force Prevention ! #
+MaxAuthTries 3
+LoginGraceTime 30
+MaxStartups 3:10:30
+
+# ! Prevent Agent Abuse ! #
+AllowAgentForwarding no
+
+# ! Restrict Keys ! #
+HostKeyAlgorithms ssh-ed25519
+PubkeyAcceptedKeyTypes ssh-ed25519
+
+# ! Useful Additions ! #
+Compression no
+PermitUserEnvironment no
+
+# ! Test Changes (No Output is Good) ! #
+sudo sshd -t
+
 # ! Restart the Service ! #
 systemctl restart --now ssh
 
@@ -327,6 +360,9 @@ server {
 
 ```sh
 ### Enable Web Page ###
+# ! Test Configs ! #
+sudo nginx -t 
+
 # ! Avoids Conflicts ! #
 sudo rm /etc/nginx/sites-enabled/default
 

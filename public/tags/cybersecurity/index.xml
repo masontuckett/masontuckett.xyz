@@ -112,7 +112,7 @@
 <small><i><b>Concise for the Sake of Brevity</b></i></small>
 
 <ul>
-<li><strong>NS</strong> - Name Server <em>(Delegates Authority for domains)</em>.</li>
+<li><strong>NS</strong> - Name Server <em>(Delegates authority for domains)</em>.</li>
 <li><strong>SOA</strong> - Start of Authority (Provides administrative information about the zone)</li>
 <li><strong>A/AAAA</strong> - IPv4/6 Addresses <em>(Points to the designated IP address.)</em>.</li>
 <li><strong>CNAME</strong> - Canonical Name <em>(Points a name to another name; A/AAAA record is after the target)</em>.</li>
