@@ -141,7 +141,7 @@ Before we configure SSH (on the host), we need to manage our firewall first.
 UFW is commonly bundled with stock Debian/Ubuntu server images, and while it is still more than enough—iptables is _far more_ granular.
 
 ```sh
-### UFW ###
+### UFW (Root) ###
 ufw allow http
 ufw allow https
 ufw allow 5555/tcp
@@ -179,7 +179,7 @@ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 
 # ! Allow ICMP (Caution) ! #
-sudo iptables -A INPUT -p icmp -j ACCEPT
+iptables -A INPUT -p icmp -j ACCEPT
 
 # ! Persistence ! #
 apt update; apt install -y netfilter-persistent iptables-persistent
@@ -197,7 +197,7 @@ This doesn't have to be too complex, but a non-standard port and public key auth
 {{< small >}}Take important notice of these configurations.{{</ small >}}
 
 ```sh
-### /etc/ssh/sshd_config ###
+### /etc/ssh/sshd_config (Root) ###
 # ! Set a Non-standard Port ! #
 Port 5555
 
@@ -248,7 +248,7 @@ Compression no
 PermitUserEnvironment no
 
 # ! Test Changes (No Output is Good) ! #
-sudo sshd -t
+sshd -t
 
 # ! Restart the Service ! #
 systemctl restart --now ssh
@@ -264,7 +264,7 @@ After everything else has been completed, we can finally deploy Nginx!
 For this demonstration, I will be installing both Nginx and Certbot to make the process as painless as possible (Let's Encrypt); Certbot will automatically renew your TLS/SSL certificate (via Cron).
 
 ```sh
-### Install Nginx and Certbot ###
+### Install Nginx and Certbot (Sudo Now) ###
 sudo apt update && sudo apt install -y nginx python3-certbot-nginx
 sudo systemctl enable --now nginx
 

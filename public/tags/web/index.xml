@@ -121,7 +121,7 @@
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### UFW ###</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### UFW (Root) ###</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">ufw allow http
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">ufw allow https
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">ufw allow 5555/tcp
@@ -159,7 +159,7 @@
 </span></span><span class="line"><span class="ln">36</span><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">443</span> -j ACCEPT
 </span></span><span class="line"><span class="ln">37</span><span class="cl">
 </span></span><span class="line"><span class="ln">38</span><span class="cl"><span class="c1"># ! Allow ICMP (Caution) ! #</span>
-</span></span><span class="line"><span class="ln">39</span><span class="cl">sudo iptables -A INPUT -p icmp -j ACCEPT
+</span></span><span class="line"><span class="ln">39</span><span class="cl">iptables -A INPUT -p icmp -j ACCEPT
 </span></span><span class="line"><span class="ln">40</span><span class="cl">
 </span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="c1"># ! Persistence ! #</span>
 </span></span><span class="line"><span class="ln">42</span><span class="cl">apt update<span class="p">;</span> apt install -y netfilter-persistent iptables-persistent
@@ -174,7 +174,7 @@
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### /etc/ssh/sshd_config ###</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### /etc/ssh/sshd_config (Root) ###</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! Set a Non-standard Port ! #</span>
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">Port <span class="m">5555</span>
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">
@@ -225,7 +225,7 @@
 </span></span><span class="line"><span class="ln">49</span><span class="cl">PermitUserEnvironment no
 </span></span><span class="line"><span class="ln">50</span><span class="cl">
 </span></span><span class="line"><span class="ln">51</span><span class="cl"><span class="c1"># ! Test Changes (No Output is Good) ! #</span>
-</span></span><span class="line"><span class="ln">52</span><span class="cl">sudo sshd -t
+</span></span><span class="line"><span class="ln">52</span><span class="cl">sshd -t
 </span></span><span class="line"><span class="ln">53</span><span class="cl">
 </span></span><span class="line"><span class="ln">54</span><span class="cl"><span class="c1"># ! Restart the Service ! #</span>
 </span></span><span class="line"><span class="ln">55</span><span class="cl">systemctl restart --now ssh
@@ -239,7 +239,7 @@
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Install Nginx and Certbot ###</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Install Nginx and Certbot (Sudo Now) ###</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo apt update <span class="o">&amp;&amp;</span> sudo apt install -y nginx python3-certbot-nginx
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now nginx
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">
