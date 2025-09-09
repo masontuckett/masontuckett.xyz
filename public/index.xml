@@ -187,27 +187,10 @@ t6vN2CWgUgXvgQM=
 <li>I offered continuous support—guiding my mentee through the process of studying/obtaining foundational IT certifications, and exploring his area of interest (penetration testing).</li>
 <li>A fully air-gapped SOC lab was created in Proxmox—allowing my mentee to gain exposure to critical industry toolsets (SIEM/IDS/IPS - Wazuh).</li>
 <li>802.1Q VLANs were implemented ensuring a secure and realistic learning environment with appropriate WireGuard tunneling for public services.</li>
-<li>DNSSEC, CAA hardening, Nginx hardening (<a href="https://developer.mozilla.org/en-US/observatory/analyze?host=smithbarlow.xyz">CSP</a>/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.</li>
+<li>DNSSEC, CAA hardening, Nginx hardening (CSP/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.</li>
 </ul>
-<h3 id="verification-1">Verification</h3>
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Web Hosting (Headers) ###</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! Clearnet ! #</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">curl -vkI https://smithbarlow.xyz
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># ! Tor ! #</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">curl -vI --socks5-hostname 127.0.0.1:9050 http://v55dqkmukq7hl6hty5sn6wlbcfn6ldadxt3h4wuynb2dyonpu5hrcmyd.onion
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### DNS ###</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">dig @9.9.9.9 smithbarlow.xyz any +dnssec
-</span></span><span class="line"><span class="ln">10</span><span class="cl">
-</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1">### Documentation ###</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">Post: https://masontuckett.xyz/posts/mentee-lab
-</span></span><span class="line"><span class="ln">13</span><span class="cl">Write Up: https://github.com/smithbarlow/Home-Lab</span></span></code></pre></div>]]></content:encoded>
+<p><a href="https://masontuckett.xyz/posts/mentee-lab">A Brief Write Up May Be Found Here.</a></p>
+]]></content:encoded>
     </item>
     <item>
       <title>Services</title>
@@ -1057,7 +1040,9 @@ tuckettlab.xyz.		1736	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-has
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Quick Netcat Scan (May Be Periodically Down)</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">nc -vz smithbarlow.xyz <span class="m">25565</span></span></span></code></pre></div>]]></content:encoded>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">nc -vz smithbarlow.xyz <span class="m">25565</span></span></span></code></pre></div><h2 id="update-90825">UPDATE (9/08/25)</h2>
+<p>This project has been archived for now.</p>
+]]></content:encoded>
     </item>
     <item>
       <title>GNU Privacy Guard</title>

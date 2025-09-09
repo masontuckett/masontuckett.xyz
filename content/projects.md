@@ -64,22 +64,6 @@ __Active Mentorship__\
 - I offered continuous support—guiding my mentee through the process of studying/obtaining foundational IT certifications, and exploring his area of interest (penetration testing).
 - A fully air-gapped SOC lab was created in Proxmox—allowing my mentee to gain exposure to critical industry toolsets (SIEM/IDS/IPS - Wazuh).
 - 802.1Q VLANs were implemented ensuring a secure and realistic learning environment with appropriate WireGuard tunneling for public services.
-- DNSSEC, CAA hardening, Nginx hardening ([CSP](https://developer.mozilla.org/en-US/observatory/analyze?host=smithbarlow.xyz)/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.
+- DNSSEC, CAA hardening, Nginx hardening (CSP/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.
 
-### Verification
-
-```sh
-### Web Hosting (Headers) ###
-# ! Clearnet ! #
-curl -vkI https://smithbarlow.xyz
-
-# ! Tor ! #
-curl -vI --socks5-hostname 127.0.0.1:9050 http://v55dqkmukq7hl6hty5sn6wlbcfn6ldadxt3h4wuynb2dyonpu5hrcmyd.onion
-
-### DNS ###
-dig @9.9.9.9 smithbarlow.xyz any +dnssec
-
-### Documentation ###
-Post: https://masontuckett.xyz/posts/mentee-lab
-Write Up: https://github.com/smithbarlow/Home-Lab
-```
+[A Brief Write Up May Be Found Here.](https://masontuckett.xyz/posts/mentee-lab)

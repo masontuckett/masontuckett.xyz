@@ -41,7 +41,7 @@
   <meta itemprop="description" content="Mason Tuckett&#39;s Project Page">
   <meta itemprop="datePublished" content="2025-08-14T00:38:44-07:00">
   <meta itemprop="dateModified" content="2025-08-14T00:38:44-07:00">
-  <meta itemprop="wordCount" content="498">
+  <meta itemprop="wordCount" content="463">
 
 <meta name="referrer" content="no-referrer" />
 
@@ -144,27 +144,10 @@
 <li>I offered continuous support—guiding my mentee through the process of studying/obtaining foundational IT certifications, and exploring his area of interest (penetration testing).</li>
 <li>A fully air-gapped SOC lab was created in Proxmox—allowing my mentee to gain exposure to critical industry toolsets (SIEM/IDS/IPS - Wazuh).</li>
 <li>802.1Q VLANs were implemented ensuring a secure and realistic learning environment with appropriate WireGuard tunneling for public services.</li>
-<li>DNSSEC, CAA hardening, Nginx hardening (<a href="https://developer.mozilla.org/en-US/observatory/analyze?host=smithbarlow.xyz">CSP</a>/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.</li>
+<li>DNSSEC, CAA hardening, Nginx hardening (CSP/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.</li>
 </ul>
-<h3 id="verification-1">Verification</h3>
+<p><a href="https://masontuckett.xyz/posts/mentee-lab">A Brief Write Up May Be Found Here.</a></p>
 
-
-
-
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Web Hosting (Headers) ###</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! Clearnet ! #</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">curl -vkI https://smithbarlow.xyz
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># ! Tor ! #</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">curl -vI --socks5-hostname 127.0.0.1:9050 http://v55dqkmukq7hl6hty5sn6wlbcfn6ldadxt3h4wuynb2dyonpu5hrcmyd.onion
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### DNS ###</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">dig @9.9.9.9 smithbarlow.xyz any +dnssec
-</span></span><span class="line"><span class="ln">10</span><span class="cl">
-</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1">### Documentation ###</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">Post: https://masontuckett.xyz/posts/mentee-lab
-</span></span><span class="line"><span class="ln">13</span><span class="cl">Write Up: https://github.com/smithbarlow/Home-Lab</span></span></code></pre></div>
 </content>
 
 <p>
@@ -177,7 +160,7 @@
   <a href="https://github.com/masontuckett/masontuckett.xyz">Copyright ©2025 Mason Tuckett All Rights Reserved</a><br>
 </small>
 <a href='https://masontuckett.xyz/index.xml'>
-    <img id="rss" src="/images/rss.svg" alt="button for my RSS feed">
+    <img id="rss" src="/images/rss.webp" alt="button for my RSS feed">
 </a>
 <a href="https://linkedin.com/in/mason-tuckett">
     <img id="linkedin" src="/images/linkedin.png" alt="button for my LinkedIn profile">

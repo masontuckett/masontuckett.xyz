@@ -130,11 +130,15 @@ I intentionally chose not to use a Minecraft focused reverse proxy, as we plan o
 The PaperMC server operates with a **whitelist**, and server status **OFF**—for both game security, and to lessen _some_ automated scanning (Shodan/MCStatus).
 
 Otherwise, we kept Minecraft on its default port so players could easily connect.
- 
+
 ### Verification
 
 ```sh
 # Quick Netcat Scan (May Be Periodically Down)
 nc -vz smithbarlow.xyz 25565
 ```
+ 
+## UPDATE (9/08/25)
+
+This project has been archived for now.
 
