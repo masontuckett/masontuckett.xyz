@@ -178,6 +178,9 @@ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 # ! Allow HTTPS ! #
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 
+# ! Allow ICMP (Caution) ! #
+sudo iptables -A INPUT -p icmp -j ACCEPT
+
 # ! Persistence ! #
 apt update; apt install -y netfilter-persistent iptables-persistent
 netfilter-persistent save

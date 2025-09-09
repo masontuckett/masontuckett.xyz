@@ -45,7 +45,7 @@
   <meta itemprop="description" content="A Brief Overview of Nginx Hosting">
   <meta itemprop="datePublished" content="2025-09-04T00:38:44-07:00">
   <meta itemprop="dateModified" content="2025-09-04T00:38:44-07:00">
-  <meta itemprop="wordCount" content="2116">
+  <meta itemprop="wordCount" content="2132">
   <meta itemprop="keywords" content="Web,Dns,Self-Hosting">
 
 <meta name="referrer" content="no-referrer" />
@@ -238,9 +238,12 @@
 </span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1"># ! Allow HTTPS ! #</span>
 </span></span><span class="line"><span class="ln">36</span><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">443</span> -j ACCEPT
 </span></span><span class="line"><span class="ln">37</span><span class="cl">
-</span></span><span class="line"><span class="ln">38</span><span class="cl"><span class="c1"># ! Persistence ! #</span>
-</span></span><span class="line"><span class="ln">39</span><span class="cl">apt update<span class="p">;</span> apt install -y netfilter-persistent iptables-persistent
-</span></span><span class="line"><span class="ln">40</span><span class="cl">netfilter-persistent save</span></span></code></pre></div><h3 id="basic-ssh-security">Basic SSH Security</h3>
+</span></span><span class="line"><span class="ln">38</span><span class="cl"><span class="c1"># ! Allow ICMP (Caution) ! #</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">sudo iptables -A INPUT -p icmp -j ACCEPT
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="c1"># ! Persistence ! #</span>
+</span></span><span class="line"><span class="ln">42</span><span class="cl">apt update<span class="p">;</span> apt install -y netfilter-persistent iptables-persistent
+</span></span><span class="line"><span class="ln">43</span><span class="cl">netfilter-persistent save</span></span></code></pre></div><h3 id="basic-ssh-security">Basic SSH Security</h3>
 <p>Now that we&rsquo;ve put everything else into place, it is time to secure SSH.</p>
 <p>As you are hosting this publicly—it is best to have at <em>least</em> a secure baseline for SSH access.</p>
 <p>This doesn&rsquo;t have to be too complex, but a non-standard port and public key authentication should suit this just fine.</p>
