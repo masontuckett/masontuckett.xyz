@@ -76,7 +76,7 @@ Ideally, it's best to point an A/AAAA record to your instance (if you have purch
 It is not advisable to use a root user for managing your host; create a new user instead.
 
 ```sh
-### Create a New User ###
+### Create a New User (Root) ###
 useradd -m -s /bin/bash user
 usermod -aG sudo user
 
@@ -91,7 +91,7 @@ It is best to avoid RSA, as it is an **outdated** cryptographic standard compare
 {{< small >}}RSA 4096 (integer factorization) is still somewhat comparable to ED25519 but has lower security per bit than ED25519's ECC algorithm.{{</ small >}} 
 
 ```sh
-### Generate a Secure ED25519 Key (Dummy Key) ###
+### Generate a Secure ED25519 Key (Client) ###
 ssh-keygen -t ed25519 -a 100 -o -f ~/.ssh/sshkey
 
 # ! ENTER A STRONG PASSPHRASE ! #
@@ -125,12 +125,12 @@ mkdir -p /home/user/.ssh
 install -m 600 /dev/null /home/user/.ssh/authorized_keys
 cat /home/user/sshkey.pub >> /home/user/.ssh/authorized_keys
 
-# ! Manage Permissions ! #
+# ! Manage Permissions (On Host) ! #
 chmod 700 /home/user/.ssh
 chmod 600 /home/user/.ssh/authorized_keys
 chown -R user /home/user
 
-# ! Remove Key ! #
+# ! Remove Key (Host) ! #
 rm /home/user/sshkey.pub
 ```
 
