@@ -19,13 +19,7 @@ In addition to a rigorous, year-round course schedule, I worked ahead on WGU's M
 ## Experience
 __Network Deployment Specialist__\
 __*RAD WiFi*__\
-*June 2025 - Present*
-- Performed full-scope enterprise wireless and Cisco Meraki deployments—ensuring optimal signal coverage, bandwidth efficiency, and minimal client/customer disruption.
-- Conducted site surveys utilizing Sidos wireless measurement devices to validate signal integrity, access point placement, and RF interference mitigation strategies.
-- Installed and configured Cisco Meraki integrated access points, switches, routers, and IP cameras, with full L2/L3 integration and central, cloud-based management.
-- Prioritized Quality of Service (QoS) configurations to support optimal voice, video, and critical applications across segmented 802.1Q VLAN environments.
-- Collaborated with IT teams with a strong focus on uptime, and reliability—validating configurations and testing fail-over scenarios post deployment.
-- Documented installation procedures and provided detailed hand offs to clients—including network topology, device inventory, and access credentials.
+*June 2025 - September 2025*
 
 __Ken Garff Esports - Summer Tech Track Mentorship__\
 __*Success in Education*__\
