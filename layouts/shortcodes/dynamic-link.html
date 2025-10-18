@@ -1,0 +1,4 @@
+{{ $path := .Get 0 }}
+{{ $displayText := .Get 1 }}
+{{ $url := printf "/%s/" $path | absURL }}
+<a href="{{ $url }}">{{ $displayText }}</a>

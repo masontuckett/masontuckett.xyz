@@ -1,0 +1,44 @@
+<div class="services">
+  {{- $raw := .Inner | chomp -}}
+  {{- if eq (len (strings.TrimSpace $raw)) 0 -}}
+    {{- $raw = .Get "items" -}}
+  {{- end -}}
+
+  {{- $raw = replace $raw "\r\n" "\n" -}}
+  {{- $items := split $raw "\n" -}}
+  {{- range $items }}
+    {{- $line := strings.TrimSpace . -}}
+    {{- if ne $line "" -}}
+      {{- $parts := split $line "|" -}}
+      {{- if ge (len $parts) 3 }}
+        <div class="service">
+          <div class="service-icon">
+            <img src="{{ index $parts 0 }}" alt="{{ index $parts 1 }}" loading="lazy" decoding="async">
+          </div>
+
+          <div class="service-body">
+            <h3 class="service-title">{{ index $parts 1 }}</h3>
+            <div class="service-text">{{ index $parts 2 | markdownify }}</div>
+
+            {{- $links := after 3 $parts -}}
+            {{- if gt (len $links) 0 }}
+              <div class="service-links">
+                {{- range $links }}
+                  {{- $l := strings.TrimSpace . -}}
+                  {{- if in $l "::" -}}
+                    {{- $p := split $l "::" -}}
+                    <a href="{{ index $p 1 }}">{{ index $p 0 }}</a>
+                  {{- else if hasPrefix $l "<a" -}}
+                    {{ $l | safeHTML }}
+                  {{- else -}}
+                    <a href="{{ $l }}">{{ $l }}</a>
+                  {{- end -}}
+                {{- end }}
+              </div>
+            {{- end }}
+          </div>
+        </div>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+</div>
