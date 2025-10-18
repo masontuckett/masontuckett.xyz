@@ -66,4 +66,4 @@ __Active Mentorship__\
 - 802.1Q VLANs were implemented ensuring a secure and realistic learning environment with appropriate WireGuard tunneling for public services.
 - DNSSEC, CAA hardening, Nginx hardening (CSP/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.
 
-{{< dynamic-link "posts/mentee-lab" "A Brief Write Up May Be Found Here." >}}
+[A Brief Write Up May Be Found Here.](/posts/mentee-lab/)
