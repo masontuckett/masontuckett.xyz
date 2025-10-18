@@ -1,0 +1,43 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+### Beginning of Statement ###
+
+Subject: Tor Mirror Authenticity Statement
+Date: 2025-10-12
+
+Operator: Mason Tuckett mason@tuckett.xyz 
+
+Primary GPG fingerprint: 7272 B803 6060 E459 0218  A95D 11F5 8765 E7B2 1193
+
+Public Key URL (Clearnet): https://masontuckett.xyz/masontuckett.gpg 
+
+Public Key URL (Onion): http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion/masontuckett.gpg
+
+GitHub Key Mirror: https://github.com/masontuckett/masontuckett.gpg
+
+OpenPGP Key Mirror: https://keys.openpgp.org/vks/v1/by-fingerprint/7272B8036060E4590218A95D11F58765E7B21193
+
+Clearnet site(s) covered by this statement:
+
+https://masontuckett.xyz
+https://search.tuckettlab.xyz
+https://library.tuckettlab.xyz
+
+Tor mirror(s) covered by this statement:
+
+http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion
+http://ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd.onion
+http://ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd.onion
+
+! Authenticity Statement !
+I, the undersigned, assert that the Onion addresses listed above are official mirrors of their respective clearnet sites, fully operated by me. Any future change of Onion addressing or ownership will be announced in a new statement signed by the same primary key (or its designated successor key) and published on both clearnet and Onion sites (portfolio and GH mirror).
+
+### End of Statement ###
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRycrgDYGDkWQIYqV0R9Ydl57IRkwUCaOtuHAAKCRAR9Ydl57IR
+k60ZAP0frz7UvqD8foR64Ezl6nDoZF+950dwVpXkICE+2BoNJwEA29ofa8jtAgTI
+6D6FxdDmlhMMZkZc+zyJOiWltj0YWg8=
+=Xpe8
+-----END PGP SIGNATURE-----

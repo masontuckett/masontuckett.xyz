@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="https://masontuckett.xyz/images/favicon.ico" />
+<title>Web Hosting | masontuckett.xyz</title>
+<meta name="title" content="Web Hosting" />
+<meta name="description" content="A Brief Overview of Nginx Hosting" />
+<meta name="author" content="Mason Tuckett" />
+<meta name="keywords" content="web,dns,self-hosting," />
+
+
+
+
+
+
+  
+  <meta property="og:url" content="https://masontuckett.xyz/posts/web-hosting/">
+  <meta property="og:site_name" content="masontuckett.xyz">
+  <meta property="og:title" content="Web Hosting">
+  <meta property="og:description" content="A Brief Overview of Nginx Hosting">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-09-04T00:38:44-07:00">
+    <meta property="article:modified_time" content="2025-09-04T00:38:44-07:00">
+    <meta property="article:tag" content="Web">
+    <meta property="article:tag" content="Dns">
+    <meta property="article:tag" content="Self-Hosting">
+
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Web Hosting">
+  <meta name="twitter:description" content="A Brief Overview of Nginx Hosting">
+
+
+  
+  
+  <meta itemprop="name" content="Web Hosting">
+  <meta itemprop="description" content="A Brief Overview of Nginx Hosting">
+  <meta itemprop="datePublished" content="2025-09-04T00:38:44-07:00">
+  <meta itemprop="dateModified" content="2025-09-04T00:38:44-07:00">
+  <meta itemprop="wordCount" content="2137">
+  <meta itemprop="keywords" content="Web,Dns,Self-Hosting">
+
+<meta name="referrer" content="no-referrer" />
+
+  
+  <link href="/original.min.css" rel="stylesheet">
+
+  
+    
+    <link href="/syntax.min.css" rel="stylesheet">
+  
+
+  
+
+  
+</head>
+
+<body>
+  <header><div class="brand">
+  <a class="title" href="/">
+    <div id="logo" aria-hidden="true"></div>
+    <h1 class="site-title">masontuckett.xyz</h1>
+  </a>
+</div>
+
+<nav>
+  <a href="/">Home</a>
+
+  <a href="/about/">About</a>
+
+  <a href="/contact/">Contact</a>
+
+  <a href="/projects/">Projects</a>
+
+  <a href="/posts/">Posts</a>
+
+  <a href="/services/">Services</a>
+
+
+
+
+
+
+
+
+</nav></header>
+  <main id="main-content">
+
+<h1>Web Hosting</h1>
+
+<content>
+  <p>A Brief Overview of Hosting Web Pages</p>
+<h2 id="what-is-a-web-server">What is a Web Server?</h2>
+<p><img src="/images/posts/web-hosting/web-server.webp" alt="Web Server Diagram"></p>
+<p>A web server is specialized software responsible for delivering web content to users over HTTP/HTTPS.</p>
+<p>This can include static resources such as HTML/CSS/JS files—as well as images (JPG/PNG/WEBP) or archives (ZIP).</p>
+<h3 id="static-sites">Static Sites</h3>
+<p><img src="/images/posts/web-hosting/web-examples.webp" alt="Web Page Example"></p>
+<p>At its simplest level, a web server serves static resources to users—rendering a fully functional web page or a browsable file directory; static sites are <em>static only</em>, serving <strong>ONLY</strong> static resources.</p>
+<p>However, administrative needs are often far more complex—requiring dynamic sites that are commonly powered by application frameworks or achieved with content management systems (CMS).</p>
+<h3 id="dynamic-sites">Dynamic Sites</h3>
+<p>Dynamic sites differ from static sites in that content is generated <em>dynamically</em> instead of serving precompiled resources.</p>
+<p>When a user requests a page, the client sends a request in the form of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods">HTTP request methods</a> to the web server—given to an application framework or CMS (often querying a database/app).</p>
+<p>Thereafter, the web server responds with a finalized HTML response in real time—hence the <em>dynamic</em> nature of the site.</p>
+<small><i><b> Some common CMS platforms include: WordPress and Drupal; common application frameworks include: Node.js, Django, Ruby on Rails.</b></i></small>
+
+<h2 id="what-is-a-reverse-proxy">What is a Reverse Proxy?</h2>
+<p><img src="/images/posts/web-hosting/reverse-proxy.webp" alt="Reverse Proxy Diagram"></p>
+<p>Often bundled with web server software, a reverse proxy is an intermediary server that sits between clients and one or more back-end servers (e.g., dynamic services), forwarding requests directly to the web or application servers.</p>
+<p>Reverse proxies are especially useful when hosting <em>dynamic</em> sites that rely on application frameworks or CMS platforms.</p>
+<p>These setups are often a combination of multiple components—such as databases, application servers, and caching layers (interlaced with <a href="https://www.cloudflare.com/learning/cdn/what-is-a-cdn/">CDNs</a>).</p>
+<p>As workloads are quite resource-intensive and more complex than traditional static sites, administrators also get the benefits of:</p>
+<ul>
+<li><strong>Load Balancing</strong>: <em>Distributing traffic across multiple servers</em>.</li>
+<li><strong>Caching</strong>: <em>Frequently accessed content may be cached, reducing strain on back-end resources</em>.</li>
+<li><strong>Security</strong>: <em>Obscures internal servers—hiding the identity of origin servers (if properly configured)</em>.</li>
+<li><strong>TLS/SSL</strong>: <em>Simplifies the management of TLS/SSL certificates, as they can be handled at the proxy level</em>.</li>
+</ul>
+<small><i><b>Multiple reverse proxies can be chained together—for redundancy or specialized services/roles.</b></i></small>
+
+<h2 id="configuring-a-reverse-proxy">Configuring a Reverse Proxy</h2>
+<p>For this demonstration I will be deploying Nginx on a Debian (Trixie) VPS; this won&rsquo;t differ significantly when compared to Ubuntu or RHEL derivatives.</p>
+<p>There are various reverse proxies that <em>may</em> be utilized, but <a href="https://www.cvedetails.com/vendor/10048/Nginx.html">Nginx</a> is far more reliable (not to mention, lighter under high concurrency) than <a href="https://www.cvedetails.com/vendor/45/Apache.html">Apache</a>; <a href="https://traefik.io/">Traefik</a> and <a href="https://caddyserver.com/">Caddy</a> are also phenomenal options.</p>
+<h3 id="important-prerequisites">Important Prerequisites</h3>
+<p>I&rsquo;d recommend finding a hosting provider that gives you full access to your machine/instance; for full digital sovereignty, avoid AWS/Cloudflare.</p>
+<p>Ideally, it&rsquo;s best to point an A/AAAA record to your instance (if you have purchased a domain).</p>
+<h3 id="creating-a-new-user">Creating a New User</h3>
+<p>It is not advisable to use a root user for managing your host; create a new user instead.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Create a New User (Root) ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">useradd -m -s /bin/bash user
+</span></span><span class="line"><span class="ln">3</span><span class="cl">usermod -aG sudo user
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"># ! Set a Password ! #</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">passwd user</span></span></code></pre></div><h3 id="generating-an-ssh-key">Generating an SSH Key</h3>
+<p>It is best to avoid RSA, as it is an <strong>outdated</strong> cryptographic standard compared to the much newer and robust ED25519 algorithm <em>(yes, even with the -b arg)</em>.</p>
+<small><i><b>RSA 4096 (integer factorization) is still somewhat comparable to ED25519 but has lower security per bit than ED25519's ECC algorithm.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Generate a Secure ED25519 Key (Client) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">ssh-keygen -t ed25519 -a <span class="m">100</span> -o -f ~/.ssh/sshkey
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># ! ENTER A STRONG PASSPHRASE ! #</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">Generating public/private ed25519 key pair.
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>: 
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">Enter same passphrase again: 
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># ! Output Should Be Similar ! #</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">Your identification has been saved in /home/user/.ssh/sshkey
+</span></span><span class="line"><span class="ln">11</span><span class="cl">Your public key has been saved in /home/user/.ssh/sshkey.pub
+</span></span><span class="line"><span class="ln">12</span><span class="cl">The key fingerprint is:
+</span></span><span class="line"><span class="ln">13</span><span class="cl">SHA256:tCzBHeMoatZ5jR3pvKaGdRs83AHARTYEk3j5Ln8VccE user@9020MT
+</span></span><span class="line"><span class="ln">14</span><span class="cl">The key<span class="err">&#39;</span>s randomart image is:
+</span></span><span class="line"><span class="ln">15</span><span class="cl">+--<span class="o">[</span>ED25519 256<span class="o">]</span>--+
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">|</span>     o+OO    ... <span class="p">|</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">|</span>    ..<span class="o">=</span>*.<span class="o">=</span>  . E  <span class="p">|</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">|</span>    ..+.*.   o   <span class="p">|</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">|</span>   o o X.o. .    <span class="p">|</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">|</span>  + o ++S. . .   <span class="p">|</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">|</span> o   .o.B.. .    <span class="p">|</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">|</span>     o +o+ .     <span class="p">|</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="p">|</span>    . .oo .      <span class="p">|</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="p">|</span>     ..  .       <span class="p">|</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">+----<span class="o">[</span>SHA256<span class="o">]</span>-----+
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="c1">### Deploy the Key (From Client) ###</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">scp ~/.ssh/sshkey.pub root@host:/home/user/
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="c1"># ! Install the Key (On Host) ! #</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">mkdir -p /home/user/.ssh
+</span></span><span class="line"><span class="ln">32</span><span class="cl">install -m <span class="m">600</span> /dev/null /home/user/.ssh/authorized_keys
+</span></span><span class="line"><span class="ln">33</span><span class="cl">cat /home/user/sshkey.pub &gt;&gt; /home/user/.ssh/authorized_keys
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1"># ! Manage Permissions (On Host) ! #</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">chmod <span class="m">700</span> /home/user/.ssh
+</span></span><span class="line"><span class="ln">37</span><span class="cl">chmod <span class="m">600</span> /home/user/.ssh/authorized_keys
+</span></span><span class="line"><span class="ln">38</span><span class="cl">chown -R user /home/user
+</span></span><span class="line"><span class="ln">39</span><span class="cl">
+</span></span><span class="line"><span class="ln">40</span><span class="cl"><span class="c1"># ! Remove Key (Host) ! #</span>
+</span></span><span class="line"><span class="ln">41</span><span class="cl">rm /home/user/sshkey.pub</span></span></code></pre></div><h3 id="firewall-configuration">Firewall Configuration</h3>
+<p>Before we configure SSH (on the host), we need to manage our firewall first.</p>
+<p>UFW is commonly bundled with stock Debian/Ubuntu server images, and while it is still more than enough—iptables is <em>far more</em> granular.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### UFW (Root) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">ufw allow http
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">ufw allow https
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">ufw allow 5555/tcp
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">ufw default deny incoming
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">ufw default allow outgoing
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">ufw status verbose
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">ufw <span class="nb">enable</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">systemctl <span class="nb">enable</span> --now ufw
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"># ! OR ! #</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1">### Iptables ###</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"># ! Flush Rules ! #</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">iptables -F
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"># ! UFW Equivalent ! #</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">iptables -P INPUT DROP
+</span></span><span class="line"><span class="ln">20</span><span class="cl">iptables -P FORWARD DROP
+</span></span><span class="line"><span class="ln">21</span><span class="cl">iptables -P OUTPUT ACCEPT
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="c1"># ! Allow Loopback ! #</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">iptables -A INPUT -i lo -j ACCEPT
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="c1"># ! Allow Established ! #</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl"><span class="c1"># ! Allow SSH (Non-standard Port) ! #</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">5555</span> -j ACCEPT
+</span></span><span class="line"><span class="ln">31</span><span class="cl">
+</span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="c1"># ! Allow HTTP ! #</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">80</span> -j ACCEPT
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1"># ! Allow HTTPS ! #</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">443</span> -j ACCEPT
+</span></span><span class="line"><span class="ln">37</span><span class="cl">
+</span></span><span class="line"><span class="ln">38</span><span class="cl"><span class="c1"># ! Allow ICMP (Caution) ! #</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">iptables -A INPUT -p icmp -j ACCEPT
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="c1"># ! Persistence ! #</span>
+</span></span><span class="line"><span class="ln">42</span><span class="cl">apt update<span class="p">;</span> apt install -y netfilter-persistent iptables-persistent
+</span></span><span class="line"><span class="ln">43</span><span class="cl">netfilter-persistent save</span></span></code></pre></div><h3 id="basic-ssh-security">Basic SSH Security</h3>
+<p>Now that we&rsquo;ve put everything else into place, it is time to secure SSH.</p>
+<p>As you are hosting this publicly—it is best to have at <em>least</em> a secure baseline for SSH access.</p>
+<p>This doesn&rsquo;t have to be too complex, but a non-standard port and public key authentication should suit this just fine.</p>
+<small><i><b>Take important notice of these configurations.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### /etc/ssh/sshd_config (Root) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! Set a Non-standard Port ! #</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">Port <span class="m">5555</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># ! Disable Root Login ! #</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">PermitRootLogin no
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"># ! Enable Public Key Authentication ! #</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">PubkeyAuthentication yes
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"># ! Disable Password Authentication ! #</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">PasswordAuthentication no
+</span></span><span class="line"><span class="ln">13</span><span class="cl">PermitEmptyPasswords no
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"># ! Enable Strict Mode ! #</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">StrictModes yes
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"># ! Permit User ! #</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">AllowUsers user
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1"># ! Fallback Prevention ! #</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">ChallengeResponseAuthentication no
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="c1"># ! Disable Forwarding (We Are Not a Router) ! #</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">AllowTcpForwarding no
+</span></span><span class="line"><span class="ln">26</span><span class="cl">GatewayPorts no
+</span></span><span class="line"><span class="ln">27</span><span class="cl">
+</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="c1"># ! Prevent Zombie Sessions ! #</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">ClientAliveInterval <span class="m">300</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">ClientAliveCountMax <span class="m">2</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">
+</span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="c1"># ! Prevent Session Abuse ! #</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">MaxSessions <span class="m">1</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1"># ! Brute Force Prevention ! #</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">MaxAuthTries <span class="m">3</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">LoginGraceTime <span class="m">30</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">MaxStartups 3:10:30
+</span></span><span class="line"><span class="ln">39</span><span class="cl">
+</span></span><span class="line"><span class="ln">40</span><span class="cl"><span class="c1"># ! Prevent Agent Abuse ! #</span>
+</span></span><span class="line"><span class="ln">41</span><span class="cl">AllowAgentForwarding no
+</span></span><span class="line"><span class="ln">42</span><span class="cl">
+</span></span><span class="line"><span class="ln">43</span><span class="cl"><span class="c1"># ! Restrict Keys ! #</span>
+</span></span><span class="line"><span class="ln">44</span><span class="cl">HostKeyAlgorithms ssh-ed25519
+</span></span><span class="line"><span class="ln">45</span><span class="cl">PubkeyAcceptedKeyTypes ssh-ed25519
+</span></span><span class="line"><span class="ln">46</span><span class="cl">
+</span></span><span class="line"><span class="ln">47</span><span class="cl"><span class="c1"># ! Useful Additions ! #</span>
+</span></span><span class="line"><span class="ln">48</span><span class="cl">Compression no
+</span></span><span class="line"><span class="ln">49</span><span class="cl">PermitUserEnvironment no
+</span></span><span class="line"><span class="ln">50</span><span class="cl">
+</span></span><span class="line"><span class="ln">51</span><span class="cl"><span class="c1"># ! Test Changes (No Output is Good) ! #</span>
+</span></span><span class="line"><span class="ln">52</span><span class="cl">sshd -t
+</span></span><span class="line"><span class="ln">53</span><span class="cl">
+</span></span><span class="line"><span class="ln">54</span><span class="cl"><span class="c1"># ! Restart the Service ! #</span>
+</span></span><span class="line"><span class="ln">55</span><span class="cl">systemctl restart --now ssh
+</span></span><span class="line"><span class="ln">56</span><span class="cl">
+</span></span><span class="line"><span class="ln">57</span><span class="cl"><span class="c1">### SSH In ###</span>
+</span></span><span class="line"><span class="ln">58</span><span class="cl">ssh -i ~/.ssh/sshkey user@host -p <span class="m">5555</span></span></span></code></pre></div><h2 id="deploying-nginx">Deploying Nginx</h2>
+<p>After everything else has been completed, we can finally deploy Nginx!</p>
+<p>For this demonstration, I will be installing both Nginx and Certbot to make the process as painless as possible (Let&rsquo;s Encrypt); Certbot will automatically renew your TLS/SSL certificate (via Cron).</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Install Nginx and Certbot (Sudo Now) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo apt update <span class="o">&amp;&amp;</span> sudo apt install -y nginx python3-certbot-nginx
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now nginx
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1">### Create a New Web Directory ###</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">sudo mkdir -p /var/www/webpage
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### Obtain a Certificate ###</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">certbot certonly -d tuckett-test.xyz
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"># ! Output Should Be Similar ! #</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">How would you like to authenticate with the ACME CA?
+</span></span><span class="line"><span class="ln">13</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">14</span><span class="cl">1: Nginx Web Server plugin <span class="o">(</span>nginx<span class="o">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">2: Runs an HTTP server locally which serves the necessary validation files under
+</span></span><span class="line"><span class="ln">16</span><span class="cl">the /.well-known/acme-challenge/ request path. Suitable <span class="k">if</span> there is no HTTP
+</span></span><span class="line"><span class="ln">17</span><span class="cl">server already running. HTTP challenge only <span class="o">(</span>wildcards not supported<span class="o">)</span>.
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="o">(</span>standalone<span class="o">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">3: Saves the necessary validation files to a .well-known/acme-challenge/
+</span></span><span class="line"><span class="ln">20</span><span class="cl">directory within the nominated webroot path. A separate HTTP server must be
+</span></span><span class="line"><span class="ln">21</span><span class="cl">running and serving files from the webroot path. HTTP challenge only <span class="o">(</span>wildcards
+</span></span><span class="line"><span class="ln">22</span><span class="cl">not supported<span class="o">)</span>. <span class="o">(</span>webroot<span class="o">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="c1"># ! We Are Using Nginx - Enter 1 ! #</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">Select the appropriate number <span class="o">[</span>1-3<span class="o">]</span> <span class="k">then</span> <span class="o">[</span>enter<span class="o">]</span> <span class="o">(</span>press <span class="s1">&#39;c&#39;</span> to cancel<span class="o">)</span>: <span class="m">1</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">Enter email address or hit Enter to skip.
+</span></span><span class="line"><span class="ln">27</span><span class="cl"> <span class="o">(</span>Enter <span class="s1">&#39;c&#39;</span> to cancel<span class="o">)</span>: admin@tuckett.xyz
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">30</span><span class="cl">Please <span class="nb">read</span> the Terms of Service at:
+</span></span><span class="line"><span class="ln">31</span><span class="cl">https://letsencrypt.org/documents/LE-SA-v1.5-February-24-2025.pdf
+</span></span><span class="line"><span class="ln">32</span><span class="cl">You must agree in order to register with the ACME server. Do you agree?
+</span></span><span class="line"><span class="ln">33</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="c1"># ! Agree to Terms ! #</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="o">(</span>Y<span class="o">)</span>es/<span class="o">(</span>N<span class="o">)</span>o: y
+</span></span><span class="line"><span class="ln">36</span><span class="cl">
+</span></span><span class="line"><span class="ln">37</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">38</span><span class="cl">Would you be willing, once your first certificate is successfully issued, to
+</span></span><span class="line"><span class="ln">39</span><span class="cl">share your email address with the Electronic Frontier Foundation, a founding
+</span></span><span class="line"><span class="ln">40</span><span class="cl">partner of the Let<span class="s1">&#39;s Encrypt project and the non-profit organization that
+</span></span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="s1">develops Certbot? We&#39;</span>d like to send you email about our work encrypting the web,
+</span></span><span class="line"><span class="ln">42</span><span class="cl">EFF news, campaigns, and ways to support digital freedom.
+</span></span><span class="line"><span class="ln">43</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">44</span><span class="cl"><span class="c1"># ! Optional ! #</span>
+</span></span><span class="line"><span class="ln">45</span><span class="cl"><span class="o">(</span>Y<span class="o">)</span>es/<span class="o">(</span>N<span class="o">)</span>o: n
+</span></span><span class="line"><span class="ln">46</span><span class="cl">Account registered.
+</span></span><span class="line"><span class="ln">47</span><span class="cl">Requesting a certificate <span class="k">for</span> tuckett-test.xyz
+</span></span><span class="line"><span class="ln">48</span><span class="cl">
+</span></span><span class="line"><span class="ln">49</span><span class="cl">Successfully received certificate.
+</span></span><span class="line"><span class="ln">50</span><span class="cl">Certificate is saved at: /etc/letsencrypt/live/tuckett-test.xyz/fullchain.pem
+</span></span><span class="line"><span class="ln">51</span><span class="cl">Key is saved at:         /etc/letsencrypt/live/tuckett-test.xyz/privkey.pem</span></span></code></pre></div><h3 id="configuring-nginx">Configuring Nginx</h3>
+<p>Now we&rsquo;ll need to configure Nginx so we may publish our web page.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/nginx.conf ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">#! Turn Off Server Tokens (Bare Minimum) ! #
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">server_tokens off;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">### /etc/nginx/sites-available/webpage ###
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"># ! Minimal Config ! #
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"># ! HTTP - Redirects to HTTPS ! #
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">server {
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    listen 80;
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    listen [::]:80;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    server_name tuckett-test.xyz;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    return 301 https://tuckett-test.xyz$request_uri;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">}
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl"># ! HTTPS ! #
+</span></span><span class="line"><span class="ln">18</span><span class="cl">server {
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    listen 443 ssl;
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    listen [::]:443 ssl;
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    server_name tuckett-test.xyz;
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    # ! Let&#39;s Encrypt Certificate ! #
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    ssl_certificate     /etc/letsencrypt/live/tuckett-test.xyz/fullchain.pem;
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    ssl_certificate_key /etc/letsencrypt/live/tuckett-test.xyz/privkey.pem;
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    # Recommended TLS params (installed by certbot)
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    include /etc/letsencrypt/options-ssl-nginx.conf;
+</span></span><span class="line"><span class="ln">29</span><span class="cl">    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+</span></span><span class="line"><span class="ln">30</span><span class="cl">
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    # ! Web Root ! #
+</span></span><span class="line"><span class="ln">32</span><span class="cl">    root /var/www/webpage;
+</span></span><span class="line"><span class="ln">33</span><span class="cl">    index index.html;
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl">    location / {
+</span></span><span class="line"><span class="ln">36</span><span class="cl">        try_files $uri $uri/ =404;
+</span></span><span class="line"><span class="ln">37</span><span class="cl">    }
+</span></span><span class="line"><span class="ln">38</span><span class="cl">}</span></span></code></pre></div>
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Enable Web Page ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"># ! Test Configs ! #</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">sudo nginx -t 
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"># ! Avoids Conflicts ! #</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">sudo rm /etc/nginx/sites-enabled/default
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="c1"># ! Symbolic Link ! #</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl">sudo ln -s /etc/nginx/sites-available/webpage /etc/nginx/sites-enabled/webpage</span></span></code></pre></div><h3 id="html-test">HTML Test</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="ln"> 1</span><span class="cl">### /var/www/webpage/index.html ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"># ! HTML Test ! #
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="cp">&lt;!doctype html&gt;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Web Hosting Guide - Success!<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Web Hosting Guide - Success!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre></div><h3 id="applying-permissions">Applying Permissions</h3>
+<p>It is important that your web root and web content has the proper permissions.</p>
+<ul>
+<li><strong>755 (Folders)</strong>: Owner (www-data) has rwx, group (www-data) has rx, others have rx.</li>
+<li><strong>644 (Files)</strong>: Owner (www-data) has rw, group (www-data) only have r, others only have r.</li>
+</ul>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Apply Permissions (Script) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="nb">set</span> -euo pipefail
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="nv">WEBROOT</span><span class="o">=</span><span class="s2">&#34;/var/www/webpage&#34;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="nv">USER</span><span class="o">=</span><span class="s2">&#34;www-data&#34;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="nv">GROUP</span><span class="o">=</span><span class="s2">&#34;www-data&#34;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">sudo chown -R <span class="s2">&#34;</span><span class="nv">$USER</span><span class="s2">:</span><span class="nv">$GROUP</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$WEBROOT</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">sudo find <span class="s2">&#34;</span><span class="nv">$WEBROOT</span><span class="s2">&#34;</span> -type d -exec chmod <span class="m">755</span> <span class="o">{}</span> <span class="se">\;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">sudo find <span class="s2">&#34;</span><span class="nv">$WEBROOT</span><span class="s2">&#34;</span> -type f -exec chmod <span class="m">644</span> <span class="o">{}</span> <span class="se">\;</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">sudo systemctl restart --now nginx</span></span></code></pre></div><h2 id="congratulations">Congratulations!</h2>
+<p><img src="/images/posts/web-hosting/finalized.webp" alt="Finalized Web Page"></p>
+<p>We finally have a working web page published—though we are <em>far</em> from finished.</p>
+<p>This site is still highly vulnerable, and we&rsquo;ll need to implement CSP policies and some configuration changes to Nginx itself; this needs to be <strong>production grade</strong>.</p>
+<small><i><b>In no way should you actually leave it this vulnerable—even if your site is purely static, you should harden it as much as possible.</b></i></small>
+
+<p><a href="https://masontuckett.xyz/posts/web-hardening/">Check out my follow-up article regarding web hardening</a>.</p>
+
+</content>
+
+<p class="byline">
+  <time datetime='2025-09-04' pubdate>
+    09-04-2025
+  </time>
+  · Mason Tuckett
+</p>
+
+<p>
+  
+    <a class="blog-tags" href="/tags/web/">#web</a>
+  
+    <a class="blog-tags" href="/tags/dns/">#dns</a>
+  
+    <a class="blog-tags" href="/tags/self-hosting/">#self-hosting</a>
+  
+</p>
+
+
+  </main>
+  <footer><small id="foot">
+  <a href="https://github.com/masontuckett/masontuckett.xyz">Copyright ©2025 Mason Tuckett All Rights Reserved</a><br>
+</small>
+<a href='https://masontuckett.xyz/index.xml'>
+    <img id="rss" src="/images/rss.webp" alt="button for my RSS feed">
+</a>
+<a href="https://linkedin.com/in/mason-tuckett">
+    <img id="linkedin" src="/images/linkedin.png" alt="button for my LinkedIn profile">
+</a>
+<a href="https://github.com/masontuckett">
+    <img id="github" src="/images/github.png" alt="button for my Github profile">
+</a>
+<a href="http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion/">
+	<img id="tor" src="/images/tor.png" alt="button for my Tor service">
+</a>
+</footer>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Dns on masontuckett.xyz</title>
+    <link>https://masontuckett.xyz/tags/dns/</link>
+    <description>Recent content in Dns on masontuckett.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
+    <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
+    <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 04 Sep 2025 00:38:44 -0700</lastBuildDate>
+    <atom:link href="https://masontuckett.xyz/tags/dns/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Hosting</title>
+      <link>https://masontuckett.xyz/posts/web-hosting/</link>
+      <pubDate>Thu, 04 Sep 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/web-hosting/</guid>
+      <description>&lt;p&gt;A Brief Overview of Hosting Web Pages&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-a-web-server&#34;&gt;What is a Web Server?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/posts/web-hosting/web-server.webp&#34; alt=&#34;Web Server Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;A web server is specialized software responsible for delivering web content to users over HTTP/HTTPS.&lt;/p&gt;&#xA;&lt;p&gt;This can include static resources such as HTML/CSS/JS files—as well as images (JPG/PNG/WEBP) or archives (ZIP).&lt;/p&gt;&#xA;&lt;h3 id=&#34;static-sites&#34;&gt;Static Sites&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/posts/web-hosting/web-examples.webp&#34; alt=&#34;Web Page Example&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;At its simplest level, a web server serves static resources to users—rendering a fully functional web page or a browsable file directory; static sites are &lt;em&gt;static only&lt;/em&gt;, serving &lt;strong&gt;ONLY&lt;/strong&gt; static resources.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>A Brief Overview of Hosting Web Pages</p>
+<h2 id="what-is-a-web-server">What is a Web Server?</h2>
+<p><img src="/images/posts/web-hosting/web-server.webp" alt="Web Server Diagram"></p>
+<p>A web server is specialized software responsible for delivering web content to users over HTTP/HTTPS.</p>
+<p>This can include static resources such as HTML/CSS/JS files—as well as images (JPG/PNG/WEBP) or archives (ZIP).</p>
+<h3 id="static-sites">Static Sites</h3>
+<p><img src="/images/posts/web-hosting/web-examples.webp" alt="Web Page Example"></p>
+<p>At its simplest level, a web server serves static resources to users—rendering a fully functional web page or a browsable file directory; static sites are <em>static only</em>, serving <strong>ONLY</strong> static resources.</p>
+<p>However, administrative needs are often far more complex—requiring dynamic sites that are commonly powered by application frameworks or achieved with content management systems (CMS).</p>
+<h3 id="dynamic-sites">Dynamic Sites</h3>
+<p>Dynamic sites differ from static sites in that content is generated <em>dynamically</em> instead of serving precompiled resources.</p>
+<p>When a user requests a page, the client sends a request in the form of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods">HTTP request methods</a> to the web server—given to an application framework or CMS (often querying a database/app).</p>
+<p>Thereafter, the web server responds with a finalized HTML response in real time—hence the <em>dynamic</em> nature of the site.</p>
+<small><i><b> Some common CMS platforms include: WordPress and Drupal; common application frameworks include: Node.js, Django, Ruby on Rails.</b></i></small>
+
+<h2 id="what-is-a-reverse-proxy">What is a Reverse Proxy?</h2>
+<p><img src="/images/posts/web-hosting/reverse-proxy.webp" alt="Reverse Proxy Diagram"></p>
+<p>Often bundled with web server software, a reverse proxy is an intermediary server that sits between clients and one or more back-end servers (e.g., dynamic services), forwarding requests directly to the web or application servers.</p>
+<p>Reverse proxies are especially useful when hosting <em>dynamic</em> sites that rely on application frameworks or CMS platforms.</p>
+<p>These setups are often a combination of multiple components—such as databases, application servers, and caching layers (interlaced with <a href="https://www.cloudflare.com/learning/cdn/what-is-a-cdn/">CDNs</a>).</p>
+<p>As workloads are quite resource-intensive and more complex than traditional static sites, administrators also get the benefits of:</p>
+<ul>
+<li><strong>Load Balancing</strong>: <em>Distributing traffic across multiple servers</em>.</li>
+<li><strong>Caching</strong>: <em>Frequently accessed content may be cached, reducing strain on back-end resources</em>.</li>
+<li><strong>Security</strong>: <em>Obscures internal servers—hiding the identity of origin servers (if properly configured)</em>.</li>
+<li><strong>TLS/SSL</strong>: <em>Simplifies the management of TLS/SSL certificates, as they can be handled at the proxy level</em>.</li>
+</ul>
+<small><i><b>Multiple reverse proxies can be chained together—for redundancy or specialized services/roles.</b></i></small>
+
+<h2 id="configuring-a-reverse-proxy">Configuring a Reverse Proxy</h2>
+<p>For this demonstration I will be deploying Nginx on a Debian (Trixie) VPS; this won&rsquo;t differ significantly when compared to Ubuntu or RHEL derivatives.</p>
+<p>There are various reverse proxies that <em>may</em> be utilized, but <a href="https://www.cvedetails.com/vendor/10048/Nginx.html">Nginx</a> is far more reliable (not to mention, lighter under high concurrency) than <a href="https://www.cvedetails.com/vendor/45/Apache.html">Apache</a>; <a href="https://traefik.io/">Traefik</a> and <a href="https://caddyserver.com/">Caddy</a> are also phenomenal options.</p>
+<h3 id="important-prerequisites">Important Prerequisites</h3>
+<p>I&rsquo;d recommend finding a hosting provider that gives you full access to your machine/instance; for full digital sovereignty, avoid AWS/Cloudflare.</p>
+<p>Ideally, it&rsquo;s best to point an A/AAAA record to your instance (if you have purchased a domain).</p>
+<h3 id="creating-a-new-user">Creating a New User</h3>
+<p>It is not advisable to use a root user for managing your host; create a new user instead.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Create a New User (Root) ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">useradd -m -s /bin/bash user
+</span></span><span class="line"><span class="ln">3</span><span class="cl">usermod -aG sudo user
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"># ! Set a Password ! #</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">passwd user</span></span></code></pre></div><h3 id="generating-an-ssh-key">Generating an SSH Key</h3>
+<p>It is best to avoid RSA, as it is an <strong>outdated</strong> cryptographic standard compared to the much newer and robust ED25519 algorithm <em>(yes, even with the -b arg)</em>.</p>
+<small><i><b>RSA 4096 (integer factorization) is still somewhat comparable to ED25519 but has lower security per bit than ED25519's ECC algorithm.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Generate a Secure ED25519 Key (Client) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">ssh-keygen -t ed25519 -a <span class="m">100</span> -o -f ~/.ssh/sshkey
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># ! ENTER A STRONG PASSPHRASE ! #</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">Generating public/private ed25519 key pair.
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>: 
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">Enter same passphrase again: 
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># ! Output Should Be Similar ! #</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">Your identification has been saved in /home/user/.ssh/sshkey
+</span></span><span class="line"><span class="ln">11</span><span class="cl">Your public key has been saved in /home/user/.ssh/sshkey.pub
+</span></span><span class="line"><span class="ln">12</span><span class="cl">The key fingerprint is:
+</span></span><span class="line"><span class="ln">13</span><span class="cl">SHA256:tCzBHeMoatZ5jR3pvKaGdRs83AHARTYEk3j5Ln8VccE user@9020MT
+</span></span><span class="line"><span class="ln">14</span><span class="cl">The key<span class="err">&#39;</span>s randomart image is:
+</span></span><span class="line"><span class="ln">15</span><span class="cl">+--<span class="o">[</span>ED25519 256<span class="o">]</span>--+
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">|</span>     o+OO    ... <span class="p">|</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">|</span>    ..<span class="o">=</span>*.<span class="o">=</span>  . E  <span class="p">|</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">|</span>    ..+.*.   o   <span class="p">|</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">|</span>   o o X.o. .    <span class="p">|</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">|</span>  + o ++S. . .   <span class="p">|</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">|</span> o   .o.B.. .    <span class="p">|</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">|</span>     o +o+ .     <span class="p">|</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="p">|</span>    . .oo .      <span class="p">|</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="p">|</span>     ..  .       <span class="p">|</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">+----<span class="o">[</span>SHA256<span class="o">]</span>-----+
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="c1">### Deploy the Key (From Client) ###</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">scp ~/.ssh/sshkey.pub root@host:/home/user/
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="c1"># ! Install the Key (On Host) ! #</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">mkdir -p /home/user/.ssh
+</span></span><span class="line"><span class="ln">32</span><span class="cl">install -m <span class="m">600</span> /dev/null /home/user/.ssh/authorized_keys
+</span></span><span class="line"><span class="ln">33</span><span class="cl">cat /home/user/sshkey.pub &gt;&gt; /home/user/.ssh/authorized_keys
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1"># ! Manage Permissions (On Host) ! #</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">chmod <span class="m">700</span> /home/user/.ssh
+</span></span><span class="line"><span class="ln">37</span><span class="cl">chmod <span class="m">600</span> /home/user/.ssh/authorized_keys
+</span></span><span class="line"><span class="ln">38</span><span class="cl">chown -R user /home/user
+</span></span><span class="line"><span class="ln">39</span><span class="cl">
+</span></span><span class="line"><span class="ln">40</span><span class="cl"><span class="c1"># ! Remove Key (Host) ! #</span>
+</span></span><span class="line"><span class="ln">41</span><span class="cl">rm /home/user/sshkey.pub</span></span></code></pre></div><h3 id="firewall-configuration">Firewall Configuration</h3>
+<p>Before we configure SSH (on the host), we need to manage our firewall first.</p>
+<p>UFW is commonly bundled with stock Debian/Ubuntu server images, and while it is still more than enough—iptables is <em>far more</em> granular.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### UFW (Root) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">ufw allow http
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">ufw allow https
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">ufw allow 5555/tcp
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">ufw default deny incoming
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">ufw default allow outgoing
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">ufw status verbose
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">ufw <span class="nb">enable</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">systemctl <span class="nb">enable</span> --now ufw
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"># ! OR ! #</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1">### Iptables ###</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"># ! Flush Rules ! #</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">iptables -F
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"># ! UFW Equivalent ! #</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">iptables -P INPUT DROP
+</span></span><span class="line"><span class="ln">20</span><span class="cl">iptables -P FORWARD DROP
+</span></span><span class="line"><span class="ln">21</span><span class="cl">iptables -P OUTPUT ACCEPT
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="c1"># ! Allow Loopback ! #</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">iptables -A INPUT -i lo -j ACCEPT
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="c1"># ! Allow Established ! #</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl"><span class="c1"># ! Allow SSH (Non-standard Port) ! #</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">5555</span> -j ACCEPT
+</span></span><span class="line"><span class="ln">31</span><span class="cl">
+</span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="c1"># ! Allow HTTP ! #</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">80</span> -j ACCEPT
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1"># ! Allow HTTPS ! #</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">iptables -A INPUT -p tcp --dport <span class="m">443</span> -j ACCEPT
+</span></span><span class="line"><span class="ln">37</span><span class="cl">
+</span></span><span class="line"><span class="ln">38</span><span class="cl"><span class="c1"># ! Allow ICMP (Caution) ! #</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">iptables -A INPUT -p icmp -j ACCEPT
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="c1"># ! Persistence ! #</span>
+</span></span><span class="line"><span class="ln">42</span><span class="cl">apt update<span class="p">;</span> apt install -y netfilter-persistent iptables-persistent
+</span></span><span class="line"><span class="ln">43</span><span class="cl">netfilter-persistent save</span></span></code></pre></div><h3 id="basic-ssh-security">Basic SSH Security</h3>
+<p>Now that we&rsquo;ve put everything else into place, it is time to secure SSH.</p>
+<p>As you are hosting this publicly—it is best to have at <em>least</em> a secure baseline for SSH access.</p>
+<p>This doesn&rsquo;t have to be too complex, but a non-standard port and public key authentication should suit this just fine.</p>
+<small><i><b>Take important notice of these configurations.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### /etc/ssh/sshd_config (Root) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! Set a Non-standard Port ! #</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">Port <span class="m">5555</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># ! Disable Root Login ! #</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">PermitRootLogin no
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"># ! Enable Public Key Authentication ! #</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">PubkeyAuthentication yes
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"># ! Disable Password Authentication ! #</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">PasswordAuthentication no
+</span></span><span class="line"><span class="ln">13</span><span class="cl">PermitEmptyPasswords no
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"># ! Enable Strict Mode ! #</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">StrictModes yes
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"># ! Permit User ! #</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">AllowUsers user
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1"># ! Fallback Prevention ! #</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">ChallengeResponseAuthentication no
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="c1"># ! Disable Forwarding (We Are Not a Router) ! #</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">AllowTcpForwarding no
+</span></span><span class="line"><span class="ln">26</span><span class="cl">GatewayPorts no
+</span></span><span class="line"><span class="ln">27</span><span class="cl">
+</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="c1"># ! Prevent Zombie Sessions ! #</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">ClientAliveInterval <span class="m">300</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">ClientAliveCountMax <span class="m">2</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">
+</span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="c1"># ! Prevent Session Abuse ! #</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">MaxSessions <span class="m">1</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1"># ! Brute Force Prevention ! #</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">MaxAuthTries <span class="m">3</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">LoginGraceTime <span class="m">30</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">MaxStartups 3:10:30
+</span></span><span class="line"><span class="ln">39</span><span class="cl">
+</span></span><span class="line"><span class="ln">40</span><span class="cl"><span class="c1"># ! Prevent Agent Abuse ! #</span>
+</span></span><span class="line"><span class="ln">41</span><span class="cl">AllowAgentForwarding no
+</span></span><span class="line"><span class="ln">42</span><span class="cl">
+</span></span><span class="line"><span class="ln">43</span><span class="cl"><span class="c1"># ! Restrict Keys ! #</span>
+</span></span><span class="line"><span class="ln">44</span><span class="cl">HostKeyAlgorithms ssh-ed25519
+</span></span><span class="line"><span class="ln">45</span><span class="cl">PubkeyAcceptedKeyTypes ssh-ed25519
+</span></span><span class="line"><span class="ln">46</span><span class="cl">
+</span></span><span class="line"><span class="ln">47</span><span class="cl"><span class="c1"># ! Useful Additions ! #</span>
+</span></span><span class="line"><span class="ln">48</span><span class="cl">Compression no
+</span></span><span class="line"><span class="ln">49</span><span class="cl">PermitUserEnvironment no
+</span></span><span class="line"><span class="ln">50</span><span class="cl">
+</span></span><span class="line"><span class="ln">51</span><span class="cl"><span class="c1"># ! Test Changes (No Output is Good) ! #</span>
+</span></span><span class="line"><span class="ln">52</span><span class="cl">sshd -t
+</span></span><span class="line"><span class="ln">53</span><span class="cl">
+</span></span><span class="line"><span class="ln">54</span><span class="cl"><span class="c1"># ! Restart the Service ! #</span>
+</span></span><span class="line"><span class="ln">55</span><span class="cl">systemctl restart --now ssh
+</span></span><span class="line"><span class="ln">56</span><span class="cl">
+</span></span><span class="line"><span class="ln">57</span><span class="cl"><span class="c1">### SSH In ###</span>
+</span></span><span class="line"><span class="ln">58</span><span class="cl">ssh -i ~/.ssh/sshkey user@host -p <span class="m">5555</span></span></span></code></pre></div><h2 id="deploying-nginx">Deploying Nginx</h2>
+<p>After everything else has been completed, we can finally deploy Nginx!</p>
+<p>For this demonstration, I will be installing both Nginx and Certbot to make the process as painless as possible (Let&rsquo;s Encrypt); Certbot will automatically renew your TLS/SSL certificate (via Cron).</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Install Nginx and Certbot (Sudo Now) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo apt update <span class="o">&amp;&amp;</span> sudo apt install -y nginx python3-certbot-nginx
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now nginx
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1">### Create a New Web Directory ###</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">sudo mkdir -p /var/www/webpage
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### Obtain a Certificate ###</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">certbot certonly -d tuckett-test.xyz
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"># ! Output Should Be Similar ! #</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">How would you like to authenticate with the ACME CA?
+</span></span><span class="line"><span class="ln">13</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">14</span><span class="cl">1: Nginx Web Server plugin <span class="o">(</span>nginx<span class="o">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">2: Runs an HTTP server locally which serves the necessary validation files under
+</span></span><span class="line"><span class="ln">16</span><span class="cl">the /.well-known/acme-challenge/ request path. Suitable <span class="k">if</span> there is no HTTP
+</span></span><span class="line"><span class="ln">17</span><span class="cl">server already running. HTTP challenge only <span class="o">(</span>wildcards not supported<span class="o">)</span>.
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="o">(</span>standalone<span class="o">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">3: Saves the necessary validation files to a .well-known/acme-challenge/
+</span></span><span class="line"><span class="ln">20</span><span class="cl">directory within the nominated webroot path. A separate HTTP server must be
+</span></span><span class="line"><span class="ln">21</span><span class="cl">running and serving files from the webroot path. HTTP challenge only <span class="o">(</span>wildcards
+</span></span><span class="line"><span class="ln">22</span><span class="cl">not supported<span class="o">)</span>. <span class="o">(</span>webroot<span class="o">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="c1"># ! We Are Using Nginx - Enter 1 ! #</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">Select the appropriate number <span class="o">[</span>1-3<span class="o">]</span> <span class="k">then</span> <span class="o">[</span>enter<span class="o">]</span> <span class="o">(</span>press <span class="s1">&#39;c&#39;</span> to cancel<span class="o">)</span>: <span class="m">1</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">Enter email address or hit Enter to skip.
+</span></span><span class="line"><span class="ln">27</span><span class="cl"> <span class="o">(</span>Enter <span class="s1">&#39;c&#39;</span> to cancel<span class="o">)</span>: admin@tuckett.xyz
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">30</span><span class="cl">Please <span class="nb">read</span> the Terms of Service at:
+</span></span><span class="line"><span class="ln">31</span><span class="cl">https://letsencrypt.org/documents/LE-SA-v1.5-February-24-2025.pdf
+</span></span><span class="line"><span class="ln">32</span><span class="cl">You must agree in order to register with the ACME server. Do you agree?
+</span></span><span class="line"><span class="ln">33</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="c1"># ! Agree to Terms ! #</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="o">(</span>Y<span class="o">)</span>es/<span class="o">(</span>N<span class="o">)</span>o: y
+</span></span><span class="line"><span class="ln">36</span><span class="cl">
+</span></span><span class="line"><span class="ln">37</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">38</span><span class="cl">Would you be willing, once your first certificate is successfully issued, to
+</span></span><span class="line"><span class="ln">39</span><span class="cl">share your email address with the Electronic Frontier Foundation, a founding
+</span></span><span class="line"><span class="ln">40</span><span class="cl">partner of the Let<span class="s1">&#39;s Encrypt project and the non-profit organization that
+</span></span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="s1">develops Certbot? We&#39;</span>d like to send you email about our work encrypting the web,
+</span></span><span class="line"><span class="ln">42</span><span class="cl">EFF news, campaigns, and ways to support digital freedom.
+</span></span><span class="line"><span class="ln">43</span><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="ln">44</span><span class="cl"><span class="c1"># ! Optional ! #</span>
+</span></span><span class="line"><span class="ln">45</span><span class="cl"><span class="o">(</span>Y<span class="o">)</span>es/<span class="o">(</span>N<span class="o">)</span>o: n
+</span></span><span class="line"><span class="ln">46</span><span class="cl">Account registered.
+</span></span><span class="line"><span class="ln">47</span><span class="cl">Requesting a certificate <span class="k">for</span> tuckett-test.xyz
+</span></span><span class="line"><span class="ln">48</span><span class="cl">
+</span></span><span class="line"><span class="ln">49</span><span class="cl">Successfully received certificate.
+</span></span><span class="line"><span class="ln">50</span><span class="cl">Certificate is saved at: /etc/letsencrypt/live/tuckett-test.xyz/fullchain.pem
+</span></span><span class="line"><span class="ln">51</span><span class="cl">Key is saved at:         /etc/letsencrypt/live/tuckett-test.xyz/privkey.pem</span></span></code></pre></div><h3 id="configuring-nginx">Configuring Nginx</h3>
+<p>Now we&rsquo;ll need to configure Nginx so we may publish our web page.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/nginx.conf ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">#! Turn Off Server Tokens (Bare Minimum) ! #
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">server_tokens off;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">### /etc/nginx/sites-available/webpage ###
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"># ! Minimal Config ! #
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"># ! HTTP - Redirects to HTTPS ! #
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">server {
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    listen 80;
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    listen [::]:80;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    server_name tuckett-test.xyz;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    return 301 https://tuckett-test.xyz$request_uri;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">}
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl"># ! HTTPS ! #
+</span></span><span class="line"><span class="ln">18</span><span class="cl">server {
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    listen 443 ssl;
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    listen [::]:443 ssl;
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    server_name tuckett-test.xyz;
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    # ! Let&#39;s Encrypt Certificate ! #
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    ssl_certificate     /etc/letsencrypt/live/tuckett-test.xyz/fullchain.pem;
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    ssl_certificate_key /etc/letsencrypt/live/tuckett-test.xyz/privkey.pem;
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    # Recommended TLS params (installed by certbot)
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    include /etc/letsencrypt/options-ssl-nginx.conf;
+</span></span><span class="line"><span class="ln">29</span><span class="cl">    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+</span></span><span class="line"><span class="ln">30</span><span class="cl">
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    # ! Web Root ! #
+</span></span><span class="line"><span class="ln">32</span><span class="cl">    root /var/www/webpage;
+</span></span><span class="line"><span class="ln">33</span><span class="cl">    index index.html;
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl">    location / {
+</span></span><span class="line"><span class="ln">36</span><span class="cl">        try_files $uri $uri/ =404;
+</span></span><span class="line"><span class="ln">37</span><span class="cl">    }
+</span></span><span class="line"><span class="ln">38</span><span class="cl">}</span></span></code></pre></div>
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Enable Web Page ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"># ! Test Configs ! #</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">sudo nginx -t 
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"># ! Avoids Conflicts ! #</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">sudo rm /etc/nginx/sites-enabled/default
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="c1"># ! Symbolic Link ! #</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl">sudo ln -s /etc/nginx/sites-available/webpage /etc/nginx/sites-enabled/webpage</span></span></code></pre></div><h3 id="html-test">HTML Test</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="ln"> 1</span><span class="cl">### /var/www/webpage/index.html ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"># ! HTML Test ! #
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="cp">&lt;!doctype html&gt;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Web Hosting Guide - Success!<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Web Hosting Guide - Success!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre></div><h3 id="applying-permissions">Applying Permissions</h3>
+<p>It is important that your web root and web content has the proper permissions.</p>
+<ul>
+<li><strong>755 (Folders)</strong>: Owner (www-data) has rwx, group (www-data) has rx, others have rx.</li>
+<li><strong>644 (Files)</strong>: Owner (www-data) has rw, group (www-data) only have r, others only have r.</li>
+</ul>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Apply Permissions (Script) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="nb">set</span> -euo pipefail
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="nv">WEBROOT</span><span class="o">=</span><span class="s2">&#34;/var/www/webpage&#34;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="nv">USER</span><span class="o">=</span><span class="s2">&#34;www-data&#34;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="nv">GROUP</span><span class="o">=</span><span class="s2">&#34;www-data&#34;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">sudo chown -R <span class="s2">&#34;</span><span class="nv">$USER</span><span class="s2">:</span><span class="nv">$GROUP</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$WEBROOT</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">sudo find <span class="s2">&#34;</span><span class="nv">$WEBROOT</span><span class="s2">&#34;</span> -type d -exec chmod <span class="m">755</span> <span class="o">{}</span> <span class="se">\;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">sudo find <span class="s2">&#34;</span><span class="nv">$WEBROOT</span><span class="s2">&#34;</span> -type f -exec chmod <span class="m">644</span> <span class="o">{}</span> <span class="se">\;</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">sudo systemctl restart --now nginx</span></span></code></pre></div><h2 id="congratulations">Congratulations!</h2>
+<p><img src="/images/posts/web-hosting/finalized.webp" alt="Finalized Web Page"></p>
+<p>We finally have a working web page published—though we are <em>far</em> from finished.</p>
+<p>This site is still highly vulnerable, and we&rsquo;ll need to implement CSP policies and some configuration changes to Nginx itself; this needs to be <strong>production grade</strong>.</p>
+<small><i><b>In no way should you actually leave it this vulnerable—even if your site is purely static, you should harden it as much as possible.</b></i></small>
+
+<p><a href="https://masontuckett.xyz/posts/web-hardening/">Check out my follow-up article regarding web hardening</a>.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>DNS Hardening</title>
+      <link>https://masontuckett.xyz/posts/dns-hardening/</link>
+      <pubDate>Sat, 30 Aug 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/dns-hardening/</guid>
+      <description>&lt;p&gt;A Brief Overview of DNS Hardening&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-dns&#34;&gt;What is DNS?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc9499&#34;&gt;Domain Name System (DNS)&lt;/a&gt; is a protocol designed to translate IP addresses (IPv4/6) into human-readable addresses—e.g., &lt;a href=&#34;https://search.tuckettlab.xyz&#34;&gt;search.tuckettlab.xyz&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;small&gt;&lt;i&gt;&lt;b&gt;In practice the reverse: human-readable addresses &gt; IP addresses&lt;/b&gt;&lt;/i&gt;&lt;/small&gt;&#xA;&#xA;&lt;p&gt;Without DNS, navigating the internet would be needlessly exhausting—requiring users to manually enter an IP address every time they were to access web content.&lt;/p&gt;&#xA;&lt;p&gt;Additionally, dynamic mapping executed via DNS allows for essential accessibility functions like geo-availability—providing content within relevant geographic locations—&lt;em&gt;significantly accelerating your web traffic&lt;/em&gt;.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>A Brief Overview of DNS Hardening</p>
+<h2 id="what-is-dns">What is DNS?</h2>
+<p><a href="https://www.rfc-editor.org/rfc/rfc9499">Domain Name System (DNS)</a> is a protocol designed to translate IP addresses (IPv4/6) into human-readable addresses—e.g., <a href="https://search.tuckettlab.xyz">search.tuckettlab.xyz</a>.</p>
+<small><i><b>In practice the reverse: human-readable addresses > IP addresses</b></i></small>
+
+<p>Without DNS, navigating the internet would be needlessly exhausting—requiring users to manually enter an IP address every time they were to access web content.</p>
+<p>Additionally, dynamic mapping executed via DNS allows for essential accessibility functions like geo-availability—providing content within relevant geographic locations—<em>significantly accelerating your web traffic</em>.</p>
+<h2 id="how-does-dns-work">How Does DNS Work?</h2>
+<p><img src="/images/posts/dns-hardening/dns-structure.jpg" alt="DNS Structure Diagram"></p>
+<p>DNS is a highly structured and hierarchical protocol—relying on several chains of trust to translate addresses.</p>
+<h3 id="root-servers">Root Servers</h3>
+<ul>
+<li>The top of the rung, served by 13 root server identifiers (12 organizations) distributed worldwide.</li>
+<li>Does not store zone records for domains, but they return referrals to the authoritative nameservers for the requested TLD (not individual domains): <strong>.xyz(.)</strong>.</li>
+</ul>
+<h3 id="top-level-domains">Top-Level Domains</h3>
+<ul>
+<li>Second, just below root servers—housing domain extensions like: <strong>.edu, .com, .net, and .xyz</strong>.</li>
+<li>TLD servers return referrals to authoritative nameservers for second-level domains.</li>
+</ul>
+<h3 id="second-level-domains">Second-Level Domains</h3>
+<ul>
+<li>Third in the chain, delegated <em>(by authoritative servers)</em> and purchasable from domain registrars; second-level domains are registered under a TLD: <strong><em>tuckettlab</em>.xyz</strong>.</li>
+<li>SLDs lie within authoritative servers, <em>essentially</em> where your DNS records actually exist (zone): <strong>A/AAAA</strong>—pointing to valid IP addresses.</li>
+</ul>
+<h3 id="third-level-domains">Third-Level Domains</h3>
+<ul>
+<li>Fourth in the chain, subdomains (within parent zone) managed by DNS records <strong>(CNAME, A, AAAA)</strong>: <strong><em>search</em>.tuckettlab.xyz</strong></li>
+<li>Commonly used for load balancing and service separation: <strong><em>mail</em>.tuckettlab.xyz (MX)</strong>.</li>
+</ul>
+<h3 id="hostfqdn">Host/FQDN</h3>
+<ul>
+<li>Last step: produces a fully qualified domain name (FQDN), which uniquely identifies a host—<em>accessible to users</em>.</li>
+<li>For users: a recursive DNS server queries step by step: root <strong>&gt;</strong> top-level domain server <strong>&gt;</strong> second-level authoritative <strong>&gt;</strong> subdomain (third-level domain) <strong>&gt;</strong> resolver returns the corresponding record to the client.</li>
+</ul>
+<h3 id="response-codes">Response Codes</h3>
+<p><strong>NXDOMAIN:</strong> A response code representing the absence or non-existence of a domain.</p>
+<ul>
+<li>Authoritative servers for the TLD respond NXDOMAIN if the entire SLD doesn’t exist under its respective TLD; otherwise, NXDOMAIN comes from the authoritative SLD server.</li>
+</ul>
+<p><strong>NODATA (NOERROR/Empty):</strong> A response code indicating that the domain <em>does</em> exist, but no records of the requested type are present (A is present, AAAA is not).</p>
+<h3 id="example-queries">Example Queries</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### Successful Query ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">dig NS search.tuckettlab.xyz
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">; &lt;&lt;&gt;&gt; DiG 9.18.30-0ubuntu0.24.04.2-Ubuntu &lt;&lt;&gt;&gt; NS search.tuckettlab.xyz
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">;; global options: +cmd
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">;; Got answer:
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: !!!NOERROR!!!, id: 51001
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">;; OPT PSEUDOSECTION:
+</span></span><span class="line"><span class="ln">11</span><span class="cl">; EDNS: version: 0, flags:; udp: 65494
+</span></span><span class="line"><span class="ln">12</span><span class="cl">;; QUESTION SECTION:
+</span></span><span class="line"><span class="ln">13</span><span class="cl">;search.tuckettlab.xyz.		IN	NS
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">;; AUTHORITY SECTION:
+</span></span><span class="line"><span class="ln">16</span><span class="cl">tuckettlab.xyz.		150	IN	SOA	ns1.vultr.com. dnsadm.choopa.com. 0 10800 3600 604800 3600
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl">;; Query time: 1 msec
+</span></span><span class="line"><span class="ln">19</span><span class="cl">;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+</span></span><span class="line"><span class="ln">20</span><span class="cl">;; WHEN: Sat Aug 30 11:52:13 MDT 2025
+</span></span><span class="line"><span class="ln">21</span><span class="cl">;; MSG SIZE  rcvd: 113
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl">### Unsuccessful Query ###
+</span></span><span class="line"><span class="ln">24</span><span class="cl">dig NS ?.xyz
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl">; &lt;&lt;&gt;&gt; DiG 9.18.30-0ubuntu0.24.04.2-Ubuntu &lt;&lt;&gt;&gt; NS ?.xyz
+</span></span><span class="line"><span class="ln">27</span><span class="cl">;; global options: +cmd
+</span></span><span class="line"><span class="ln">28</span><span class="cl">;; Got answer:
+</span></span><span class="line"><span class="ln">29</span><span class="cl">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: !!!NXDOMAIN!!!, id: 61057
+</span></span><span class="line"><span class="ln">30</span><span class="cl">;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+</span></span><span class="line"><span class="ln">31</span><span class="cl">
+</span></span><span class="line"><span class="ln">32</span><span class="cl">;; OPT PSEUDOSECTION:
+</span></span><span class="line"><span class="ln">33</span><span class="cl">; EDNS: version: 0, flags:; udp: 65494
+</span></span><span class="line"><span class="ln">34</span><span class="cl">;; QUESTION SECTION:
+</span></span><span class="line"><span class="ln">35</span><span class="cl">;?.xyz.				IN	NS
+</span></span><span class="line"><span class="ln">36</span><span class="cl">
+</span></span><span class="line"><span class="ln">37</span><span class="cl">;; AUTHORITY SECTION:
+</span></span><span class="line"><span class="ln">38</span><span class="cl">xyz.			773	IN	SOA	ns0.centralnic.net. hostmaster.centralnic.net. 3000828297 900 1800 6048000 3600
+</span></span><span class="line"><span class="ln">39</span><span class="cl">
+</span></span><span class="line"><span class="ln">40</span><span class="cl">;; Query time: 80 msec
+</span></span><span class="line"><span class="ln">41</span><span class="cl">;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+</span></span><span class="line"><span class="ln">42</span><span class="cl">;; WHEN: Sat Aug 30 11:55:18 MDT 2025
+</span></span><span class="line"><span class="ln">43</span><span class="cl">;; MSG SIZE  rcvd: 99</span></span></code></pre></div><h2 id="dns-records">DNS Records</h2>
+<p>Within the managed zone, records are applied to guide users towards specific services.</p>
+<h3 id="common-records">Common Records</h3>
+<small><i><b>Concise for the Sake of Brevity</b></i></small>
+
+<ul>
+<li><strong>NS</strong> - Name Server <em>(Delegates authority for domains)</em>.</li>
+<li><strong>SOA</strong> - Start of Authority (Provides administrative information about the zone)</li>
+<li><strong>A/AAAA</strong> - IPv4/6 Addresses <em>(Points to the designated IP address.)</em>.</li>
+<li><strong>CNAME</strong> - Canonical Name <em>(Points a name to another name; A/AAAA record is after the target)</em>.</li>
+<li><strong>MX</strong> - Mail Record <em>(Normally points to mail subdomain)</em>.</li>
+<li><strong>PTR</strong> - Pointer <em>(Reverse DNS is configured by your IP provider (VPS/ISP), not on forward zone; IP &gt; domain)</em>.</li>
+<li><strong>TXT</strong> - Text <em>(Commonly used for SPF/DKIM/DMARC for mail; can be informative)</em>.</li>
+<li><strong>CAA</strong> - Certificate Authority Authorization <em>(Permits which certificate authorities can permit SSL/TLS Certs)</em>.</li>
+<li><strong>DNSKEY</strong> - Domain Name System Key <em>(Stores public key in zone; used for DNSSEC validation)</em>.</li>
+<li><strong>DS</strong> - Delegation Signer <em>(Stored in parent zone, contains hash of child zone&rsquo;s DNSKEY record)</em>.</li>
+<li><strong>CDNSKEY/CDS</strong> - Child DNSKEY/DS <em>(Utilized for child to publish key details to parent zone)</em>.</li>
+</ul>
+<h3 id="txt-related-records">TXT-Related Records</h3>
+<ul>
+<li><strong>SPF</strong> - Sender Policy Framework <em>(Specifies which mail servers are authorized To send mail)</em>.</li>
+<li><strong>DKIM</strong> - DomainKeys Identified Mail <em>(Cryptographic signature system for email content/headers)</em>.</li>
+<li><strong>DMARC</strong> - Domain-based Message Authentication <em>(Instructs receiving mail servers to handle mail that fails SPF/DKIM checks; may report to admin&rsquo;s email)</em>.</li>
+</ul>
+<h3 id="ttls">TTLs</h3>
+<p>When configuring DNS zones, you will have the option to give records a Time to Live (TTL)—representing the number of seconds a DNS record is cached before it is re-queried by an authoritative server.</p>
+<h2 id="record-representation">Record Representation</h2>
+<p><a href="https://www.digwebinterface.com/">Dig Web Interface</a></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### ! FORMAT ! ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">Domain (Root:.)   TTL Class Record Data Priority
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> 
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">### NS ###
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">dig NS tuckettlab.xyz
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">tuckettlab.xyz.		300	IN	NS	ns1.vultr.com.
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">tuckettlab.xyz.		300	IN	NS	ns2.vultr.com.
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">## SOA ##
+</span></span><span class="line"><span class="ln">11</span><span class="cl">dig SOA tuckettlab.xyz
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">tuckettlab.xyz.		300	IN	SOA	ns1.vultr.com. dnsadm.choopa.com. 0 10800 3600 604800 3600
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">### A/AAAA ###
+</span></span><span class="line"><span class="ln">16</span><span class="cl">dig A tuckettlab.xyz AAAA tuckettlab.xyz
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl">tuckettlab.xyz.		3600	IN	A	149.28.67.27
+</span></span><span class="line"><span class="ln">19</span><span class="cl">tuckettlab.xyz.		3600	IN AAAA 2001:db8::25
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl">### CNAME ###
+</span></span><span class="line"><span class="ln">22</span><span class="cl">dig CNAME www.tuckettlab.xyz
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl">www.tuckettlab.xyz.  3600  IN  CNAME  tuckettlab.xyz.
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl">### MX ###
+</span></span><span class="line"><span class="ln">27</span><span class="cl">dig MX tuckettlab.xyz
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl">tuckettlab.xyz.		3600	IN	MX	10 mail.server.net.
+</span></span><span class="line"><span class="ln">30</span><span class="cl">
+</span></span><span class="line"><span class="ln">31</span><span class="cl">### PTR ###
+</span></span><span class="line"><span class="ln">32</span><span class="cl">dig -x 149.28.67.27
+</span></span><span class="line"><span class="ln">33</span><span class="cl">
+</span></span><span class="line"><span class="ln">34</span><span class="cl">27.67.28.149.in-addr.arpa. 3555	IN	PTR	tuckettlab.xyz.
+</span></span><span class="line"><span class="ln">35</span><span class="cl">
+</span></span><span class="line"><span class="ln">36</span><span class="cl">### CAA ###
+</span></span><span class="line"><span class="ln">37</span><span class="cl">dig CAA tuckettlab.xyz
+</span></span><span class="line"><span class="ln">38</span><span class="cl">
+</span></span><span class="line"><span class="ln">39</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	0 issue &#34;tlsprovider.net&#34;
+</span></span><span class="line"><span class="ln">40</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	0 issuewild &#34;tlsprovider.net&#34;
+</span></span><span class="line"><span class="ln">41</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	0 iodef &#34;mailto:admin@admin.net&#34;
+</span></span><span class="line"><span class="ln">42</span><span class="cl">
+</span></span><span class="line"><span class="ln">43</span><span class="cl">
+</span></span><span class="line"><span class="ln">44</span><span class="cl">### DNSKEY/DS ###
+</span></span><span class="line"><span class="ln">45</span><span class="cl">dig @9.9.9.9 DNSKEY tuckettlab.xyz DS tuckettlab.xyz
+</span></span><span class="line"><span class="ln">46</span><span class="cl">
+</span></span><span class="line"><span class="ln">47</span><span class="cl">tuckettlab.xyz.		2761	IN	DNSKEY	257 3 13 UguAJ1bTfrBPNp+jHQ2oZNaPSUsUHaCnwRW+Wcxaf2BueGEmnMGAINj2 1b7gANfBBqqXoB6dGTeOBHfvjAvOdA==
+</span></span><span class="line"><span class="ln">48</span><span class="cl">tuckettlab.xyz.		3600	IN	DS	35175 13 4 865FE510C4CE390FF7285308B9351880A84039F1D75ACA278EF37F9D 71F605D8EC69C87E2F5660CA8BC5BC477A715868
+</span></span><span class="line"><span class="ln">49</span><span class="cl">tuckettlab.xyz.		3600	IN	DS	35175 13 2 871FD8CC8AFC7A1A6C60558112837CD7F288A20CC7F639709AD4A703 9C21E6B9
+</span></span><span class="line"><span class="ln">50</span><span class="cl">
+</span></span><span class="line"><span class="ln">51</span><span class="cl">### TXT Mail Records ###
+</span></span><span class="line"><span class="ln">52</span><span class="cl">dig TXT tuckettlab.xyz TXT selector._domainkey.tuckettlab.xyz TXT _dmarc.tuckettlab.xyz 
+</span></span><span class="line"><span class="ln">53</span><span class="cl">
+</span></span><span class="line"><span class="ln">54</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;v=spf1 include:_spf.mail.net ~all&#34;
+</span></span><span class="line"><span class="ln">55</span><span class="cl">_dmarc.tuckettlab.xyz.	3600	IN	TXT	&#34;v=DMARC1; p=quarantine&#34;
+</span></span><span class="line"><span class="ln">56</span><span class="cl">selector._domainkey.tuckettlab.xyz. 3600 IN TXT &#34;v=DKIM1; k=key type; p=pubkey&#34;</span></span></code></pre></div><h2 id="hardening-dns">Hardening DNS</h2>
+<small><i><b>Now this is where the fun begins...</b></i></small>
+
+<p>Hardening DNS is quite a bit more straightforward than dealing with content security policies and general systems.</p>
+<p>Most registrars allow you to manually edit your zone; if not, find a more consumer-friendly registrar.</p>
+<p>For hardening purposes, some registrars hide DNSSEC behind a paywall; make sure to do your research.</p>
+<p>If you are using a VPS for your infrastructure, it may be best to move your zone to your VPS provider—supplying a unified management pane with easy DNSSEC support.</p>
+<h3 id="aaaaa">A/AAAA</h3>
+<p>It is best to keep these records current and remove anything that may be used by malicious actors.</p>
+<p>Many providers offer built-in proxies, where you can mask your origin traffic behind another IP address.</p>
+<small><i><b>I avoided AAAA records because they may increase my attack surface—exposing an additional interface that is susceptible if not hardened.</b></i></small>
+
+<h3 id="cname">CNAME</h3>
+<p>CNAME records do not resolve directly—requiring two lookups instead of one—slowing resolution (negligible).</p>
+<p>This may not be an inherent issue, but wildcard records should be avoided because this opens your zone to a litany of abuse (largely impersonation).</p>
+<p>Additionally, it can make administration far more difficult, as each chain must be validated under DNSSEC; unstable in general.</p>
+<h3 id="mx">MX</h3>
+<p>Depending on your use case, you may want this enabled or disabled; are you using email with this domain?</p>
+<p>If your domain does not require email, setting a <a href="https://www.rfc-editor.org/rfc/rfc7505.html">NULL MX</a> record prevents any attempts at impersonation.</p>
+<h3 id="mx-txt-records">MX TXT Records</h3>
+<p>Setting your <a href="https://www.rfc-editor.org/rfc/rfc7208.html">SPF TXT</a> record to a hard fail further cements your defense against potential forgery <strong>(-all HARD vs ~all SOFT)</strong>.</p>
+<p>Sane <a href="https://www.rfc-editor.org/rfc/rfc7489.html">DMARC TXT</a> values are also incredibly important for securing your email.</p>
+<p>With that in mind, DMARC has quite a selection of potential options:</p>
+<ul>
+<li>
+<p>Policy <strong>(p)</strong>: <em>should not be set to quarantine</em>; it is best to outright <strong>REJECT</strong> (following a staging process) to prevent against phishing.</p>
+</li>
+<li>
+<p>Subdomain Policy <strong>(sp)</strong>: behaves in a similar fashion—but only covering subdomains; if not set, subdomains may default back to a weaker policy.</p>
+</li>
+<li>
+<p>Alignment Mode for DKIM <strong>(adkim)</strong>: is a great complement towards a secure DKIM setup; <em>it may contain the values strict</em> <strong>(s)</strong> <em>or relaxed</em> <strong>(r)</strong>.</p>
+</li>
+<li>
+<p>Alignment Mode for SPF <strong>(aspf)</strong>: behaves quite similarly to adkim but is a reinforcement for your SPF TXT record; <em>again, it may contain values strict</em> <strong>(s)</strong> <em>or relaxed</em> <strong>(r)</strong>.</p>
+</li>
+<li>
+<p>The Percentage of Messages <strong>(pct)</strong>: is related to how many potential messages these policies apply to; <em>optimal if set to</em> <strong>100 (100%)</strong>.</p>
+</li>
+<li>
+<p>Aggregate Reports <strong>(rua)</strong>: may be enabled, which includes reporting for sent mail and DKIM/DMARC/SPF stats.</p>
+</li>
+<li>
+<p>Forensic Reports <strong>(ruf)</strong>: may also be enabled—sending immediate notices for DMARC evaluation failures (far noisier than rua).</p>
+</li>
+<li>
+<p>The Failure Options tag <strong>(fo)</strong>: complements both reporting features, ranging in values from <strong>0</strong> (both SPF/DKIM fail), <strong>1</strong> (either SPF/DKIM fails), <strong>d</strong> (DKIM), <strong>s</strong> (SPF).</p>
+</li>
+</ul>
+<p><small><i><b>For my setup, I do not want ANY mail to be sent from this domain—as this is for self-hosted services ONLY.</b></i></small>
+<br>
+<small><i><b>DKIM will not exist, nor possibly be resolved.</b></i></small>
+</p>
+
+
+
+
+
+<pre tabindex="0"><code>### MX Record - NO MAIL ###
+tuckettlab.xyz.		3600	IN	MX	0 .
+
+### MX TXT Records - Complements NO MAIL Policy (No rua/ruf) ###
+tuckettlab.xyz.		1736	IN	TXT	&#34;v=spf1 -all&#34;
+_dmarc.tuckettlab.xyz.	1818	IN	TXT	&#34;v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s; pct=100&#34;
+
+### DMARC With Reporting ###
+_dmarc.tuckettlab.xyz. 1818    IN  TXT &#34;v=DMARC1; p=reject; sp=reject; rua=mailto:admin@tuckett.xyz; ruf=mailto:admin@tuckett.xyz; fo=1; adkim=s; aspf=s; pct=100&#34;</code></pre><h3 id="dnssec">DNSSEC</h3>
+<p>I cannot stress how important it is to enable DNSSEC for your domains.</p>
+<p>Doing so provides:</p>
+<ul>
+<li><strong>Authenticity</strong>: <em>(Supplies strong cryptographic context for whether the record truly came from the authoritative server)</em>.</li>
+<li><strong>Integrity</strong>: <em>(Prevents MITM tampering; guards DNS responses in transit)</em>.</li>
+<li><strong>Anti-Cache Poisoning</strong>: <em><a href="https://docs.projectsecurity.io/na101/attacks/dnsattack/">(Impersonators CANNOT inject falsified DNS data into resolvers)</a></em>.</li>
+</ul>
+<p>It is as simple as configuring a few keys from your registrar and publishing them within your zone.</p>
+
+
+
+
+
+<pre tabindex="0"><code>### Enable DNSKEY and DS Record for DNSSEC (USE STRONG ALGORITHMS) ###
+tuckettlab.xyz.		3600	IN	DNSKEY	257 3 13 UguAJ1bTfrBPNp+jHQ2oZNaPSUsUHaCnwRW+Wcxaf2BueGEmnMGAINj2 1b7gANfBBqqXoB6dGTeOBHfvjAvOdA==
+
+tuckettlab.xyz.		214	IN	DS	35175 13 4 865FE510C4CE390FF7285308B9351880A84039F1D75ACA278EF37F9D 71F605D8EC69C87E2F5660CA8BC5BC477A715868
+tuckettlab.xyz.		214	IN	DS	35175 13 2 871FD8CC8AFC7A1A6C60558112837CD7F288A20CC7F639709AD4A703 9C21E6B9</code></pre><h3 id="caa">CAA</h3>
+<p>Also a massive oversight; <a href="https://www.rfc-editor.org/rfc/rfc8659.html">CAA records</a> prevent rogue issuance by malicious CAs.</p>
+<p>CAA flags are set in 8-bit values (0-255); 0 is default (non-critical)—which allows soft fails (sometimes needed for compatibility).</p>
+<p>128 is functionally the only value worth using, as it is treated as critical and far more strict (must be understood by CAs).</p>
+<p>Both issue and issuewild are utilized for SSL/TLS distinction; wildcard certs may be utilized, though they are not advised.</p>
+
+
+
+
+
+<pre tabindex="0"><code># Sane Value - Only Allows Strict Issuance From Let&#39;s Encrypt ###
+tuckettlab.xyz.		2103	IN	CAA	128 issue &#34;letsencrypt.org&#34;
+
+# Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
+tuckettlab.xyz.		2103	IN	CAA	128 issuewild &#34;;&#34;
+
+# Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
+tuckettlab.xyz.		2103	IN	CAA	128 iodef &#34;mailto:admin@tuckett.xyz&#34;</code></pre><h3 id="txt-records">TXT Records</h3>
+<p>It may be useful to include important information within your TXT records, as most text may be inserted.</p>
+<small><i><b>I included important statements, checksums, onion location(s) (if not pulled by HTTP header), and my GPG info.</b></i></small>
+
+
+
+
+
+
+<pre tabindex="0"><code>### My TXT Records ###
+tuckettlab.xyz.		1736	IN	TXT	&#34;gpg-mirror=https://github.com/masontuckett/masontuckett.gpg&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;gpg=https://masontuckett.xyz/masontuckett.gpg&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;gpg-pubkey-fpr=7272B8036060E4590218A95D11F58765E7B21193&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;onion-search=ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;privacy-policy=https://masontuckett.xyz/privacy-policy.txt&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;onion-library=ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;auth-statement=https://masontuckett.xyz/tor-mirror-statement.txt&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-hashes.txt&#34;</code></pre><h3 id="live-demonstration">Live Demonstration</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">;; ANSWER SECTION:
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">tuckettlab.xyz.		3600	IN	A	149.28.67.27
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">tuckettlab.xyz.		3600	IN	RRSIG	A 13 2 3600 20250911000000 20250821000000 35175 tuckettlab.xyz. pLFdcvumIdn66a+KwNtzpAdXrL2/QoBaKK4Ah2+mb0c0uoh81gZMlHnI yHO3q4+D8ZiokKKGg+GOllTRFu0REw==
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">tuckettlab.xyz.		300	IN	NS	ns2.vultr.com.
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">tuckettlab.xyz.		300	IN	NS	ns1.vultr.com.
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">tuckettlab.xyz.		300	IN	RRSIG	NS 13 2 300 20250911000000 20250821000000 35175 tuckettlab.xyz. NKfKYWEfEC6QKsLpL8Skb948Mj2uCxl3YgUkweaFrBix97lZdqOGzxH/ XuUUry62xW/8x9SCZi+xfv7Zh7JLxA==
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">tuckettlab.xyz.		300	IN	SOA	ns1.vultr.com. dnsadm.choopa.com. 0 10800 3600 604800 3600
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">tuckettlab.xyz.		300	IN	RRSIG	SOA 13 2 300 20250911000000 20250821000000 35175 tuckettlab.xyz. zsnBppGRceCk6wVxB2ilh61eCEODg8zR4AHr/RhcCSjnvjjlc+rme1wP RAFZYN/0tmO2jTPsyE2GjgXNxnZ0tw==
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">tuckettlab.xyz.		3600	IN	MX	0 .
+</span></span><span class="line"><span class="ln">10</span><span class="cl">tuckettlab.xyz.		3600	IN	RRSIG	MX 13 2 3600 20250911000000 20250821000000 35175 tuckettlab.xyz. gt6nQjDrYIrXUhWV75i3BABNiGFV3/1NVeF1n8j1wrjZs81IC6umI66l NEHYfqq702CXnaq5kAe4qv/CBg3u6g==
+</span></span><span class="line"><span class="ln">11</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;v=spf1 -all&#34;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-hashes.txt&#34;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;auth-statement=https://masontuckett.xyz/tor-mirror-statement.txt&#34;
+</span></span><span class="line"><span class="ln">14</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;privacy-policy=https://masontuckett.xyz/privacy-policy.txt&#34;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;gpg-mirror=https://github.com/masontuckett/masontuckett.gpg&#34;
+</span></span><span class="line"><span class="ln">16</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;onion-library=ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd&#34;
+</span></span><span class="line"><span class="ln">17</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;gpg=https://masontuckett.xyz/masontuckett.gpg&#34;
+</span></span><span class="line"><span class="ln">18</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;onion-search=ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd&#34;
+</span></span><span class="line"><span class="ln">19</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;gpg-pubkey-fpr=7272B8036060E4590218A95D11F58765E7B21193&#34;
+</span></span><span class="line"><span class="ln">20</span><span class="cl">tuckettlab.xyz.		3600	IN	RRSIG	TXT 13 2 3600 20250911000000 20250821000000 35175 tuckettlab.xyz. 6TLPYOEnXr6ml3B7aTluAwR71fGfit6BQ93Lwumoq6VZZPu2fqd1r05i 8yEZa6tMVCJMhwDKb1GPhyXyWzmNAw==
+</span></span><span class="line"><span class="ln">21</span><span class="cl">tuckettlab.xyz.		300	IN	NSEC	_dmarc.tuckettlab.xyz. A NS SOA MX TXT RRSIG NSEC DNSKEY CAA
+</span></span><span class="line"><span class="ln">22</span><span class="cl">tuckettlab.xyz.		300	IN	RRSIG	NSEC 13 2 300 20250911000000 20250821000000 35175 tuckettlab.xyz. qTvUILjKw2EToMEjOiBE82s+frvHy4HL100cwCXNGxWVXbJvY3PmfTuy OVyBqpjw4NBHV26ORaNuuIfV5NB0yg==
+</span></span><span class="line"><span class="ln">23</span><span class="cl">tuckettlab.xyz.		3600	IN	DNSKEY	257 3 13 UguAJ1bTfrBPNp+jHQ2oZNaPSUsUHaCnwRW+Wcxaf2BueGEmnMGAINj2 1b7gANfBBqqXoB6dGTeOBHfvjAvOdA==
+</span></span><span class="line"><span class="ln">24</span><span class="cl">tuckettlab.xyz.		3600	IN	RRSIG	DNSKEY 13 2 3600 20250911000000 20250821000000 35175 tuckettlab.xyz. wrdN1qTW2ZfWZ1wX8I5q7ryFfVQH71LZAUEqN6xeKY+AQRy4TJiU/IEi gxuCoPXnxS1D7N9XHwMip0rUOpie0A==
+</span></span><span class="line"><span class="ln">25</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	128 iodef &#34;mailto:admin@tuckett.xyz&#34;
+</span></span><span class="line"><span class="ln">26</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	128 issuewild &#34;;&#34;
+</span></span><span class="line"><span class="ln">27</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	128 issue &#34;letsencrypt.org&#34;
+</span></span><span class="line"><span class="ln">28</span><span class="cl">tuckettlab.xyz.		3600	IN	RRSIG	CAA 13 2 3600 20250911000000 20250821000000 35175 tuckettlab.xyz. +dIuWxaDGXHeN7U/KlzxZOKZATc5a6Mrj7HzcGn88nAJ52dNPj4Suzud SNwZxeg9em8Vb2fVOqifpK/1FbAZrg==
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl">;; Query time: 32 msec
+</span></span><span class="line"><span class="ln">31</span><span class="cl">;; SERVER: 8.8.8.8#53(8.8.8.8) (TCP)
+</span></span><span class="line"><span class="ln">32</span><span class="cl">;; WHEN: Sat Aug 30 16:18:37 MDT 2025
+</span></span><span class="line"><span class="ln">33</span><span class="cl">;; MSG SIZE  rcvd: 1878
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl">;; ANSWER SECTION:
+</span></span><span class="line"><span class="ln">36</span><span class="cl">_dmarc.tuckettlab.xyz.	3600	IN	TXT	&#34;v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s; pct=100&#34;
+</span></span><span class="line"><span class="ln">37</span><span class="cl">
+</span></span><span class="line"><span class="ln">38</span><span class="cl">;; Query time: 259 msec
+</span></span><span class="line"><span class="ln">39</span><span class="cl">;; SERVER: 9.9.9.9#53(9.9.9.9) (UDP)
+</span></span><span class="line"><span class="ln">40</span><span class="cl">;; WHEN: Sat Aug 30 16:16:10 MDT 2025
+</span></span><span class="line"><span class="ln">41</span><span class="cl">;; MSG SIZE  rcvd: 118</span></span></code></pre></div><small><i><b> My TTLs are unable to go past 3600; my provider enforces TTL uniformity; other values are the remaining time within the TTL.</b></i></small>
+
+<h3 id="post-hardening-evaluation">Post-Hardening Evaluation</h3>
+<p>I believe if you are serious about your security, it is both intrinsically and extrinsically very important to verify your current security posture against other well-known sites/platforms.</p>
+<p>I may plan on migrating my infrastructure to a platform that supports NSEC3 (currently stuck at NSEC)—which can prevent <a href="https://dnsinstitute.com/documentation/dnssec-guide/ch06s02.html">trivial zone walking</a>.</p>
+<small><i><b>For comparison: "Cyber Guru" John Hammond's Training Platform.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">;; ANSWER SECTION:
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">justhacking.com.	3524	IN	TXT	&#34;v=spf1 include:_spf.google.com ~all&#34;
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">justhacking.com.	3524	IN	TXT	&#34;google-site-verification=WizBgAHBHgn4CAkraQKDWWpGqWqGCVianppbA3tfDGw&#34;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">justhacking.com.	14324	IN	MX	5 alt1.aspmx.l.google.com.
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">justhacking.com.	14324	IN	MX	10 alt4.aspmx.l.google.com.
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">justhacking.com.	14324	IN	MX	5 alt2.aspmx.l.google.com.
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">justhacking.com.	14324	IN	MX	10 alt3.aspmx.l.google.com.
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">justhacking.com.	14324	IN	MX	1 aspmx.l.google.com.
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">justhacking.com.	21524	IN	SOA	ns-cloud-a1.googledomains.com. cloud-dns-hostmaster.google.com. 12 21600 3600 259200 300
+</span></span><span class="line"><span class="ln">10</span><span class="cl">justhacking.com.	21524	IN	NS	ns-cloud-a2.googledomains.com.
+</span></span><span class="line"><span class="ln">11</span><span class="cl">justhacking.com.	21524	IN	NS	ns-cloud-a3.googledomains.com.
+</span></span><span class="line"><span class="ln">12</span><span class="cl">justhacking.com.	21524	IN	NS	ns-cloud-a4.googledomains.com.
+</span></span><span class="line"><span class="ln">13</span><span class="cl">justhacking.com.	21524	IN	NS	ns-cloud-a1.googledomains.com.
+</span></span><span class="line"><span class="ln">14</span><span class="cl">justhacking.com.	14324	IN	A	64.23.145.242
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl">;; Query time: 16 msec
+</span></span><span class="line"><span class="ln">17</span><span class="cl">;; SERVER: 8.8.8.8#53(8.8.8.8) (TCP)
+</span></span><span class="line"><span class="ln">18</span><span class="cl">;; WHEN: Sat Aug 30 16:22:17 MDT 2025
+</span></span><span class="line"><span class="ln">19</span><span class="cl">;; MSG SIZE  rcvd: 479</span></span></code></pre></div>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="https://masontuckett.xyz/images/favicon.ico" />
+<title>Projects | masontuckett.xyz</title>
+<meta name="title" content="Projects" />
+<meta name="description" content="Mason Tuckett&#39;s Project Page" />
+<meta name="author" content="Mason Tuckett" />
+<meta name="keywords" content="" />
+
+
+
+
+
+
+  
+  <meta property="og:url" content="https://masontuckett.xyz/projects/">
+  <meta property="og:site_name" content="masontuckett.xyz">
+  <meta property="og:title" content="Projects">
+  <meta property="og:description" content="Mason Tuckett&#39;s Project Page">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2025-08-14T00:38:44-07:00">
+    <meta property="article:modified_time" content="2025-08-14T00:38:44-07:00">
+
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Projects">
+  <meta name="twitter:description" content="Mason Tuckett&#39;s Project Page">
+
+
+  
+  
+  <meta itemprop="name" content="Projects">
+  <meta itemprop="description" content="Mason Tuckett&#39;s Project Page">
+  <meta itemprop="datePublished" content="2025-08-14T00:38:44-07:00">
+  <meta itemprop="dateModified" content="2025-08-14T00:38:44-07:00">
+  <meta itemprop="wordCount" content="465">
+
+<meta name="referrer" content="no-referrer" />
+
+  
+  <link href="/original.min.css" rel="stylesheet">
+
+  
+    
+    <link href="/syntax.min.css" rel="stylesheet">
+  
+
+  
+
+  
+</head>
+
+<body>
+  <header><div class="brand">
+  <a class="title" href="/">
+    <div id="logo" aria-hidden="true"></div>
+    <h1 class="site-title">masontuckett.xyz</h1>
+  </a>
+</div>
+
+<nav>
+  <a href="/">Home</a>
+
+  <a href="/about/">About</a>
+
+  <a href="/contact/">Contact</a>
+
+  <a href="/projects/">Projects</a>
+
+  <a href="/posts/">Posts</a>
+
+  <a href="/services/">Services</a>
+
+
+
+
+
+
+
+
+</nav></header>
+  <main id="main-content">
+
+<content>
+  <h1 id="projects">Projects</h1>
+<h2 id="personal">Personal</h2>
+<p><strong>Homelab</strong><br>
+<em>August 2025</em></p>
+<ul>
+<li>Deployed and configured OPNsense as the main router and firewall, setting up VLANs, appropriate subnets, DHCP, and firewall rules to segment and secure homelab traffic.</li>
+<li>Utilized Proxmox to host virtual machines for labs and services, resource allocation, and snapshot management—accomplished utilizing LXC containers and KVM virtual machines.</li>
+<li>Created a SOC lab environment using Kali Linux for vulnerability assessment, a Windows target for exploitation, and a full Wazuh stack for real-time detection and prevention.</li>
+<li>Configured OPNsense firewalling with strict baselines—ensuring inter-VLAN traffic is strict and within scope.</li>
+<li>Utilized WireGuard to secure sensitive traffic from self-hosted services to VPS proxy—terminated with TLS 1.2/1.3 certificates.</li>
+</ul>
+<p><strong>VPS</strong><br>
+<em>August 2025</em></p>
+<ul>
+<li>Deployed a strict firewall policy: default-deny incoming, a strict iptables ruleset only allowing essential ports (non-standard IP-bound SSH port), with Tor service bound to localhost and isolated from public interfaces.</li>
+<li>Obtained an <a href="https://www.ssllabs.com/ssltest/analyze.html?d=masontuckett.xyz">A+ SSL Labs Score</a>, configured Let&rsquo;s Encrypt TLS (TLS 1.2/1.3) with strong AEAD ciphers, <a href="https://hstspreload.org/?domain=masontuckett.xyz#submission-form">implemented HSTS preload</a>, instituted DNSSEC to prevent MITM attacks, and restrictive CAA policies to prevent rogue issuance.</li>
+<li>Secured Nginx with tight <a href="https://developer.mozilla.org/en-US/observatory/analyze?host=masontuckett.xyz">content security policies</a>, method restrictions (GET/HEAD only), rate-limiting, appropriate header limits, and privacy-respecting security headers.</li>
+<li>Deployed kernel-level security via extensive sysctl settings, unused protocol and module blacklisting (modprobe blocklist), and AppArmor confinement for Nginx and Tor to limit post-exploit impact.</li>
+<li>Incorporated a strong chain of trust: a signed <a href="https://github.com/masontuckett/masontuckett.gpg/blob/main/tor-mirror-statement.txt">Tor mirror statement</a>, mirrored public GPG keys, and <a href="https://github.com/masontuckett/masontuckett.gpg/blob/main/sha512-hashes.txt">SHA-512 checksum proofs</a>—all implemented across DNS TXT records and a <a href="https://github.com/masontuckett/masontuckett.gpg">GitHub mirror</a>.</li>
+</ul>
+<p><img src="/images/mason-tuckett-home-lab.webp" alt="Mason Tuckett’s Home Lab"></p>
+<h3 id="verification">Verification</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Web Hosting (Headers) ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! Clearnet ! #</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">curl -vkI https://masontuckett.xyz
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># ! Tor ! #</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">curl -vI --socks5-hostname 127.0.0.1:9050 http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### DNS ###</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># ! Main Domain ! #</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">dig @9.9.9.9 masontuckett.xyz any +dnssec
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"># ! Self-Hosted Services ! #</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">dig @9.9.9.9 tuckettlab.xyz any +dnssec
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"># ! Email ! #</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">dig @9.9.9.9 tuckett.xyz any +dnssec
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1">### Documentation ###</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">Write Up: https://github.com/masontuckett/home-lab</span></span></code></pre></div><h2 id="volunteering">Volunteering</h2>
+<p><strong>Active Mentorship</strong><br>
+<em>July 2025</em></p>
+<ul>
+<li>Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an outstanding student who showed exceptional curiosity in the cybersecurity field.</li>
+<li>To further his learning, I designed and implemented a home lab tailored around a loosely inspired real-world enterprise environment—reproducing and mirroring my personal configurations.</li>
+<li>I offered continuous support—guiding my mentee through the process of studying/obtaining foundational IT certifications, and exploring his area of interest (penetration testing).</li>
+<li>A fully air-gapped SOC lab was created in Proxmox—allowing my mentee to gain exposure to critical industry toolsets (SIEM/IDS/IPS - majority Wazuh).</li>
+<li>802.1Q VLANs were implemented ensuring a secure and realistic learning environment with appropriate WireGuard tunneling for public services.</li>
+<li>DNSSEC, CAA hardening, Nginx hardening (CSP/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.</li>
+</ul>
+
+
+
+<a href="https://masontuckett.xyz/posts/mentee-lab/">A Brief Write Up May Be Found Here.</a>
+
+
+</content>
+
+<p>
+  
+</p>
+
+
+  </main>
+  <footer><small id="foot">
+  <a href="https://github.com/masontuckett/masontuckett.xyz">Copyright ©2025 Mason Tuckett All Rights Reserved</a><br>
+</small>
+<a href='https://masontuckett.xyz/index.xml'>
+    <img id="rss" src="/images/rss.webp" alt="button for my RSS feed">
+</a>
+<a href="https://linkedin.com/in/mason-tuckett">
+    <img id="linkedin" src="/images/linkedin.png" alt="button for my LinkedIn profile">
+</a>
+<a href="https://github.com/masontuckett">
+    <img id="github" src="/images/github.png" alt="button for my Github profile">
+</a>
+<a href="http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion/">
+	<img id="tor" src="/images/tor.png" alt="button for my Tor service">
+</a>
+</footer>
+
+    
+</body>
+
+</html>

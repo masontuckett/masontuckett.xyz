@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cybersecurity on masontuckett.xyz</title>
+    <link>https://masontuckett.xyz/tags/cybersecurity/</link>
+    <description>Recent content in Cybersecurity on masontuckett.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
+    <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
+    <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
+    <lastBuildDate>Sat, 30 Aug 2025 00:38:44 -0700</lastBuildDate>
+    <atom:link href="https://masontuckett.xyz/tags/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DNS Hardening</title>
+      <link>https://masontuckett.xyz/posts/dns-hardening/</link>
+      <pubDate>Sat, 30 Aug 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/dns-hardening/</guid>
+      <description>&lt;p&gt;A Brief Overview of DNS Hardening&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-dns&#34;&gt;What is DNS?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc9499&#34;&gt;Domain Name System (DNS)&lt;/a&gt; is a protocol designed to translate IP addresses (IPv4/6) into human-readable addresses—e.g., &lt;a href=&#34;https://search.tuckettlab.xyz&#34;&gt;search.tuckettlab.xyz&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;small&gt;&lt;i&gt;&lt;b&gt;In practice the reverse: human-readable addresses &gt; IP addresses&lt;/b&gt;&lt;/i&gt;&lt;/small&gt;&#xA;&#xA;&lt;p&gt;Without DNS, navigating the internet would be needlessly exhausting—requiring users to manually enter an IP address every time they were to access web content.&lt;/p&gt;&#xA;&lt;p&gt;Additionally, dynamic mapping executed via DNS allows for essential accessibility functions like geo-availability—providing content within relevant geographic locations—&lt;em&gt;significantly accelerating your web traffic&lt;/em&gt;.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>A Brief Overview of DNS Hardening</p>
+<h2 id="what-is-dns">What is DNS?</h2>
+<p><a href="https://www.rfc-editor.org/rfc/rfc9499">Domain Name System (DNS)</a> is a protocol designed to translate IP addresses (IPv4/6) into human-readable addresses—e.g., <a href="https://search.tuckettlab.xyz">search.tuckettlab.xyz</a>.</p>
+<small><i><b>In practice the reverse: human-readable addresses > IP addresses</b></i></small>
+
+<p>Without DNS, navigating the internet would be needlessly exhausting—requiring users to manually enter an IP address every time they were to access web content.</p>
+<p>Additionally, dynamic mapping executed via DNS allows for essential accessibility functions like geo-availability—providing content within relevant geographic locations—<em>significantly accelerating your web traffic</em>.</p>
+<h2 id="how-does-dns-work">How Does DNS Work?</h2>
+<p><img src="/images/posts/dns-hardening/dns-structure.jpg" alt="DNS Structure Diagram"></p>
+<p>DNS is a highly structured and hierarchical protocol—relying on several chains of trust to translate addresses.</p>
+<h3 id="root-servers">Root Servers</h3>
+<ul>
+<li>The top of the rung, served by 13 root server identifiers (12 organizations) distributed worldwide.</li>
+<li>Does not store zone records for domains, but they return referrals to the authoritative nameservers for the requested TLD (not individual domains): <strong>.xyz(.)</strong>.</li>
+</ul>
+<h3 id="top-level-domains">Top-Level Domains</h3>
+<ul>
+<li>Second, just below root servers—housing domain extensions like: <strong>.edu, .com, .net, and .xyz</strong>.</li>
+<li>TLD servers return referrals to authoritative nameservers for second-level domains.</li>
+</ul>
+<h3 id="second-level-domains">Second-Level Domains</h3>
+<ul>
+<li>Third in the chain, delegated <em>(by authoritative servers)</em> and purchasable from domain registrars; second-level domains are registered under a TLD: <strong><em>tuckettlab</em>.xyz</strong>.</li>
+<li>SLDs lie within authoritative servers, <em>essentially</em> where your DNS records actually exist (zone): <strong>A/AAAA</strong>—pointing to valid IP addresses.</li>
+</ul>
+<h3 id="third-level-domains">Third-Level Domains</h3>
+<ul>
+<li>Fourth in the chain, subdomains (within parent zone) managed by DNS records <strong>(CNAME, A, AAAA)</strong>: <strong><em>search</em>.tuckettlab.xyz</strong></li>
+<li>Commonly used for load balancing and service separation: <strong><em>mail</em>.tuckettlab.xyz (MX)</strong>.</li>
+</ul>
+<h3 id="hostfqdn">Host/FQDN</h3>
+<ul>
+<li>Last step: produces a fully qualified domain name (FQDN), which uniquely identifies a host—<em>accessible to users</em>.</li>
+<li>For users: a recursive DNS server queries step by step: root <strong>&gt;</strong> top-level domain server <strong>&gt;</strong> second-level authoritative <strong>&gt;</strong> subdomain (third-level domain) <strong>&gt;</strong> resolver returns the corresponding record to the client.</li>
+</ul>
+<h3 id="response-codes">Response Codes</h3>
+<p><strong>NXDOMAIN:</strong> A response code representing the absence or non-existence of a domain.</p>
+<ul>
+<li>Authoritative servers for the TLD respond NXDOMAIN if the entire SLD doesn’t exist under its respective TLD; otherwise, NXDOMAIN comes from the authoritative SLD server.</li>
+</ul>
+<p><strong>NODATA (NOERROR/Empty):</strong> A response code indicating that the domain <em>does</em> exist, but no records of the requested type are present (A is present, AAAA is not).</p>
+<h3 id="example-queries">Example Queries</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### Successful Query ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">dig NS search.tuckettlab.xyz
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">; &lt;&lt;&gt;&gt; DiG 9.18.30-0ubuntu0.24.04.2-Ubuntu &lt;&lt;&gt;&gt; NS search.tuckettlab.xyz
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">;; global options: +cmd
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">;; Got answer:
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: !!!NOERROR!!!, id: 51001
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">;; OPT PSEUDOSECTION:
+</span></span><span class="line"><span class="ln">11</span><span class="cl">; EDNS: version: 0, flags:; udp: 65494
+</span></span><span class="line"><span class="ln">12</span><span class="cl">;; QUESTION SECTION:
+</span></span><span class="line"><span class="ln">13</span><span class="cl">;search.tuckettlab.xyz.		IN	NS
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">;; AUTHORITY SECTION:
+</span></span><span class="line"><span class="ln">16</span><span class="cl">tuckettlab.xyz.		150	IN	SOA	ns1.vultr.com. dnsadm.choopa.com. 0 10800 3600 604800 3600
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl">;; Query time: 1 msec
+</span></span><span class="line"><span class="ln">19</span><span class="cl">;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+</span></span><span class="line"><span class="ln">20</span><span class="cl">;; WHEN: Sat Aug 30 11:52:13 MDT 2025
+</span></span><span class="line"><span class="ln">21</span><span class="cl">;; MSG SIZE  rcvd: 113
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl">### Unsuccessful Query ###
+</span></span><span class="line"><span class="ln">24</span><span class="cl">dig NS ?.xyz
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl">; &lt;&lt;&gt;&gt; DiG 9.18.30-0ubuntu0.24.04.2-Ubuntu &lt;&lt;&gt;&gt; NS ?.xyz
+</span></span><span class="line"><span class="ln">27</span><span class="cl">;; global options: +cmd
+</span></span><span class="line"><span class="ln">28</span><span class="cl">;; Got answer:
+</span></span><span class="line"><span class="ln">29</span><span class="cl">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: !!!NXDOMAIN!!!, id: 61057
+</span></span><span class="line"><span class="ln">30</span><span class="cl">;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+</span></span><span class="line"><span class="ln">31</span><span class="cl">
+</span></span><span class="line"><span class="ln">32</span><span class="cl">;; OPT PSEUDOSECTION:
+</span></span><span class="line"><span class="ln">33</span><span class="cl">; EDNS: version: 0, flags:; udp: 65494
+</span></span><span class="line"><span class="ln">34</span><span class="cl">;; QUESTION SECTION:
+</span></span><span class="line"><span class="ln">35</span><span class="cl">;?.xyz.				IN	NS
+</span></span><span class="line"><span class="ln">36</span><span class="cl">
+</span></span><span class="line"><span class="ln">37</span><span class="cl">;; AUTHORITY SECTION:
+</span></span><span class="line"><span class="ln">38</span><span class="cl">xyz.			773	IN	SOA	ns0.centralnic.net. hostmaster.centralnic.net. 3000828297 900 1800 6048000 3600
+</span></span><span class="line"><span class="ln">39</span><span class="cl">
+</span></span><span class="line"><span class="ln">40</span><span class="cl">;; Query time: 80 msec
+</span></span><span class="line"><span class="ln">41</span><span class="cl">;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+</span></span><span class="line"><span class="ln">42</span><span class="cl">;; WHEN: Sat Aug 30 11:55:18 MDT 2025
+</span></span><span class="line"><span class="ln">43</span><span class="cl">;; MSG SIZE  rcvd: 99</span></span></code></pre></div><h2 id="dns-records">DNS Records</h2>
+<p>Within the managed zone, records are applied to guide users towards specific services.</p>
+<h3 id="common-records">Common Records</h3>
+<small><i><b>Concise for the Sake of Brevity</b></i></small>
+
+<ul>
+<li><strong>NS</strong> - Name Server <em>(Delegates authority for domains)</em>.</li>
+<li><strong>SOA</strong> - Start of Authority (Provides administrative information about the zone)</li>
+<li><strong>A/AAAA</strong> - IPv4/6 Addresses <em>(Points to the designated IP address.)</em>.</li>
+<li><strong>CNAME</strong> - Canonical Name <em>(Points a name to another name; A/AAAA record is after the target)</em>.</li>
+<li><strong>MX</strong> - Mail Record <em>(Normally points to mail subdomain)</em>.</li>
+<li><strong>PTR</strong> - Pointer <em>(Reverse DNS is configured by your IP provider (VPS/ISP), not on forward zone; IP &gt; domain)</em>.</li>
+<li><strong>TXT</strong> - Text <em>(Commonly used for SPF/DKIM/DMARC for mail; can be informative)</em>.</li>
+<li><strong>CAA</strong> - Certificate Authority Authorization <em>(Permits which certificate authorities can permit SSL/TLS Certs)</em>.</li>
+<li><strong>DNSKEY</strong> - Domain Name System Key <em>(Stores public key in zone; used for DNSSEC validation)</em>.</li>
+<li><strong>DS</strong> - Delegation Signer <em>(Stored in parent zone, contains hash of child zone&rsquo;s DNSKEY record)</em>.</li>
+<li><strong>CDNSKEY/CDS</strong> - Child DNSKEY/DS <em>(Utilized for child to publish key details to parent zone)</em>.</li>
+</ul>
+<h3 id="txt-related-records">TXT-Related Records</h3>
+<ul>
+<li><strong>SPF</strong> - Sender Policy Framework <em>(Specifies which mail servers are authorized To send mail)</em>.</li>
+<li><strong>DKIM</strong> - DomainKeys Identified Mail <em>(Cryptographic signature system for email content/headers)</em>.</li>
+<li><strong>DMARC</strong> - Domain-based Message Authentication <em>(Instructs receiving mail servers to handle mail that fails SPF/DKIM checks; may report to admin&rsquo;s email)</em>.</li>
+</ul>
+<h3 id="ttls">TTLs</h3>
+<p>When configuring DNS zones, you will have the option to give records a Time to Live (TTL)—representing the number of seconds a DNS record is cached before it is re-queried by an authoritative server.</p>
+<h2 id="record-representation">Record Representation</h2>
+<p><a href="https://www.digwebinterface.com/">Dig Web Interface</a></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### ! FORMAT ! ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">Domain (Root:.)   TTL Class Record Data Priority
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> 
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">### NS ###
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">dig NS tuckettlab.xyz
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">tuckettlab.xyz.		300	IN	NS	ns1.vultr.com.
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">tuckettlab.xyz.		300	IN	NS	ns2.vultr.com.
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">## SOA ##
+</span></span><span class="line"><span class="ln">11</span><span class="cl">dig SOA tuckettlab.xyz
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">tuckettlab.xyz.		300	IN	SOA	ns1.vultr.com. dnsadm.choopa.com. 0 10800 3600 604800 3600
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">### A/AAAA ###
+</span></span><span class="line"><span class="ln">16</span><span class="cl">dig A tuckettlab.xyz AAAA tuckettlab.xyz
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl">tuckettlab.xyz.		3600	IN	A	149.28.67.27
+</span></span><span class="line"><span class="ln">19</span><span class="cl">tuckettlab.xyz.		3600	IN AAAA 2001:db8::25
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl">### CNAME ###
+</span></span><span class="line"><span class="ln">22</span><span class="cl">dig CNAME www.tuckettlab.xyz
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl">www.tuckettlab.xyz.  3600  IN  CNAME  tuckettlab.xyz.
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl">### MX ###
+</span></span><span class="line"><span class="ln">27</span><span class="cl">dig MX tuckettlab.xyz
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl">tuckettlab.xyz.		3600	IN	MX	10 mail.server.net.
+</span></span><span class="line"><span class="ln">30</span><span class="cl">
+</span></span><span class="line"><span class="ln">31</span><span class="cl">### PTR ###
+</span></span><span class="line"><span class="ln">32</span><span class="cl">dig -x 149.28.67.27
+</span></span><span class="line"><span class="ln">33</span><span class="cl">
+</span></span><span class="line"><span class="ln">34</span><span class="cl">27.67.28.149.in-addr.arpa. 3555	IN	PTR	tuckettlab.xyz.
+</span></span><span class="line"><span class="ln">35</span><span class="cl">
+</span></span><span class="line"><span class="ln">36</span><span class="cl">### CAA ###
+</span></span><span class="line"><span class="ln">37</span><span class="cl">dig CAA tuckettlab.xyz
+</span></span><span class="line"><span class="ln">38</span><span class="cl">
+</span></span><span class="line"><span class="ln">39</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	0 issue &#34;tlsprovider.net&#34;
+</span></span><span class="line"><span class="ln">40</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	0 issuewild &#34;tlsprovider.net&#34;
+</span></span><span class="line"><span class="ln">41</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	0 iodef &#34;mailto:admin@admin.net&#34;
+</span></span><span class="line"><span class="ln">42</span><span class="cl">
+</span></span><span class="line"><span class="ln">43</span><span class="cl">
+</span></span><span class="line"><span class="ln">44</span><span class="cl">### DNSKEY/DS ###
+</span></span><span class="line"><span class="ln">45</span><span class="cl">dig @9.9.9.9 DNSKEY tuckettlab.xyz DS tuckettlab.xyz
+</span></span><span class="line"><span class="ln">46</span><span class="cl">
+</span></span><span class="line"><span class="ln">47</span><span class="cl">tuckettlab.xyz.		2761	IN	DNSKEY	257 3 13 UguAJ1bTfrBPNp+jHQ2oZNaPSUsUHaCnwRW+Wcxaf2BueGEmnMGAINj2 1b7gANfBBqqXoB6dGTeOBHfvjAvOdA==
+</span></span><span class="line"><span class="ln">48</span><span class="cl">tuckettlab.xyz.		3600	IN	DS	35175 13 4 865FE510C4CE390FF7285308B9351880A84039F1D75ACA278EF37F9D 71F605D8EC69C87E2F5660CA8BC5BC477A715868
+</span></span><span class="line"><span class="ln">49</span><span class="cl">tuckettlab.xyz.		3600	IN	DS	35175 13 2 871FD8CC8AFC7A1A6C60558112837CD7F288A20CC7F639709AD4A703 9C21E6B9
+</span></span><span class="line"><span class="ln">50</span><span class="cl">
+</span></span><span class="line"><span class="ln">51</span><span class="cl">### TXT Mail Records ###
+</span></span><span class="line"><span class="ln">52</span><span class="cl">dig TXT tuckettlab.xyz TXT selector._domainkey.tuckettlab.xyz TXT _dmarc.tuckettlab.xyz 
+</span></span><span class="line"><span class="ln">53</span><span class="cl">
+</span></span><span class="line"><span class="ln">54</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;v=spf1 include:_spf.mail.net ~all&#34;
+</span></span><span class="line"><span class="ln">55</span><span class="cl">_dmarc.tuckettlab.xyz.	3600	IN	TXT	&#34;v=DMARC1; p=quarantine&#34;
+</span></span><span class="line"><span class="ln">56</span><span class="cl">selector._domainkey.tuckettlab.xyz. 3600 IN TXT &#34;v=DKIM1; k=key type; p=pubkey&#34;</span></span></code></pre></div><h2 id="hardening-dns">Hardening DNS</h2>
+<small><i><b>Now this is where the fun begins...</b></i></small>
+
+<p>Hardening DNS is quite a bit more straightforward than dealing with content security policies and general systems.</p>
+<p>Most registrars allow you to manually edit your zone; if not, find a more consumer-friendly registrar.</p>
+<p>For hardening purposes, some registrars hide DNSSEC behind a paywall; make sure to do your research.</p>
+<p>If you are using a VPS for your infrastructure, it may be best to move your zone to your VPS provider—supplying a unified management pane with easy DNSSEC support.</p>
+<h3 id="aaaaa">A/AAAA</h3>
+<p>It is best to keep these records current and remove anything that may be used by malicious actors.</p>
+<p>Many providers offer built-in proxies, where you can mask your origin traffic behind another IP address.</p>
+<small><i><b>I avoided AAAA records because they may increase my attack surface—exposing an additional interface that is susceptible if not hardened.</b></i></small>
+
+<h3 id="cname">CNAME</h3>
+<p>CNAME records do not resolve directly—requiring two lookups instead of one—slowing resolution (negligible).</p>
+<p>This may not be an inherent issue, but wildcard records should be avoided because this opens your zone to a litany of abuse (largely impersonation).</p>
+<p>Additionally, it can make administration far more difficult, as each chain must be validated under DNSSEC; unstable in general.</p>
+<h3 id="mx">MX</h3>
+<p>Depending on your use case, you may want this enabled or disabled; are you using email with this domain?</p>
+<p>If your domain does not require email, setting a <a href="https://www.rfc-editor.org/rfc/rfc7505.html">NULL MX</a> record prevents any attempts at impersonation.</p>
+<h3 id="mx-txt-records">MX TXT Records</h3>
+<p>Setting your <a href="https://www.rfc-editor.org/rfc/rfc7208.html">SPF TXT</a> record to a hard fail further cements your defense against potential forgery <strong>(-all HARD vs ~all SOFT)</strong>.</p>
+<p>Sane <a href="https://www.rfc-editor.org/rfc/rfc7489.html">DMARC TXT</a> values are also incredibly important for securing your email.</p>
+<p>With that in mind, DMARC has quite a selection of potential options:</p>
+<ul>
+<li>
+<p>Policy <strong>(p)</strong>: <em>should not be set to quarantine</em>; it is best to outright <strong>REJECT</strong> (following a staging process) to prevent against phishing.</p>
+</li>
+<li>
+<p>Subdomain Policy <strong>(sp)</strong>: behaves in a similar fashion—but only covering subdomains; if not set, subdomains may default back to a weaker policy.</p>
+</li>
+<li>
+<p>Alignment Mode for DKIM <strong>(adkim)</strong>: is a great complement towards a secure DKIM setup; <em>it may contain the values strict</em> <strong>(s)</strong> <em>or relaxed</em> <strong>(r)</strong>.</p>
+</li>
+<li>
+<p>Alignment Mode for SPF <strong>(aspf)</strong>: behaves quite similarly to adkim but is a reinforcement for your SPF TXT record; <em>again, it may contain values strict</em> <strong>(s)</strong> <em>or relaxed</em> <strong>(r)</strong>.</p>
+</li>
+<li>
+<p>The Percentage of Messages <strong>(pct)</strong>: is related to how many potential messages these policies apply to; <em>optimal if set to</em> <strong>100 (100%)</strong>.</p>
+</li>
+<li>
+<p>Aggregate Reports <strong>(rua)</strong>: may be enabled, which includes reporting for sent mail and DKIM/DMARC/SPF stats.</p>
+</li>
+<li>
+<p>Forensic Reports <strong>(ruf)</strong>: may also be enabled—sending immediate notices for DMARC evaluation failures (far noisier than rua).</p>
+</li>
+<li>
+<p>The Failure Options tag <strong>(fo)</strong>: complements both reporting features, ranging in values from <strong>0</strong> (both SPF/DKIM fail), <strong>1</strong> (either SPF/DKIM fails), <strong>d</strong> (DKIM), <strong>s</strong> (SPF).</p>
+</li>
+</ul>
+<p><small><i><b>For my setup, I do not want ANY mail to be sent from this domain—as this is for self-hosted services ONLY.</b></i></small>
+<br>
+<small><i><b>DKIM will not exist, nor possibly be resolved.</b></i></small>
+</p>
+
+
+
+
+
+<pre tabindex="0"><code>### MX Record - NO MAIL ###
+tuckettlab.xyz.		3600	IN	MX	0 .
+
+### MX TXT Records - Complements NO MAIL Policy (No rua/ruf) ###
+tuckettlab.xyz.		1736	IN	TXT	&#34;v=spf1 -all&#34;
+_dmarc.tuckettlab.xyz.	1818	IN	TXT	&#34;v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s; pct=100&#34;
+
+### DMARC With Reporting ###
+_dmarc.tuckettlab.xyz. 1818    IN  TXT &#34;v=DMARC1; p=reject; sp=reject; rua=mailto:admin@tuckett.xyz; ruf=mailto:admin@tuckett.xyz; fo=1; adkim=s; aspf=s; pct=100&#34;</code></pre><h3 id="dnssec">DNSSEC</h3>
+<p>I cannot stress how important it is to enable DNSSEC for your domains.</p>
+<p>Doing so provides:</p>
+<ul>
+<li><strong>Authenticity</strong>: <em>(Supplies strong cryptographic context for whether the record truly came from the authoritative server)</em>.</li>
+<li><strong>Integrity</strong>: <em>(Prevents MITM tampering; guards DNS responses in transit)</em>.</li>
+<li><strong>Anti-Cache Poisoning</strong>: <em><a href="https://docs.projectsecurity.io/na101/attacks/dnsattack/">(Impersonators CANNOT inject falsified DNS data into resolvers)</a></em>.</li>
+</ul>
+<p>It is as simple as configuring a few keys from your registrar and publishing them within your zone.</p>
+
+
+
+
+
+<pre tabindex="0"><code>### Enable DNSKEY and DS Record for DNSSEC (USE STRONG ALGORITHMS) ###
+tuckettlab.xyz.		3600	IN	DNSKEY	257 3 13 UguAJ1bTfrBPNp+jHQ2oZNaPSUsUHaCnwRW+Wcxaf2BueGEmnMGAINj2 1b7gANfBBqqXoB6dGTeOBHfvjAvOdA==
+
+tuckettlab.xyz.		214	IN	DS	35175 13 4 865FE510C4CE390FF7285308B9351880A84039F1D75ACA278EF37F9D 71F605D8EC69C87E2F5660CA8BC5BC477A715868
+tuckettlab.xyz.		214	IN	DS	35175 13 2 871FD8CC8AFC7A1A6C60558112837CD7F288A20CC7F639709AD4A703 9C21E6B9</code></pre><h3 id="caa">CAA</h3>
+<p>Also a massive oversight; <a href="https://www.rfc-editor.org/rfc/rfc8659.html">CAA records</a> prevent rogue issuance by malicious CAs.</p>
+<p>CAA flags are set in 8-bit values (0-255); 0 is default (non-critical)—which allows soft fails (sometimes needed for compatibility).</p>
+<p>128 is functionally the only value worth using, as it is treated as critical and far more strict (must be understood by CAs).</p>
+<p>Both issue and issuewild are utilized for SSL/TLS distinction; wildcard certs may be utilized, though they are not advised.</p>
+
+
+
+
+
+<pre tabindex="0"><code># Sane Value - Only Allows Strict Issuance From Let&#39;s Encrypt ###
+tuckettlab.xyz.		2103	IN	CAA	128 issue &#34;letsencrypt.org&#34;
+
+# Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
+tuckettlab.xyz.		2103	IN	CAA	128 issuewild &#34;;&#34;
+
+# Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
+tuckettlab.xyz.		2103	IN	CAA	128 iodef &#34;mailto:admin@tuckett.xyz&#34;</code></pre><h3 id="txt-records">TXT Records</h3>
+<p>It may be useful to include important information within your TXT records, as most text may be inserted.</p>
+<small><i><b>I included important statements, checksums, onion location(s) (if not pulled by HTTP header), and my GPG info.</b></i></small>
+
+
+
+
+
+
+<pre tabindex="0"><code>### My TXT Records ###
+tuckettlab.xyz.		1736	IN	TXT	&#34;gpg-mirror=https://github.com/masontuckett/masontuckett.gpg&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;gpg=https://masontuckett.xyz/masontuckett.gpg&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;gpg-pubkey-fpr=7272B8036060E4590218A95D11F58765E7B21193&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;onion-search=ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;privacy-policy=https://masontuckett.xyz/privacy-policy.txt&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;onion-library=ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;auth-statement=https://masontuckett.xyz/tor-mirror-statement.txt&#34;
+tuckettlab.xyz.		1736	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-hashes.txt&#34;</code></pre><h3 id="live-demonstration">Live Demonstration</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">;; ANSWER SECTION:
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">tuckettlab.xyz.		3600	IN	A	149.28.67.27
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">tuckettlab.xyz.		3600	IN	RRSIG	A 13 2 3600 20250911000000 20250821000000 35175 tuckettlab.xyz. pLFdcvumIdn66a+KwNtzpAdXrL2/QoBaKK4Ah2+mb0c0uoh81gZMlHnI yHO3q4+D8ZiokKKGg+GOllTRFu0REw==
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">tuckettlab.xyz.		300	IN	NS	ns2.vultr.com.
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">tuckettlab.xyz.		300	IN	NS	ns1.vultr.com.
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">tuckettlab.xyz.		300	IN	RRSIG	NS 13 2 300 20250911000000 20250821000000 35175 tuckettlab.xyz. NKfKYWEfEC6QKsLpL8Skb948Mj2uCxl3YgUkweaFrBix97lZdqOGzxH/ XuUUry62xW/8x9SCZi+xfv7Zh7JLxA==
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">tuckettlab.xyz.		300	IN	SOA	ns1.vultr.com. dnsadm.choopa.com. 0 10800 3600 604800 3600
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">tuckettlab.xyz.		300	IN	RRSIG	SOA 13 2 300 20250911000000 20250821000000 35175 tuckettlab.xyz. zsnBppGRceCk6wVxB2ilh61eCEODg8zR4AHr/RhcCSjnvjjlc+rme1wP RAFZYN/0tmO2jTPsyE2GjgXNxnZ0tw==
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">tuckettlab.xyz.		3600	IN	MX	0 .
+</span></span><span class="line"><span class="ln">10</span><span class="cl">tuckettlab.xyz.		3600	IN	RRSIG	MX 13 2 3600 20250911000000 20250821000000 35175 tuckettlab.xyz. gt6nQjDrYIrXUhWV75i3BABNiGFV3/1NVeF1n8j1wrjZs81IC6umI66l NEHYfqq702CXnaq5kAe4qv/CBg3u6g==
+</span></span><span class="line"><span class="ln">11</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;v=spf1 -all&#34;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-hashes.txt&#34;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;auth-statement=https://masontuckett.xyz/tor-mirror-statement.txt&#34;
+</span></span><span class="line"><span class="ln">14</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;privacy-policy=https://masontuckett.xyz/privacy-policy.txt&#34;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;gpg-mirror=https://github.com/masontuckett/masontuckett.gpg&#34;
+</span></span><span class="line"><span class="ln">16</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;onion-library=ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd&#34;
+</span></span><span class="line"><span class="ln">17</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;gpg=https://masontuckett.xyz/masontuckett.gpg&#34;
+</span></span><span class="line"><span class="ln">18</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;onion-search=ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd&#34;
+</span></span><span class="line"><span class="ln">19</span><span class="cl">tuckettlab.xyz.		3600	IN	TXT	&#34;gpg-pubkey-fpr=7272B8036060E4590218A95D11F58765E7B21193&#34;
+</span></span><span class="line"><span class="ln">20</span><span class="cl">tuckettlab.xyz.		3600	IN	RRSIG	TXT 13 2 3600 20250911000000 20250821000000 35175 tuckettlab.xyz. 6TLPYOEnXr6ml3B7aTluAwR71fGfit6BQ93Lwumoq6VZZPu2fqd1r05i 8yEZa6tMVCJMhwDKb1GPhyXyWzmNAw==
+</span></span><span class="line"><span class="ln">21</span><span class="cl">tuckettlab.xyz.		300	IN	NSEC	_dmarc.tuckettlab.xyz. A NS SOA MX TXT RRSIG NSEC DNSKEY CAA
+</span></span><span class="line"><span class="ln">22</span><span class="cl">tuckettlab.xyz.		300	IN	RRSIG	NSEC 13 2 300 20250911000000 20250821000000 35175 tuckettlab.xyz. qTvUILjKw2EToMEjOiBE82s+frvHy4HL100cwCXNGxWVXbJvY3PmfTuy OVyBqpjw4NBHV26ORaNuuIfV5NB0yg==
+</span></span><span class="line"><span class="ln">23</span><span class="cl">tuckettlab.xyz.		3600	IN	DNSKEY	257 3 13 UguAJ1bTfrBPNp+jHQ2oZNaPSUsUHaCnwRW+Wcxaf2BueGEmnMGAINj2 1b7gANfBBqqXoB6dGTeOBHfvjAvOdA==
+</span></span><span class="line"><span class="ln">24</span><span class="cl">tuckettlab.xyz.		3600	IN	RRSIG	DNSKEY 13 2 3600 20250911000000 20250821000000 35175 tuckettlab.xyz. wrdN1qTW2ZfWZ1wX8I5q7ryFfVQH71LZAUEqN6xeKY+AQRy4TJiU/IEi gxuCoPXnxS1D7N9XHwMip0rUOpie0A==
+</span></span><span class="line"><span class="ln">25</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	128 iodef &#34;mailto:admin@tuckett.xyz&#34;
+</span></span><span class="line"><span class="ln">26</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	128 issuewild &#34;;&#34;
+</span></span><span class="line"><span class="ln">27</span><span class="cl">tuckettlab.xyz.		3600	IN	CAA	128 issue &#34;letsencrypt.org&#34;
+</span></span><span class="line"><span class="ln">28</span><span class="cl">tuckettlab.xyz.		3600	IN	RRSIG	CAA 13 2 3600 20250911000000 20250821000000 35175 tuckettlab.xyz. +dIuWxaDGXHeN7U/KlzxZOKZATc5a6Mrj7HzcGn88nAJ52dNPj4Suzud SNwZxeg9em8Vb2fVOqifpK/1FbAZrg==
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl">;; Query time: 32 msec
+</span></span><span class="line"><span class="ln">31</span><span class="cl">;; SERVER: 8.8.8.8#53(8.8.8.8) (TCP)
+</span></span><span class="line"><span class="ln">32</span><span class="cl">;; WHEN: Sat Aug 30 16:18:37 MDT 2025
+</span></span><span class="line"><span class="ln">33</span><span class="cl">;; MSG SIZE  rcvd: 1878
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl">;; ANSWER SECTION:
+</span></span><span class="line"><span class="ln">36</span><span class="cl">_dmarc.tuckettlab.xyz.	3600	IN	TXT	&#34;v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s; pct=100&#34;
+</span></span><span class="line"><span class="ln">37</span><span class="cl">
+</span></span><span class="line"><span class="ln">38</span><span class="cl">;; Query time: 259 msec
+</span></span><span class="line"><span class="ln">39</span><span class="cl">;; SERVER: 9.9.9.9#53(9.9.9.9) (UDP)
+</span></span><span class="line"><span class="ln">40</span><span class="cl">;; WHEN: Sat Aug 30 16:16:10 MDT 2025
+</span></span><span class="line"><span class="ln">41</span><span class="cl">;; MSG SIZE  rcvd: 118</span></span></code></pre></div><small><i><b> My TTLs are unable to go past 3600; my provider enforces TTL uniformity; other values are the remaining time within the TTL.</b></i></small>
+
+<h3 id="post-hardening-evaluation">Post-Hardening Evaluation</h3>
+<p>I believe if you are serious about your security, it is both intrinsically and extrinsically very important to verify your current security posture against other well-known sites/platforms.</p>
+<p>I may plan on migrating my infrastructure to a platform that supports NSEC3 (currently stuck at NSEC)—which can prevent <a href="https://dnsinstitute.com/documentation/dnssec-guide/ch06s02.html">trivial zone walking</a>.</p>
+<small><i><b>For comparison: "Cyber Guru" John Hammond's Training Platform.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">;; ANSWER SECTION:
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">justhacking.com.	3524	IN	TXT	&#34;v=spf1 include:_spf.google.com ~all&#34;
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">justhacking.com.	3524	IN	TXT	&#34;google-site-verification=WizBgAHBHgn4CAkraQKDWWpGqWqGCVianppbA3tfDGw&#34;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">justhacking.com.	14324	IN	MX	5 alt1.aspmx.l.google.com.
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">justhacking.com.	14324	IN	MX	10 alt4.aspmx.l.google.com.
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">justhacking.com.	14324	IN	MX	5 alt2.aspmx.l.google.com.
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">justhacking.com.	14324	IN	MX	10 alt3.aspmx.l.google.com.
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">justhacking.com.	14324	IN	MX	1 aspmx.l.google.com.
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">justhacking.com.	21524	IN	SOA	ns-cloud-a1.googledomains.com. cloud-dns-hostmaster.google.com. 12 21600 3600 259200 300
+</span></span><span class="line"><span class="ln">10</span><span class="cl">justhacking.com.	21524	IN	NS	ns-cloud-a2.googledomains.com.
+</span></span><span class="line"><span class="ln">11</span><span class="cl">justhacking.com.	21524	IN	NS	ns-cloud-a3.googledomains.com.
+</span></span><span class="line"><span class="ln">12</span><span class="cl">justhacking.com.	21524	IN	NS	ns-cloud-a4.googledomains.com.
+</span></span><span class="line"><span class="ln">13</span><span class="cl">justhacking.com.	21524	IN	NS	ns-cloud-a1.googledomains.com.
+</span></span><span class="line"><span class="ln">14</span><span class="cl">justhacking.com.	14324	IN	A	64.23.145.242
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl">;; Query time: 16 msec
+</span></span><span class="line"><span class="ln">17</span><span class="cl">;; SERVER: 8.8.8.8#53(8.8.8.8) (TCP)
+</span></span><span class="line"><span class="ln">18</span><span class="cl">;; WHEN: Sat Aug 30 16:22:17 MDT 2025
+</span></span><span class="line"><span class="ln">19</span><span class="cl">;; MSG SIZE  rcvd: 479</span></span></code></pre></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>Mentee Lab</title>
+      <link>https://masontuckett.xyz/posts/mentee-lab/</link>
+      <pubDate>Sat, 12 Jul 2025 21:50:48 -0600</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/mentee-lab/</guid>
+      <description>&lt;h2 id=&#34;my-thought-process&#34;&gt;My Thought Process&lt;/h2&gt;&#xA;&lt;p&gt;Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an &lt;strong&gt;outstanding&lt;/strong&gt; student who showed &lt;strong&gt;exceptional&lt;/strong&gt; curiosity in the cybersecurity field.&lt;/p&gt;&#xA;&lt;p&gt;To further his learning, I designed and implemented a home lab tailored around &lt;em&gt;a loosely inspired real-world enterprise environment.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;network-infrastructure&#34;&gt;Network Infrastructure&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/posts/mentee-lab/Smith-Network-Diagram.png&#34; alt=&#34;Smith’s Home Lab Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;subnetting&#34;&gt;Subnetting&lt;/h3&gt;&#xA;&lt;p&gt;I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="my-thought-process">My Thought Process</h2>
+<p>Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an <strong>outstanding</strong> student who showed <strong>exceptional</strong> curiosity in the cybersecurity field.</p>
+<p>To further his learning, I designed and implemented a home lab tailored around <em>a loosely inspired real-world enterprise environment.</em></p>
+<h2 id="network-infrastructure">Network Infrastructure</h2>
+<p><img src="/images/posts/mentee-lab/Smith-Network-Diagram.png" alt="Smith’s Home Lab Diagram"></p>
+<h3 id="subnetting">Subnetting</h3>
+<p>I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.</p>
+<p>I decided to keep subnet assignments tight and centered around a usable pool that heavily prevents lateral movement—ensuring a security-first mindset.</p>
+<p>/29 was used for the native VLAN <strong>(VLAN 1)</strong>—primarily due to it being the trusted subnet and making troubleshooting far easier; <em>I thought that it was far more appropriate for his needs.</em></p>
+<p><strong>VLAN 2</strong> is on a /30 subnet, which limits potential attack surface, and is solely for the Proxmox management interface.</p>
+<p><strong>VLAN 3</strong> needs little to no usable hosts because it is intended only for logging services.</p>
+<p><strong>VLAN 4</strong> is for internal use only, firewalled extensively with a restrictive /29 subnet.</p>
+<p><strong>VLAN 5</strong> is far more generous with a /27 subnet, which would be best for tightening and expandability.</p>
+<p><strong>VLAN 6</strong> is on a /30 subnet—allowing space only for a single instance of Nginx.</p>
+<p><strong>VLAN 7</strong> is also on a /30 subnet, intended for a singular Wireguard client.</p>
+<p>Segmenting services would&rsquo;ve been best, but again—<em>this setup needs to be accessible for independent troubleshooting.</em></p>
+<p>With that in mind, DHCP is enabled on VLAN 1 in case his network configuration interferes with deliverability; <strong>my mentee has three &ldquo;free&rdquo; untagged ports on VLAN 1 for troubleshooting purposes.</strong></p>
+<p>My mentee has a keen interest in penetration testing, so I integrated a SOC lab into his home lab for learning purposes.</p>
+<p>It is largely entirely virtual (beholden to OPNsense), firewalled, and mapped to <strong>vmbr2</strong>; <em>this VLAN is fully air gapped.</em></p>
+<h3 id="network-hardware">Network Hardware</h3>
+<p>OPNsense was used as a central router/firewall with extensive ACLs to prevent unnecessary inter-VLAN traffic and exposure.</p>
+<p><em>I found it very beginner-friendly while exposing my mentee to real-world toolsets.</em></p>
+<p>A simple Netgear gigabit managed switch <strong>(GS308Ev4)</strong> was used to establish trunk ports between OPNsense and his Proxmox &ldquo;outputs.&rdquo;</p>
+<p>Three trunk ports were utilized for carrying traffic out of his Proxmox node: an upstream trunk for VLANs <strong>(ibg0)</strong> 1, 2, 3, 5, 6, and 7, and two independent ports <strong>(enp1sfp0 and enp1sfp1)</strong> for VLANs 3, 4 | 5, 6, 7.</p>
+<p><em>A dummy <strong>PVID of 4094</strong> was used for untagged traffic on the three trunk ports—limiting potential traffic errors/security risks.</em></p>
+<p>Every other port—including the Proxmox management interface—was kept untagged.</p>
+<h3 id="virtualization">Virtualization</h3>
+<p><strong><em>I cannot state how asinine it is to run everything on bare metal</em></strong>—a mistake I see far too frequently in student-led home labs.</p>
+<p>It makes management/expansion an absolute headache and leaves every process on a <em>&ldquo;level playing field&rdquo;</em>—severely increasing potential attack surface.</p>
+<p>With that in mind, I opted for <a href="https://www.proxmox.com/en/products/proxmox-virtual-environment/overview">Proxmox</a>, an open-source competitor to VMware&rsquo;s ESXi platform—offering an enterprise experience without VMware&rsquo;s absurd licensing fees.</p>
+<p><em>Linux bridges were created to match each trunk port and were tagged appropriately within Proxmox.</em></p>
+<h3 id="linux-bridges">Linux Bridges</h3>
+<p><img src="/images/posts/mentee-lab/vmbr0.png" alt="Bridge 0 Config"></p>
+<p><strong>vmbr0</strong> is native to Proxmox (VLAN 2)—untagged and <em>purposefully <strong>not</strong> VLAN aware</em>.</p>
+<p><img src="/images/posts/mentee-lab/vmbr1.png" alt="Bridge 1 Config"></p>
+<p><strong>vmbr1</strong> is for logging and SOC infrastructure (VLANs 3 and 4).</p>
+<p><img src="/images/posts/mentee-lab/vmbr2.png" alt="Bridge 2 Config"></p>
+<p><strong>vmbr2</strong> is intended for self-hosted services, and proxying traffic—safely to his VPS (VLANs 5, 6, and 7).</p>
+<h3 id="implementing-virtual-machines">Implementing Virtual Machines</h3>
+<p>For most home labs, I would implement a hardened frontend reverse proxy—though for his setup, it&rsquo;s largely unnecessary <em>(for now)</em>.</p>
+<p>The lab mostly consists of LXC containers and KVM virtual machines—as most services would be inoperable/inefficient if using Docker containers.</p>
+<p>Each machine is manually assigned an IP address to avoid unnecessary DHCP servers running on each VLAN interface.</p>
+<p><img src="/images/posts/mentee-lab/example-config.png" alt="Example Networking Config"></p>
+<p>VLAN tagging also occurs on each virtual network interface—his PaperMC server, as noted above, is rate limited to avoid exhausting his network; granted his hardware is more than capable, I found it to be highly important.</p>
+<h2 id="future-plans">Future Plans</h2>
+<p>Eventually, we will tunnel all relevant traffic through a WireGuard server hosted on the cloud so his services are masked.</p>
+<h5 id="likely-two-hardened-nginx-reverse-proxies-on-each-endwith-tls-13-termination-on-the-vps"><em>Likely two hardened Nginx reverse proxies on each end—with TLS 1.3 termination on the VPS</em></h5>
+<p>For now, the only service that is exposed is his PaperMC instance—though that will likely expand given his needs will increase.</p>
+<p>OpenMediaVault will likely remain for internal use only, although Nextcloud may replace that in the future (tunneled); possibly just a basic NFS share.</p>
+<h2 id="documentation">Documentation</h2>
+<p><em>I want to stress that this was co-designed with my mentee, and he was actively involved in this process.</em></p>
+<h5 id="i-am-extremely-proud-of-his-performance-and-technical-aptitude-in-implementingmaintaining-this-home-lab"><em>I am extremely proud of his performance and technical aptitude in implementing/maintaining this home lab.</em></h5>
+<p>Extensive documentation, including interface configs, switch configs, ACLs, and Proxmox scripts/configs, may be found <a href="https://github.com/masontuckett/Smith-Home-Lab">here</a> or at <a href="https://smithbarlow.xyz">smithbarlow.xyz</a>.</p>
+<h2 id="update-82525">UPDATE (8/25/25)</h2>
+<p>While we were setting up the remainder of the lab, we opted to use a reverse SSH tunnel for proxying his services to the web.</p>
+<p>I am delighted to announce that WireGuard has finally been implemented (non-standard port)—utilizing Nginx&rsquo;s stream module to proxy traffic from the tunnel.</p>
+<p><img src="/images/posts/mentee-lab/wg.png" alt="WireGuard Server VPS"></p>
+<p><img src="/images/posts/mentee-lab/nginx.png" alt="Nginx Stream Config"></p>
+<p>I intentionally chose not to use a Minecraft focused reverse proxy, as we plan on implementing an additional IP address to essentially <em>lock</em> the service to <strong>mc.smithbarlow.xyz</strong>—<em>avoiding a bloated setup</em>.</p>
+<p>The PaperMC server operates with a <strong>whitelist</strong>, and server status <strong>OFF</strong>—for both game security, and to lessen <em>some</em> automated scanning (Shodan/MCStatus).</p>
+<p>Otherwise, we kept Minecraft on its default port so players could easily connect.</p>
+<h3 id="verification">Verification</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Quick Netcat Scan (May Be Periodically Down)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">nc -vz smithbarlow.xyz <span class="m">25565</span></span></span></code></pre></div><h2 id="update-90825">UPDATE (9/08/25)</h2>
+<p>This project has been archived for now.</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

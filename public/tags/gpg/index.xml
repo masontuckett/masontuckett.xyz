@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gpg on masontuckett.xyz</title>
+    <link>https://masontuckett.xyz/tags/gpg/</link>
+    <description>Recent content in Gpg on masontuckett.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
+    <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
+    <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 01 May 2025 16:36:37 -0600</lastBuildDate>
+    <atom:link href="https://masontuckett.xyz/tags/gpg/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GNU Privacy Guard</title>
+      <link>https://masontuckett.xyz/posts/gpg/</link>
+      <pubDate>Thu, 01 May 2025 16:36:37 -0600</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/gpg/</guid>
+      <description>&lt;p&gt;A Brief Overview of GNU Privacy Guard (GPG)&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-gpg&#34;&gt;What is GPG?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/posts/gpg/pgp.svg&#34; alt=&#34;Public Key Encryption Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;GNU Privacy Guard (GPG) is largely a modern replacement—or rather, an extension—of Pretty Good Privacy (PGP), which has been effectively abandoned by Symantec.&lt;/p&gt;&#xA;&lt;p&gt;GPG is a modern implementation of the OpenPGP standard, often utilized on both *nix and Windows systems.&lt;/p&gt;&#xA;&lt;p&gt;Many modern platforms and services are designed to be compatible with both GPG and OpenPGP tools, facilitating secure communication and non-repudiation via cryptographic signatures.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>A Brief Overview of GNU Privacy Guard (GPG)</p>
+<h2 id="what-is-gpg">What is GPG?</h2>
+<p><img src="/images/posts/gpg/pgp.svg" alt="Public Key Encryption Diagram"></p>
+<p>GNU Privacy Guard (GPG) is largely a modern replacement—or rather, an extension—of Pretty Good Privacy (PGP), which has been effectively abandoned by Symantec.</p>
+<p>GPG is a modern implementation of the OpenPGP standard, often utilized on both *nix and Windows systems.</p>
+<p>Many modern platforms and services are designed to be compatible with both GPG and OpenPGP tools, facilitating secure communication and non-repudiation via cryptographic signatures.</p>
+<p>One of its most ubiquitous use cases is in <a href="https://wiki.debian.org/SecureApt">*nix package management</a>—leveraging Public Key Infrastructure (PKI) to ensure integrity and authenticity within the package management chain of trust. </p>
+<h2 id="generating-keys">Generating Keys</h2>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">gpg --full-generate-key</span></span></code></pre></div><p>After initializing key generation, you&rsquo;ll be prompted with a menu like this.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">Please <span class="k">select</span> what kind of key you want:
+</span></span><span class="line"><span class="ln">2</span><span class="cl">   <span class="o">(</span>1<span class="o">)</span> RSA and RSA
+</span></span><span class="line"><span class="ln">3</span><span class="cl">   <span class="o">(</span>2<span class="o">)</span> DSA and Elgamal
+</span></span><span class="line"><span class="ln">4</span><span class="cl">   <span class="o">(</span>3<span class="o">)</span> DSA <span class="o">(</span>sign only<span class="o">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">   <span class="o">(</span>4<span class="o">)</span> RSA <span class="o">(</span>sign only<span class="o">)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">   <span class="o">(</span>9<span class="o">)</span> ECC <span class="o">(</span>sign and encrypt<span class="o">)</span> *default*
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="o">(</span>10<span class="o">)</span> ECC <span class="o">(</span>sign only<span class="o">)</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="o">(</span>14<span class="o">)</span> Existing key from card
+</span></span><span class="line"><span class="ln">9</span><span class="cl">Your selection? </span></span></code></pre></div><p>Choose <strong>(9)</strong> — this creates an Elliptic Curve Cryptography (ECC) key pair, which is far more modern and efficient compared to RSA.</p>
+<p>Generally speaking, ECC keys are considered more secure per bit <a href="https://sslinsights.com/ecc-vs-rsa/">compared to RSA keys</a>—offering equivalent security while being far faster/portable.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">Please <span class="k">select</span> which elliptic curve you want:
+</span></span><span class="line"><span class="ln">2</span><span class="cl">   <span class="o">(</span>1<span class="o">)</span> Curve <span class="m">25519</span> *default*
+</span></span><span class="line"><span class="ln">3</span><span class="cl">   <span class="o">(</span>4<span class="o">)</span> NIST P-384
+</span></span><span class="line"><span class="ln">4</span><span class="cl">   <span class="o">(</span>6<span class="o">)</span> Brainpool P-256</span></span></code></pre></div><p>Choose <strong>(1)</strong> — ED25519 is a sane default and is widely adopted.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">Please specify how long the key should be valid.
+</span></span><span class="line"><span class="ln">2</span><span class="cl">         <span class="nv">0</span> <span class="o">=</span> key does not expire
+</span></span><span class="line"><span class="ln">3</span><span class="cl">      &lt;n&gt;  <span class="o">=</span> key expires in n days
+</span></span><span class="line"><span class="ln">4</span><span class="cl">      &lt;n&gt;w <span class="o">=</span> key expires in n weeks
+</span></span><span class="line"><span class="ln">5</span><span class="cl">      &lt;n&gt;m <span class="o">=</span> key expires in n months
+</span></span><span class="line"><span class="ln">6</span><span class="cl">      &lt;n&gt;y <span class="o">=</span> key expires in n years</span></span></code></pre></div><p>Choose at your discretion—though it would be wise to periodically rotate keys.</p>
+<p>For all intents and purposes, <strong>(0)</strong> is fine.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">GnuPG needs to construct a user ID to identify your key.
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl">Real name: Mason Tuckett
+</span></span><span class="line"><span class="ln">4</span><span class="cl">Email address: mason@tuckett.xyz
+</span></span><span class="line"><span class="ln">5</span><span class="cl">Comment: <span class="nb">test</span> key
+</span></span><span class="line"><span class="ln">6</span><span class="cl">You selected this USER-ID:
+</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="s2">&#34;Mason Tuckett (test key) &lt;mason@tuckett.xyz&gt;&#34;</span></span></span></code></pre></div><p>Enter any information that you may find relevant.</p>
+<p>Make sure to select a strong, alphanumeric password that includes symbols—preferably over twelve characters long.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">public and secret key created and signed.
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl">pub   ed25519 2025-05-02 <span class="o">[</span>SC<span class="o">]</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">      07B41B22F08862AC61F1DB5E462E05498C4C7F06
+</span></span><span class="line"><span class="ln">5</span><span class="cl">uid                      Mason Tuckett <span class="o">(</span><span class="nb">test</span> key<span class="o">)</span> &lt;mason@tuckett.xyz&gt;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">sub   cv25519 2025-05-02 <span class="o">[</span>E<span class="o">]</span></span></span></code></pre></div><p><em>You should see an output similar to this.</em></p>
+<p><strong>Now we can move on to managing our key pair!</strong></p>
+<h2 id="managing-keys">Managing Keys</h2>
+<p>Once you&rsquo;ve generated your GPG key, you&rsquo;ll need to share your public key so others may verify your digital signature and send you encrypted messages.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">gpg --fingerprint
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl">pub   ed25519 2025-05-02 <span class="o">[</span>SC<span class="o">]</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">      07B4 1B22 F088 62AC 61F1  DB5E 462E <span class="m">0549</span> 8C4C 7F06 <span class="c1"># Fingerprint</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">uid           <span class="o">[</span>ultimate<span class="o">]</span> Mason Tuckett <span class="o">(</span><span class="nb">test</span> key<span class="o">)</span> &lt;mason@tuckett.xyz&gt;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">sub   cv25519 2025-05-02 <span class="o">[</span>E<span class="o">]</span></span></span></code></pre></div><p>Identifying your fingerprint is crucial for verifying the authenticity of your key; it is essentially a summary of your key pair.</p>
+<p>Providing a fingerprint <strong>(07B41B22F08862AC61F1DB5E462E05498C4C7F06)</strong> prevents impersonation—which is commonly utilized for man-in-the-middle attacks.</p>
+<p><em>Make sure to provide this when sharing your key.</em></p>
+<h3 id="exporting-keys">Exporting Keys</h3>
+<p>To share your key with others, it is necessary to properly export your public key.</p>
+<p>It&rsquo;s best to use the <em>--armor (ASCII)</em> option for portability, as it makes everything readable and compatible across all platforms.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Export the public key</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">gpg --armor --export 07B41B22F08862AC61F1DB5E462E05498C4C7F06 &gt; pubkey.gpg
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># Verify the public key</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">cat pubkey.gpg
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">-----BEGIN PGP PUBLIC KEY BLOCK-----
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">mDMEaBQztBYJKwYBBAHaRw8BAQdAoXjOBHJ2kHnL6zFhCEdsPfncq0CMSxdDLY6x
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">IYEss0a0LE1hc29uIFR1Y2tldHQgKHRlc3Qga2V5KSA8bWFzb25AdHVja2V0dC54
+</span></span><span class="line"><span class="ln">10</span><span class="cl">eXo+iJMEExYKADsWIQQHtBsi8IhirGHx215GLgVJjEx/BgUCaBQztAIbAwULCQgH
+</span></span><span class="line"><span class="ln">11</span><span class="cl">AgIiAgYVCgkICwIEFgIDAQIeBwIXgAAKCRBGLgVJjEx/BpgOAP0YS5iS0FXf9hL+
+</span></span><span class="line"><span class="ln">12</span><span class="cl">yysPOAdcw2itZQKemWnMwxl/4FnapwD+Pzrz9ElopvfmsE2hvqwD+STh77yDvzaw
+</span></span><span class="line"><span class="ln">13</span><span class="cl">dIQOXiYDTwa4OARoFDO0EgorBgEEAZdVAQUBAQdAlceTsCOfM+wEp/5xI0JG+ge5
+</span></span><span class="line"><span class="ln">14</span><span class="cl">nUhgSQhKgkLipF8AJjEDAQgHiHgEGBYKACAWIQQHtBsi8IhirGHx215GLgVJjEx/
+</span></span><span class="line"><span class="ln">15</span><span class="cl">BgUCaBQztAIbDAAKCRBGLgVJjEx/BszKAPoDV+OUtoPQITfgjCOdsjbyL4NXONJx
+</span></span><span class="line"><span class="ln">16</span><span class="cl">0i5RdBLmpFD3hwD+MtRJ8tpnG+w2OoGll1Vdl+xzP9o18w92rsSptL3x3ww<span class="o">=</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="o">=</span>1K3m
+</span></span><span class="line"><span class="ln">18</span><span class="cl">-----END PGP PUBLIC KEY BLOCK-----</span></span></code></pre></div><p>Once you have exported your public key, it is advisable to make backups of your private key.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Export the private key (BACKUP PURPOSES ONLY — NEVER SHARE THIS!!!)</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">gpg --armor --export-secret-keys 07B41B22F08862AC61F1DB5E462E05498C4C7F06 &gt; privatekey.gpg
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># Verify the private key</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">cat privatekey.gpg
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">-----BEGIN PGP PRIVATE KEY BLOCK-----
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">     !!! DO NOT SHARE THIS !!!
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">-----END PGP PRIVATE KEY BLOCK-----</span></span></code></pre></div><p>It&rsquo;s best to utilize the fingerprint when exporting keys, especially if you have multiple keys tied to the same email address; <em>this ensures you are exporting the correct key.</em></p>
+<p>Naturally, you will be sharing your public key quite frequently—but <strong>NEVER SHARE YOUR PRIVATE KEY!</strong></p>
+<p>Public keys are safe to distribute, but private keys should remain <strong>PRIVATE</strong>.</p>
+<p>Private keys are really only functionally used for decryption, and making backups ensures that you have redundancy; only do this when transferring or restoring keys.</p>
+<h3 id="importing-keys">Importing Keys</h3>
+<p>Typically, you will only import a recipient&rsquo;s public key—but you may also need to import redundant copies of private keys.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Public key</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">gpg --import pubkey.gpg
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">#Private key</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">gpg --import privatekey.gpg
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"># Check signatures</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">gpg --check-sigs 07B41B22F08862AC61F1DB5E462E05498C4C7F06
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">ub   ed25519 2025-05-02 <span class="o">[</span>SC<span class="o">]</span> 
+</span></span><span class="line"><span class="ln">10</span><span class="cl">      07B41B22F08862AC61F1DB5E462E05498C4C7F06
+</span></span><span class="line"><span class="ln">11</span><span class="cl">uid           <span class="o">[</span>ultimate<span class="o">]</span> Mason Tuckett <span class="o">(</span><span class="nb">test</span> key<span class="o">)</span> &lt;mason@tuckett.xyz&gt;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">sig!3        462E05498C4C7F06 2025-05-02  <span class="o">[</span>self-signature<span class="o">]</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">sub   cv25519 2025-05-02 <span class="o">[</span>E<span class="o">]</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">sig!         462E05498C4C7F06 2025-05-02  <span class="o">[</span>self-signature<span class="o">]</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl">gpg: <span class="m">2</span> good signatures
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"># Trust the key</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">gpg --edit-key 07B41B22F08862AC61F1DB5E462E05498C4C7F06
+</span></span><span class="line"><span class="ln">20</span><span class="cl">Secret key is available.
+</span></span><span class="line"><span class="ln">21</span><span class="cl">
+</span></span><span class="line"><span class="ln">22</span><span class="cl">sec  ed25519/462E05498C4C7F06
+</span></span><span class="line"><span class="ln">23</span><span class="cl">     created: 2025-05-02  expires: never       usage: SC  
+</span></span><span class="line"><span class="ln">24</span><span class="cl">     trust: unknown       validity: unknown
+</span></span><span class="line"><span class="ln">25</span><span class="cl">ssb  cv25519/BCA683EF83020019
+</span></span><span class="line"><span class="ln">26</span><span class="cl">     created: 2025-05-02  expires: never       usage: E   
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="o">[</span> unknown<span class="o">]</span> <span class="o">(</span>1<span class="o">)</span>. Mason Tuckett <span class="o">(</span><span class="nb">test</span> key<span class="o">)</span> &lt;mason@tuckett.xyz&gt;
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl">gpg&gt; trust</span></span></code></pre></div><p><em><strong>Make sure to be mindful when discerning your level of trust.</strong></em></p>
+<blockquote>
+<p>1 = I don&rsquo;t know or won&rsquo;t say<br>
+2 = I do NOT trust<br>
+3 = I trust marginally<br>
+4 = I trust fully<br>
+5 = I trust ultimately</p></blockquote>
+<h3 id="deleting-keys">Deleting Keys</h3>
+<p>When deleting keys, it is incredibly important to make sure you are deleting the correct keys.</p>
+<p>If you are deleting a key pair, the private key will need to be deleted first.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">#Private key</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">gpg --delete-secret-key 07B41B22F08862AC61F1DB5E462E05498C4C7F06
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">sec  ed25519/462E05498C4C7F06 2025-05-02 Mason Tuckett <span class="o">(</span><span class="nb">test</span> key<span class="o">)</span> &lt;mason@tuckett.xyz&gt;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">Delete this key from the keyring? <span class="o">(</span>y/N<span class="o">)</span> y
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">This is a secret key! - really delete? <span class="o">(</span>y/N<span class="o">)</span> y
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"># Public key</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">gpg --delete-key 07B41B22F08862AC61F1DB5E462E05498C4C7F06
+</span></span><span class="line"><span class="ln">10</span><span class="cl">pub  ed25519/462E05498C4C7F06 2025-05-02 Mason Tuckett <span class="o">(</span><span class="nb">test</span> key<span class="o">)</span> &lt;mason@tuckett.xyz&gt;
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl">Delete this key from the keyring? <span class="o">(</span>y/N<span class="o">)</span> y</span></span></code></pre></div><h2 id="signing-with-gpg">Signing with GPG</h2>
+<p>Signing files or messages is incredibly straightforward—just make sure to use the correct private key.</p>
+<p>Detached signatures are preferable as both files are compared against one another, unlike a single <em>attached</em> signature.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Detached signature</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;msg&#34;</span> &gt; msg
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">gpg --armor --default-key 07B41B22F08862AC61F1DB5E462E05498C4C7F06 --detach-sign msg
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># Verify the signature</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">gpg --verify msg.asc msg
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">gpg: Signature made Fri <span class="m">02</span> May <span class="m">2025</span> 12:00:19 AM MDT
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">gpg:                using EDDSA key 07B41B22F08862AC61F1DB5E462E05498C4C7F06
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">gpg: Good signature from <span class="s2">&#34;Mason Tuckett (test key) &lt;mason@tuckett.xyz&gt;&#34;</span> <span class="o">[</span>ultimate<span class="o">]</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">cat msg.asc
+</span></span><span class="line"><span class="ln">12</span><span class="cl">-----BEGIN PGP SIGNATURE-----
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">iHQEABYKAB0WIQQHtBsi8IhirGHx215GLgVJjEx/BgUCaBRfcwAKCRBGLgVJjEx/
+</span></span><span class="line"><span class="ln">15</span><span class="cl">Bg4aAPwJirjRBeacdjKTv0oyha0fGl69ZTR0LqgrLQKLMCy5XQD4jiW5gy8XhpzO
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="nv">VpcOptcsNNtqfovoNNoE6tFahdZ0Dg</span><span class="o">==</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="o">=</span>Ge5O
+</span></span><span class="line"><span class="ln">18</span><span class="cl">-----END PGP SIGNATURE-----</span></span></code></pre></div><h2 id="encrypting-with-gpg">Encrypting with GPG</h2>
+<p>Files and messages can be encrypted using the recipient&rsquo;s public key.</p>
+<p>By design, no intermediary can decrypt the file or message without the recipient&rsquo;s private key.</p>
+<p>Therefore, that is why you must exchange keys beforehand; otherwise, the data would effectively be unrecoverable.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Encrypt a file</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;file&#34;</span> &gt; file
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">gpg --armor --encrypt --recipient recipient@mail.com file
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">cat file.asc
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">-----BEGIN PGP MESSAGE-----
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">hF4DmGWaJPMsGZ4SAQdAt6v31fJBwhecUZHqOrXfoPjEXWY8yjXeMV0GIuPAHSYw
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">SHf4TJGAcuGF7t35EsRD7TeIPRH7v/AniwonsjXJJwyHAaLEMtq/KU/u3D63j3F2
+</span></span><span class="line"><span class="ln">10</span><span class="cl">1EwBCQIQjuprIiTotwqwJYjpKBrQhC8DyC1DTZLZwlM2zmB59TAQeyuPviR8KMcy
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="nv">4JoxPuR3tsOUOQAnvDZjojtFjtkiWC4a3fqMWU85</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="o">=</span>Th91
+</span></span><span class="line"><span class="ln">13</span><span class="cl">-----END PGP MESSAGE-----
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"># Decrypt the file (recipient&#39;s private key)</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">gpg --decrypt file.asc
+</span></span><span class="line"><span class="ln">17</span><span class="cl">gpg: encrypted with cv25519 key, ID 98659A24F32C199E, created 2025-05-02
+</span></span><span class="line"><span class="ln">18</span><span class="cl">      <span class="s2">&#34;recipient (test) &lt;recipient@mail.com&gt;&#34;</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">file</span></span></code></pre></div><h2 id="closing">Closing</h2>
+<p>GPG is an essential tool for anyone looking to ensure both integrity and authenticity by adding a secure layer to digital communication.</p>
+<p>GPG or OpenPGP tools are useful for establishing chains of trust and for preventing man-in-the-middle attacks—limiting access to sensitive information.</p>
+<p>It is a fantastic idea to communicate via GPG-encrypted messages or files, which many privacy-conscious providers like <a href="https://proton.me/support/how-to-use-pgp">Proton Mail</a> natively support.</p>
+<p>Remember to always use encryption when necessary, even if it may not appear convenient at first; <em>you are in control of your data</em>.</p>
+<p><em><strong>Encrypt away!</strong></em></p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

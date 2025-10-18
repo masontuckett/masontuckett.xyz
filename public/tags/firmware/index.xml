@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Firmware on masontuckett.xyz</title>
+    <link>https://masontuckett.xyz/tags/firmware/</link>
+    <description>Recent content in Firmware on masontuckett.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
+    <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
+    <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 13 Mar 2025 00:38:44 -0700</lastBuildDate>
+    <atom:link href="https://masontuckett.xyz/tags/firmware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Librebooting a Thinkpad T440p</title>
+      <link>https://masontuckett.xyz/posts/t440p-libreboot/</link>
+      <pubDate>Thu, 13 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/t440p-libreboot/</guid>
+      <description>&lt;p&gt;A Guide for Installing Libreboot on the Lenovo Thinkpad T440p&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-libreboot&#34;&gt;What is Libreboot?&lt;/h2&gt;&#xA;&lt;p&gt;Libreboot is a free and open-source replacement for proprietary UEFI/BIOS firmware—neutering invasive technologies like &lt;a href=&#34;https://itsfoss.com/fact-intel-minix-case/&#34;&gt;Intel ME&lt;/a&gt; in the process.&lt;/p&gt;&#xA;&lt;p&gt;The project seeks to remove proprietary &lt;a href=&#34;https://libreboot.org/news/policy.html#what-is-a-binary-blob&#34;&gt;binary blobs&lt;/a&gt; included in firmware (required for key components to function)—providing a privacy-respecting alternative for users.&lt;/p&gt;&#xA;&lt;p&gt;Libreboot is primarily geared towards enthusiasts—though it does have limited hardware support; however, many devices are now compatible.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>A Guide for Installing Libreboot on the Lenovo Thinkpad T440p</p>
+<h2 id="what-is-libreboot">What is Libreboot?</h2>
+<p>Libreboot is a free and open-source replacement for proprietary UEFI/BIOS firmware—neutering invasive technologies like <a href="https://itsfoss.com/fact-intel-minix-case/">Intel ME</a> in the process.</p>
+<p>The project seeks to remove proprietary <a href="https://libreboot.org/news/policy.html#what-is-a-binary-blob">binary blobs</a> included in firmware (required for key components to function)—providing a privacy-respecting alternative for users.</p>
+<p>Libreboot is primarily geared towards enthusiasts—though it does have limited hardware support; however, many devices are now compatible.</p>
+<p><em>Libreboot is a distribution of Coreboot—wherein all updates come from upstream <a href="https://www.coreboot.org/">Coreboot</a> development.</em></p>
+<p>Unlike Coreboot, Libreboot is designed to be completely free and open-source, including only essential <a href="https://libreboot.org/news/microcode.html">CPU microcode updates</a>.</p>
+<p><em><strong>For more details, visit <a href="https://libreboot.org/">here</a>.</strong></em></p>
+<h1 id="installation">Installation</h1>
+<h2 id="tools">Tools</h2>
+<p>You will need an EEPROM flash programmer.</p>
+<p>OR a SOIC/SOP 8 test clip, eight female DuPont wires, and a compatible SBC (such as a Raspberry Pi w GPIO pins).</p>
+<h3 id="soic-8-wiring">SOIC 8 Wiring</h3>
+<p><img src="/images/posts/t440p-libreboot/wiring.webp" alt="SOIC-8 Wiring"></p>
+<h3 id="ch341a-wiring">CH341A Wiring</h3>
+<p><img src="/images/posts/t440p-libreboot/ch341a.webp" alt="CH341A Instructions"></p>
+<p><em><strong>For my installation, I used the CH341A programmer—though, <a href="https://libreboot.org/docs/install/spi.html#do-not-buy-ch341a">this is not advised</a>.</strong></em></p>
+<h2 id="software">Software</h2>
+<p>Preferably, you will need a device with Linux installed; if you are using an SBC, install SSH for flashing.</p>
+<h3 id="obtaining-build-files">Obtaining Build Files</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Prerequisites</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt install -y git wget build-essential
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Obtain Libreboot&#39;s build system</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">git clone https://codeberg.org/libreboot/lbmk ~/lbmk
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="nb">cd</span> ~/lbmk
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="c1"># Obtain Libreboot T440p image</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl">wget https://mirror.math.princeton.edu/pub/libreboot/stable/20241206/roms/libreboot-20241206rev10_t440plibremrc_12mb.tar.xz</span></span></code></pre></div><h3 id="making-the-libreboot-build-system">Making the Libreboot Build System</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Set available threads for faster compilation</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nb">export</span> <span class="nv">XBMK_THREADS</span><span class="o">=</span><span class="m">12</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Set your distro and build necessary dependencies</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">sudo ./mk dependencies mint
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"># Build flashprog</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">./mk -b flashprog
+</span></span><span class="line"><span class="ln">9</span><span class="cl">mv ~/lbmk/elf/flashprog/flashprog ../..</span></span></code></pre></div><h3 id="preparing-images">Preparing Images</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Inject necessary vendor files</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">./mk inject libreboot-20241206rev10_t440plibremrc_12mb.tar.xz
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># Unpack the injected image</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">tar -xvf libreboot-20241206rev10_t440plibremrc_12mb.tar.xz
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"># Split the top ROM (4MB)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">dd <span class="k">if</span><span class="o">=</span>~/lbmk/bin/t440plibremrc_12mb/seagrub_t440plibremrc_12mb_libgfxinit_corebootfb_usqwerty.rom <span class="nv">of</span><span class="o">=</span>top.rom <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">skip</span><span class="o">=</span><span class="m">8</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"># Split the bottom ROM (8MB)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">dd <span class="k">if</span><span class="o">=</span>~/lbmk/bin/t440plibremrc_12mb/seagrub_t440plibremrc_12mb_libgfxinit_corebootfb_usqwerty.rom <span class="nv">of</span><span class="o">=</span>bot.rom <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">8</span></span></span></code></pre></div><h3 id="disassembling-the-laptop">Disassembling the Laptop</h3>
+<p>Refer to <a href="https://www.myfixguide.com/manual/lenovo-thinkpad-t440-disassembly/">this guide</a> for disassembling the laptop; make sure both the main battery and CMOS battery are unplugged.</p>
+<p><img src="/images/posts/t440p-libreboot/t440p-chips.webp" alt="T440p top (4MB) and bottom (8MB) ROM locations"></p>
+<h3 id="backing-up-stock-roms">Backing Up Stock ROMs</h3>
+<p><img src="/images/posts/t440p-libreboot/connected.webp" alt="CH341A reading ROMs"></p>
+<p><em><strong>Your setup will look different; my casing was fused together, so I had to improvise.</strong></em></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Backup top stock ROMs</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -r top-stock-bk.rom
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -r top-stock-bk2.rom
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># Backup bottom stock ROMs</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q64BV/W25Q64CV/W25Q64FV -r bot-stock-bk.rom
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q64BV/W25Q64CV/W25Q64FV -r bot-stock-bk2.rom
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># Verify ROMs were dumped correctly</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">sha512sum top-stock* bot-stock*</span></span></code></pre></div><h3 id="flashing-libreboot-images">Flashing Libreboot Images</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Write the top ROM</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q32FV -w ~/lbmk/top.rom
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Write the bottom ROM</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">sudo ./flashprog --programmer ch341a_spi -c W25Q64BV/W25Q64CV/W25Q64FV -w ~/lbmk/bot.rom</span></span></code></pre></div><p><em><strong>Reassemble the unit—and voilà! Your laptop now sports Libreboot!</strong></em></p>
+<p><img src="/images/posts/t440p-libreboot/libreboot-installed.webp" alt="Libreboot successfully Installed - (Lenovo Thinkpad T440p)"></p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

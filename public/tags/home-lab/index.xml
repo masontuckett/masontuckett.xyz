@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Home-Lab on masontuckett.xyz</title>
+    <link>https://masontuckett.xyz/tags/home-lab/</link>
+    <description>Recent content in Home-Lab on masontuckett.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
+    <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
+    <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
+    <lastBuildDate>Sat, 12 Jul 2025 21:50:48 -0600</lastBuildDate>
+    <atom:link href="https://masontuckett.xyz/tags/home-lab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mentee Lab</title>
+      <link>https://masontuckett.xyz/posts/mentee-lab/</link>
+      <pubDate>Sat, 12 Jul 2025 21:50:48 -0600</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/mentee-lab/</guid>
+      <description>&lt;h2 id=&#34;my-thought-process&#34;&gt;My Thought Process&lt;/h2&gt;&#xA;&lt;p&gt;Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an &lt;strong&gt;outstanding&lt;/strong&gt; student who showed &lt;strong&gt;exceptional&lt;/strong&gt; curiosity in the cybersecurity field.&lt;/p&gt;&#xA;&lt;p&gt;To further his learning, I designed and implemented a home lab tailored around &lt;em&gt;a loosely inspired real-world enterprise environment.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;network-infrastructure&#34;&gt;Network Infrastructure&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/posts/mentee-lab/Smith-Network-Diagram.png&#34; alt=&#34;Smith’s Home Lab Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;subnetting&#34;&gt;Subnetting&lt;/h3&gt;&#xA;&lt;p&gt;I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="my-thought-process">My Thought Process</h2>
+<p>Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an <strong>outstanding</strong> student who showed <strong>exceptional</strong> curiosity in the cybersecurity field.</p>
+<p>To further his learning, I designed and implemented a home lab tailored around <em>a loosely inspired real-world enterprise environment.</em></p>
+<h2 id="network-infrastructure">Network Infrastructure</h2>
+<p><img src="/images/posts/mentee-lab/Smith-Network-Diagram.png" alt="Smith’s Home Lab Diagram"></p>
+<h3 id="subnetting">Subnetting</h3>
+<p>I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.</p>
+<p>I decided to keep subnet assignments tight and centered around a usable pool that heavily prevents lateral movement—ensuring a security-first mindset.</p>
+<p>/29 was used for the native VLAN <strong>(VLAN 1)</strong>—primarily due to it being the trusted subnet and making troubleshooting far easier; <em>I thought that it was far more appropriate for his needs.</em></p>
+<p><strong>VLAN 2</strong> is on a /30 subnet, which limits potential attack surface, and is solely for the Proxmox management interface.</p>
+<p><strong>VLAN 3</strong> needs little to no usable hosts because it is intended only for logging services.</p>
+<p><strong>VLAN 4</strong> is for internal use only, firewalled extensively with a restrictive /29 subnet.</p>
+<p><strong>VLAN 5</strong> is far more generous with a /27 subnet, which would be best for tightening and expandability.</p>
+<p><strong>VLAN 6</strong> is on a /30 subnet—allowing space only for a single instance of Nginx.</p>
+<p><strong>VLAN 7</strong> is also on a /30 subnet, intended for a singular Wireguard client.</p>
+<p>Segmenting services would&rsquo;ve been best, but again—<em>this setup needs to be accessible for independent troubleshooting.</em></p>
+<p>With that in mind, DHCP is enabled on VLAN 1 in case his network configuration interferes with deliverability; <strong>my mentee has three &ldquo;free&rdquo; untagged ports on VLAN 1 for troubleshooting purposes.</strong></p>
+<p>My mentee has a keen interest in penetration testing, so I integrated a SOC lab into his home lab for learning purposes.</p>
+<p>It is largely entirely virtual (beholden to OPNsense), firewalled, and mapped to <strong>vmbr2</strong>; <em>this VLAN is fully air gapped.</em></p>
+<h3 id="network-hardware">Network Hardware</h3>
+<p>OPNsense was used as a central router/firewall with extensive ACLs to prevent unnecessary inter-VLAN traffic and exposure.</p>
+<p><em>I found it very beginner-friendly while exposing my mentee to real-world toolsets.</em></p>
+<p>A simple Netgear gigabit managed switch <strong>(GS308Ev4)</strong> was used to establish trunk ports between OPNsense and his Proxmox &ldquo;outputs.&rdquo;</p>
+<p>Three trunk ports were utilized for carrying traffic out of his Proxmox node: an upstream trunk for VLANs <strong>(ibg0)</strong> 1, 2, 3, 5, 6, and 7, and two independent ports <strong>(enp1sfp0 and enp1sfp1)</strong> for VLANs 3, 4 | 5, 6, 7.</p>
+<p><em>A dummy <strong>PVID of 4094</strong> was used for untagged traffic on the three trunk ports—limiting potential traffic errors/security risks.</em></p>
+<p>Every other port—including the Proxmox management interface—was kept untagged.</p>
+<h3 id="virtualization">Virtualization</h3>
+<p><strong><em>I cannot state how asinine it is to run everything on bare metal</em></strong>—a mistake I see far too frequently in student-led home labs.</p>
+<p>It makes management/expansion an absolute headache and leaves every process on a <em>&ldquo;level playing field&rdquo;</em>—severely increasing potential attack surface.</p>
+<p>With that in mind, I opted for <a href="https://www.proxmox.com/en/products/proxmox-virtual-environment/overview">Proxmox</a>, an open-source competitor to VMware&rsquo;s ESXi platform—offering an enterprise experience without VMware&rsquo;s absurd licensing fees.</p>
+<p><em>Linux bridges were created to match each trunk port and were tagged appropriately within Proxmox.</em></p>
+<h3 id="linux-bridges">Linux Bridges</h3>
+<p><img src="/images/posts/mentee-lab/vmbr0.png" alt="Bridge 0 Config"></p>
+<p><strong>vmbr0</strong> is native to Proxmox (VLAN 2)—untagged and <em>purposefully <strong>not</strong> VLAN aware</em>.</p>
+<p><img src="/images/posts/mentee-lab/vmbr1.png" alt="Bridge 1 Config"></p>
+<p><strong>vmbr1</strong> is for logging and SOC infrastructure (VLANs 3 and 4).</p>
+<p><img src="/images/posts/mentee-lab/vmbr2.png" alt="Bridge 2 Config"></p>
+<p><strong>vmbr2</strong> is intended for self-hosted services, and proxying traffic—safely to his VPS (VLANs 5, 6, and 7).</p>
+<h3 id="implementing-virtual-machines">Implementing Virtual Machines</h3>
+<p>For most home labs, I would implement a hardened frontend reverse proxy—though for his setup, it&rsquo;s largely unnecessary <em>(for now)</em>.</p>
+<p>The lab mostly consists of LXC containers and KVM virtual machines—as most services would be inoperable/inefficient if using Docker containers.</p>
+<p>Each machine is manually assigned an IP address to avoid unnecessary DHCP servers running on each VLAN interface.</p>
+<p><img src="/images/posts/mentee-lab/example-config.png" alt="Example Networking Config"></p>
+<p>VLAN tagging also occurs on each virtual network interface—his PaperMC server, as noted above, is rate limited to avoid exhausting his network; granted his hardware is more than capable, I found it to be highly important.</p>
+<h2 id="future-plans">Future Plans</h2>
+<p>Eventually, we will tunnel all relevant traffic through a WireGuard server hosted on the cloud so his services are masked.</p>
+<h5 id="likely-two-hardened-nginx-reverse-proxies-on-each-endwith-tls-13-termination-on-the-vps"><em>Likely two hardened Nginx reverse proxies on each end—with TLS 1.3 termination on the VPS</em></h5>
+<p>For now, the only service that is exposed is his PaperMC instance—though that will likely expand given his needs will increase.</p>
+<p>OpenMediaVault will likely remain for internal use only, although Nextcloud may replace that in the future (tunneled); possibly just a basic NFS share.</p>
+<h2 id="documentation">Documentation</h2>
+<p><em>I want to stress that this was co-designed with my mentee, and he was actively involved in this process.</em></p>
+<h5 id="i-am-extremely-proud-of-his-performance-and-technical-aptitude-in-implementingmaintaining-this-home-lab"><em>I am extremely proud of his performance and technical aptitude in implementing/maintaining this home lab.</em></h5>
+<p>Extensive documentation, including interface configs, switch configs, ACLs, and Proxmox scripts/configs, may be found <a href="https://github.com/masontuckett/Smith-Home-Lab">here</a> or at <a href="https://smithbarlow.xyz">smithbarlow.xyz</a>.</p>
+<h2 id="update-82525">UPDATE (8/25/25)</h2>
+<p>While we were setting up the remainder of the lab, we opted to use a reverse SSH tunnel for proxying his services to the web.</p>
+<p>I am delighted to announce that WireGuard has finally been implemented (non-standard port)—utilizing Nginx&rsquo;s stream module to proxy traffic from the tunnel.</p>
+<p><img src="/images/posts/mentee-lab/wg.png" alt="WireGuard Server VPS"></p>
+<p><img src="/images/posts/mentee-lab/nginx.png" alt="Nginx Stream Config"></p>
+<p>I intentionally chose not to use a Minecraft focused reverse proxy, as we plan on implementing an additional IP address to essentially <em>lock</em> the service to <strong>mc.smithbarlow.xyz</strong>—<em>avoiding a bloated setup</em>.</p>
+<p>The PaperMC server operates with a <strong>whitelist</strong>, and server status <strong>OFF</strong>—for both game security, and to lessen <em>some</em> automated scanning (Shodan/MCStatus).</p>
+<p>Otherwise, we kept Minecraft on its default port so players could easily connect.</p>
+<h3 id="verification">Verification</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Quick Netcat Scan (May Be Periodically Down)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">nc -vz smithbarlow.xyz <span class="m">25565</span></span></span></code></pre></div><h2 id="update-90825">UPDATE (9/08/25)</h2>
+<p>This project has been archived for now.</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

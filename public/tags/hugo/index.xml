@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hugo on masontuckett.xyz</title>
+    <link>https://masontuckett.xyz/tags/hugo/</link>
+    <description>Recent content in Hugo on masontuckett.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
+    <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
+    <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 10 Mar 2025 00:38:44 -0700</lastBuildDate>
+    <atom:link href="https://masontuckett.xyz/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo</title>
+      <link>https://masontuckett.xyz/posts/hugo/</link>
+      <pubDate>Mon, 10 Mar 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/hugo/</guid>
+      <description>&lt;p&gt;For my personal website, I opted to use a static site generator.&lt;/p&gt;&#xA;&lt;p&gt;Not only would this allow me to automate content creation—it avoids the needless clunkiness of content management systems such as WordPress.&lt;/p&gt;&#xA;&lt;p&gt;For the modern web, it makes no sense to implement a &lt;em&gt;largely static blog&lt;/em&gt; through a content management system; it unnecessarily increases your &lt;a href=&#34;https://www.cvedetails.com/product/4096/Wordpress-Wordpress.html?vendor_id=2337_&#34;&gt;attack surface&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;That being said, there are a plethora of static site generators and frameworks available—but many ultimately defeat the purpose of a true static site generator.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>For my personal website, I opted to use a static site generator.</p>
+<p>Not only would this allow me to automate content creation—it avoids the needless clunkiness of content management systems such as WordPress.</p>
+<p>For the modern web, it makes no sense to implement a <em>largely static blog</em> through a content management system; it unnecessarily increases your <a href="https://www.cvedetails.com/product/4096/Wordpress-Wordpress.html?vendor_id=2337_">attack surface</a>.</p>
+<p>That being said, there are a plethora of static site generators and frameworks available—but many ultimately defeat the purpose of a true static site generator.</p>
+<p>Hugo fit my use case perfectly—boasting incredible flexibility while remaining lightweight and highly straightforward.</p>
+<h2 id="what-is-hugo">What is Hugo?</h2>
+<p>Hugo is a static site generator written in Go, designed to be both effortlessly hackable and extensive.</p>
+<p>Content is written in Markdown and compiled into static HTML files—according to predefined templates/taxonomies.</p>
+<p>Hundreds of premade themes are <a href="https://themes.gohugo.io/">readily available</a>—ranging from simple, lightweight blogs to ready-to-deploy e-commerce platforms.</p>
+<h2 id="hackability">Hackability</h2>
+<p>Hugo operates using a robust template system—streamlining the process of content generation.</p>
+<p>Configuration files (YAML, TOML, JSON) are used to configure/manage content and settings—enabling dynamic content generation and layered customization.</p>
+<p>Hugo&rsquo;s shortcode system is used in conjunction with its template system, allowing users to create reusable content/functionality within Markdown files.</p>
+<p>Shortcodes are by far Hugo&rsquo;s most important feature, supporting in-depth <a href="https://gohugo.io/functions/">dynamic functions</a>—ranging from simplistic individual CSS blocks to JS/TS integration.</p>
+<h3 id="here-is-an-example-showcasing-conditional-logic">Here is an Example Showcasing Conditional Logic</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="ln">1</span><span class="cl">{{ if isset .Params &#34;title&#34; }}
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ .Params.title }}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">{{ else }}
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ .Site.title }}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">{{ end }}</span></span></code></pre></div><h2 id="closing---my-thought-process">Closing - My Thought Process</h2>
+<p>I see far too many IT professionals publishing subpar blogs—often touting frameworks that are wholly unnecessary for their use case.</p>
+<p>While platforms such as WordPress are a sound choice, I see many professionals opting for frameworks that appear professional or <em>&ldquo;technically advanced.&rdquo;</em></p>
+<p>But their integration only scratches the surface—not fully utilizing the framework&rsquo;s capabilities; <strong>why use such complex systems rudimentarily?</strong></p>
+<p>It does not impress me to have an extensive homelab just to use technologies <em>you believe make you appear technically accomplished</em>.</p>
+<p>For my use case, I wanted something secure yet simple to host my projects while automating some content creation; security is my end goal.</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>
