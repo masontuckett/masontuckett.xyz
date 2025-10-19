@@ -11,9 +11,9 @@ description = "Mason Tuckett's Project Page"
 
 ## Personal
 
-__Homelab__\
+__Home Lab__\
 *August 2025*
-- Deployed and configured OPNsense as the main router and firewall, setting up VLANs, appropriate subnets, DHCP, and firewall rules to segment and secure homelab traffic.
+- Deployed and configured OPNsense as the main router and firewall, setting up VLANs, appropriate subnets, DHCP, and firewall rules to segment and secure home lab traffic.
 - Utilized Proxmox to host virtual machines for labs and services, resource allocation, and snapshot management—accomplished utilizing LXC containers and KVM virtual machines.
 - Created a SOC lab environment using Kali Linux for vulnerability assessment, a Windows target for exploitation, and a full Wazuh stack for real-time detection and prevention.
 - Configured OPNsense firewalling with strict baselines—ensuring inter-VLAN traffic is strict and within scope.
@@ -24,7 +24,7 @@ __Homelab__\
 __VPS__\
 *August 2025*
 - Deployed a strict firewall policy: default-deny incoming, a strict iptables ruleset only allowing essential ports (non-standard IP-bound SSH port), with Tor service bound to localhost and isolated from public interfaces.
-- Obtained an [A+ SSL Labs Score](https://www.ssllabs.com/ssltest/analyze.html?d=masontuckett.xyz), configured Let's Encrypt TLS (TLS 1.2/1.3) with strong AEAD ciphers, [implemented HSTS preload](https://hstspreload.org/?domain=masontuckett.xyz#submission-form), instituted DNSSEC to prevent MITM attacks, and restrictive CAA policies to prevent rogue issuance.
+- Obtained an [A+ SSL Labs Score](https://www.ssllabs.com/ssltest/analyze.html?d=masontuckett.xyz), perfect [PageSpeed Insights scores](https://pagespeed.web.dev/analysis/https-masontuckett-xyz-projects/mdabd69caq?form_factor=mobile), configured Let's Encrypt TLS (TLS 1.2/1.3) with strong AEAD ciphers, [implemented HSTS preload](https://hstspreload.org/?domain=masontuckett.xyz#submission-form), instituted DNSSEC to prevent MITM attacks, and restrictive CAA policies to prevent rogue issuance.
 - Secured Nginx with tight [content security policies](https://developer.mozilla.org/en-US/observatory/analyze?host=masontuckett.xyz), method restrictions (GET/HEAD only), rate-limiting, appropriate header limits, and privacy-respecting security headers.
 - Deployed kernel-level security via extensive sysctl settings, unused protocol and module blacklisting (modprobe blocklist), and AppArmor confinement for Nginx and Tor to limit post-exploit impact.
 - Incorporated a strong chain of trust: a signed [Tor mirror statement](https://github.com/masontuckett/masontuckett.gpg/blob/main/tor-mirror-statement.txt), mirrored public GPG keys, and [SHA-512 checksum proofs](https://github.com/masontuckett/masontuckett.gpg/blob/main/sha512-hashes.txt)—all implemented across DNS TXT records and a [GitHub mirror](https://github.com/masontuckett/masontuckett.gpg).
