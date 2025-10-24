@@ -15,6 +15,8 @@ description = "Mason Tuckett's Services Page"
 /images/papermc.webp|PaperMC|Lightweight Bukkit/Spigot-compatible vanilla Minecraft server.|mc.tuckettlab.xyz::mailto:mason@tuckett.xyz
 {{< /services >}}
 
+[Checksums](/sha512-hashes.txt)
+
 [Privacy Policy](/privacy-policy.txt)
 
 [Mirror Statement](/tor-mirror-statement.txt)
