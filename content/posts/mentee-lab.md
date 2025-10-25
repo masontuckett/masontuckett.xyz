@@ -17,7 +17,7 @@ To further his learning, I designed and implemented a home lab tailored around *
 
 ## Network Infrastructure
 
-![Smith's Home Lab Diagram](/images/posts/mentee-lab/Smith-Network-Diagram.png)
+![Smith's Home Lab Diagram](/images/posts/mentee-lab/Smith-Network-Diagram.webp)
 
 ### Subnetting
 
@@ -135,10 +135,24 @@ Otherwise, we kept Minecraft on its default port so players could easily connect
 
 ```sh
 # Quick Netcat Scan (May Be Periodically Down)
-nc -vz smithbarlow.xyz 25565
+nc -vz smithbarlow.net 25565
 ```
  
 ## UPDATE (9/08/25)
 
 This project has been archived for now.
+
+## UPDATE (10/24/25)
+
+This project is finally back up; school was interfering with his workflow.
+
+Additionally, we moved to a new domain due to an absurd hijacking fiasco.
+
+Wherein, I accidentally left the Vultr name servers set on the registrar despite deleting Vultr's zone (HUGE MISTAKE!).
+
+*(Hence the abrupt transition to a __new domain: [smithbarlow.net](https://smithbarlow.net)__)*
+
+{{< small >}}I do not want any abuse attached to Smith's name—especially given the assailant's MX records.{{</ small >}}
+
+We also migrated from OMV to a simple Ubuntu NFS setup for more intensive learning purposes; I'm not going to let him operate "one-click" *dummy* software—__he's smarter than that__.
 

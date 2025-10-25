@@ -45,7 +45,7 @@
   <meta itemprop="description" content="An Overview of a Home Lab I Designed for My Mentee">
   <meta itemprop="datePublished" content="2025-07-12T21:50:48-06:00">
   <meta itemprop="dateModified" content="2025-07-12T21:50:48-06:00">
-  <meta itemprop="wordCount" content="920">
+  <meta itemprop="wordCount" content="1018">
   <meta itemprop="keywords" content="Self-Hosting,Home-Lab,Cybersecurity">
 
 <meta name="referrer" content="no-referrer" />
@@ -101,7 +101,7 @@
 <p>Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an <strong>outstanding</strong> student who showed <strong>exceptional</strong> curiosity in the cybersecurity field.</p>
 <p>To further his learning, I designed and implemented a home lab tailored around <em>a loosely inspired real-world enterprise environment.</em></p>
 <h2 id="network-infrastructure">Network Infrastructure</h2>
-<p><img src="/images/posts/mentee-lab/Smith-Network-Diagram.png" alt="Smith’s Home Lab Diagram"></p>
+<p><img src="/images/posts/mentee-lab/Smith-Network-Diagram.webp" alt="Smith’s Home Lab Diagram"></p>
 <h3 id="subnetting">Subnetting</h3>
 <p>I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.</p>
 <p>I decided to keep subnet assignments tight and centered around a usable pool that heavily prevents lateral movement—ensuring a security-first mindset.</p>
@@ -165,8 +165,16 @@
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Quick Netcat Scan (May Be Periodically Down)</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">nc -vz smithbarlow.xyz <span class="m">25565</span></span></span></code></pre></div><h2 id="update-90825">UPDATE (9/08/25)</h2>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">nc -vz smithbarlow.net <span class="m">25565</span></span></span></code></pre></div><h2 id="update-90825">UPDATE (9/08/25)</h2>
 <p>This project has been archived for now.</p>
+<h2 id="update-102425">UPDATE (10/24/25)</h2>
+<p>This project is finally back up; school was interfering with his workflow.</p>
+<p>Additionally, we moved to a new domain due to an absurd hijacking fiasco.</p>
+<p>Wherein, I accidentally left the Vultr name servers set on the registrar despite deleting Vultr&rsquo;s zone (HUGE MISTAKE!).</p>
+<p><em>(Hence the abrupt transition to a <strong>new domain: <a href="https://smithbarlow.net">smithbarlow.net</a></strong>)</em></p>
+<small><i><b>I do not want any abuse attached to Smith's name—especially given the assailant's MX records.</b></i></small>
+
+<p>We also migrated from OMV to a simple Ubuntu NFS setup for more intensive learning purposes; I&rsquo;m not going to let him operate &ldquo;one-click&rdquo; <em>dummy</em> software—<strong>he&rsquo;s smarter than that</strong>.</p>
 
 </content>
 

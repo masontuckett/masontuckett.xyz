@@ -16,11 +16,11 @@
       <link>https://masontuckett.xyz/posts/dns-hardening/</link>
       <pubDate>Sat, 30 Aug 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/posts/dns-hardening/</guid>
-      <description>&lt;p&gt;A Brief Overview of DNS Hardening&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-dns&#34;&gt;What is DNS?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc9499&#34;&gt;Domain Name System (DNS)&lt;/a&gt; is a protocol designed to translate IP addresses (IPv4/6) into human-readable addresses—e.g., &lt;a href=&#34;https://search.tuckettlab.xyz&#34;&gt;search.tuckettlab.xyz&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;small&gt;&lt;i&gt;&lt;b&gt;In practice the reverse: human-readable addresses &gt; IP addresses&lt;/b&gt;&lt;/i&gt;&lt;/small&gt;&#xA;&#xA;&lt;p&gt;Without DNS, navigating the internet would be needlessly exhausting—requiring users to manually enter an IP address every time they were to access web content.&lt;/p&gt;&#xA;&lt;p&gt;Additionally, dynamic mapping executed via DNS allows for essential accessibility functions like geo-availability—providing content within relevant geographic locations—&lt;em&gt;significantly accelerating your web traffic&lt;/em&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;A Brief Overview of DNS Hardening&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-dns&#34;&gt;What is DNS?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc9499&#34;&gt;Domain Name System (DNS)&lt;/a&gt; is a protocol designed to translate IP addresses (IPv4/6) into human-readable addresses—e.g., &lt;a href=&#34;https://search.tuckettlab.xyz&#34;&gt;search.tuckettlab.xyz&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;small&gt;&lt;i&gt;&lt;b&gt;In practice the inverse: human-readable addresses &gt; IP addresses&lt;/b&gt;&lt;/i&gt;&lt;/small&gt;&#xA;&#xA;&lt;p&gt;Without DNS, navigating the internet would be needlessly exhausting—requiring users to manually enter an IP address every time they were to access web content.&lt;/p&gt;&#xA;&lt;p&gt;Additionally, dynamic mapping executed via DNS allows for essential accessibility functions like geo-availability—providing content within relevant geographic locations—&lt;em&gt;significantly accelerating your web traffic&lt;/em&gt;.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>A Brief Overview of DNS Hardening</p>
 <h2 id="what-is-dns">What is DNS?</h2>
 <p><a href="https://www.rfc-editor.org/rfc/rfc9499">Domain Name System (DNS)</a> is a protocol designed to translate IP addresses (IPv4/6) into human-readable addresses—e.g., <a href="https://search.tuckettlab.xyz">search.tuckettlab.xyz</a>.</p>
-<small><i><b>In practice the reverse: human-readable addresses > IP addresses</b></i></small>
+<small><i><b>In practice the inverse: human-readable addresses > IP addresses</b></i></small>
 
 <p>Without DNS, navigating the internet would be needlessly exhausting—requiring users to manually enter an IP address every time they were to access web content.</p>
 <p>Additionally, dynamic mapping executed via DNS allows for essential accessibility functions like geo-availability—providing content within relevant geographic locations—<em>significantly accelerating your web traffic</em>.</p>
@@ -395,12 +395,12 @@ tuckettlab.xyz.		1736	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-has
       <link>https://masontuckett.xyz/posts/mentee-lab/</link>
       <pubDate>Sat, 12 Jul 2025 21:50:48 -0600</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/posts/mentee-lab/</guid>
-      <description>&lt;h2 id=&#34;my-thought-process&#34;&gt;My Thought Process&lt;/h2&gt;&#xA;&lt;p&gt;Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an &lt;strong&gt;outstanding&lt;/strong&gt; student who showed &lt;strong&gt;exceptional&lt;/strong&gt; curiosity in the cybersecurity field.&lt;/p&gt;&#xA;&lt;p&gt;To further his learning, I designed and implemented a home lab tailored around &lt;em&gt;a loosely inspired real-world enterprise environment.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;network-infrastructure&#34;&gt;Network Infrastructure&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/posts/mentee-lab/Smith-Network-Diagram.png&#34; alt=&#34;Smith’s Home Lab Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;subnetting&#34;&gt;Subnetting&lt;/h3&gt;&#xA;&lt;p&gt;I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;my-thought-process&#34;&gt;My Thought Process&lt;/h2&gt;&#xA;&lt;p&gt;Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an &lt;strong&gt;outstanding&lt;/strong&gt; student who showed &lt;strong&gt;exceptional&lt;/strong&gt; curiosity in the cybersecurity field.&lt;/p&gt;&#xA;&lt;p&gt;To further his learning, I designed and implemented a home lab tailored around &lt;em&gt;a loosely inspired real-world enterprise environment.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;network-infrastructure&#34;&gt;Network Infrastructure&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/posts/mentee-lab/Smith-Network-Diagram.webp&#34; alt=&#34;Smith’s Home Lab Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;subnetting&#34;&gt;Subnetting&lt;/h3&gt;&#xA;&lt;p&gt;I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="my-thought-process">My Thought Process</h2>
 <p>Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an <strong>outstanding</strong> student who showed <strong>exceptional</strong> curiosity in the cybersecurity field.</p>
 <p>To further his learning, I designed and implemented a home lab tailored around <em>a loosely inspired real-world enterprise environment.</em></p>
 <h2 id="network-infrastructure">Network Infrastructure</h2>
-<p><img src="/images/posts/mentee-lab/Smith-Network-Diagram.png" alt="Smith’s Home Lab Diagram"></p>
+<p><img src="/images/posts/mentee-lab/Smith-Network-Diagram.webp" alt="Smith’s Home Lab Diagram"></p>
 <h3 id="subnetting">Subnetting</h3>
 <p>I chose not to implement a flat /24 network as it is inherently insecure for almost any sort of network—especially for exposed services.</p>
 <p>I decided to keep subnet assignments tight and centered around a usable pool that heavily prevents lateral movement—ensuring a security-first mindset.</p>
@@ -464,8 +464,16 @@ tuckettlab.xyz.		1736	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-has
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Quick Netcat Scan (May Be Periodically Down)</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">nc -vz smithbarlow.xyz <span class="m">25565</span></span></span></code></pre></div><h2 id="update-90825">UPDATE (9/08/25)</h2>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">nc -vz smithbarlow.net <span class="m">25565</span></span></span></code></pre></div><h2 id="update-90825">UPDATE (9/08/25)</h2>
 <p>This project has been archived for now.</p>
+<h2 id="update-102425">UPDATE (10/24/25)</h2>
+<p>This project is finally back up; school was interfering with his workflow.</p>
+<p>Additionally, we moved to a new domain due to an absurd hijacking fiasco.</p>
+<p>Wherein, I accidentally left the Vultr name servers set on the registrar despite deleting Vultr&rsquo;s zone (HUGE MISTAKE!).</p>
+<p><em>(Hence the abrupt transition to a <strong>new domain: <a href="https://smithbarlow.net">smithbarlow.net</a></strong>)</em></p>
+<small><i><b>I do not want any abuse attached to Smith's name—especially given the assailant's MX records.</b></i></small>
+
+<p>We also migrated from OMV to a simple Ubuntu NFS setup for more intensive learning purposes; I&rsquo;m not going to let him operate &ldquo;one-click&rdquo; <em>dummy</em> software—<strong>he&rsquo;s smarter than that</strong>.</p>
 ]]></content:encoded>
     </item>
   </channel>

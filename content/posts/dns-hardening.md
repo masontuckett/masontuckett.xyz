@@ -17,7 +17,7 @@ A Brief Overview of DNS Hardening
 
 [Domain Name System (DNS)](https://www.rfc-editor.org/rfc/rfc9499) is a protocol designed to translate IP addresses (IPv4/6) into human-readable addresses—e.g., [search.tuckettlab.xyz](https://search.tuckettlab.xyz).
 
-{{< small >}}In practice the reverse: human-readable addresses > IP addresses{{</ small >}}
+{{< small >}}In practice the inverse: human-readable addresses > IP addresses{{</ small >}}
 
 Without DNS, navigating the internet would be needlessly exhausting—requiring users to manually enter an IP address every time they were to access web content. 
 
