@@ -11,17 +11,17 @@ tags = [
 
 A Personal Update on My Transition to Education
 
-## Career Update (Clarification)
+## A Need for Clarification
 
 In my personal life, I have received a lot of confusion and outright bewilderment as to why I am choosing to *temporarily* transition into secondary education. 
 
-As I am relatively public, and this website serves as a sort of refined *__proof of character__*—I wanted to clear the misconceptions and vast mischaracterizations levied against me. 
+As I am relatively public, and this website serves as a sort of refined *__proof of character__*—I wanted to dispel the misconceptions and vast mischaracterizations levied against my trajectory. 
 
 ### "WHY!?"
 
 To outsiders, it appears as if I am throwing away a fledgling, long-term career in cybersecurity; __that is objectively the furthest thing from the truth.__
 
-I had tried for years to enter the cybersecurity market during my time at Weber State University—*all to no avail*. 
+I had tried for years to enter the cybersecurity market during my time at Weber State University—__*all to no avail*__. 
 
 Suddenly, my efforts started to rapidly catch up to me, and everything changed once I concluded undergrad. 
 
