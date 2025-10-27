@@ -261,6 +261,17 @@ t6vN2CWgUgXvgQM=
 ]]></content:encoded>
     </item>
     <item>
+      <title>Web Hosting</title>
+      <link>https://masontuckett.xyz/posts/web-hardening/</link>
+      <pubDate>Sun, 26 Oct 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/web-hardening/</guid>
+      <description>&lt;p&gt;A Brief Overview of Web Hardening&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-web-hardening&#34;&gt;What is Web Hardening?&lt;/h2&gt;&#xA;&lt;p&gt;Web hardening is the intentional process of enhancing an application&amp;rsquo;s security posture—by reducing it&amp;rsquo;s effective attack surface.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>A Brief Overview of Web Hardening</p>
+<h2 id="what-is-web-hardening">What is Web Hardening?</h2>
+<p>Web hardening is the intentional process of enhancing an application&rsquo;s security posture—by reducing it&rsquo;s effective attack surface.</p>
+]]></content:encoded>
+    </item>
+    <item>
       <title>Career Update</title>
       <link>https://masontuckett.xyz/posts/career-update/</link>
       <pubDate>Fri, 24 Oct 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
@@ -297,7 +308,7 @@ t6vN2CWgUgXvgQM=
 <li>Vocational School</li>
 <li>Homelessness</li>
 </ul>
-<p>I was nearly a high school drop-out at age sixteen—migrating to online education—<em>in hopes of recovering what little I had left.</em></p>
+<p>I was nearly a <a href="https://web.archive.org/web/20251026111432/https://prezi.com/p/pdoo8ktodsxb/booth-and-hamlet-justifications/">high school drop-out</a> at age sixteen—migrating to online education—<em>in hopes of recovering what little I had left.</em></p>
 <p>Even at that moment, I still chose not to do critical homework, contingent upon my graduation, for nearly two years—<em>up until age eighteen.</em></p>
 <small><i><b>Abysmal ACT scores and a nonexistent GPA.</b></i></small>
 
@@ -390,7 +401,7 @@ t6vN2CWgUgXvgQM=
 </span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"># ! Set a Password ! #</span>
 </span></span><span class="line"><span class="ln">6</span><span class="cl">passwd user</span></span></code></pre></div><h3 id="generating-an-ssh-key">Generating an SSH Key</h3>
 <p>It is best to avoid RSA, as it is an <strong>outdated</strong> cryptographic standard compared to the much newer and robust ED25519 algorithm <em>(yes, even with the -b arg)</em>.</p>
-<small><i><b>RSA 4096 (integer factorization) is still somewhat comparable to ED25519 but has lower security per bit than ED25519's ECC algorithm.</b></i></small>
+<small><i><b>RSA 4096 (integer factorization) is still mathematically stronger than ED25519, but RSA generally has lower security per bit than ED25519's ECC algorithm.</b></i></small>
 
 
 
@@ -398,46 +409,47 @@ t6vN2CWgUgXvgQM=
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Generate a Secure ED25519 Key (Client) ###</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">ssh-keygen -t ed25519 -a <span class="m">100</span> -o -f ~/.ssh/sshkey
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># ! ENTER A STRONG PASSPHRASE ! #</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">Generating public/private ed25519 key pair.
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>: 
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">Enter same passphrase again: 
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># ! Output Should Be Similar ! #</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">Your identification has been saved in /home/user/.ssh/sshkey
-</span></span><span class="line"><span class="ln">11</span><span class="cl">Your public key has been saved in /home/user/.ssh/sshkey.pub
-</span></span><span class="line"><span class="ln">12</span><span class="cl">The key fingerprint is:
-</span></span><span class="line"><span class="ln">13</span><span class="cl">SHA256:tCzBHeMoatZ5jR3pvKaGdRs83AHARTYEk3j5Ln8VccE user@9020MT
-</span></span><span class="line"><span class="ln">14</span><span class="cl">The key<span class="err">&#39;</span>s randomart image is:
-</span></span><span class="line"><span class="ln">15</span><span class="cl">+--<span class="o">[</span>ED25519 256<span class="o">]</span>--+
-</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">|</span>     o+OO    ... <span class="p">|</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">|</span>    ..<span class="o">=</span>*.<span class="o">=</span>  . E  <span class="p">|</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">|</span>    ..+.*.   o   <span class="p">|</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">|</span>   o o X.o. .    <span class="p">|</span>
-</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">|</span>  + o ++S. . .   <span class="p">|</span>
-</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">|</span> o   .o.B.. .    <span class="p">|</span>
-</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">|</span>     o +o+ .     <span class="p">|</span>
-</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="p">|</span>    . .oo .      <span class="p">|</span>
-</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="p">|</span>     ..  .       <span class="p">|</span>
-</span></span><span class="line"><span class="ln">25</span><span class="cl">+----<span class="o">[</span>SHA256<span class="o">]</span>-----+
-</span></span><span class="line"><span class="ln">26</span><span class="cl">
-</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="c1">### Deploy the Key (From Client) ###</span>
-</span></span><span class="line"><span class="ln">28</span><span class="cl">scp ~/.ssh/sshkey.pub root@host:/home/user/
-</span></span><span class="line"><span class="ln">29</span><span class="cl">
-</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="c1"># ! Install the Key (On Host) ! #</span>
-</span></span><span class="line"><span class="ln">31</span><span class="cl">mkdir -p /home/user/.ssh
-</span></span><span class="line"><span class="ln">32</span><span class="cl">install -m <span class="m">600</span> /dev/null /home/user/.ssh/authorized_keys
-</span></span><span class="line"><span class="ln">33</span><span class="cl">cat /home/user/sshkey.pub &gt;&gt; /home/user/.ssh/authorized_keys
-</span></span><span class="line"><span class="ln">34</span><span class="cl">
-</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1"># ! Manage Permissions (On Host) ! #</span>
-</span></span><span class="line"><span class="ln">36</span><span class="cl">chmod <span class="m">700</span> /home/user/.ssh
-</span></span><span class="line"><span class="ln">37</span><span class="cl">chmod <span class="m">600</span> /home/user/.ssh/authorized_keys
-</span></span><span class="line"><span class="ln">38</span><span class="cl">chown -R user /home/user
-</span></span><span class="line"><span class="ln">39</span><span class="cl">
-</span></span><span class="line"><span class="ln">40</span><span class="cl"><span class="c1"># ! Remove Key (Host) ! #</span>
-</span></span><span class="line"><span class="ln">41</span><span class="cl">rm /home/user/sshkey.pub</span></span></code></pre></div><h3 id="firewall-configuration">Firewall Configuration</h3>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! USE 100 KDF ROUNDS ! #</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">ssh-keygen -t ed25519 -a <span class="m">100</span> -o -f ~/.ssh/sshkey
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># ! ENTER A STRONG PASSPHRASE ! #</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">Generating public/private ed25519 key pair.
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>: 
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">Enter same passphrase again: 
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"># ! Output Should Be Similar ! #</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">Your identification has been saved in /home/user/.ssh/sshkey
+</span></span><span class="line"><span class="ln">12</span><span class="cl">Your public key has been saved in /home/user/.ssh/sshkey.pub
+</span></span><span class="line"><span class="ln">13</span><span class="cl">The key fingerprint is:
+</span></span><span class="line"><span class="ln">14</span><span class="cl">SHA256:tCzBHeMoatZ5jR3pvKaGdRs83AHARTYEk3j5Ln8VccE user@9020MT
+</span></span><span class="line"><span class="ln">15</span><span class="cl">The key<span class="err">&#39;</span>s randomart image is:
+</span></span><span class="line"><span class="ln">16</span><span class="cl">+--<span class="o">[</span>ED25519 256<span class="o">]</span>--+
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">|</span>     o+OO    ... <span class="p">|</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">|</span>    ..<span class="o">=</span>*.<span class="o">=</span>  . E  <span class="p">|</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">|</span>    ..+.*.   o   <span class="p">|</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">|</span>   o o X.o. .    <span class="p">|</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">|</span>  + o ++S. . .   <span class="p">|</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">|</span> o   .o.B.. .    <span class="p">|</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="p">|</span>     o +o+ .     <span class="p">|</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="p">|</span>    . .oo .      <span class="p">|</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="p">|</span>     ..  .       <span class="p">|</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">+----<span class="o">[</span>SHA256<span class="o">]</span>-----+
+</span></span><span class="line"><span class="ln">27</span><span class="cl">
+</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="c1">### Deploy the Key (From Client) ###</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">scp ~/.ssh/sshkey.pub root@host:/home/user/
+</span></span><span class="line"><span class="ln">30</span><span class="cl">
+</span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="c1"># ! Install the Key (On Host) ! #</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">mkdir -p /home/user/.ssh
+</span></span><span class="line"><span class="ln">33</span><span class="cl">install -m <span class="m">600</span> /dev/null /home/user/.ssh/authorized_keys
+</span></span><span class="line"><span class="ln">34</span><span class="cl">cat /home/user/sshkey.pub &gt;&gt; /home/user/.ssh/authorized_keys
+</span></span><span class="line"><span class="ln">35</span><span class="cl">
+</span></span><span class="line"><span class="ln">36</span><span class="cl"><span class="c1"># ! Manage Permissions (On Host) ! #</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">chmod <span class="m">700</span> /home/user/.ssh
+</span></span><span class="line"><span class="ln">38</span><span class="cl">chmod <span class="m">600</span> /home/user/.ssh/authorized_keys
+</span></span><span class="line"><span class="ln">39</span><span class="cl">chown -R user /home/user
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="c1"># ! Remove Key (Host) ! #</span>
+</span></span><span class="line"><span class="ln">42</span><span class="cl">rm /home/user/sshkey.pub</span></span></code></pre></div><h3 id="firewall-configuration">Firewall Configuration</h3>
 <p>Before we configure SSH (on the host), we need to manage our firewall first.</p>
 <p>UFW is commonly bundled with stock Debian/Ubuntu server images, and while it is still more than enough—iptables is <em>far more</em> granular.</p>
 
@@ -717,7 +729,7 @@ t6vN2CWgUgXvgQM=
 <p>This site is still highly vulnerable, and we&rsquo;ll need to implement CSP policies and some configuration changes to Nginx itself; this needs to be <strong>production grade</strong>.</p>
 <small><i><b>In no way should you actually leave it this vulnerable—even if your site is purely static, you should harden it as much as possible.</b></i></small>
 
-<p><a href="https://masontuckett.xyz/posts/web-hardening/">Check out my follow-up article regarding web hardening</a>.</p>
+<p><a href="/posts/web-hardening/">Check out my follow-up article regarding web hardening</a>.</p>
 ]]></content:encoded>
     </item>
     <item>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Csp on masontuckett.xyz</title>
+    <link>https://masontuckett.xyz/tags/csp/</link>
+    <description>Recent content in Csp on masontuckett.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
+    <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
+    <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 26 Oct 2025 00:38:44 -0700</lastBuildDate>
+    <atom:link href="https://masontuckett.xyz/tags/csp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Hosting</title>
+      <link>https://masontuckett.xyz/posts/web-hardening/</link>
+      <pubDate>Sun, 26 Oct 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/web-hardening/</guid>
+      <description>&lt;p&gt;A Brief Overview of Web Hardening&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-web-hardening&#34;&gt;What is Web Hardening?&lt;/h2&gt;&#xA;&lt;p&gt;Web hardening is the intentional process of enhancing an application&amp;rsquo;s security posture—by reducing it&amp;rsquo;s effective attack surface.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>A Brief Overview of Web Hardening</p>
+<h2 id="what-is-web-hardening">What is Web Hardening?</h2>
+<p>Web hardening is the intentional process of enhancing an application&rsquo;s security posture—by reducing it&rsquo;s effective attack surface.</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

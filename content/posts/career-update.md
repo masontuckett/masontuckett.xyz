@@ -59,7 +59,7 @@ __The only reason I even pursued higher education was because I was given a life
 - Vocational School
 - Homelessness
 
-I was nearly a high school drop-out at age sixteen—migrating to online education—*in hopes of recovering what little I had left.*
+I was nearly a [high school drop-out](https://web.archive.org/web/20251026111432/https://prezi.com/p/pdoo8ktodsxb/booth-and-hamlet-justifications/) at age sixteen—migrating to online education—*in hopes of recovering what little I had left.*
 
 Even at that moment, I still chose not to do critical homework, contingent upon my graduation, for nearly two years—*up until age eighteen.*
 

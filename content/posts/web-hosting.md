@@ -88,10 +88,11 @@ passwd user
 
 It is best to avoid RSA, as it is an **outdated** cryptographic standard compared to the much newer and robust ED25519 algorithm _(yes, even with the -b arg)_.
 
-{{< small >}}RSA 4096 (integer factorization) is still somewhat comparable to ED25519 but has lower security per bit than ED25519's ECC algorithm.{{</ small >}} 
+{{< small >}}RSA 4096 (integer factorization) is still mathematically stronger than ED25519, but RSA generally has lower security per bit than ED25519's ECC algorithm.{{</ small >}} 
 
 ```sh
 ### Generate a Secure ED25519 Key (Client) ###
+# ! USE 100 KDF ROUNDS ! #
 ssh-keygen -t ed25519 -a 100 -o -f ~/.ssh/sshkey
 
 # ! ENTER A STRONG PASSPHRASE ! #
@@ -424,7 +425,7 @@ This site is still highly vulnerable, and we'll need to implement CSP policies a
 
 {{< small >}}In no way should you actually leave it this vulnerable—even if your site is purely static, you should harden it as much as possible.{{</ small >}}
 
-[Check out my follow-up article regarding web hardening](https://masontuckett.xyz/posts/web-hardening/).
+[Check out my follow-up article regarding web hardening](/posts/web-hardening/).
 
 
 
