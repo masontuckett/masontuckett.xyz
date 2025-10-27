@@ -57,7 +57,7 @@ Write Up: https://github.com/masontuckett/home-lab
 
 ## Volunteering
 
-__Active Mentorship__\
+__Active Mentorship (High School Student)__\
 *July 2025*
 - Following my role as an instructor in the Ken Garff Esports Summer Tech Track—I continued to mentor an outstanding student who showed exceptional curiosity in the cybersecurity field.
 - To further his learning, I designed and implemented a home lab tailored around a loosely inspired real-world enterprise environment—reproducing and mirroring my personal configurations.
@@ -72,7 +72,11 @@ __Active Mentorship__\
 
 ```sh
 ### Web Hosting (Headers) ###
+# ! Clearnet ! #
 curl -vkI https://smithbarlow.net
+
+# ! Tor ! #
+curl -vI --socks5-hostname 127.0.0.1:9050 http://3xem3fnyur2igj2ldd7vqp7lmecxlwxm4kdcmsbcqrqv2i3gn7e4y4id.onion
 
 ### DNS ###
 dig @9.9.9.9 smithbarlow.net any +dnssec
@@ -80,3 +84,20 @@ dig @9.9.9.9 smithbarlow.net any +dnssec
 ### Site Repo ###
 https://github.com/smithbarlow/smithbarlow.net
 ```
+
+__Active Mentorship (College Student)__\
+*October 2025*
+- As a mutual friend of mine returned from his mission (LDS), he confided in me that he was unsure of what path he wanted to take with his career.
+- Understanding what his goals, aims, and ambitions were—I recommended that he seek Weber State University's [Management Information Systems (MIS)](https://www.weber.edu/Majors/management-information-systems.html) program.
+- I closely advised his transition from Economics to MIS, with the context of his propensity for working closely under tech startups; [he is prime Carnegie Mellon material](https://www.weber.edu/wsumagazine/fall-2020/weber-watch/WSU-MIS-graduates.html). 
+- I offered continuous support, discussing his prospects on many multiple-hour calls—building an academic roadmap for achieving his goals. 
+- I mirrored my configuration and setup of my high school mentee—constructing an enterprise-grade lab and an online portfolio template. 
+- I adamantly emphasized the significance of improving his technical skillset with a certification game plan before MIS enrollment. 
+
+### Verification
+
+{{< small >}}Information will be provided as soon as it goes live.{{</ small >}} 
+
+
+
+
