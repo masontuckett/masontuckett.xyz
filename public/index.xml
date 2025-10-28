@@ -232,7 +232,7 @@ t6vN2CWgUgXvgQM=
       <link>https://masontuckett.xyz/services/</link>
       <pubDate>Wed, 13 Aug 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/services/</guid>
-      <description>&lt;h1 id=&#34;self-hosted-services&#34;&gt;Self-Hosted Services&lt;/h1&gt;&#xA;&lt;div class=&#34;services&#34;&gt;&#xA;        &lt;div class=&#34;service&#34;&gt;&#xA;          &lt;div class=&#34;service-icon&#34;&gt;&#xA;            &lt;img src=&#34;https://masontuckett.xyz/images/4get.png&#34; alt=&#34;4get&#34; loading=&#34;lazy&#34; decoding=&#34;async&#34;&gt;&#xA;          &lt;/div&gt;&#xA;&#xA;          &lt;div class=&#34;service-body&#34;&gt;&#xA;            &lt;h3 class=&#34;service-title&#34;&gt;4get&lt;/h3&gt;&#xA;            &lt;div class=&#34;service-text&#34;&gt;Free and open-source privacy-respecting metasearch engine.&lt;/div&gt;&#xA;              &lt;div class=&#34;service-links&#34;&gt;&lt;a href=&#34;https://search.tuckettlab.xyz&#34;&gt;search.tuckettlab.xyz&lt;/a&gt;&lt;a href=&#34;http://ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd.onion&#34;&gt;Tor Mirror&lt;/a&gt;&#xA;              &lt;/div&gt;&#xA;          &lt;/div&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;div class=&#34;service&#34;&gt;&#xA;          &lt;div class=&#34;service-icon&#34;&gt;&#xA;            &lt;img src=&#34;https://masontuckett.xyz/images/calibre.png&#34; alt=&#34;Calibre&#34; loading=&#34;lazy&#34; decoding=&#34;async&#34;&gt;&#xA;          &lt;/div&gt;&#xA;&#xA;          &lt;div class=&#34;service-body&#34;&gt;&#xA;            &lt;h3 class=&#34;service-title&#34;&gt;Calibre&lt;/h3&gt;&#xA;            &lt;div class=&#34;service-text&#34;&gt;Cross-platform, free and open-source eBook virtual library suite.&lt;/div&gt;&#xA;              &lt;div class=&#34;service-links&#34;&gt;&lt;a href=&#34;mailto:mason@tuckett.xyz&#34;&gt;calibre.tuckettlab.xyz&lt;/a&gt;&lt;a href=&#34;https://library.tuckettlab.xyz&#34;&gt;Clearnet Library (Open)&lt;/a&gt;&lt;a href=&#34;http://ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd.onion&#34;&gt;Tor Mirror (Open)&lt;/a&gt;&#xA;              &lt;/div&gt;&#xA;          &lt;/div&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;div class=&#34;service&#34;&gt;&#xA;          &lt;div class=&#34;service-icon&#34;&gt;&#xA;            &lt;img src=&#34;https://masontuckett.xyz/images/papermc.webp&#34; alt=&#34;PaperMC&#34; loading=&#34;lazy&#34; decoding=&#34;async&#34;&gt;&#xA;          &lt;/div&gt;&#xA;&#xA;          &lt;div class=&#34;service-body&#34;&gt;&#xA;            &lt;h3 class=&#34;service-title&#34;&gt;PaperMC&lt;/h3&gt;&#xA;            &lt;div class=&#34;service-text&#34;&gt;Lightweight Bukkit/Spigot-compatible vanilla Minecraft server.&lt;/div&gt;&#xA;              &lt;div class=&#34;service-links&#34;&gt;&lt;a href=&#34;mailto:mason@tuckett.xyz&#34;&gt;mc.tuckettlab.xyz&lt;/a&gt;&#xA;              &lt;/div&gt;&#xA;          &lt;/div&gt;&#xA;        &lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://masontuckett.xyz/sha512-hashes.txt&#34;&gt;Checksums&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://masontuckett.xyz/privacy-policy.txt&#34;&gt;Privacy Policy&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://masontuckett.xyz/tor-mirror-statement.txt&#34;&gt;Mirror Statement&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;h1 id=&#34;self-hosted-services&#34;&gt;Self-Hosted Services&lt;/h1&gt;&#xA;&lt;div class=&#34;services&#34;&gt;&#xA;        &lt;div class=&#34;service&#34;&gt;&#xA;          &lt;div class=&#34;service-icon&#34;&gt;&#xA;            &lt;img src=&#34;https://masontuckett.xyz/images/4get.png&#34; alt=&#34;4get&#34; loading=&#34;lazy&#34; decoding=&#34;async&#34;&gt;&#xA;          &lt;/div&gt;&#xA;&#xA;          &lt;div class=&#34;service-body&#34;&gt;&#xA;            &lt;h3 class=&#34;service-title&#34;&gt;4get&lt;/h3&gt;&#xA;            &lt;div class=&#34;service-text&#34;&gt;Free and open-source privacy-respecting metasearch engine.&lt;/div&gt;&#xA;              &lt;div class=&#34;service-links&#34;&gt;&lt;a href=&#34;https://search.tuckettlab.xyz&#34;&gt;search.tuckettlab.xyz&lt;/a&gt;&lt;a href=&#34;http://ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd.onion&#34;&gt;Tor Mirror&lt;/a&gt;&#xA;              &lt;/div&gt;&#xA;          &lt;/div&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;div class=&#34;service&#34;&gt;&#xA;          &lt;div class=&#34;service-icon&#34;&gt;&#xA;            &lt;img src=&#34;https://masontuckett.xyz/images/calibre.png&#34; alt=&#34;Calibre&#34; loading=&#34;lazy&#34; decoding=&#34;async&#34;&gt;&#xA;          &lt;/div&gt;&#xA;&#xA;          &lt;div class=&#34;service-body&#34;&gt;&#xA;            &lt;h3 class=&#34;service-title&#34;&gt;Calibre&lt;/h3&gt;&#xA;            &lt;div class=&#34;service-text&#34;&gt;Cross-platform, free and open-source eBook virtual library suite.&lt;/div&gt;&#xA;              &lt;div class=&#34;service-links&#34;&gt;&lt;a href=&#34;mailto:mason@tuckett.xyz&#34;&gt;calibre.tuckettlab.xyz&lt;/a&gt;&lt;a href=&#34;https://library.tuckettlab.xyz&#34;&gt;Clearnet Library (Open)&lt;/a&gt;&lt;a href=&#34;http://uhvvgof3jxzuric5v6f2hfncxr47l3ctgfz2j2kq25fm2d6ul3qpetid.onion&#34;&gt;Tor Mirror (Open)&lt;/a&gt;&#xA;              &lt;/div&gt;&#xA;          &lt;/div&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;div class=&#34;service&#34;&gt;&#xA;          &lt;div class=&#34;service-icon&#34;&gt;&#xA;            &lt;img src=&#34;https://masontuckett.xyz/images/papermc.webp&#34; alt=&#34;PaperMC&#34; loading=&#34;lazy&#34; decoding=&#34;async&#34;&gt;&#xA;          &lt;/div&gt;&#xA;&#xA;          &lt;div class=&#34;service-body&#34;&gt;&#xA;            &lt;h3 class=&#34;service-title&#34;&gt;PaperMC&lt;/h3&gt;&#xA;            &lt;div class=&#34;service-text&#34;&gt;Lightweight Bukkit/Spigot-compatible vanilla Minecraft server.&lt;/div&gt;&#xA;              &lt;div class=&#34;service-links&#34;&gt;&lt;a href=&#34;mailto:mason@tuckett.xyz&#34;&gt;mc.tuckettlab.xyz&lt;/a&gt;&#xA;              &lt;/div&gt;&#xA;          &lt;/div&gt;&#xA;        &lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://masontuckett.xyz/sha512-hashes.txt&#34;&gt;Checksums&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://masontuckett.xyz/privacy-policy.txt&#34;&gt;Privacy Policy&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://masontuckett.xyz/tor-mirror-statement.txt&#34;&gt;Mirror Statement&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h1 id="self-hosted-services">Self-Hosted Services</h1>
 <div class="services">
         <div class="service">
@@ -255,7 +255,7 @@ t6vN2CWgUgXvgQM=
           <div class="service-body">
             <h3 class="service-title">Calibre</h3>
             <div class="service-text">Cross-platform, free and open-source eBook virtual library suite.</div>
-              <div class="service-links"><a href="mailto:mason@tuckett.xyz">calibre.tuckettlab.xyz</a><a href="https://library.tuckettlab.xyz">Clearnet Library (Open)</a><a href="http://ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd.onion">Tor Mirror (Open)</a>
+              <div class="service-links"><a href="mailto:mason@tuckett.xyz">calibre.tuckettlab.xyz</a><a href="https://library.tuckettlab.xyz">Clearnet Library (Open)</a><a href="http://uhvvgof3jxzuric5v6f2hfncxr47l3ctgfz2j2kq25fm2d6ul3qpetid.onion">Tor Mirror (Open)</a>
               </div>
           </div>
         </div>
@@ -293,12 +293,12 @@ t6vN2CWgUgXvgQM=
       <link>https://masontuckett.xyz/posts/career-update/</link>
       <pubDate>Fri, 24 Oct 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/posts/career-update/</guid>
-      <description>&lt;p&gt;A Personal Update on My Transition to Education&lt;/p&gt;&#xA;&lt;h2 id=&#34;a-need-for-clarification&#34;&gt;A Need for Clarification&lt;/h2&gt;&#xA;&lt;p&gt;In my personal life, I have received a lot of confusion and outright bewilderment as to why I am choosing to &lt;em&gt;temporarily&lt;/em&gt; transition into secondary education.&lt;/p&gt;&#xA;&lt;p&gt;As I am relatively public, and this website serves as a sort of refined &lt;em&gt;&lt;strong&gt;proof of character&lt;/strong&gt;&lt;/em&gt;—I wanted to dispel the misconceptions and vast mischaracterizations levied against my trajectory.&lt;/p&gt;&#xA;&lt;h3 id=&#34;why&#34;&gt;&amp;ldquo;WHY!?&amp;rdquo;&lt;/h3&gt;&#xA;&lt;p&gt;To outsiders, it appears as if I am throwing away a fledgling, long-term career in cybersecurity; &lt;strong&gt;that is objectively the furthest thing from the truth.&lt;/strong&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;A Personal Update on My Transition to Education&lt;/p&gt;&#xA;&lt;h2 id=&#34;a-need-for-clarification&#34;&gt;A Need for Clarification&lt;/h2&gt;&#xA;&lt;p&gt;In my personal life, I have received a lot of confusion and outright bewilderment as to why I am choosing to &lt;em&gt;temporarily&lt;/em&gt; transition into secondary education.&lt;/p&gt;&#xA;&lt;p&gt;As I am relatively public, and this website serves as a sort of refined &lt;em&gt;&lt;strong&gt;proof of character&lt;/strong&gt;&lt;/em&gt;—I wanted to dispel the misconceptions and vast mischaracterizations levied against my trajectory.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why&#34;&gt;&amp;ldquo;WHY!?&amp;rdquo;&lt;/h2&gt;&#xA;&lt;p&gt;To outsiders, it appears as if I am throwing away a fledgling, long-term career in cybersecurity; &lt;strong&gt;that is objectively the furthest thing from the truth.&lt;/strong&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>A Personal Update on My Transition to Education</p>
 <h2 id="a-need-for-clarification">A Need for Clarification</h2>
 <p>In my personal life, I have received a lot of confusion and outright bewilderment as to why I am choosing to <em>temporarily</em> transition into secondary education.</p>
 <p>As I am relatively public, and this website serves as a sort of refined <em><strong>proof of character</strong></em>—I wanted to dispel the misconceptions and vast mischaracterizations levied against my trajectory.</p>
-<h3 id="why">&ldquo;WHY!?&rdquo;</h3>
+<h2 id="why">&ldquo;WHY!?&rdquo;</h2>
 <p>To outsiders, it appears as if I am throwing away a fledgling, long-term career in cybersecurity; <strong>that is objectively the furthest thing from the truth.</strong></p>
 <p>I had tried for years to enter the cybersecurity market during my time at Weber State University—<strong><em>all to no avail</em></strong>.</p>
 <p>Suddenly, my efforts started to rapidly catch up to me, and everything changed once I concluded undergrad.</p>
@@ -307,7 +307,7 @@ t6vN2CWgUgXvgQM=
 <small><i><b>Absolutely nothing—merely a piece of paper adorning my wall.</b></i></small>
 
 <p>Consequently, this left me in a state of immense disarray, absolutely appalled—culminating in an arduous, nearly two-month-long period of intense introspection.</p>
-<h3 id="what-i-realized">What I Realized</h3>
+<h2 id="what-i-realized">What I Realized</h2>
 <p>I intrinsically, fundamentally disagree with cybersecurity&rsquo;s current state of rampant credentialism, egoism, nepotism, and overt gatekeeping.</p>
 <p>As a person of such impressive credentials (<em><strong>given my age</strong></em>), I never found myself claiming <em>SME-level expertise</em>.</p>
 <small><i><b>Why must this be such a pervasive issue?</b></i></small>
@@ -316,7 +316,7 @@ t6vN2CWgUgXvgQM=
 <small><i><b>But it never really "clicked" until just recently.</b></i></small>
 
 <p><em>I was faced with an existential, spiritual rot—of which I want no part of.</em></p>
-<h3 id="my-journey">My Journey</h3>
+<h2 id="my-journey">My Journey</h2>
 <p>I am not some <em>&ldquo;prodigy&rdquo;</em> or <em>&ldquo;gifted individual&rdquo;—I am a man who had to earn and fight <strong>tooth and nail</strong> for everything I have ever achieved.</em></p>
 <p>I entered college with zero plans or in-depth understanding of technology; <em>I was quite infantile, toying with computers as a hobby.</em></p>
 <p><strong>The only reason I even pursued higher education was because I was given a life-defining ultimatum:</strong></p>
@@ -334,7 +334,7 @@ t6vN2CWgUgXvgQM=
 
 <p>In the years to come, as I received a highly sudden yet continuous flow of praise—<em>I was left stewing, questioning:</em></p>
 <p><strong>What Now?</strong></p>
-<h3 id="service-as-a-career">Service as a Career</h3>
+<h2 id="service-as-a-career">Service as a Career</h2>
 <p>I harkened back to my time as an instructor at Ken Garff&rsquo;s summer tech track—and the countless hours I spent debugging with <a href="https://smithbarlow.net">Smith</a>.</p>
 <small><i><b>I realized in that moment that my life should be for and in the service of others.</b></i></small>
 
@@ -345,7 +345,7 @@ t6vN2CWgUgXvgQM=
 <p>Entering the role was among the most difficult adjustments I had made in my career.</p>
 <p><strong>Far surpassing any academic work or position I have ever held.</strong></p>
 <p>It has been the most rewarding experience of my life—<em>providing a level of happiness I have never known.</em></p>
-<h3 id="the-future">The Future</h3>
+<h2 id="the-future">The Future</h2>
 <p>While I am focusing on adjunct roles at technical colleges in the near future, secondary education gives me an incredible platform.</p>
 <p>I am uniquely positioned—attaining invaluable experience while having plenty of time for PhD coursework.</p>
 <p>Additionally, I will absolutely continue my contracted network engineering projects—<em>compounding into my aim to do technical consulting.</em></p>
@@ -353,7 +353,7 @@ t6vN2CWgUgXvgQM=
 
 <p>Professorship is my end goal—<em>building a profile for mentoring <strong>lost men in a sea of disillusionment and demoralization</strong></em>.</p>
 <p>Hence my desire to become involved with the youth—<em>hopefully, in due time,</em> <em><strong>piloting initiatives to ensure children receive the scaffolding I never had</strong></em>.</p>
-<h3 id="the-present-game-plan">The Present (Game Plan)</h3>
+<h2 id="the-present-game-plan">The Present (Game Plan)</h2>
 <ul>
 <li><em>Continue volunteer work</em></li>
 <li><em>Continue mentoring Smith</em></li>

@@ -1,14 +1,15 @@
 body {
-  font-family: Verdana, sans-serif;
+  font-family: monospace;
   margin: auto;
   padding: 20px;
   max-width: 720px;
   text-align: left;
-  background-color: #13151a;
+  background-color: #07080a;
   word-wrap: break-word;
   overflow-wrap: break-word;
   line-height: 1.5;
   color: #c9d1d9;
+  font-size: 0.95rem;
 }
 
 h1,
@@ -116,7 +117,7 @@ img {
 code {
   padding: 2px 5px;
   color: #f8f8f2;
-  background-color: #1b1c24;
+  background-color: #14151b;
 }
 
 pre code {
@@ -138,8 +139,9 @@ blockquote {
 }
 
 footer {
-  padding: 25px;
+  padding: 0px;
   text-align: center;
+  margin-top: 37.5px;
 }
 
 footer a{
@@ -147,11 +149,18 @@ text-decoration: none;
 color: white;
 }
 
-#rss, #linkedin, #github, #tor {
+#foot-border {
+border-top: 1px dashed white;
+margin-bottom: 4px;
+margin-left: 17.5px;
+margin-right: 17.5px;
+}
+
+#rss, #linkedin, #github, #tor, #clear {
 margin-top: 12.5px;
 width: 30px;
 height: 30px;
-padding: 0px 10px 0px 10px;
+padding: 0px 7.5px 0px 7.5px;
 }
 
 #small-text {
@@ -244,8 +253,8 @@ figcaption > p {
   grid-template-columns: 120px 1fr;
   gap: 14px;
   align-items: start;
-  background-color: #1b1c24;
-  border: 2.5px solid #1b1c24;
+  background-color: #14151b;
+  border: 2.5px solid #14151b;
   border-radius: 0;
   padding: 14px;
 }

@@ -17,7 +17,7 @@ In my personal life, I have received a lot of confusion and outright bewildermen
 
 As I am relatively public, and this website serves as a sort of refined *__proof of character__*—I wanted to dispel the misconceptions and vast mischaracterizations levied against my trajectory. 
 
-### "WHY!?"
+## "WHY!?"
 
 To outsiders, it appears as if I am throwing away a fledgling, long-term career in cybersecurity; __that is objectively the furthest thing from the truth.__
 
@@ -33,7 +33,7 @@ __*What changed?*__
 
 Consequently, this left me in a state of immense disarray, absolutely appalled—culminating in an arduous, nearly two-month-long period of intense introspection. 
 
-### What I Realized
+## What I Realized
 
 I intrinsically, fundamentally disagree with cybersecurity's current state of rampant credentialism, egoism, nepotism, and overt gatekeeping.
 
@@ -47,7 +47,7 @@ __I had witnessed this firsthand:__ plagiarized presentations, falsified credent
 
 *I was faced with an existential, spiritual rot—of which I want no part of.*
 
-### My Journey
+## My Journey
 
 I am not some *"prodigy"* or *"gifted individual"—I am a man who had to earn and fight __tooth and nail__ for everything I have ever achieved.*
 
@@ -73,7 +73,7 @@ In the years to come, as I received a highly sudden yet continuous flow of prais
 
 __What Now?__
 
-### Service as a Career
+## Service as a Career
 
 I harkened back to my time as an instructor at Ken Garff's summer tech track—and the countless hours I spent debugging with [Smith](https://smithbarlow.net).
 
@@ -91,7 +91,7 @@ __Far surpassing any academic work or position I have ever held.__
 
 It has been the most rewarding experience of my life—*providing a level of happiness I have never known.* 
 
-### The Future
+## The Future
 
 While I am focusing on adjunct roles at technical colleges in the near future, secondary education gives me an incredible platform. 
 
@@ -106,7 +106,7 @@ Professorship is my end goal—*building a profile for mentoring __lost men in a
 Hence my desire to become involved with the youth—*hopefully, in due time,* *__piloting initiatives to ensure children receive the scaffolding I never had__*. 
 
 
-### The Present (Game Plan)
+## The Present (Game Plan)
 
 - *Continue volunteer work*
 - *Continue mentoring Smith*
