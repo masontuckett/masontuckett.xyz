@@ -24,7 +24,7 @@ In the near future, I will begin my [Post-Baccalaureate Certificate in Teaching 
 __Teacher Assistant__\
 __*Davis School District*__\
 *October, 2025 - Present*
-- Conducted daily SIPPS lessons (Systematic Instruction in Phonological Awareness, Phonics, and Sight Words) to grades 1-5—improving literacy, fluency, and decoding acquisition. 
+- Conducted daily SIPPS lessons (Systematic Instruction in Phonological Awareness, Phonics, and Sight Words) to grades K-6—improving literacy, fluency, and decoding acquisition. 
 - Utilized Acadience assessments to track and monitor student progress—adjusting pacing and reading intervention methodology.
 - Prepared weekly SIPPS lesson plans—collaborating with teacher assistants and educational staff to ensure adequate direction. 
 - Facilitated small-group instruction for rounds of 5-10 students—maintaining engagement through positive reinforcement techniques and structured reading routines.
