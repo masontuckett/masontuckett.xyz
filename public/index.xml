@@ -183,7 +183,7 @@ t6vN2CWgUgXvgQM=
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">curl -vkI https://masontuckett.xyz
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># ! Tor ! #</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">curl -vI --socks5-hostname 127.0.0.1:9050 http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">curl -vI --socks5-hostname 127.0.0.1:9050 http://mtuckod2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion
 </span></span><span class="line"><span class="ln"> 7</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### DNS ###</span>
 </span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># ! Main Domain ! #</span>
@@ -205,7 +205,7 @@ t6vN2CWgUgXvgQM=
 <li>I offered continuous support—guiding my mentee through the process of studying/obtaining foundational IT certifications, and exploring his area of interest (penetration testing).</li>
 <li>A fully air-gapped SOC lab was created in Proxmox—allowing my mentee to gain exposure to critical industry toolsets (SIEM/IDS/IPS - majority Wazuh).</li>
 <li>802.1Q VLANs were implemented ensuring a secure and realistic learning environment with appropriate WireGuard tunneling (<a href="https://www.ssllabs.com/ssltest/analyze.html?d=smithbarlow.net&amp;latest">TLS 1.2/1.3</a>) for public services.</li>
-<li>DNSSEC, CAA hardening, Nginx hardening (<a href="https://developer.mozilla.org/en-US/observatory/analyze?host=smithbarlow.net">CSP</a>/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.</li>
+<li>DNSSEC, CAA hardening, Nginx hardening (<a href="https://developer.mozilla.org/en-US/observatory/analyze?host=smithbarlow.net">CSP</a>/rate-limiting, UA-gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.</li>
 </ul>
 <p><a href="/posts/mentee-lab/">A Brief Write Up May Be Found Here.</a></p>
 <h3 id="verification-1">Verification</h3>
@@ -454,31 +454,31 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Standard Nginx Release ###</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">smith@smithbarlow:~$ apt-cache policy nginx
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">nginx:
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  Installed: 1.26.3-3+deb13u1
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  Candidate: 1.26.3-3+deb13u1
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  Version table:
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> *** 1.26.3-3+deb13u1 <span class="m">500</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="m">500</span> https://deb.debian.org/debian trixie/main amd64 Packages
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="m">500</span> https://debian.mirror.constant.com trixie/main amd64 Packages
-</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="m">100</span> /var/lib/dpkg/status
-</span></span><span class="line"><span class="ln">11</span><span class="cl">
-</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1">### Clear Headers ###</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">smith@smithbarlow:/etc/nginx$ apt-cache policy libnginx-mod-http-headers-more-filter
-</span></span><span class="line"><span class="ln">14</span><span class="cl">libnginx-mod-http-headers-more-filter:
-</span></span><span class="line"><span class="ln">15</span><span class="cl">  Installed: 1:0.38-2
-</span></span><span class="line"><span class="ln">16</span><span class="cl">  Candidate: 1:0.38-2
-</span></span><span class="line"><span class="ln">17</span><span class="cl">  Version table:
-</span></span><span class="line"><span class="ln">18</span><span class="cl"> *** 1:0.38-2 <span class="m">500</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">        <span class="m">500</span> https://deb.debian.org/debian trixie/main amd64 Packages
-</span></span><span class="line"><span class="ln">20</span><span class="cl">        <span class="m">500</span> https://debian.mirror.constant.com trixie/main amd64 Packages
-</span></span><span class="line"><span class="ln">21</span><span class="cl">        <span class="m">100</span> /var/lib/dpkg/status</span></span></code></pre></div><p>I will be sticking with <strong>Debian Stable</strong>—<em>avoiding Nginx&rsquo;s official Debian repository for stability concerns</em>.</p>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! From My Mentee&#39;s System ! #</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">smith@smithbarlow:~$ apt-cache policy nginx
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">nginx:
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  Installed: 1.26.3-3+deb13u1
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  Candidate: 1.26.3-3+deb13u1
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  Version table:
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"> *** 1.26.3-3+deb13u1 <span class="m">500</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="m">500</span> https://deb.debian.org/debian trixie/main amd64 Packages
+</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="m">500</span> https://debian.mirror.constant.com trixie/main amd64 Packages
+</span></span><span class="line"><span class="ln">11</span><span class="cl">        <span class="m">100</span> /var/lib/dpkg/status
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">### Clear Headers ###</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">smith@smithbarlow:/etc/nginx$ apt-cache policy libnginx-mod-http-headers-more-filter
+</span></span><span class="line"><span class="ln">15</span><span class="cl">libnginx-mod-http-headers-more-filter:
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  Installed: 1:0.38-2
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  Candidate: 1:0.38-2
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  Version table:
+</span></span><span class="line"><span class="ln">19</span><span class="cl"> *** 1:0.38-2 <span class="m">500</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">        <span class="m">500</span> https://deb.debian.org/debian trixie/main amd64 Packages
+</span></span><span class="line"><span class="ln">21</span><span class="cl">        <span class="m">500</span> https://debian.mirror.constant.com trixie/main amd64 Packages
+</span></span><span class="line"><span class="ln">22</span><span class="cl">        <span class="m">100</span> /var/lib/dpkg/status</span></span></code></pre></div><p>I will be sticking with <strong>Debian Stable</strong>—<em>avoiding Nginx&rsquo;s official Debian repository for stability concerns</em>.</p>
 <p>Configuration will still reflect each area of interest—though ideally, I&rsquo;d entirely avoid standard binary releases and opt for containerization.</p>
 <p>If you are running Docker as root (when not necessary), you still open a considerable attack surface—<em>choose Podman (<strong>daemonless</strong>) as a sane alternative</em>.</p>
 <small><i><b>"Complexity theater" ignores the glaring inconsistencies with using "extensive" Ansible playbooks to deploy escapable ROOT containers!</b></i></small>
 
-<p><em><strong>(OCSP Stapling will be absent).</strong></em></p>
 <h3 id="ciphers">Ciphers</h3>
 <p>You may apply these universally, or across each designated vHost:</p>
 
@@ -501,8 +501,19 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 </span></span><span class="line"><span class="ln">13</span><span class="cl"># ! Redundant But Forces X25519 FIRST ! #
 </span></span><span class="line"><span class="ln">14</span><span class="cl">ssl_conf_command Groups X25519:P-384;
 </span></span><span class="line"><span class="ln">15</span><span class="cl">
-</span></span><span class="line"><span class="ln">16</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
-</span></span><span class="line"><span class="ln">17</span><span class="cl">}</span></span></code></pre></div><h3 id="http2-http3">HTTP/2 HTTP/3</h3>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"># ! Optional Stapling ! #
+</span></span><span class="line"><span class="ln">17</span><span class="cl">ssl_stapling on;
+</span></span><span class="line"><span class="ln">18</span><span class="cl">ssl_stapling_verify on;
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl"># ! Optional Resolver ! #
+</span></span><span class="line"><span class="ln">21</span><span class="cl"># ! I&#39;d Advise Against Using Corporate DNS ! #
+</span></span><span class="line"><span class="ln">22</span><span class="cl">resolver 1.1.1.1 8.8.8.8 valid=300s;
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl"># ! Tweak if Needed ! #
+</span></span><span class="line"><span class="ln">25</span><span class="cl">resolver_timeout 10s;
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
+</span></span><span class="line"><span class="ln">28</span><span class="cl">}</span></span></code></pre></div><h3 id="http2-http3">HTTP/2 HTTP/3</h3>
 <p><strong>HTTP/2:</strong></p>
 
 
@@ -532,7 +543,12 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 </span></span><span class="line"><span class="ln"> 7</span><span class="cl">add_header Alt-Svc &#39;h3=&#34;:443&#34;; ma=86400&#39; always;
 </span></span><span class="line"><span class="ln"> 8</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 9</span><span class="cl"># ! ↓ Site Config ↓ ! #
-</span></span><span class="line"><span class="ln">10</span><span class="cl">}</span></span></code></pre></div><h3 id="security-headers">Security Headers</h3>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">}</span></span></code></pre></div><p><small><i><b>I am personally not going to use HTTP/3; there is no considerable benefit for my use case.</b></i></small>
+
+<br>
+<small><i><b>I do not want another open port at this moment.</b></i></small>
+</p>
+<h3 id="security-headers">Security Headers</h3>
 <p>I prefer using Nginx&rsquo;s snippets directory to keep my vHost configuration files tidy.</p>
 <small><i><b>It's as simple as including a file from snippets to your designated vHost.</b></i></small>
 
@@ -658,8 +674,12 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 </span></span><span class="line"><span class="ln">11</span><span class="cl">    # ! Specifies Reporting Endpoint (if Needed) ! #
 </span></span><span class="line"><span class="ln">12</span><span class="cl">    add_header Reporting-Endpoints &#39;integrity=&#34;https://tld.sld/report&#34;&#39; always;
 </span></span><span class="line"><span class="ln">13</span><span class="cl">
-</span></span><span class="line"><span class="ln">14</span><span class="cl"># ! ↓ Site Config ↓ ! #
-</span></span><span class="line"><span class="ln">15</span><span class="cl">}</span></span></code></pre></div><h3 id="caching">Caching</h3>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    # ! Considering Preloading if Possible (Add &#34;crossorigin=&#34; if Required) ! #
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    # ! Unrelated to HSTS ! #
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    add_header Link &#39;&lt;/eg.js&gt;; rel=preload; as=script; integrity=&#34;sha384-bhFRYtN...&#34; always;   
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">19</span><span class="cl">}</span></span></code></pre></div><h3 id="caching">Caching</h3>
 <p>Caching is incredibly effective in improving response times for HTTP clients.</p>
 <p>Serving immutable assets can <em>drastically</em> improve site performance.</p>
 

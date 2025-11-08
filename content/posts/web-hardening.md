@@ -175,6 +175,7 @@ __*Package Information*__
 
 ```sh
 ### Standard Nginx Release ###
+# ! From My Mentee's System ! #
 smith@smithbarlow:~$ apt-cache policy nginx
 nginx:
   Installed: 1.26.3-3+deb13u1
@@ -205,8 +206,6 @@ If you are running Docker as root (when not necessary), you still open a conside
 
 {{< small >}}"Complexity theater" ignores the glaring inconsistencies with using "extensive" Ansible playbooks to deploy escapable ROOT containers!{{</ small >}}
 
-*__(OCSP Stapling will be absent).__*
-
 ### Ciphers
 
 You may apply these universally, or across each designated vHost:
@@ -226,6 +225,17 @@ ssl_ecdh_curve X25519:secp384r1;
 
 # ! Redundant But Forces X25519 FIRST ! #
 ssl_conf_command Groups X25519:P-384;
+
+# ! Optional Stapling ! #
+ssl_stapling on;
+ssl_stapling_verify on;
+
+# ! Optional Resolver ! #
+# ! I'd Advise Against Using Corporate DNS ! #
+resolver 1.1.1.1 8.8.8.8 valid=300s;
+
+# ! Tweak if Needed ! #
+resolver_timeout 10s;
 
 # ! ↓ Nginx Config ↓ ! #
 }
@@ -261,6 +271,10 @@ add_header Alt-Svc 'h3=":443"; ma=86400' always;
 # ! ↓ Site Config ↓ ! #
 }
 ```
+
+{{< small >}}I am personally not going to use HTTP/3; there is no considerable benefit for my use case.{{</ small >}}
+\
+{{< small >}}I do not want another open port at this moment.{{</ small >}}
 
 ### Security Headers
 
@@ -387,6 +401,10 @@ server {
 
     # ! Specifies Reporting Endpoint (if Needed) ! #
     add_header Reporting-Endpoints 'integrity="https://tld.sld/report"' always;
+
+    # ! Considering Preloading if Possible (Add "crossorigin=" if Required) ! #
+    # ! Unrelated to HSTS ! #
+    add_header Link '</eg.js>; rel=preload; as=script; integrity="sha384-bhFRYtN..." always;   
 
 # ! ↓ Site Config ↓ ! #
 }

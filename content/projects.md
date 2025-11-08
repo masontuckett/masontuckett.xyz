@@ -39,7 +39,7 @@ __VPS__\
 curl -vkI https://masontuckett.xyz
 
 # ! Tor ! #
-curl -vI --socks5-hostname 127.0.0.1:9050 http://vysuvulebawd3iqjiznr4l53hemq5fqtbaapnivhm4zwm3epbqjfnaid.onion
+curl -vI --socks5-hostname 127.0.0.1:9050 http://mtuckod2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion
 
 ### DNS ###
 # ! Main Domain ! #
@@ -64,7 +64,7 @@ __Active Mentorship (High School Student)__\
 - I offered continuous support—guiding my mentee through the process of studying/obtaining foundational IT certifications, and exploring his area of interest (penetration testing).
 - A fully air-gapped SOC lab was created in Proxmox—allowing my mentee to gain exposure to critical industry toolsets (SIEM/IDS/IPS - majority Wazuh).
 - 802.1Q VLANs were implemented ensuring a secure and realistic learning environment with appropriate WireGuard tunneling ([TLS 1.2/1.3](https://www.ssllabs.com/ssltest/analyze.html?d=smithbarlow.net&latest)) for public services.
-- DNSSEC, CAA hardening, Nginx hardening ([CSP](https://developer.mozilla.org/en-US/observatory/analyze?host=smithbarlow.net)/rate-limiting, UA gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.
+- DNSSEC, CAA hardening, Nginx hardening ([CSP](https://developer.mozilla.org/en-US/observatory/analyze?host=smithbarlow.net)/rate-limiting, UA-gating), UFW firewalling, and MAC/sysctl tuning was utilized to ensure excellent availability and a reliable security posture.
 
 [A Brief Write Up May Be Found Here.](/posts/mentee-lab/)
 
