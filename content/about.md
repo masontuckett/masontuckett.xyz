@@ -63,6 +63,9 @@ __*Success in Education*__\
 - [Cyber Skyline - NCL Spring 2025 Individual Game](https://cyberskyline.com/report/UD1M4AHQXCUB) — 296/8573 (Top 3.45%)
  
 ## Education
+
+## Technical
+
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
 > December, 2025 - March, 2026
 >
@@ -79,8 +82,9 @@ __*Success in Education*__\
 > May, 2022
 
 ### Educational Certificates
-> __PBCT, Secondary Education - Weber State University__\
-> January, 2026 - December, 2026
+
+> __CP, Web Essentials - Weber State University__\
+> August, 2025 - December, 2025
 >
 > __[CP, Cybersecurity Policy and Management - Weber State University](https://apps.weber.edu/verify/?dvid=EZ4A6KOU)__\
 > August, 2022 - April, 2025
@@ -93,3 +97,14 @@ __*Success in Education*__\
 >
 > __[CP, Cybersecurity Essentials - Weber State University](https://apps.weber.edu/verify/?dvid=74KAGS9J)__\
 > August, 2022 - April, 2023
+
+## Liberal Arts
+
+> __BA, History - Weber State University__\
+> January, 2026 - December, 2027 (Exp.)
+
+### Educational Certificates
+
+> __PBCT, Secondary Education - Weber State University__\
+> January, 2026 - December, 2026
+

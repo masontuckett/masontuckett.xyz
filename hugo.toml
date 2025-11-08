@@ -85,3 +85,17 @@ enableRobotsTXT = true
   [params.author]
     name = "Mason Tuckett" # Your name as shown in the RSS feed metadata
     email = "mason@tuckett.xyz" # Added to the footer so readers can reply to posts
+
+[mediaTypes."text/nginx"]
+suffixes = ["conf"]
+
+[outputFormats.NginxConf]
+mediaType = "text/nginx"
+isPlainText = true
+isHTML = false
+baseName = "sri-css"   # => public/sri-css.conf
+rel = "alternate"
+
+[outputs]
+home = ["HTML", "RSS", "NginxConf"]   # build the snippet without adding content/_generated
+

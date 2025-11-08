@@ -10,8 +10,8 @@ description = "Mason Tuckett's Services Page"
 # Self-Hosted Services
 
 {{< services >}}
-/images/4get.png|4get|Free and open-source privacy-respecting metasearch engine.|search.tuckettlab.xyz::https://search.tuckettlab.xyz|Tor Mirror::http://ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd.onion
-/images/calibre.png|Calibre|Cross-platform, free and open-source eBook virtual library suite.|calibre.tuckettlab.xyz::mailto:mason@tuckett.xyz|Clearnet Library (Open)::https://library.tuckettlab.xyz|Tor Mirror (Open)::http://uhvvgof3jxzuric5v6f2hfncxr47l3ctgfz2j2kq25fm2d6ul3qpetid.onion
+/images/4get.png|4get|Free and open-source privacy-respecting metasearch engine.|search.tuckettlab.xyz::https://search.tuckettlab.xyz|Tor Mirror::http://mtuck72hhymdaeebyviaralnm3jarac7t6ctxcqzppsbh2gz5kfl2pad.onion
+/images/calibre.png|Calibre|Cross-platform, free and open-source eBook virtual library suite.|calibre.tuckettlab.xyz::mailto:mason@tuckett.xyz|Clearnet Library (Open)::https://library.tuckettlab.xyz|Tor Mirror (Open)::http://mtuckwbhnyx7pk3w3vvyqydv6sag5uxcbsx6dn5q5j4olpqmlkzosbad.onion
 /images/papermc.webp|PaperMC|Lightweight Bukkit/Spigot-compatible vanilla Minecraft server.|mc.tuckettlab.xyz::mailto:mason@tuckett.xyz
 {{< /services >}}
 

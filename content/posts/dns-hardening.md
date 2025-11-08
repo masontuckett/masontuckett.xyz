@@ -264,7 +264,7 @@ With that in mind, DMARC has quite a selection of potential options:
 {{< small >}}For my setup, I do not want ANY mail to be sent from this domain—as this is for self-hosted services ONLY.{{</ small >}}\
 {{< small >}}DKIM will not exist, nor possibly be resolved.{{</ small >}}
 
-```
+```txt
 ### MX Record - NO MAIL ###
 tuckettlab.xyz.		3600	IN	MX	0 .
 
@@ -288,7 +288,7 @@ Doing so provides:
 
 It is as simple as configuring a few keys from your registrar and publishing them within your zone.
 
-```
+```txt
 ### Enable DNSKEY and DS Record for DNSSEC (USE STRONG ALGORITHMS) ###
 tuckettlab.xyz.		3600	IN	DNSKEY	257 3 13 UguAJ1bTfrBPNp+jHQ2oZNaPSUsUHaCnwRW+Wcxaf2BueGEmnMGAINj2 1b7gANfBBqqXoB6dGTeOBHfvjAvOdA==
 
@@ -306,7 +306,7 @@ CAA flags are set in 8-bit values (0-255); 0 is default (non-critical)—which a
 
 Both issue and issuewild are utilized for SSL/TLS distinction; wildcard certs may be utilized, though they are not advised.
 
-```
+```txt
 # Sane Value - Only Allows Strict Issuance From Let's Encrypt ###
 tuckettlab.xyz.		2103	IN	CAA	128 issue "letsencrypt.org"
 
@@ -322,7 +322,8 @@ tuckettlab.xyz.		2103	IN	CAA	128 iodef "mailto:admin@tuckett.xyz"
 It may be useful to include important information within your TXT records, as most text may be inserted.
 
 {{< small >}}I included important statements, checksums, onion location(s) (if not pulled by HTTP header), and my GPG info.{{</ small >}} 
-```
+
+```txt
 ### My TXT Records ###
 tuckettlab.xyz.		1736	IN	TXT	"gpg-mirror=https://github.com/masontuckett/masontuckett.gpg"
 tuckettlab.xyz.		1736	IN	TXT	"gpg=https://masontuckett.xyz/masontuckett.gpg"

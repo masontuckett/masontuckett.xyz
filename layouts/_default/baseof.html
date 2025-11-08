@@ -11,26 +11,30 @@
   {{- partial "seo_tags.html" . -}}
   <meta name="referrer" content="no-referrer" />
 
-  {{ $style := print (default "original" .Site.Params.themeStyle) ".css" | resources.Get | minify }}
-  <link href="{{ $style.RelPermalink }}" rel="stylesheet">
+  {{/* Theme stylesheet: keep clean filename; compute SRI on the minified bytes */}}
+  {{- $styleName := print (default "original" .Site.Params.themeStyle) ".css" -}}
+  {{- $styleMin := resources.Get $styleName | minify -}}
+  {{- $styleFP  := $styleMin | fingerprint "sha512" -}}
+  <link href="{{ $styleMin.RelPermalink }}" rel="stylesheet" integrity="{{ $styleFP.Data.Integrity }}">
 
-  {{ if (.Page.Store.Get "hasCodeBlock") }}
-    {{ $syntax := resources.Get "syntax.css" | minify }}
-    <link href="{{ $syntax.RelPermalink }}" rel="stylesheet">
-  {{ end }}
+  {{/* Optional code block syntax CSS */}}
+  {{- if (.Page.Store.Get "hasCodeBlock") -}}
+    {{- $syntaxMin := resources.Get "syntax.css" | minify -}}
+    {{- $syntaxFP  := $syntaxMin | fingerprint "sha512" -}}
+    <link href="{{ $syntaxMin.RelPermalink }}" rel="stylesheet" integrity="{{ $syntaxFP.Data.Integrity }}">
+  {{- end -}}
 
-  {{ with .Params.style }}
-    {{ $extra := resources.Get . | minify }}
-    <link href="{{ $extra.RelPermalink }}" rel="stylesheet">
-  {{ end }}
+  {{/* Optional page-specific extra CSS from .Params.style */}}
+  {{- with .Params.style -}}
+    {{- $extraMin := resources.Get . | minify -}}
+    {{- $extraFP  := $extraMin | fingerprint "sha512" -}}
+    <link href="{{ $extraMin.RelPermalink }}" rel="stylesheet" integrity="{{ $extraFP.Data.Integrity }}">
+  {{- end -}}
 
-  {{ with .OutputFormats.Get "rss" -}}
+  {{- with .OutputFormats.Get "rss" -}}
   {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end -}}
+  {{- end -}}
 
-  <!-- A partial to be overwritten by the user.
-  Simply place a custom_head.html into
-  your local /layouts/partials-directory -->
   {{- partial "custom_head.html" . -}}
 </head>
 
@@ -45,10 +49,8 @@
     {{- partial "footer.html" . -}}
   </footer>
 
-  <!-- A partial to be overwritten by the user.
-  Simply place a custom_body.html into
-  your local /layouts/partials-directory -->
   {{- partial "custom_body.html" . -}}
 </body>
 
 </html>
+

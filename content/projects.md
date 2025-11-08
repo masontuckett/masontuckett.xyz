@@ -90,9 +90,9 @@ __Active Mentorship (College Student)__\
 - As a mutual friend of mine returned from his mission (LDS), he confided in me that he was unsure of what path he wanted to take with his career.
 - Understanding what his goals, aims, and ambitions were—I recommended that he seek Weber State University's [Management Information Systems (MIS)](https://www.weber.edu/Majors/management-information-systems.html) program.
 - I closely advised his transition from Economics to MIS, with the context of his propensity for working closely under tech startups; [he is prime Carnegie Mellon material](https://www.weber.edu/wsumagazine/fall-2020/weber-watch/WSU-MIS-graduates.html). 
-- I offered continuous support, discussing his prospects on many multiple-hour calls—building an academic roadmap for achieving his goals. 
+- I offered continuous support, discussing his prospects on many multiple-hour calls—building an academic road map for achieving his goals. 
 - I mirrored my configuration and setup of my high school mentee—constructing an enterprise-grade lab and an online portfolio template. 
-- I adamantly emphasized the significance of improving his technical skillset with a certification game plan before MIS enrollment. 
+- I adamantly emphasized the significance of improving his technical skill set with a certification game plan before MIS enrollment. 
 
 ### Verification
 

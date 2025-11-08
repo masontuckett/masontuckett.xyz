@@ -192,7 +192,8 @@
 2 = I do NOT trust<br>
 3 = I trust marginally<br>
 4 = I trust fully<br>
-5 = I trust ultimately</p></blockquote>
+5 = I trust ultimately</p>
+</blockquote>
 <h3 id="deleting-keys">Deleting Keys</h3>
 <p>When deleting keys, it is incredibly important to make sure you are deleting the correct keys.</p>
 <p>If you are deleting a key pair, the private key will need to be deleted first.</p>

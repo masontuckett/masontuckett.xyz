@@ -14,12 +14,633 @@
     <item>
       <title>Web Hardening</title>
       <link>https://masontuckett.xyz/posts/web-hardening/</link>
-      <pubDate>Sun, 26 Oct 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <pubDate>Fri, 07 Nov 2025 00:38:44 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
       <guid>https://masontuckett.xyz/posts/web-hardening/</guid>
-      <description>&lt;p&gt;A Brief Overview of Web Hardening&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-web-hardening&#34;&gt;What is Web Hardening?&lt;/h2&gt;&#xA;&lt;p&gt;Web hardening is the intentional process of enhancing an application&amp;rsquo;s security posture—by reducing its effective attack surface.&lt;/p&gt;</description>
+      <description>&lt;p&gt;A Brief Overview of Web Hardening&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-web-hardening&#34;&gt;What is Web Hardening?&lt;/h2&gt;&#xA;&lt;p&gt;Web hardening is the intentional process of enhancing an application&amp;rsquo;s security posture—by reducing its effective attack surface.&lt;/p&gt;&#xA;&lt;p&gt;The majority of these enhancements are made at the application layer—defining and permitting how web resources may be interacted with.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;&lt;em&gt;In the following sections I will discuss hardening/mitigation strategies&lt;/em&gt;&lt;/strong&gt;: locking down headers, HSTS, SNI traps, key exchange, and a live demo.&lt;/p&gt;&#xA;&lt;h3 id=&#34;reverse-proxies&#34;&gt;Reverse Proxies&lt;/h3&gt;&#xA;&lt;p&gt;Reverse proxies are essential applications for establishing the secure flow of web traffic.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>A Brief Overview of Web Hardening</p>
 <h2 id="what-is-web-hardening">What is Web Hardening?</h2>
 <p>Web hardening is the intentional process of enhancing an application&rsquo;s security posture—by reducing its effective attack surface.</p>
+<p>The majority of these enhancements are made at the application layer—defining and permitting how web resources may be interacted with.</p>
+<p><strong><em>In the following sections I will discuss hardening/mitigation strategies</em></strong>: locking down headers, HSTS, SNI traps, key exchange, and a live demo.</p>
+<h3 id="reverse-proxies">Reverse Proxies</h3>
+<p>Reverse proxies are essential applications for establishing the secure flow of web traffic.</p>
+<p>Oftentimes, many reverse proxies are <strong>NOT</strong> hardened by default—<em>enabling a high ceiling for potential administrative misconfiguration.</em></p>
+<p><a href="https://bluetriangle.com/blog/why-are-so-many-major-websites-operating-without-a-content-security-policy-csp">It is estimated that only a small fraction of major sites have adopted valid content security policies (CSP)</a>.</p>
+<small><i><b>(Displayed below is a capture demonstrating a major educational institution; there are no hardening artifacts present).</b></i></small>
+
+<p><img src="/images/posts/web-hardening/csp-observatory.webp" alt="Weber State University Security Score (C-) - No CSP is implemented"></p>
+<p><img src="/images/posts/web-hardening/csp-observatory-2.webp" alt="Weber State University Security Score (C-) - Almost No Hardening Artifacts"></p>
+<small><i><b>If not mitigated, this essentially opens the door to widespread XSS attacks; this is still not enough, even with a WAF.</b></i></small>
+
+<h3 id="the-web">The Web</h3>
+<p>Many corporations and entities are <strong>STILL</strong> quite slow regarding their adoption of comprehensive web hardening.</p>
+<p><strong>Though some configurations may not be enacted due to compatibility concerns:</strong></p>
+<ul>
+<li>
+<p><strong>TLS 1.1:</strong> <em>Mainly retained due to interoperability concerns in emerging markets (legacy Java runtimes, Windows/IE, and Android), <a href="https://www.rfc-editor.org/rfc/rfc8996">although this is declining</a></em>.</p>
+</li>
+<li>
+<p><strong>Legacy Cipher Suites:</strong> <em>For many modern browsers these are not required (think key exchange akin to ~ TLS_RSA_WITH_AES_128_CBC-SHA)</em>.</p>
+</li>
+</ul>
+<small><i><b>Insecure fallback ciphers (CBC) are still frequently utilized—set to their respective defaults; opt for secure AEAD ciphers for TLS 1.2+.</b></i></small>
+
+<ul>
+<li>
+<p><strong>RSA Dependence:</strong> <em>A major oversight—as only antiquated browsers/runtimes lack forward secrecy (<a href="https://datatracker.ietf.org/doc/html/rfc8422">ECDHE</a>)</em>.</p>
+</li>
+<li>
+<p><strong>HTTP/2:</strong> <em>Largely a non-issue, only affecting the speed at which non-capable (HTTP/1.1) clients load content; even QUIC (HTTP/3) support is relatively sparse</em>.</p>
+</li>
+</ul>
+<h2 id="terminology">Terminology</h2>
+<h3 id="key-concepts">Key Concepts</h3>
+<ul>
+<li>
+<p><strong>TLS 1.3:</strong> <em>The latest iteration of <a href="https://datatracker.ietf.org/doc/html/rfc8446">Transport Layer Security</a>, a massive leap forward due to perfect forward secrecy; the TLS 1.2 era RSA exchange is deprecated—ephemeral key exchange is utilized (ECDHE).</em></p>
+</li>
+<li>
+<p><strong>DNS Security Extensions (DNSSEC):</strong> <em>introduces digital signatures to <a href="https://www.rfc-editor.org/rfc/rfc9364">DNS records</a>—preventing MITM and spoofing attacks (critical for modern sites).</em></p>
+</li>
+</ul>
+<p><strong>DNSSEC Heavily Relies on PKI:</strong></p>
+<blockquote>
+<p>DNSKEY (root public key) signs DS for <strong>.xyz</strong>.<br>
+DNSKEY (tld public key) signs DS for <strong>tuckett-test</strong>.xyz.<br>
+KSK (public key) verified by <strong>.xyz&rsquo;s</strong> DS.<br>
+ZSK (public key) signed by KSK (private key).<br>
+A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
+</blockquote>
+<small><i><b>Resulting in a robust chain of trust</b></i></small>
+
+<ul>
+<li>
+<p><strong>DNS Certificate Authority Authorization (CAA):</strong> <em><a href="https://www.rfc-editor.org/rfc/rfc8659.html">Permits which certificate authorities</a> may permit TLS/SSL certificates; incredibly useful for preventing rogue issuance and impersonation.</em></p>
+</li>
+<li>
+<p><strong>AEAD Ciphers:</strong> <em>Modern cryptographic primitive that is essential for TLS 1.3 deployment; encryption follows a <em>combined</em> step compared to CBC&rsquo;s separate encrypt and MAC functions.</em></p>
+</li>
+<li>
+<p><strong>ALPN:</strong> <em>Enables the client to propose which protocol (HTTP/1.1, HTTP/2, or HTTP/3) it wants to use when interacting with the server (during the TLS handshake); <a href="https://www.rfc-editor.org/rfc/rfc7301">ALPN</a>.</em></p>
+</li>
+<li>
+<p><strong>QUIC (HTTP/3):</strong> <em>Replaces traditional TCP web traffic (TCP + TLS + HTTP/2) to a singular layer over a UDP stream (443); headers are encrypted, clients send data on the first packet (0-RTT Resume vs HTTP/2 1-RTT)—<a href="https://datatracker.ietf.org/doc/html/rfc9114">offering exceptional benefits in speed</a>.</em></p>
+</li>
+<li>
+<p><strong>Server Name Indication (SNI):</strong> <em>SNI is sent in the TLS ClientHello—allowing servers (vHosts) to select the correct certificate during the handshake.</em></p>
+</li>
+<li>
+<p><strong>HTTP Strict Transport Security (HSTS):</strong> <em>A modern browser security feature and security policy—forcing clients to ONLY communicate using HTTPS.</em></p>
+</li>
+</ul>
+<small><i><b>The policy (max-age) is timed, and browsers will not default to HTTP until the policy expires.</b></i></small>
+
+<ul>
+<li>
+<p><strong>Content Security Policy (CSP):</strong> <em>Web headers that define server-to-client behavior—specific policies that determine <strong>how</strong> resources are accessed/interacted with, CSS elements, scripts, forms, embeds, objects, and requests.</em></p>
+</li>
+<li>
+<p><strong>Subresource Integrity (SRI):</strong> <em>An essential security policy—<a href="https://www.w3.org/TR/sri/">utilizing hash integrity</a> (external URL <strong>-&gt;</strong> cryptographic hash) to prevent supply-chain attacks and MITM attacks—ensuring external scripts and styles are untampered.</em></p>
+</li>
+</ul>
+<small><i><b>Take notice of the SHA-384 hash (via OWASP).</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://example.com/example-framework.js&#34;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">        <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC&#34;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">        <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></span></span></code></pre></div><ul>
+<li><strong>Online Certificate Status Protocol (OCSP):</strong> Allows clients to query a server in real-time for the revocation status of an <a href="https://www.rfc-editor.org/rfc/rfc6960">X.509 certificate</a>—a stark contrast compared to CRLs, which periodically download massive lists.</li>
+</ul>
+<small><i><b>Unfortunately, my provider, Let's Encrypt, has dropped support for OCSP—hence stapling's absence in my headers.</b></i></small>
+
+<ul>
+<li><strong>Certificate Transparency:</strong> CT is a public, append-only logging system that records every certificate <strong>(TLS)</strong> issued by a trusted CA—preventing rogue CAs from issuing false certificates without detection.</li>
+</ul>
+<h2 id="implementation">Implementation</h2>
+<h3 id="use-cases">Use Cases</h3>
+<p>When hosting your own website, it is <strong><em>incredibly important</em></strong> to scrutinize your threat model.</p>
+<p>If you are using an SSG such as <a href="https://gohugo.io/">Hugo</a> or <a href="https://jekyllrb.com/">Jekyll</a>, deep consideration needs to be made about whether the inclusion of scripts or external elements is warranted.</p>
+<p>If your goal (<em>as is mine</em>) is to host a simple blog, it is wholly unnecessary to include JS—nonetheless, <strong>non-free</strong> JS, CDNs, or fonts.</p>
+<small><i><b>You CANNOT properly audit or trust third-party supply chains, and it is quite frivolous to introduce an avoidable attack surface.</b></i></small>
+
+<p>If you are using script tags on an SSG, you defeat its intended purpose and design philosophy.</p>
+<small><i><b>PLEASE DO NOT IMPLEMENT 'unsafe-inline' OR RAW HTML IN AN SSG!!!</b></i></small>
+
+<h3 id="where-script-tags-are-warranted">Where Script Tags Are Warranted</h3>
+<p>If your goal is to showcase a React portfolio or a web app, or you&rsquo;re utilizing a CMS—<em>then make sure to lock it down!</em></p>
+<p>Simple one-click deployments are fantastic, but you lose the entire benefit of <em>understanding</em> your infrastructure;</p>
+<small><i><b>In quite the same fashion as the privileged (root) Docker, Portainer, and TrueNAS "enthusiasts."</b></i></small>
+
+<h2 id="prerequisites-dns">Prerequisites (DNS)</h2>
+<h3 id="caa-records">CAA Records</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### DNS Records ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl"># ! Main CAA Record ! #
+</span></span><span class="line"><span class="ln">3</span><span class="cl">CAA tuckett-test.xyz    3600    128 issue letsencrypt.org
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"># ! Optional (Barring Wild) ! #
+</span></span><span class="line"><span class="ln">6</span><span class="cl">CAA tuckett-test.xyz    3600    128 issuewild ;</span></span></code></pre></div><h3 id="dnssec">DNSSEC</h3>
+<p>Refer to your registrar and hosting provider in order to activate these records.</p>
+<small><i><b>For the majority of users, it is incredibly straightforward, as this process has become highly automated (one-click generation).</b></i></small>
+
+<p><strong>Example Records:</strong></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### Enable DNSKEY and DS Record for DNSSEC (USE STRONG ALGORITHMS) ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">tuckett-test.xyz.	3600	IN	DNSKEY	257 3 13 ggyW7Ek6IYJeQ2vcxwyh3UFieSJ11yn3lKkBoiw6L4bmyu058Nmov0gl 46ZnmTICKQRx4O44N8VHhp0lXb6JEg==
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl">tuckett-test.xyz.	3600	IN	DS	50834 13 2 C668859BAA36112BDD75F60D8AA157DFF99F1A3845CA3431914B4DA1 89A285C8
+</span></span><span class="line"><span class="ln">5</span><span class="cl">tuckett-test.xyz.	3600	IN	DS	50834 13 4 AC7F44830157D8D09B890DD345816C325EE4C663773D114A5836CBA9 29AD0A7EDF7032A082AD9E2D59D0D3938DAEA4A5</span></span></code></pre></div><h2 id="nginx">Nginx</h2>
+<p>For this demonstration I will be using my existing setup, but I am currently in the process of migrating from Debian 12 to 13.</p>
+<p>For now, this is a bare install (standard binary package), so—unfortunately—I won&rsquo;t be able to showcase my current transition to rootless <a href="https://podman.io/">Podman</a>.</p>
+<p>There are plenty of other fantastic reverse proxies that could be substituted for Nginx; <strong>both <a href="https://caddyserver.com/">Caddy</a> and <a href="https://traefik.io/">Traefik</a> come to mind</strong>.</p>
+<p><strong><em>Package Information</em></strong></p>
+<small><i><b>A light selection of packages, as our threat model is largely static.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Standard Nginx Release ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">smith@smithbarlow:~$ apt-cache policy nginx
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">nginx:
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  Installed: 1.26.3-3+deb13u1
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  Candidate: 1.26.3-3+deb13u1
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  Version table:
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> *** 1.26.3-3+deb13u1 <span class="m">500</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="m">500</span> https://deb.debian.org/debian trixie/main amd64 Packages
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="m">500</span> https://debian.mirror.constant.com trixie/main amd64 Packages
+</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="m">100</span> /var/lib/dpkg/status
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1">### Clear Headers ###</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">smith@smithbarlow:/etc/nginx$ apt-cache policy libnginx-mod-http-headers-more-filter
+</span></span><span class="line"><span class="ln">14</span><span class="cl">libnginx-mod-http-headers-more-filter:
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  Installed: 1:0.38-2
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  Candidate: 1:0.38-2
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  Version table:
+</span></span><span class="line"><span class="ln">18</span><span class="cl"> *** 1:0.38-2 <span class="m">500</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">        <span class="m">500</span> https://deb.debian.org/debian trixie/main amd64 Packages
+</span></span><span class="line"><span class="ln">20</span><span class="cl">        <span class="m">500</span> https://debian.mirror.constant.com trixie/main amd64 Packages
+</span></span><span class="line"><span class="ln">21</span><span class="cl">        <span class="m">100</span> /var/lib/dpkg/status</span></span></code></pre></div><p>I will be sticking with <strong>Debian Stable</strong>—<em>avoiding Nginx&rsquo;s official Debian repository for stability concerns</em>.</p>
+<p>Configuration will still reflect each area of interest—though ideally, I&rsquo;d entirely avoid standard binary releases and opt for containerization.</p>
+<p>If you are running Docker as root (when not necessary), you still open a considerable attack surface—<em>choose Podman (<strong>daemonless</strong>) as a sane alternative</em>.</p>
+<small><i><b>"Complexity theater" ignores the glaring inconsistencies with using "extensive" Ansible playbooks to deploy escapable ROOT containers!</b></i></small>
+
+<p><em><strong>(OCSP Stapling will be absent).</strong></em></p>
+<h3 id="ciphers">Ciphers</h3>
+<p>You may apply these universally, or across each designated vHost:</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/nginx.conf ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">http {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"># ! Proto Options (TLSv1.2 Optional) ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">ssl_protocols TLSv1.2 TLSv1.3;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"># ! Manually Restrict Insecure Ciphers (Optional - TLSv1.2) ! #
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">ssl_ciphers ECDHE+AESGCM:ECDHE+CHACHA20:!aNULL:!MD5:!DSS;
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"># ! Fine-Tuning (Preferring Server Ciphers is Still Valid) ! #
+</span></span><span class="line"><span class="ln">10</span><span class="cl"># ! Falls Back to secp384r1 ! #
+</span></span><span class="line"><span class="ln">11</span><span class="cl">ssl_ecdh_curve X25519:secp384r1;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"># ! Redundant But Forces X25519 FIRST ! #
+</span></span><span class="line"><span class="ln">14</span><span class="cl">ssl_conf_command Groups X25519:P-384;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
+</span></span><span class="line"><span class="ln">17</span><span class="cl">}</span></span></code></pre></div><h3 id="http2-http3">HTTP/2 HTTP/3</h3>
+<p><strong>HTTP/2:</strong></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    server_name search.tuckettlab.xyz;
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    listen 443 ssl;
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    listen [::]:443 ssl;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    http2 on;
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">9</span><span class="cl">}</span></span></code></pre></div><p><strong>HTTP/3:</strong></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">listen 443 quic reuseport;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">listen [::]:443 quic reuseport;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"># ! HTTP/3 Advertisement ! #
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">add_header Alt-Svc &#39;h3=&#34;:443&#34;; ma=86400&#39; always;
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">10</span><span class="cl">}</span></span></code></pre></div><h3 id="security-headers">Security Headers</h3>
+<p>I prefer using Nginx&rsquo;s snippets directory to keep my vHost configuration files tidy.</p>
+<small><i><b>It's as simple as including a file from snippets to your designated vHost.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    server_name vhost;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    root /var/www/tutorial;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    index index.html;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    include /etc/nginx/snippets/security-headers.conf;
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">10</span><span class="cl">}</span></span></code></pre></div><p>Security headers can get quite complex, but I assure you that they are incredibly easy to manage.</p>
+<p>I will only be able to cover a select amount of implementations—as I don&rsquo;t want this article to be incessantly exhaustive; <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy">Mozilla has a far more granular breakdown available</a>.</p>
+<small><i><b>Figured below is a basic security configuration—geared towards simple sites.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/snippets/security-headers.conf ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"># ! Basic Static Site Security Configuration ! #
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"># ! Includes Some Redundancy for Demo Purposes ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">### HSTS ###
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"># ! Non-Preloaded Site ! #
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">add_header Strict-Transport-Security &#34;max-age=31536000; includeSubDomains&#34; always;
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"># ! Submit to Preload List (hstspreload.org)! #
+</span></span><span class="line"><span class="ln">10</span><span class="cl"># ! Use After Submission ! #
+</span></span><span class="line"><span class="ln">11</span><span class="cl">add_header Strict-Transport-Security &#34;max-age=31536000; includeSubDomains; preload&#34; always;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">### CSP ###
+</span></span><span class="line"><span class="ln">14</span><span class="cl"># ! Large List of Variables (Note the Possible External Objects) ! #
+</span></span><span class="line"><span class="ln">15</span><span class="cl"># ! Examples of Linkage: ! #
+</span></span><span class="line"><span class="ln">16</span><span class="cl"># API: script-src &#39;self&#39; https://subdomain.sld.tld # 
+</span></span><span class="line"><span class="ln">17</span><span class="cl"># Reports: report-uri &#39;self&#39; https://subdomain.sld.tld/page #
+</span></span><span class="line"><span class="ln">18</span><span class="cl"># Fonts: font-src https://subdomain.sld.tld #
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl">### Content Security Policy ###
+</span></span><span class="line"><span class="ln">21</span><span class="cl"># ! Explicitly Disables Worrisome Vectors ! #
+</span></span><span class="line"><span class="ln">22</span><span class="cl">add_header Content-Security-Policy &#34;frame-ancestors &#39;none&#39;; default-src &#39;none&#39;; script-src &#39;none&#39;; style-src &#39;self&#39;; style-src-elem &#39;self&#39;; style-src-attr &#39;none&#39;; img-src &#39;self&#39;; connect-src &#39;none&#39;; object-src &#39;none&#39;; base-uri &#39;none&#39;; font-src &#39;none&#39;; frame-src &#39;none&#39;; media-src &#39;none&#39;; form-action &#39;none&#39;; manifest-src &#39;none&#39;; upgrade-insecure-requests&#34; always;
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl">
+</span></span><span class="line"><span class="ln">25</span><span class="cl">### Additional Security Precautions ###
+</span></span><span class="line"><span class="ln">26</span><span class="cl"># ! MIME-Sniffing Prevention (Browser Respects Content-Type Header) ! #
+</span></span><span class="line"><span class="ln">27</span><span class="cl">add_header X-Content-Type-Options &#34;nosniff&#34; always;
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl">### Origin Integrity ###
+</span></span><span class="line"><span class="ln">30</span><span class="cl"># ! Clickjacking Prevention (Legacy) - Blocks iframe Embedding ! #
+</span></span><span class="line"><span class="ln">31</span><span class="cl">add_header X-Frame-Options &#34;DENY&#34; always;
+</span></span><span class="line"><span class="ln">32</span><span class="cl">
+</span></span><span class="line"><span class="ln">33</span><span class="cl"># ! Prevents Non-Origin Side-Channel Attacks ! #
+</span></span><span class="line"><span class="ln">34</span><span class="cl"># ! Completely Breaks Tabnabbing (window.opener or Similar) # !
+</span></span><span class="line"><span class="ln">35</span><span class="cl">add_header Cross-Origin-Opener-Policy &#34;same-origin&#34; always;
+</span></span><span class="line"><span class="ln">36</span><span class="cl">
+</span></span><span class="line"><span class="ln">37</span><span class="cl"># ! Prevents Non-Origin Embeds ! #
+</span></span><span class="line"><span class="ln">38</span><span class="cl"># ! Isolates Content (Requiring CORP or CORS from cross-origin) ! #
+</span></span><span class="line"><span class="ln">39</span><span class="cl">add_header Cross-Origin-Embedder-Policy &#34;require-corp&#34; always;
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl"># ! Blocks Non-Origin From Loading Resources ! #
+</span></span><span class="line"><span class="ln">42</span><span class="cl"># ! Resource Theft/Exfiltration (fetch() or Similar) ! #
+</span></span><span class="line"><span class="ln">43</span><span class="cl">add_header Cross-Origin-Resource-Policy &#34;same-origin&#34; always;
+</span></span><span class="line"><span class="ln">44</span><span class="cl">
+</span></span><span class="line"><span class="ln">45</span><span class="cl"># ! Cross-Origin Isolation ! #
+</span></span><span class="line"><span class="ln">46</span><span class="cl"># ! Isolates Processes (Renders) ! #
+</span></span><span class="line"><span class="ln">47</span><span class="cl"># ! &#34;?0&#34; (Disables) Effectively Groups All Into One Process ! #
+</span></span><span class="line"><span class="ln">48</span><span class="cl">add_header Origin-Agent-Cluster &#34;?1&#34; always;
+</span></span><span class="line"><span class="ln">49</span><span class="cl">
+</span></span><span class="line"><span class="ln">50</span><span class="cl">### Referrer Policy ###
+</span></span><span class="line"><span class="ln">51</span><span class="cl"># ! Does Not Disclose Source (Your Website -&gt; Linked Site) ! #
+</span></span><span class="line"><span class="ln">52</span><span class="cl"># ! Prevents Analytics Bleed (Respects Privacy) ! #
+</span></span><span class="line"><span class="ln">53</span><span class="cl">add_header Referrer-Policy &#34;no-referrer&#34; always;
+</span></span><span class="line"><span class="ln">54</span><span class="cl">
+</span></span><span class="line"><span class="ln">55</span><span class="cl">### Permissions Policy ###
+</span></span><span class="line"><span class="ln">56</span><span class="cl"># ! Important for Dynamic Sites or Services (Some May Be Deprecated, Best to Disable Everything Unnecessary) ! #
+</span></span><span class="line"><span class="ln">57</span><span class="cl"># ! Static Configuration - Note Format: service=() (Blocked) ! #
+</span></span><span class="line"><span class="ln">58</span><span class="cl"># ! Dynamic Configuration - Note Format: service=[](subdomain.sld.tld) (Integrates API into Permissions Policy) ! #
+</span></span><span class="line"><span class="ln">59</span><span class="cl"># ! Included for Demonstration Purposes (Small List): ! #
+</span></span><span class="line"><span class="ln">60</span><span class="cl">
+</span></span><span class="line"><span class="ln">61</span><span class="cl">add_header Permissions-Policy &#34;accelerometer=(), autoplay=(), battery=()&#34; always;</span></span></code></pre></div><h3 id="sri">SRI</h3>
+<p>You will first need to generate a valid hash for your desired assets.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Generating the Hash ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"># ! Opting for SHA-384 ! #</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">user@pc:~$ <span class="nb">printf</span> <span class="s1">&#39;sha384-%s\n&#39;</span> <span class="s2">&#34;</span><span class="k">$(</span>openssl dgst -sha384 -binary eg.js <span class="p">|</span> openssl base64 -A<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">sha384-bhFRYtN+I8sKH7+Y95efRQxwXuwViLZyl+42or4SE0+Q1uXOKHMK1Lym2jk2mq7k</span></span></code></pre></div><p><strong><em>Then add your generated hash to any applicable HTML page:</em></strong></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="ln">1</span><span class="cl"><span class="c">&lt;!-- crossorigin is Optional - Add if CORS Is Required (Best To Leave Anonymous for Privacy) --&gt;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/eg.js&#34;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">        <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-bhFRYtN+I8sKH7+Y95efRQxwXuwViLZyl+42or4SE0+Q1uXOKHMK1Lym2jk2mq7k&#34;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">        <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></span></span></code></pre></div><p><strong><em>Implementing an SRI check in your reverse proxy goes as follows:</em></strong></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-enabled/sri-example ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    server_name vhost;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    # ! Blocks (Enforces Valid Resources) Scripts/Styles if SRI Check Fails ! #
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    add_header Integrity-Policy &#39;blocked-destinations=(script style), endpoints=(integrity)&#39; always;
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    # ! Report Only Mode ! #
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    add_header Integrity-Policy-Report-Only &#39;blocked-destinations=(script style), endpoints=(integrity)&#39; always;
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    # ! Specifies Reporting Endpoint (if Needed) ! #
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    add_header Reporting-Endpoints &#39;integrity=&#34;https://tld.sld/report&#34;&#39; always;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">15</span><span class="cl">}</span></span></code></pre></div><h3 id="caching">Caching</h3>
+<p>Caching is incredibly effective in improving response times for HTTP clients.</p>
+<p>Serving immutable assets can <em>drastically</em> improve site performance.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    # ! Immutable Caching (Matches Common Files) ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    location ~* \.(css|js|woff2|ico|svg|png|jpg|jpeg|webp)$ {
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">        try_files $uri =404;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">        add_header Cache-Control &#34;public, max-age=31536000, immutable&#34; always;
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        expires 1y;
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    }
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">11</span><span class="cl">}</span></span></code></pre></div><h3 id="method-restriction">Method Restriction</h3>
+<p>It is quite easy to limit the possible HTTP methods that threat actors may utilize for exploitation.</p>
+<p>Limiting your request methods ensures that certain types of common attack-related methods (e.g., <strong>PUT</strong>, <strong>DELETE</strong>, <strong>TRACE</strong>) cannot be performed.</p>
+<small><i><b>It is best to limit your vHost's possible request methods to your intended use case.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    location / {
+</span></span><span class="line"><span class="ln">4</span><span class="cl">        limit_except GET HEAD { deny all; }
+</span></span><span class="line"><span class="ln">5</span><span class="cl">        try_files $uri $uri/ =404;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    }
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">9</span><span class="cl">}</span></span></code></pre></div><h3 id="ua-gating">UA-Gating</h3>
+<p>UA-gating is largely trivial, as scanners/attackers frequently spoof user agents; <strong>this is not a <em>bulletproof</em> security measure</strong>.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/nginx.conf ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">http {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    map $http_user_agent $allowed_ua {
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    # ! Denied by Default ! #
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">        default 0;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    # ! Example Chromium Config (Simple Regex &gt;120) ! #
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        ~*Chrome/[1-9][2-9][0-9]|Chrome/1[2-9][0-9]|Chrome/[2-9][0-9][0-9] 1;
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    }
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
+</span></span><span class="line"><span class="ln">12</span><span class="cl">}
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln">15</span><span class="cl">server {
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    if ($allowed_ua = 0) { return 403; }
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">19</span><span class="cl">}</span></span></code></pre></div><h3 id="rate-limiting">Rate-Limiting</h3>
+<p>Rate-limiting is of exceptional importance when serving content over the internet.</p>
+<p>Astoundingly, it is somewhat rare to see operators implement this effectively.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/nginx.conf ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">http {
+</span></span><span class="line"><span class="ln">3</span><span class="cl"># ! 10 MB of Entries - 10 Requests a Second ! #
+</span></span><span class="line"><span class="ln">4</span><span class="cl">limit_req_zone  $binary_remote_addr  zone=request_rate_limit:10m  rate=10r/s;
+</span></span><span class="line"><span class="ln">5</span><span class="cl">limit_conn_zone $binary_remote_addr  zone=connections_rate_limit:10m;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
+</span></span><span class="line"><span class="ln">8</span><span class="cl">}</span></span></code></pre></div>
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    # ! Burst of 20 (More Forgiving) ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    limit_req  zone=request_rate_limit  burst=20  nodelay;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    limit_conn connections_rate_limit 20;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    # ! Returns 429 (Too Many Requests) ! #
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    limit_req_status 429;
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    limit_conn_status 429;
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    # ! Optional Logging (Bare Response) ! #
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    error_page 429 = @ratelimit;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    location @ratelimit {
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    internal;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    include /etc/nginx/snippets/security-headers.conf;
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    access_log /var/log/nginx/rate_limit.log;
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    default_type text/plain;
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    return 429 &#34;429 - I See You\n&#34;;
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    }
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">22</span><span class="cl">}</span></span></code></pre></div><small><i><b>Related, yet VERY tight for my static site:</b></i></small>
+
+<p><strong>Buffer/Body Protection:</strong></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    # ! Overflow Protection (Miniscule Ceilings) ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    # ! Limiting Methods Will Mitigate Uploads ! #
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    client_max_body_size 1k;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    # ! You Might Need to Bump These Up (2k, 2 4k) ! #
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    client_header_buffer_size 1k;
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    large_client_header_buffers 2 1k;
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    # ! Proxy Specific (if Needed) ! #
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    proxy_buffer_size 1k;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    proxy_buffers 2 1k;
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    proxy_busy_buffers_size 1k;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    # ! Specifies How Long Timeouts Will Be ! #
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    client_body_timeout 20s;
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    client_header_timeout 20s;
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    send_timeout 20s;
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    # ! Specifies How Many Concurrent HTTP/2 Streams ! #
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    # ! I am More Forgiving Here ! #
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    http2_max_concurrent_streams 48;
+</span></span><span class="line"><span class="ln">24</span><span class="cl">
+</span></span><span class="line"><span class="ln">25</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">26</span><span class="cl">}</span></span></code></pre></div><h3 id="sni-trap">SNI Trap</h3>
+<p>As modern browsers support SNI by default—<em>it is best to set an SNI <strong>&ldquo;trap&rdquo;</strong> to reduce low-effort scanners and potential fingerprinting</em>.</p>
+<small><i><b>Optional, but highly recommended; institutes a "feature-lockout" mitigatory strategy</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/sites-enabled/default ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl"># ! HTTP #
+</span></span><span class="line"><span class="ln">3</span><span class="cl">server { listen 80 default_server;  listen [::]:80 default_server;  server_name _; return 444; }
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"># ! HTTPS ! #
+</span></span><span class="line"><span class="ln">6</span><span class="cl">server { listen 443 ssl default_server; listen [::]:443 ssl default_server; server_name _; ssl_reject_handshake on; }</span></span></code></pre></div><p><em>Another crucial step to reduce trivial spoofing is to implement a simple host <strong>sanity</strong> check:</em></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    listen 443 ssl;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    # ! Must Be Hardcoded ! #
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    server_name sld.tld;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    if ($host != &#34;sld.tld&#34;) { return 421; }
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    return 301 https://sld.tld$request_uri;
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">10</span><span class="cl">}</span></span></code></pre></div><h2 id="privacy-precautions">Privacy Precautions</h2>
+<p>Just as you may configure your infrastructure to respect its users&rsquo; privacy, the infrastructure itself should be as invisible as possible.</p>
+<p>Obviously, introducing unnecessary JS and other insipid tracking vectors opens a slew of potential routes for malicious actors—<em>hence the intrinsic case for web minimalism</em>.</p>
+<p>Introspect, and reflect honestly on the potential ramifications of perpetuating incessant tracking; how will your own infrastructure backstab you?</p>
+<small><i><b>Analytics, even for small, static sites—presents nothing but NEGATIVE connotations (for me).</b></i></small>
+
+<h3 id="fingerprinting-mitigation">Fingerprinting Mitigation</h3>
+<p>It is impossible to completely hide your stack and its latent infrastructure.</p>
+<p>Although most reverse proxies have optional modules and built-in options for minimizing exposure.</p>
+<small><i><b>Trixie repositories contain a substantial, mitigatory module: libnginx-mod-http-headers-more-filter.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/nginx.conf ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">http {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    # ! DISABLE THIS IMMEDIATELY ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    # ! DISPLAYS YOUR FULL STACK ! #
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">	server_tokens off;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">	# ! Strips Additional Server Info ! #
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">	more_clear_headers Server;
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">	more_clear_headers X-Powered-By;
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    # ! HTTP Status Codes (Include More if Needed) ! #
+</span></span><span class="line"><span class="ln">12</span><span class="cl">	more_clear_headers -s 200 404 Server;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    # ! Proxy Specific # !
+</span></span><span class="line"><span class="ln">15</span><span class="cl">	proxy_hide_header Server;
+</span></span><span class="line"><span class="ln">16</span><span class="cl">	fastcgi_hide_header X-Powered-By;
+</span></span><span class="line"><span class="ln">17</span><span class="cl">	uwsgi_hide_header Server;
+</span></span><span class="line"><span class="ln">18</span><span class="cl">	scgi_hide_header Server;
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    # ! SSL Specific ! #
+</span></span><span class="line"><span class="ln">21</span><span class="cl">	ssl_early_data off;
+</span></span><span class="line"><span class="ln">22</span><span class="cl">	ssl_session_tickets off;
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
+</span></span><span class="line"><span class="ln">25</span><span class="cl">}</span></span></code></pre></div>
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/snippets/error-pages.conf ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">error_page 404 =404 @e404;
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"># ! Optional - Link CSP if You&#39;re Crazy Like Me ! #
+</span></span><span class="line"><span class="ln">5</span><span class="cl">location @e404 { internal; default_type text/plain; include /etc/nginx/snippets/security-headers.conf; return 404 &#34;404\n&#34;; }</span></span></code></pre></div>
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    # ! MAKE SURE TO ADD THIS ! #
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    include /etc/nginx/snippets/error-pages.conf;
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">7</span><span class="cl">}</span></span></code></pre></div><h2 id="outcomes">Outcomes</h2>
+<p>You can verify your security standpoint by utilizing a third-party tool such as <a href="https://developer.mozilla.org/en-US/observatory/analyze?host=masontuckett.xyz">Mozilla&rsquo;s HTTP Observatory</a>.</p>
+<small><i><b>My relevant curl results:</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### SNI Check ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">myuser@masontuckett:~$ curl -vik https://gnu.org --resolve gnu.org:443:144.202.101.190
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">* Added gnu.org:443:144.202.101.190 to DNS cache
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">* Hostname gnu.org was found in DNS cache
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">*   Trying 144.202.101.190:443...
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">* ALPN: curl offers h2,http/1.1
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">* TLSv1.3 <span class="o">(</span>OUT<span class="o">)</span>, TLS handshake, Client hello <span class="o">(</span>1<span class="o">)</span>:
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">* TLSv1.3 <span class="o">(</span>IN<span class="o">)</span>, TLS alert, unrecognized name <span class="o">(</span>624<span class="o">)</span>:
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">* TLS connect error: error:0A000458:SSL routines::tlsv1 unrecognized name
+</span></span><span class="line"><span class="ln">10</span><span class="cl">* closing connection <span class="c1">#0</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">curl: <span class="o">(</span>35<span class="o">)</span> TLS connect error: error:0A000458:SSL routines::tlsv1 unrecognized name
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">### Rate-Limiting Check ###</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">me@pc:~$ bash -c <span class="s1">&#39;for i in {1..21}; do curl -s -o /dev/null -w &#34;%{http_code}\n&#34; https://masontuckett.xyz &amp; done; wait&#39;</span> <span class="p">|</span> grep -E <span class="s2">&#34;200|429&#34;</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c
+</span></span><span class="line"><span class="ln">15</span><span class="cl">     <span class="m">11</span> <span class="m">200</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">     <span class="m">10</span> <span class="m">429</span></span></span></code></pre></div><h2 id="closing">Closing</h2>
+<p>I have finally finished this article after a few weeks of complete dormancy—<em>as I am not (typically) the kind of person to lazily publish drafts</em>.</p>
+<p>My leisure has become increasingly limited, but I do intend on trimming my own CSP/headers, as there is a lot of residual redundancy.</p>
+<p><small><i><b>I DO wish this article was a bit more comprehensive.</b></i></small>
+
+<br>
+<small><i><b>I'll likely revisit web hardening—adequately securing more typical, dynamic sites.</b></i></small>
+</p>
+<p>It doesn&rsquo;t impact my security whatsoever—<em>though I vehemently despise the bloat.</em></p>
+<p>I am nearly complete with my migration to rootless Podman—so expect a detailed follow-up with deployable configs soon.</p>
+<p><strong>Next Up:</strong> <a href="/posts/podman/">Rootless Podman</a>.</p>
+<small><i><b>You'll see my hatred of Docker/Portainer/Tailscale and JS-laden MidwidtNAS on full display, haha!</b></i></small>
+
 ]]></content:encoded>
     </item>
     <item>
@@ -89,11 +710,11 @@
 <p>Hence my desire to become involved with the youth—<em>hopefully, in due time,</em> <em><strong>piloting initiatives to ensure children receive the scaffolding I never had</strong></em>.</p>
 <h2 id="the-present-game-plan">The Present (Game Plan)</h2>
 <ul>
-<li><em>Continue volunteer work</em></li>
-<li><em>Continue mentoring Smith</em></li>
-<li><em>Finish my catalog of technical articles</em></li>
-<li><em>Earn <a href="https://github.com/masontuckett/pcap-prep">PCAP</a>/<a href="https://github.com/masontuckett/cpe-prep">CPE</a> certs so I may better teach students</em></li>
-<li><em>Earn CCNA/RHCSA for adjunct roles</em></li>
+<li><em>Continue volunteer work.</em></li>
+<li><em>Continue mentoring Smith.</em></li>
+<li><em>Finish my catalog of technical articles.</em></li>
+<li><em>Earn <a href="https://github.com/masontuckett/pcap-prep">PCAP</a>/<a href="https://github.com/masontuckett/cpe-prep">CPE</a> certs so I may better teach students.</em></li>
+<li><em>Earn CCNA/RHCSA for adjunct roles.</em></li>
 </ul>
 ]]></content:encoded>
     </item>
@@ -477,7 +1098,7 @@
 </span></span><span class="line"><span class="ln">14</span><span class="cl">sudo systemctl restart --now nginx</span></span></code></pre></div><h2 id="congratulations">Congratulations!</h2>
 <p><img src="/images/posts/web-hosting/finalized.webp" alt="Finalized Web Page"></p>
 <p>We finally have a working web page published—though we are <em>far</em> from finished.</p>
-<p>This site is still highly vulnerable, and we&rsquo;ll need to implement CSP policies and some configuration changes to Nginx itself; this needs to be <strong>production grade</strong>.</p>
+<p>This site is still highly vulnerable, and we&rsquo;ll need to implement CSP and some configuration changes to Nginx itself; this needs to be <strong>production grade</strong>.</p>
 <small><i><b>In no way should you actually leave it this vulnerable—even if your site is purely static, you should harden it as much as possible.</b></i></small>
 
 <p><a href="/posts/web-hardening/">Check out my follow-up article regarding web hardening</a>.</p>
@@ -724,15 +1345,15 @@
 
 
 
-<pre tabindex="0"><code>### MX Record - NO MAIL ###
-tuckettlab.xyz.		3600	IN	MX	0 .
-
-### MX TXT Records - Complements NO MAIL Policy (No rua/ruf) ###
-tuckettlab.xyz.		1736	IN	TXT	&#34;v=spf1 -all&#34;
-_dmarc.tuckettlab.xyz.	1818	IN	TXT	&#34;v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s; pct=100&#34;
-
-### DMARC With Reporting ###
-_dmarc.tuckettlab.xyz. 1818    IN  TXT &#34;v=DMARC1; p=reject; sp=reject; rua=mailto:admin@tuckett.xyz; ruf=mailto:admin@tuckett.xyz; fo=1; adkim=s; aspf=s; pct=100&#34;</code></pre><h3 id="dnssec">DNSSEC</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### MX Record - NO MAIL ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">tuckettlab.xyz.		3600	IN	MX	0 .
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl">### MX TXT Records - Complements NO MAIL Policy (No rua/ruf) ###
+</span></span><span class="line"><span class="ln">5</span><span class="cl">tuckettlab.xyz.		1736	IN	TXT	&#34;v=spf1 -all&#34;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">_dmarc.tuckettlab.xyz.	1818	IN	TXT	&#34;v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s; pct=100&#34;
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl">### DMARC With Reporting ###
+</span></span><span class="line"><span class="ln">9</span><span class="cl">_dmarc.tuckettlab.xyz. 1818    IN  TXT &#34;v=DMARC1; p=reject; sp=reject; rua=mailto:admin@tuckett.xyz; ruf=mailto:admin@tuckett.xyz; fo=1; adkim=s; aspf=s; pct=100&#34;</span></span></code></pre></div><h3 id="dnssec">DNSSEC</h3>
 <p>I cannot stress how important it is to enable DNSSEC for your domains.</p>
 <p>Doing so provides:</p>
 <ul>
@@ -746,11 +1367,11 @@ _dmarc.tuckettlab.xyz. 1818    IN  TXT &#34;v=DMARC1; p=reject; sp=reject; rua=m
 
 
 
-<pre tabindex="0"><code>### Enable DNSKEY and DS Record for DNSSEC (USE STRONG ALGORITHMS) ###
-tuckettlab.xyz.		3600	IN	DNSKEY	257 3 13 UguAJ1bTfrBPNp+jHQ2oZNaPSUsUHaCnwRW+Wcxaf2BueGEmnMGAINj2 1b7gANfBBqqXoB6dGTeOBHfvjAvOdA==
-
-tuckettlab.xyz.		214	IN	DS	35175 13 4 865FE510C4CE390FF7285308B9351880A84039F1D75ACA278EF37F9D 71F605D8EC69C87E2F5660CA8BC5BC477A715868
-tuckettlab.xyz.		214	IN	DS	35175 13 2 871FD8CC8AFC7A1A6C60558112837CD7F288A20CC7F639709AD4A703 9C21E6B9</code></pre><h3 id="caa">CAA</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### Enable DNSKEY and DS Record for DNSSEC (USE STRONG ALGORITHMS) ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">tuckettlab.xyz.		3600	IN	DNSKEY	257 3 13 UguAJ1bTfrBPNp+jHQ2oZNaPSUsUHaCnwRW+Wcxaf2BueGEmnMGAINj2 1b7gANfBBqqXoB6dGTeOBHfvjAvOdA==
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl">tuckettlab.xyz.		214	IN	DS	35175 13 4 865FE510C4CE390FF7285308B9351880A84039F1D75ACA278EF37F9D 71F605D8EC69C87E2F5660CA8BC5BC477A715868
+</span></span><span class="line"><span class="ln">5</span><span class="cl">tuckettlab.xyz.		214	IN	DS	35175 13 2 871FD8CC8AFC7A1A6C60558112837CD7F288A20CC7F639709AD4A703 9C21E6B9</span></span></code></pre></div><h3 id="caa">CAA</h3>
 <p>Also a massive oversight; <a href="https://www.rfc-editor.org/rfc/rfc8659.html">CAA records</a> prevent rogue issuance by malicious CAs.</p>
 <p>CAA flags are set in 8-bit values (0-255); 0 is default (non-critical)—which allows soft fails (sometimes needed for compatibility).</p>
 <p>128 is functionally the only value worth using, as it is treated as critical and far more strict (must be understood by CAs).</p>
@@ -760,14 +1381,14 @@ tuckettlab.xyz.		214	IN	DS	35175 13 2 871FD8CC8AFC7A1A6C60558112837CD7F288A20CC7
 
 
 
-<pre tabindex="0"><code># Sane Value - Only Allows Strict Issuance From Let&#39;s Encrypt ###
-tuckettlab.xyz.		2103	IN	CAA	128 issue &#34;letsencrypt.org&#34;
-
-# Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
-tuckettlab.xyz.		2103	IN	CAA	128 issuewild &#34;;&#34;
-
-# Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
-tuckettlab.xyz.		2103	IN	CAA	128 iodef &#34;mailto:admin@tuckett.xyz&#34;</code></pre><h3 id="txt-records">TXT Records</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl"># Sane Value - Only Allows Strict Issuance From Let&#39;s Encrypt ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 issue &#34;letsencrypt.org&#34;
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"># Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
+</span></span><span class="line"><span class="ln">5</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 issuewild &#34;;&#34;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"># Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
+</span></span><span class="line"><span class="ln">8</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 iodef &#34;mailto:admin@tuckett.xyz&#34;</span></span></code></pre></div><h3 id="txt-records">TXT Records</h3>
 <p>It may be useful to include important information within your TXT records, as most text may be inserted.</p>
 <small><i><b>I included important statements, checksums, onion location(s) (if not pulled by HTTP header), and my GPG info.</b></i></small>
 
@@ -776,15 +1397,15 @@ tuckettlab.xyz.		2103	IN	CAA	128 iodef &#34;mailto:admin@tuckett.xyz&#34;</code>
 
 
 
-<pre tabindex="0"><code>### My TXT Records ###
-tuckettlab.xyz.		1736	IN	TXT	&#34;gpg-mirror=https://github.com/masontuckett/masontuckett.gpg&#34;
-tuckettlab.xyz.		1736	IN	TXT	&#34;gpg=https://masontuckett.xyz/masontuckett.gpg&#34;
-tuckettlab.xyz.		1736	IN	TXT	&#34;gpg-pubkey-fpr=7272B8036060E4590218A95D11F58765E7B21193&#34;
-tuckettlab.xyz.		1736	IN	TXT	&#34;onion-search=ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd&#34;
-tuckettlab.xyz.		1736	IN	TXT	&#34;privacy-policy=https://masontuckett.xyz/privacy-policy.txt&#34;
-tuckettlab.xyz.		1736	IN	TXT	&#34;onion-library=ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd&#34;
-tuckettlab.xyz.		1736	IN	TXT	&#34;auth-statement=https://masontuckett.xyz/tor-mirror-statement.txt&#34;
-tuckettlab.xyz.		1736	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-hashes.txt&#34;</code></pre><h3 id="live-demonstration">Live Demonstration</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### My TXT Records ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">tuckettlab.xyz.		1736	IN	TXT	&#34;gpg-mirror=https://github.com/masontuckett/masontuckett.gpg&#34;
+</span></span><span class="line"><span class="ln">3</span><span class="cl">tuckettlab.xyz.		1736	IN	TXT	&#34;gpg=https://masontuckett.xyz/masontuckett.gpg&#34;
+</span></span><span class="line"><span class="ln">4</span><span class="cl">tuckettlab.xyz.		1736	IN	TXT	&#34;gpg-pubkey-fpr=7272B8036060E4590218A95D11F58765E7B21193&#34;
+</span></span><span class="line"><span class="ln">5</span><span class="cl">tuckettlab.xyz.		1736	IN	TXT	&#34;onion-search=ujozjm7regwuwszlcyx2g3jn6bgegrxk5x72q3om6sxb7kq7x5fgcwqd&#34;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">tuckettlab.xyz.		1736	IN	TXT	&#34;privacy-policy=https://masontuckett.xyz/privacy-policy.txt&#34;
+</span></span><span class="line"><span class="ln">7</span><span class="cl">tuckettlab.xyz.		1736	IN	TXT	&#34;onion-library=ekybwg2m7fgocpnr5ofjjo2lrfunptquipqihfaxodand4qfm6rc3gqd&#34;
+</span></span><span class="line"><span class="ln">8</span><span class="cl">tuckettlab.xyz.		1736	IN	TXT	&#34;auth-statement=https://masontuckett.xyz/tor-mirror-statement.txt&#34;
+</span></span><span class="line"><span class="ln">9</span><span class="cl">tuckettlab.xyz.		1736	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-hashes.txt&#34;</span></span></code></pre></div><h3 id="live-demonstration">Live Demonstration</h3>
 
 
 
@@ -1129,7 +1750,8 @@ tuckettlab.xyz.		1736	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-has
 2 = I do NOT trust<br>
 3 = I trust marginally<br>
 4 = I trust fully<br>
-5 = I trust ultimately</p></blockquote>
+5 = I trust ultimately</p>
+</blockquote>
 <h3 id="deleting-keys">Deleting Keys</h3>
 <p>When deleting keys, it is incredibly important to make sure you are deleting the correct keys.</p>
 <p>If you are deleting a key pair, the private key will need to be deleted first.</p>
@@ -1339,9 +1961,9 @@ tuckettlab.xyz.		1736	IN	TXT	&#34;sha512sums=https://masontuckett.xyz/sha512-has
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="ln">1</span><span class="cl">{{ if isset .Params &#34;title&#34; }}
-</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ .Params.title }}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    &lt;title&gt;{{ .Params.title }}&lt;/title&gt;
 </span></span><span class="line"><span class="ln">3</span><span class="cl">{{ else }}
-</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ .Site.title }}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    &lt;title&gt;{{ .Site.title }}&lt;/title&gt;
 </span></span><span class="line"><span class="ln">5</span><span class="cl">{{ end }}</span></span></code></pre></div><h2 id="closing---my-thought-process">Closing - My Thought Process</h2>
 <p>I see far too many IT professionals publishing subpar blogs—often touting frameworks that are wholly unnecessary for their use case.</p>
 <p>While platforms such as WordPress are a sound choice, I see many professionals opting for frameworks that appear professional or <em>&ldquo;technically advanced.&rdquo;</em></p>

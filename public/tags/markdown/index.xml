@@ -38,9 +38,9 @@
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="ln">1</span><span class="cl">{{ if isset .Params &#34;title&#34; }}
-</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ .Params.title }}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    &lt;title&gt;{{ .Params.title }}&lt;/title&gt;
 </span></span><span class="line"><span class="ln">3</span><span class="cl">{{ else }}
-</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ .Site.title }}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    &lt;title&gt;{{ .Site.title }}&lt;/title&gt;
 </span></span><span class="line"><span class="ln">5</span><span class="cl">{{ end }}</span></span></code></pre></div><h2 id="closing---my-thought-process">Closing - My Thought Process</h2>
 <p>I see far too many IT professionals publishing subpar blogs—often touting frameworks that are wholly unnecessary for their use case.</p>
 <p>While platforms such as WordPress are a sound choice, I see many professionals opting for frameworks that appear professional or <em>&ldquo;technically advanced.&rdquo;</em></p>

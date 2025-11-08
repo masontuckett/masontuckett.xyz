@@ -421,7 +421,7 @@ sudo systemctl restart --now nginx
 
 We finally have a working web page published—though we are _far_ from finished. 
 
-This site is still highly vulnerable, and we'll need to implement CSP policies and some configuration changes to Nginx itself; this needs to be **production grade**. 
+This site is still highly vulnerable, and we'll need to implement CSP and some configuration changes to Nginx itself; this needs to be **production grade**. 
 
 {{< small >}}In no way should you actually leave it this vulnerable—even if your site is purely static, you should harden it as much as possible.{{</ small >}}
 

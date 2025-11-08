@@ -108,8 +108,8 @@ Hence my desire to become involved with the youth—*hopefully, in due time,* *_
 
 ## The Present (Game Plan)
 
-- *Continue volunteer work*
-- *Continue mentoring Smith*
-- *Finish my catalog of technical articles*
-- *Earn [PCAP](https://github.com/masontuckett/pcap-prep)/[CPE](https://github.com/masontuckett/cpe-prep) certs so I may better teach students*
-- *Earn CCNA/RHCSA for adjunct roles*
+- *Continue volunteer work.*
+- *Continue mentoring Smith.*
+- *Finish my catalog of technical articles.*
+- *Earn [PCAP](https://github.com/masontuckett/pcap-prep)/[CPE](https://github.com/masontuckett/cpe-prep) certs so I may better teach students.*
+- *Earn CCNA/RHCSA for adjunct roles.*
