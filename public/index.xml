@@ -775,26 +775,28 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 </span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1">## I2P ###</span>
 </span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1"># ! Install Locally ! #</span>
 </span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"># ! Flatpak was Finicky for Me ! #</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">sudo apt install -y i2pd
-</span></span><span class="line"><span class="ln">16</span><span class="cl">
-</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1"># ! Edit the Local I2PD Config as Stated Above ! #</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"># ! Ignore Eeepsite Generation ! #</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now i2pd
-</span></span><span class="line"><span class="ln">20</span><span class="cl">
-</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1">### Build a Specialized I2PD Browser (Firefox) ###</span>
-</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="nb">cd</span> ~<span class="p">;</span> git clone https://github.com/daviduhden/i2pd-browser/
-</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="nb">cd</span> i2pd-browser/build <span class="o">&amp;&amp;</span> ./build
-</span></span><span class="line"><span class="ln">24</span><span class="cl">
-</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="c1"># ! Start the Browser ! #</span>
-</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="nb">cd</span> ../<span class="p">;</span> ./start-i2pd-browser.desktop
-</span></span><span class="line"><span class="ln">27</span><span class="cl">
-</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="c1"># ! Permit if Needed ! #</span>
-</span></span><span class="line"><span class="ln">29</span><span class="cl">chmod +x ~/i2pd-browser/start-i2pd-browser.desktop
-</span></span><span class="line"><span class="ln">30</span><span class="cl">
-</span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="c1"># ! Monitor the Web Console ! #</span>
-</span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="c1"># ! NAT Issues May Arise ! #</span>
-</span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="c1"># ! Can&#39;t Help Here (Sorry) ! #</span>
-</span></span><span class="line"><span class="ln">34</span><span class="cl">http://127.0.0.1:7070</span></span></code></pre></div><h3 id="deployed-mirrors">Deployed Mirrors</h3>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">sudo apt update
+</span></span><span class="line"><span class="ln">16</span><span class="cl">sudo apt install -y i2pd
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"># ! Edit the Local I2PD Config as Stated Above ! #</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="c1"># ! Ignore Eeepsite Generation ! #</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now i2pd
+</span></span><span class="line"><span class="ln">21</span><span class="cl">
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="c1">### Build a Specialized I2PD Browser (Firefox) ###</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">sudo apt install -y curl tar screen
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="nb">cd</span> ~<span class="p">;</span> git clone https://github.com/daviduhden/i2pd-browser/
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="nb">cd</span> i2pd-browser/build <span class="o">&amp;&amp;</span> ./build
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="c1"># ! Start the Browser ! #</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="nb">cd</span> ../<span class="p">;</span> ./start-i2pd-browser.desktop
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="c1"># ! Permit if Needed ! #</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">chmod +x ~/i2pd-browser/start-i2pd-browser.desktop
+</span></span><span class="line"><span class="ln">32</span><span class="cl">
+</span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="c1"># ! Monitor the Web Console ! #</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="c1"># ! NAT Issues May Arise ! #</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1"># ! Can&#39;t Help Here (Sorry) ! #</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">http://127.0.0.1:7070</span></span></code></pre></div><h3 id="deployed-mirrors">Deployed Mirrors</h3>
 <small><i><b>Taken from my open library.</b></i></small>
 
 <p><strong><a href="http://mtuckwbhnyx7pk3w3vvyqydv6sag5uxcbsx6dn5q5j4olpqmlkzosbad.onion/">Tor:</a></strong></p>
@@ -804,7 +806,7 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 <h2 id="outcomes">Outcomes</h2>
 <p>If everything went swimmingly, you should have both an I2P and Tor mirror deployed for your site.</p>
 <p>Deploying additional mirrors follows the same playbook, but make sure (<strong>REQUIRED</strong>) to segment each mirror to its respective port.</p>
-<small><i><b>Note: A simple apt purge will resolve any latent misconfiguration.</b></i></small>
+<small><i><b>Note: A simple apt purge will resolve any residual misconfiguration.</b></i></small>
 
 <p><strong>Another Thing to Keep in Mind:</strong></p>
 <p>It would be wise to provide cryptographic proof of any operated sites; clear-signing is less clunky for individual statements.</p>

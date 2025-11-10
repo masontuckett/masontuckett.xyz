@@ -528,6 +528,7 @@ flatpak run org.torproject.torbrowser-launcher
 ## I2P ###
 # ! Install Locally ! #
 # ! Flatpak was Finicky for Me ! #
+sudo apt update
 sudo apt install -y i2pd
 
 # ! Edit the Local I2PD Config as Stated Above ! #
@@ -535,6 +536,7 @@ sudo apt install -y i2pd
 sudo systemctl enable --now i2pd
 
 ### Build a Specialized I2PD Browser (Firefox) ###
+sudo apt install -y curl tar screen
 cd ~; git clone https://github.com/daviduhden/i2pd-browser/
 cd i2pd-browser/build && ./build
 
@@ -570,7 +572,7 @@ If everything went swimmingly, you should have both an I2P and Tor mirror deploy
 
 Deploying additional mirrors follows the same playbook, but make sure (__REQUIRED__) to segment each mirror to its respective port.
 
-{{< small >}}Note: A simple apt purge will resolve any latent misconfiguration.{{</ small >}}
+{{< small >}}Note: A simple apt purge will resolve any residual misconfiguration.{{</ small >}}
 
 __Another Thing to Keep in Mind:__
 
