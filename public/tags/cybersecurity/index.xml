@@ -9,8 +9,546 @@
     <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
     <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
     <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 07 Nov 2025 00:38:44 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 09 Nov 2025 16:32:04 -0700</lastBuildDate>
     <atom:link href="https://masontuckett.xyz/tags/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hidden Services</title>
+      <link>https://masontuckett.xyz/posts/hidden-services/</link>
+      <pubDate>Sun, 09 Nov 2025 16:32:04 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/hidden-services/</guid>
+      <description>&lt;p&gt;A Basic Setup Guide for Tor/I2P Hidden Services&lt;/p&gt;&#xA;&lt;h2 id=&#34;hosting-hidden-services&#34;&gt;Hosting Hidden Services&lt;/h2&gt;&#xA;&lt;p&gt;Hosting hidden services is easier than it has ever been—as detailed documentation is now vastly widespread.&lt;/p&gt;&#xA;&lt;p&gt;Though I&amp;rsquo;d like to dispel misconceptions about the &amp;ldquo;darknet,&amp;rdquo; &lt;em&gt;or more colloquially the &amp;ldquo;dark web.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;the-dark-web&#34;&gt;The Dark Web&lt;/h3&gt;&#xA;&lt;p&gt;The dark net refers to traffic or protocols that are not within typical clear channels; the qualification is not obscurity or &amp;ldquo;depth&amp;rdquo; (deep web).&lt;/p&gt;&#xA;&lt;p&gt;Typically facilitated under decentralized or independently structured protocols.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>A Basic Setup Guide for Tor/I2P Hidden Services</p>
+<h2 id="hosting-hidden-services">Hosting Hidden Services</h2>
+<p>Hosting hidden services is easier than it has ever been—as detailed documentation is now vastly widespread.</p>
+<p>Though I&rsquo;d like to dispel misconceptions about the &ldquo;darknet,&rdquo; <em>or more colloquially the &ldquo;dark web.&rdquo;</em></p>
+<h3 id="the-dark-web">The Dark Web</h3>
+<p>The dark net refers to traffic or protocols that are not within typical clear channels; the qualification is not obscurity or &ldquo;depth&rdquo; (deep web).</p>
+<p>Typically facilitated under decentralized or independently structured protocols.</p>
+<small><i><b>Both Tor (onion) and I2P (garlic) are the most ubiquitous examples of "dark web" hosting.</b></i></small>
+
+<h3 id="onion-routing">Onion Routing</h3>
+<p><img src="/images/posts/hidden-services/onion-routing.webp" alt="Tor - Onion Routing Diagram"></p>
+<p>Tor utilizes onion routing to anonymize sensitive traffic.</p>
+<p>Data is encapsulated in multiple layers of encryption—<em>with user traffic being propagated through a circuit</em>.</p>
+<p>Within the circuit, user traffic goes through a path of at least three nodes—obscuring the path of origin.</p>
+<p><strong>Simple Breakdown:</strong></p>
+<blockquote>
+<p>Packet -&gt; entry node.<br>
+Entry node (guard) decrypts the outer layer for the next hop.<br>
+Middle node decrypts its layer -&gt; exit node.<br>
+Exit node decrypts the final layer -&gt; revealing the original data and intended destination.</p>
+</blockquote>
+<p><strong>More Information May Be Found Here:</strong> <a href="https://itp.nyu.edu/networks/explanations/demystifying-the-dark-web-an-introduction-to-tor-and-onion-routing/">ITP (NYU) Breakdown</a>.</p>
+<h3 id="garlic-routing">Garlic Routing</h3>
+<p><img src="/images/posts/hidden-services/garlic-cloves.webp" alt="I2P - Garlic Routing Diagram"></p>
+<p>I2P uses a similar privacy-preserving routing methodology—<em>but with a packet-switched mixnet design</em>.</p>
+<p>It is a natural extension of onion routing, bundling multiple cloves (messages) into a singular, encrypted &ldquo;garlic&rdquo; packet.</p>
+<p>It is more resilient compared to onion routing&rsquo;s individual handling, though slower because of its bundling.</p>
+<p><strong>Simple Breakdown:</strong></p>
+<blockquote>
+<p>Users build unidirectional tunnels (ingress/egress) via volunteer routers.<br>
+Data is effectively layered (similar to Tor)—bundled with padding to obscure data.<br>
+Packets travel through the sender’s egress tunnel -&gt; the recipient’s ingress.<br>
+Each node decrypts its layer, unbinding cloves at the end.<br>
+Replies use separate tunnels to avoid correlation attacks.</p>
+</blockquote>
+<small><i><b>By its nature it consequently has excellent support for P2P services.</b></i></small>
+
+<p><strong>More Information May Be Found Here:</strong> <a href="https://geti2p.net/en/docs/how/garlic-routing">I2P Project</a>.</p>
+<h2 id="tor-mirrors">Tor Mirrors</h2>
+<p>Generating the required files is incredibly easy—<em>as the entire process has been largely demystified and automated</em>.</p>
+<p>I would avoid relays/nodes, as they may present an <strong>INCREDIBLE</strong> amount of legal issues depending upon your jurisdiction.</p>
+<p>Relays help the project stay alive, providing a viable route for users—<em>but it is important to note that <strong>intelligence agencies co-opt this</strong></em>.</p>
+<p>Tor is not foolproof and does not automatically denote that your traffic is wholly secure <strong><em>(&ldquo;1337 DaRk WeB!!!&rdquo;)</em></strong>.</p>
+<p>The protocol by design is still quite flawed, as it is possible to decipher user origin by traffic correlation (entry/exit nodes).</p>
+<p>Although this is really only utilized by state-level actors, <em>its ingrained design flaw is still unavoidable</em>.</p>
+<small><i><b>À la compromised or rogue exit nodes.</b></i></small>
+
+<p><strong>KEEP THIS IN MIND:</strong> <em>Tor is NOT ENTIRELY QUANTUM-RESISTANT</em>.</p>
+<h3 id="analytics">Analytics</h3>
+<p>Every browser has a unique fingerprint driven by its UA, system fonts, canvas, screen size, and other ingrained behaviors—<em>presenting a significant tracking concern</em>.</p>
+<p>It is quite foolish to use a third-party browser with Tor support, especially given that <strong>THE MAJORITY</strong> of traffic is tied to Tor Browser&rsquo;s (Firefox) standardized fingerprint.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### Example Brave UA ###
+</span></span><span class="line"><span class="ln">2</span><span class="cl">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36</span></span></code></pre></div><small><i><b>Browser behavior IS NOTICEABLY different between Gecko and Chromium-based browsers.</b></i></small>
+
+<p>If you&rsquo;re even on Windows at all—<strong>you&rsquo;re ngmi</strong>; stop here and go <em>reinterpret</em> your threat model.</p>
+<small><i><b>I hope you enjoy Copilot+ Recall!!!</b></i></small>
+
+<h3 id="generating-a-tor-mirror">Generating a Tor Mirror</h3>
+<p>For demo purposes, I&rsquo;m assuming a bare-install scenario and any recent Debian derivative.</p>
+<small><i><b>I'm still in the process of migrating my VPS infrastructure to Podman; it's working fantastically on-prem though!</b></i></small>
+
+<p>Trixie repositories have resolved Bookworm&rsquo;s persistent issue of ephemeral key loss—<em>resulting in Tor mirrors randomly failing</em>.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Install Tor ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo apt update
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">sudo apt install -y tor
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1">### Useful as This is Bare ###</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">sudo apt install -y apparmor apparmor-utils wget curl
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### Enable/Start Tor ###</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now tor
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1">### Enable/Start AppArmor ###</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now apparmor
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1">### Sanity Check ###</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">sudo journalctl -xeu tor
+</span></span><span class="line"><span class="ln">16</span><span class="cl">sudo journalctl -xeu apparmor</span></span></code></pre></div><small><i><b>A Tor AppArmor profile should be installed; make sure to personally audit the file and make any appropriate alterations.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Audit the Config ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo vim /etc/apparmor.d/system_tor
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">### Parse the Config ###</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">sudo apparmor_parser -r /etc/apparmor.d/system_tor
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">### Enforce the Config ###</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">sudo aa-enforce /etc/apparmor.d/system_tor
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1">### Sanity Check ###</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">sudo aa-status
+</span></span><span class="line"><span class="ln">12</span><span class="cl">sudo systemctl restart tor</span></span></code></pre></div><p><strong>Configuring Torrc:</strong></p>
+<small><i><b>It's best to attach Tor to a non-standard port on loopback and let the reverse proxy (Nginx) handle it.</b></i></small>
+
+<p>I cannot stress how crucial it is to select HiddenServiceVersion3 over prior versions (V1/V2).</p>
+<p><strong>I&rsquo;ll keep it germane:</strong> V2 utilizes its now antiquated SHA1/RSA-based PKI (1024-bit keys)—<em><a href="https://gitlab.torproject.org/legacy/trac/-/wikis/doc/HiddenServiceNames">while V3 sports modern SHA3/Ed25519 tooling</a></em>.</p>
+<small><i><b>V3 is far more resistant to the ever-present birthday attack and other adjacent collision-based attacks.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/tor/torrc ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">## Bridge relays (or &#34;bridges&#34;) are Tor relays that aren&#39;t listed in the
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">## main directory. Since there is no complete public list of them, even an
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">## ISP that filters connections to all the known Tor relays probably
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">## won&#39;t be able to block all the bridges. Also, websites won&#39;t treat you
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">## differently because they won&#39;t know you&#39;re running Tor. If you can
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">## be a real relay, please do; but if not, be a bridge!
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">#BridgeRelay 1
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">## By default, Tor will advertise your bridge to users through various
+</span></span><span class="line"><span class="ln">10</span><span class="cl">## mechanisms like https://bridges.torproject.org/. If you want to run
+</span></span><span class="line"><span class="ln">11</span><span class="cl">## a private bridge, for example because you&#39;ll give out your bridge
+</span></span><span class="line"><span class="ln">12</span><span class="cl">## address manually to your friends, uncomment this line:
+</span></span><span class="line"><span class="ln">13</span><span class="cl">#PublishServerDescriptor 0
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">HiddenServiceDir /var/lib/tor/example_mirror
+</span></span><span class="line"><span class="ln">16</span><span class="cl"># ! V3 NOT V2 ! #
+</span></span><span class="line"><span class="ln">17</span><span class="cl">HiddenServiceVersion 3
+</span></span><span class="line"><span class="ln">18</span><span class="cl"># ! Select a Non-Standard Port for Loopback ! #
+</span></span><span class="line"><span class="ln">19</span><span class="cl"># ! Useful for Reverse Proxy Integration ! #
+</span></span><span class="line"><span class="ln">20</span><span class="cl">HiddenServicePort 80 127.0.0.1:8081</span></span></code></pre></div><p>After the necessary changes have been made, you will need to restart Tor to generate the hostname and keys.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Restart Tor ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo systemctl restart tor
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">### Check Output ###</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">sudo ls -lh /var/lib/tor/example_onion
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">sudo cat /var/lib/tor/example_onion/hostname
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### Output Should Be Similar ###</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># ! /var/lib/tor/example_onion/ ! #</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">total 16K
+</span></span><span class="line"><span class="ln">11</span><span class="cl">drwx--S--- <span class="m">2</span> debian-tor debian-tor 4.0K Nov  <span class="m">7</span> 23:38 authorized_clients
+</span></span><span class="line"><span class="ln">12</span><span class="cl">-rw-rw-r-- <span class="m">1</span> debian-tor debian-tor   <span class="m">63</span> Nov  <span class="m">7</span> 23:38 hostname
+</span></span><span class="line"><span class="ln">13</span><span class="cl">-rw-rw-r-- <span class="m">1</span> debian-tor debian-tor   <span class="m">64</span> Nov  <span class="m">7</span> 23:38 hs_ed25519_public_key
+</span></span><span class="line"><span class="ln">14</span><span class="cl">-rw------- <span class="m">1</span> debian-tor debian-tor   <span class="m">96</span> Nov  <span class="m">7</span> 23:38 hs_ed25519_secret_key
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1"># ! /var/lib/tor/example_onion/hostname ! #</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">bh2k5od2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion</span></span></code></pre></div><small><i><b>Reverse proxy integration will be explained after the I2P section.</b></i></small>
+
+<h3 id="onion-vanity-addresses">Onion Vanity Addresses</h3>
+<p><a href="https://github.com/cathugger/mkp224o">Mkp224o</a> is a popular tool for generating custom addresses, though there are some limitations.</p>
+<p>Because we are generating these vanity addresses via brute-force key generation, you may want to keep your character prefix short.</p>
+<small><i><b>I kept my prefix around five characters (mtuck), which only took around five seconds on my VPS.</b></i></small>
+
+<p><strong>Prerequisites:</strong></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Download Dependencies ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo apt install -y git gcc libc6-dev libsodium-dev make autoconf
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">### Clone the mkp224o Repo ###</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">git clone https://github.com/cathugger/mkp224o.git ~/mkp224o <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/mkp224o
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">### Build From Source ###</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">./autogen.sh <span class="o">&amp;&amp;</span> ./configure <span class="o">&amp;&amp;</span> make
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1">### Generate an Address ###</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"># ! -t (threads), -n (number) ! #</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">./mkp224o mtuck -v -n <span class="m">2</span> -d example_vanity
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"># ! Output Should Be Similar ! #</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="nb">set</span> workdir: example_vanity/
+</span></span><span class="line"><span class="ln">16</span><span class="cl">sorting filters... <span class="k">done</span>.
+</span></span><span class="line"><span class="ln">17</span><span class="cl">filters:
+</span></span><span class="line"><span class="ln">18</span><span class="cl">	mtuck
+</span></span><span class="line"><span class="ln">19</span><span class="cl">in total, <span class="m">1</span> filter
+</span></span><span class="line"><span class="ln">20</span><span class="cl">using <span class="m">1</span> thread
+</span></span><span class="line"><span class="ln">21</span><span class="cl">mtuckh7hurljundnkqgkgcrgrfkavcnhpxa4vmmoestgry752fxvorad.onion
+</span></span><span class="line"><span class="ln">22</span><span class="cl">mtuck44uiof3zofhzwl67csxc6qegyjccy4xihh45nytz5egp7ticpid.onion
+</span></span><span class="line"><span class="ln">23</span><span class="cl">waiting <span class="k">for</span> threads to finish... <span class="k">done</span>.</span></span></code></pre></div><p>Then you will have to move the keys/hostname into its proper directory—<em>assuming keys/an address were already generated</em>.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Remove Old Files ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! Cleans Keys/Hostname ! #</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">sudo rm /var/lib/tor/example_onion/h*
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1">### Copy Newly Generated Files ###</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">sudo cp ~/mkp224o/example_vanity/gend-address/h* /var/lib/tor/example_onion/
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### Set Proper Ownership ###</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># ! Debian Uses debian-tor ! #</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">sudo chown -R debian-tor:debian-tor /var/lib/tor/example_onion
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1">### Verify Perms Are Correct ###</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">sudo ls -lh /var/lib/tor/example_onion/
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1">### Verify Hostname Is Correct ###</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">sudo cat /var/lib/tor/example_onion/hostname</span></span></code></pre></div><h2 id="generating-an-i2p-mirror">Generating an I2P Mirror</h2>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Download I2PD ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt update
+</span></span><span class="line"><span class="ln">3</span><span class="cl">sudo apt install -y i2pd
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1">### Enable I2PD ###</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now i2pd</span></span></code></pre></div><small><i><b>Because we are not using Podman or a similar container solution, we'll need to manually download a "baseline" AA config for I2P.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Pull I2PD&#39;s AA Profile ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo wget -O /etc/apparmor.d/usr.bin.i2pd https://raw.githubusercontent.com/PurpleI2P/i2pd/refs/heads/openssl/contrib/apparmor/usr.bin.i2pd 
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">### Audit the Config ###</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">sudo vim /etc/apparmor.d/usr.bin.i2pd
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">### Parse the Config ###</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">sudo apparmor_parser -r /etc/apparmor.d/usr.bin.i2pd
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1">### Enforce the Config ###</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">sudo aa-enforce /etc/apparmor.d/usr.bin.i2pd
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">### Sanity Check ###</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">sudo aa-status
+</span></span><span class="line"><span class="ln">15</span><span class="cl">sudo systemctl restart i2pd</span></span></code></pre></div><h3 id="configuring-i2pd">Configuring I2PD</h3>
+<p>As I intend this article to be geared toward simply hosting hidden services, I unfortunately won&rsquo;t touch on I2PD-specific security (<strong>for now, haha</strong>).</p>
+<small><i><b>Not to mention documentation is quite lackluster compared to the Tor Project.</b></i></small>
+
+<p>I2PD will be the lightest solution (currently) available, with most mainstream repositories supporting it by default.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/i2pd/i2pd.conf ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">## Bandwidth configuration
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">## L limit bandwidth to 32 KB/sec, O - to 256 KB/sec, P - to 2048 KB/sec,
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">## X - unlimited
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">## Default is L (regular node) and X if floodfill mode enabled.
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">## If you want to share more bandwidth without floodfill mode, uncomment
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">## that line and adjust value to your possibilities. Value can be set to
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">## integer in kilobytes, it will apply that limit and flag will be used
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">## from next upper limit (example: if you set 4096 flag will be X, but real
+</span></span><span class="line"><span class="ln">10</span><span class="cl">## limit will be 4096 KB/s). Same can be done when floodfill mode is used,
+</span></span><span class="line"><span class="ln">11</span><span class="cl">## but keep in mind that low values may be negatively evaluated by Java
+</span></span><span class="line"><span class="ln">12</span><span class="cl">## router algorithms.
+</span></span><span class="line"><span class="ln">13</span><span class="cl"># ! Changed Mine to P (up to You) ! #
+</span></span><span class="line"><span class="ln">14</span><span class="cl">bandwidth = P
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl">[http]
+</span></span><span class="line"><span class="ln">17</span><span class="cl">## Web Console settings
+</span></span><span class="line"><span class="ln">18</span><span class="cl">## Enable the Web Console (default: true)
+</span></span><span class="line"><span class="ln">19</span><span class="cl"># ! Best to Disable the Web Console Later ! #
+</span></span><span class="line"><span class="ln">20</span><span class="cl"># ! Useful for Diagnostic Info ! #
+</span></span><span class="line"><span class="ln">21</span><span class="cl">enabled = false
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl">## Port to listen for connections
+</span></span><span class="line"><span class="ln">24</span><span class="cl">## By default i2pd picks random port. You MUST pick a random number too,
+</span></span><span class="line"><span class="ln">25</span><span class="cl">## don&#39;t just uncomment this
+</span></span><span class="line"><span class="ln">26</span><span class="cl"># ! Set to a Custom Port ! #
+</span></span><span class="line"><span class="ln">27</span><span class="cl"># ! Allow TCP/UDP Through WAF/Nftables ! #
+</span></span><span class="line"><span class="ln">28</span><span class="cl">port = 4400</span></span></code></pre></div><p>After we&rsquo;ve configured I2PD itself, <em>we need to handle our firewall</em>!</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### UFW Config ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">sudo ufw allow 4400/tcp
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">sudo ufw allow 4400/udp
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># ! Verify ! #</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">sudo ufw status numbered
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">### IPtables Config ###</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">sudo iptables -A INPUT -p tcp -m tcp --dport <span class="m">4400</span> -j ACCEPT
+</span></span><span class="line"><span class="ln">10</span><span class="cl">sudo iptables -A INPUT -p udp -m udp --dport <span class="m">4400</span> -j ACCEPT
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"># ! Verify ! #</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">sudo iptables -L -v
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"># ! Save if Needed ! #</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">sudo netfilter-persistent save</span></span></code></pre></div><p>Now that I2P can actually communicate within its network, <em>we can finally configure our eepsite</em>!</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/i2pd/tunnels.conf ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"># ! Comment Out Anything Unnecessary ! #
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"># ! Fine To Edit Here ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">[eepsite]
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">type = http
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">host = 127.0.0.1
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">port = 9090
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">keys = eepsite.dat
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"># ! Reverse Proxy Will Handle This ! #
+</span></span><span class="line"><span class="ln">10</span><span class="cl">gzip = false</span></span></code></pre></div><p><strong>A Quick Restart Is in Order:</strong></p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Generates our Key ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo systemctl restart i2pd
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">### Check the Console (if Enabled) ###</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">curl http://127.0.0.1:7070</span></span></code></pre></div><p>We&rsquo;re nearly there, but unlike Tor—I2PD doesn&rsquo;t provide readable hostnames.</p>
+<p>You may access this through the web console, but I find it to be counterintuitive.</p>
+<small><i><b>Especially considering you'd be required to use software like Lynx.</b></i></small>
+
+<p>You can absolutely use <a href="https://github.com/PurpleI2P/i2pd-tools">i2pd-tools</a>, but we can just pull the address directly.</p>
+<small><i><b>That repo is pertinent toward generating vanity addresses—but that doesn't concern me.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Pulling the Base32 Address ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt install -y xxd
+</span></span><span class="line"><span class="ln">3</span><span class="cl">sudo sh -c <span class="s1">&#39;printf &#34;%s.b32.i2p\n&#34; $(head -c 391 /var/lib/i2pd/eepsite.dat | sha256sum | xxd -r -p | base32 | sed s/=//g | tr A-Z a-z)&#39;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"># ! Output Should Be Similar (Base32) ! #</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">mqfp6dvkrpf452mvwp2ouzh7dkn4swb7dhbaas76rtpurysdckoq.b32.i2p</span></span></code></pre></div><small><i><b>Repeat for as many sites as you desire to mirror.</b></i></small>
+
+<h2 id="reverse-proxy-integration">Reverse Proxy Integration</h2>
+<p>Integrating hidden services with your existing reverse proxy is largely hassle-free.</p>
+<p>Headers help clients switch to their desired mirror without having to scrounge for addresses.</p>
+<p>Tor has had existing support via the Onion-Location header, but seamless I2P discovery is not as widely adopted.</p>
+<p>Adding a custom header similar to Tor&rsquo;s onion-location or <strong>Alt-Svc</strong> are the most sane options.</p>
+<h3 id="headers">Headers</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-available/main ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"># ! Tor - Onion Header ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">add_header Onion-Location &#34;http://mtuckod2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion$request_uri&#34; always;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"># ! I2P - Eeepsite Header ! #
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"># ! Optional (Not Yet Widely Adopted) ! #
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">add_header Alt-Svc &#39;i2p=&#34;eepsite.b32.i2p:80&#34;; ma=86400&#39; always;
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">11</span><span class="cl">}</span></span></code></pre></div><h3 id="tor-nginx-config">Tor Nginx Config</h3>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-available/tutorial_tor ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"># ! Clearnet Redirect ! #
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    listen 80;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    server_name tor;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    return 301 https://sld.tld$request_uri;
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">}
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    # ! Only Accepting Tor ! #
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    listen 127.0.0.1:8081;
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    server_name site.onion;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    # ! Include Web Contents ! #
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    root /var/www/example_onion;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    index index.html;
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    # ! Include Security Configs ! #
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    include /etc/nginx/snippets/tor-security-headers.conf;
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    include /etc/nginx/snippets/tor-error-pages.conf;
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    # ! Blocks Local Leaks ! #
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    allow 127.0.0.1;
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    deny all;
+</span></span><span class="line"><span class="ln">24</span><span class="cl">
+</span></span><span class="line"><span class="ln">25</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">26</span><span class="cl">}</span></span></code></pre></div>
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Link the Site ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo ln -s /etc/nginx/sites-available/tutorial_tor /etc/nginx/sites-enabled/tutorial_tor
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">### Test Config ###</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">sudo nginx -t
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1">### Reload Nginx ###</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">sudo nginx -s reload</span></span></code></pre></div><h3 id="i2p-nginx-config">I2P Nginx Config</h3>
+<p>Configuring an I2P mirror is quite similar to Tor; just ensure that you are using a different port to properly segment traffic.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-available/tutorial_i2p ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"># ! Clearnet Redirect ! #
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    listen 80;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    server_name i2p;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    return 301 https://sld.tld$request_uri;
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">}
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    # ! Only Accepting I2P ! #
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    listen 127.0.0.1:9091;
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    server_name eepsite.b32.i2p;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    # ! Include Web Contents ! #
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    root /var/www/example_eepsite;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    index index.html;
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    # ! Include Security Configs ! #
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    include /etc/nginx/snippets/i2p-security-headers.conf;
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    include /etc/nginx/snippets/i2p-error-pages.conf;
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    # ! Blocks Local Leaks ! #
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    # ! I2P Uses a Larger Local Subnet ! #
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    # ! You Need To Be Permissive ! #
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    allow 127.0.0.0/8;
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    deny all;
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">28</span><span class="cl">}</span></span></code></pre></div>
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Link the Site ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo ln -s /etc/nginx/sites-available/tutorial_i2p /etc/nginx/sites-enabled/tutorial_i2p
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">### Test Config ###</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">sudo nginx -t
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1">### Reload Again (if Necessary) ###</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">sudo nginx -s reload</span></span></code></pre></div><h3 id="accessing-your-mirrors">Accessing Your Mirrors</h3>
+<p>Because we aren&rsquo;t hosting on the conventional clearnet, we&rsquo;ll need to <strong>LOCALLY</strong> download specialized software/profiles for accessing our sites.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Tor ###</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! Useful for Auto-Updates ! #</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1"># ! Including Flatseal ! #</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">flatpak install org.torproject.torbrowser-launcher com.github.tchx84.Flatseal
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1"># ! Manage Flatpak Perms (if Desired) ! #</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">flatpak run com.github.tchx84.Flatseal
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># ! Run the Browser ! #</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">flatpak run org.torproject.torbrowser-launcher
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1">## I2P ###</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1"># ! Install Locally ! #</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"># ! Flatpak was Finicky for Me ! #</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">sudo apt install -y i2pd
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1"># ! Edit the Local I2PD Config as Stated Above ! #</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"># ! Ignore Eeepsite Generation ! #</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now i2pd
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1">### Build a Specialized I2PD Browser (Firefox) ###</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="nb">cd</span> ~<span class="p">;</span> git clone https://github.com/daviduhden/i2pd-browser/
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="nb">cd</span> i2pd-browser/build <span class="o">&amp;&amp;</span> ./build
+</span></span><span class="line"><span class="ln">24</span><span class="cl">
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="c1"># ! Start the Browser ! #</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="nb">cd</span> ../<span class="p">;</span> ./start-i2pd-browser.desktop
+</span></span><span class="line"><span class="ln">27</span><span class="cl">
+</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="c1"># ! Permit if Needed ! #</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">chmod +x ~/i2pd-browser/start-i2pd-browser.desktop
+</span></span><span class="line"><span class="ln">30</span><span class="cl">
+</span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="c1"># ! Monitor the Web Console ! #</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="c1"># ! NAT Issues May Arise ! #</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="c1"># ! Can&#39;t Help Here (Sorry) ! #</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">http://127.0.0.1:7070</span></span></code></pre></div><h3 id="deployed-mirrors">Deployed Mirrors</h3>
+<small><i><b>Taken from my open library.</b></i></small>
+
+<p><strong><a href="http://mtuckwbhnyx7pk3w3vvyqydv6sag5uxcbsx6dn5q5j4olpqmlkzosbad.onion/">Tor:</a></strong></p>
+<p><img src="/images/posts/hidden-services/tor-site.webp" alt="My Library’s Tor Mirror"></p>
+<p><strong><a href="http://mqfp6dvkrpf452mvwp2ouzh7dkn4swb7dhbaas76rtpurysdckoq.b32.i2p/">I2P:</a></strong></p>
+<p><img src="/images/posts/hidden-services/i2p-site.webp" alt="My Library’s I2P Mirror"></p>
+<h2 id="outcomes">Outcomes</h2>
+<p>If everything went swimmingly, you should have both an I2P and Tor mirror deployed for your site.</p>
+<p>Deploying additional mirrors follows the same playbook, but make sure (<strong>REQUIRED</strong>) to segment each mirror to its respective port.</p>
+<small><i><b>Note: A simple apt purge will resolve any latent misconfiguration.</b></i></small>
+
+<p><strong>Another Thing to Keep in Mind:</strong></p>
+<p>It would be wise to provide cryptographic proof of any operated sites; clear-signing is less clunky for individual statements.</p>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl">gpg --clear-sign privacy-policy.txt
+</span></span><span class="line"><span class="ln">2</span><span class="cl">gpg --clear-sign miror-statement.txt</span></span></code></pre></div><h2 id="closing">Closing</h2>
+<p>The &ldquo;<em>dark web</em>&rdquo; obtains an insanely bad rep from &ldquo;<em>libertarian</em>&rdquo; types, but don&rsquo;t let that dissuade you.</p>
+<p>Every corner of the internet has its bad actors—though admittedly there is some truth about the &ldquo;<em>privacy</em>&rdquo; community and their collective behavior.</p>
+<p>Be wary of others online, especially in Fediverse <strong>cesspools</strong> like <a href="https://fsi.stanford.edu/news/addressing-child-exploitation-federated-social-media">Mastodon</a> and similar E2EE <strong><a href="https://news.ycombinator.com/item?id=44592603">CSAM-INFESTED</a></strong> messagers like Matrix.</p>
+<p>Any private or E2EE service procures some level of &ldquo;<em>hacker</em>&rdquo; mystique, but deploying and maintaining mirrors is rather straightforward (not to mention boring).</p>
+<p>Architecting your own infrastructure provides a far better learning path than <em>lazily slapping</em> web files on GitHub/GitLab pages.</p>
+<p><small><i><b>Trust me, that is the work of a rock-bottom dullard; go lease a $5 VPS, you're better than that!</b></i></small>
+
+<br>
+<small><i><b>Shoot for learning first and ditch performative "projects."</b></i></small>
+</p>
+<p><em>If you are operating a mirror or really any online service, I ask that you respect your users&rsquo; privacy.</em></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>Web Hardening</title>
       <link>https://masontuckett.xyz/posts/web-hardening/</link>
@@ -618,13 +1156,106 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
-</span></span><span class="line"><span class="ln">2</span><span class="cl">server {
-</span></span><span class="line"><span class="ln">3</span><span class="cl">    # ! MAKE SURE TO ADD THIS ! #
-</span></span><span class="line"><span class="ln">4</span><span class="cl">    include /etc/nginx/snippets/error-pages.conf;
-</span></span><span class="line"><span class="ln">5</span><span class="cl">
-</span></span><span class="line"><span class="ln">6</span><span class="cl"># ! ↓ Site Config ↓ ! #
-</span></span><span class="line"><span class="ln">7</span><span class="cl">}</span></span></code></pre></div><h2 id="outcomes">Outcomes</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    # ! MAKE SURE TO ADD THIS ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    include /etc/nginx/snippets/error-pages.conf;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    # ! Optionally Disable Logs for User Privacy ! #
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    access_log off;
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    error_log /var/log/nginx/example-error.log
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">11</span><span class="cl">}</span></span></code></pre></div><h3 id="apparmor">AppArmor</h3>
+<p>Because this is a bare-install, we&rsquo;ll need to configure a MAC solution for Nginx.</p>
+<p>Apparmor is a fantastic MAC tool, which is quite comparable to SELinux.</p>
+<small><i><b>Installing and configuring Apparmor is incredibly user-friendly—as the syntax is nearly foolproof.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Installing AppArmor ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt update
+</span></span><span class="line"><span class="ln">3</span><span class="cl">sudo apt install -y apparmor apparmor-utils 
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1">### Enable AppArmor ###</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now apparmor</span></span></code></pre></div><small><i><b>Now comes the profile!</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/apparmor.d/usr.sbin.nginx ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"># ! Basic AA Profile ! #
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"># ! Audit &amp; Tweak to Your Needs ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">#include &lt;tunables/global&gt;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">profile /usr/sbin/nginx flags=(attach_disconnected, mediate_deleted) {
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  include &lt;abstractions/base&gt;
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  include &lt;abstractions/nameservice&gt;
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  include &lt;abstractions/ssl_certs&gt;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  # ! Caps ! #
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  #  - net_bind_service: bind 80/443
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  #  - set{u,g}id: drop to www-data
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  #  - dac_*: let root master open/rotate logs owned 0640 www-data:adm
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  capability net_bind_service,
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  capability setgid,
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  capability setuid,
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  capability dac_override,
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  capability dac_read_search,
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  # ! Networking Settings ! #
+</span></span><span class="line"><span class="ln">24</span><span class="cl">  network inet stream,
+</span></span><span class="line"><span class="ln">25</span><span class="cl">  deny network raw,
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl">  # ! Binary Used ! #
+</span></span><span class="line"><span class="ln">28</span><span class="cl">  /usr/sbin/nginx mr,
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl">  # ! Read-Only Access ! #
+</span></span><span class="line"><span class="ln">31</span><span class="cl">  /etc/nginx/**                 r,
+</span></span><span class="line"><span class="ln">32</span><span class="cl">  /etc/letsencrypt/**           r,
+</span></span><span class="line"><span class="ln">33</span><span class="cl">  /usr/share/nginx/**           r,
+</span></span><span class="line"><span class="ln">34</span><span class="cl">  /etc/mime.types               r,
+</span></span><span class="line"><span class="ln">35</span><span class="cl">  /var/www/**                   r,
+</span></span><span class="line"><span class="ln">36</span><span class="cl">
+</span></span><span class="line"><span class="ln">37</span><span class="cl">  # ! Runtime Stats - PIDs ! #
+</span></span><span class="line"><span class="ln">38</span><span class="cl">  /run/nginx.pid                rw,
+</span></span><span class="line"><span class="ln">39</span><span class="cl">  /run/nginx/**                 rw,
+</span></span><span class="line"><span class="ln">40</span><span class="cl">  /var/lib/nginx/               rw,
+</span></span><span class="line"><span class="ln">41</span><span class="cl">  /var/lib/nginx/**             rwk,
+</span></span><span class="line"><span class="ln">42</span><span class="cl">  /var/cache/nginx/             rw,
+</span></span><span class="line"><span class="ln">43</span><span class="cl">  /var/cache/nginx/**           rwk,
+</span></span><span class="line"><span class="ln">44</span><span class="cl">
+</span></span><span class="line"><span class="ln">45</span><span class="cl">  # ! Logging ! #
+</span></span><span class="line"><span class="ln">46</span><span class="cl">  /var/log/nginx/               rw,
+</span></span><span class="line"><span class="ln">47</span><span class="cl">  /var/log/nginx/**             rwk,
+</span></span><span class="line"><span class="ln">48</span><span class="cl">
+</span></span><span class="line"><span class="ln">49</span><span class="cl">  # ! Denies External/Helper Binaries ! #
+</span></span><span class="line"><span class="ln">50</span><span class="cl">  deny /bin/**                  mrwklx,
+</span></span><span class="line"><span class="ln">51</span><span class="cl">  deny /usr/bin/**              mrwklx,
+</span></span><span class="line"><span class="ln">52</span><span class="cl">}</span></span></code></pre></div><p>The profile above should be more than adequate, but it&rsquo;s best to double-check the permissions and tweak if needed.</p>
+<small><i><b>Note: I spun this up from a prior config, and tweaked it for compatibility/accessibility concerns.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Parsing the Profile ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.nginx
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">### Enforcing the Profile ###</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">sudo aa-enforce /etc/apparmor.d/usr.sbin.nginx
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1">### Sanity Check ###</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">sudo aa-status
+</span></span><span class="line"><span class="ln">9</span><span class="cl">sudo systemctl restart nginx</span></span></code></pre></div><h2 id="outcomes">Outcomes</h2>
 <p>You can verify your security standpoint by utilizing a third-party tool such as <a href="https://developer.mozilla.org/en-US/observatory/analyze?host=masontuckett.xyz">Mozilla&rsquo;s HTTP Observatory</a>.</p>
 <small><i><b>My relevant curl results:</b></i></small>
 
@@ -634,7 +1265,7 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### SNI Check ###</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">myuser@masontuckett:~$ curl -vik https://gnu.org --resolve gnu.org:443:144.202.101.190
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">me@masontuckett:~$ curl -vik https://gnu.org --resolve gnu.org:443:144.202.101.190
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">* Added gnu.org:443:144.202.101.190 to DNS cache
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">* Hostname gnu.org was found in DNS cache
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl">*   Trying 144.202.101.190:443...
@@ -658,8 +1289,10 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 </p>
 <p>It doesn&rsquo;t impact my security whatsoever—<em>though I vehemently despise the bloat.</em></p>
 <p>I am nearly complete with my migration to rootless Podman—so expect a detailed follow-up with deployable configs soon.</p>
+<small><i><b>Note: Fail2Ban integration will be covered in a later systems hardening article.</b></i></small>
+
 <p><strong>Next Up:</strong> <a href="/posts/podman/">Rootless Podman</a>.</p>
-<small><i><b>You'll see my hatred of Docker/Portainer/Tailscale and JS-laden MidwidtNAS on full display, haha!</b></i></small>
+<small><i><b>You'll see my hatred of Docker/Portainer/Tailscale and JS-laden TrashNAS on full display, haha!</b></i></small>
 
 ]]></content:encoded>
     </item>
@@ -940,13 +1573,13 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl"># Sane Value - Only Allows Strict Issuance From Let&#39;s Encrypt ###
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### Sane Value - Only Allows Strict Issuance From Let&#39;s Encrypt ###
 </span></span><span class="line"><span class="ln">2</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 issue &#34;letsencrypt.org&#34;
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
-</span></span><span class="line"><span class="ln">4</span><span class="cl"># Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
+</span></span><span class="line"><span class="ln">4</span><span class="cl">### Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
 </span></span><span class="line"><span class="ln">5</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 issuewild &#34;;&#34;
 </span></span><span class="line"><span class="ln">6</span><span class="cl">
-</span></span><span class="line"><span class="ln">7</span><span class="cl"># Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
+</span></span><span class="line"><span class="ln">7</span><span class="cl">### Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
 </span></span><span class="line"><span class="ln">8</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 iodef &#34;mailto:admin@tuckett.xyz&#34;</span></span></code></pre></div><h3 id="txt-records">TXT Records</h3>
 <p>It may be useful to include important information within your TXT records, as most text may be inserted.</p>
 <small><i><b>I included important statements, checksums, onion location(s) (if not pulled by HTTP header), and my GPG info.</b></i></small>

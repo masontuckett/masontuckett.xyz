@@ -307,13 +307,13 @@ CAA flags are set in 8-bit values (0-255); 0 is default (non-critical)—which a
 Both issue and issuewild are utilized for SSL/TLS distinction; wildcard certs may be utilized, though they are not advised.
 
 ```txt
-# Sane Value - Only Allows Strict Issuance From Let's Encrypt ###
+### Sane Value - Only Allows Strict Issuance From Let's Encrypt ###
 tuckettlab.xyz.		2103	IN	CAA	128 issue "letsencrypt.org"
 
-# Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
+### Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
 tuckettlab.xyz.		2103	IN	CAA	128 issuewild ";"
 
-# Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
+### Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
 tuckettlab.xyz.		2103	IN	CAA	128 iodef "mailto:admin@tuckett.xyz"
 ```
  

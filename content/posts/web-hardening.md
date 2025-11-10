@@ -641,8 +641,101 @@ server {
     # ! MAKE SURE TO ADD THIS ! #
     include /etc/nginx/snippets/error-pages.conf;
 
+    # ! Optionally Disable Logs for User Privacy ! #
+    access_log off;
+    error_log /var/log/nginx/example-error.log
+
 # ! ↓ Site Config ↓ ! #
 }
+```
+
+### AppArmor
+
+Because this is a bare-install, we'll need to configure a MAC solution for Nginx. 
+
+Apparmor is a fantastic MAC tool, which is quite comparable to SELinux.
+
+{{< small >}}Installing and configuring Apparmor is incredibly user-friendly—as the syntax is nearly foolproof.{{</ small >}}
+
+```sh
+### Installing AppArmor ###
+sudo apt update
+sudo apt install -y apparmor apparmor-utils 
+
+### Enable AppArmor ###
+sudo systemctl enable --now apparmor
+```
+{{< small >}}Now comes the profile!{{</ small >}}
+
+```txt
+### /etc/apparmor.d/usr.sbin.nginx ###
+# ! Basic AA Profile ! #
+# ! Audit & Tweak to Your Needs ! #
+
+#include <tunables/global>
+
+profile /usr/sbin/nginx flags=(attach_disconnected, mediate_deleted) {
+
+  include <abstractions/base>
+  include <abstractions/nameservice>
+  include <abstractions/ssl_certs>
+
+  # ! Caps ! #
+  #  - net_bind_service: bind 80/443
+  #  - set{u,g}id: drop to www-data
+  #  - dac_*: let root master open/rotate logs owned 0640 www-data:adm
+  capability net_bind_service,
+  capability setgid,
+  capability setuid,
+  capability dac_override,
+  capability dac_read_search,
+
+  # ! Networking Settings ! #
+  network inet stream,
+  deny network raw,
+
+  # ! Binary Used ! #
+  /usr/sbin/nginx mr,
+
+  # ! Read-Only Access ! #
+  /etc/nginx/**                 r,
+  /etc/letsencrypt/**           r,
+  /usr/share/nginx/**           r,
+  /etc/mime.types               r,
+  /var/www/**                   r,
+
+  # ! Runtime Stats - PIDs ! #
+  /run/nginx.pid                rw,
+  /run/nginx/**                 rw,
+  /var/lib/nginx/               rw,
+  /var/lib/nginx/**             rwk,
+  /var/cache/nginx/             rw,
+  /var/cache/nginx/**           rwk,
+
+  # ! Logging ! #
+  /var/log/nginx/               rw,
+  /var/log/nginx/**             rwk,
+
+  # ! Denies External/Helper Binaries ! #
+  deny /bin/**                  mrwklx,
+  deny /usr/bin/**              mrwklx,
+}
+```
+
+The profile above should be more than adequate, but it's best to double-check the permissions and tweak if needed. 
+
+{{< small >}}Note: I spun this up from a prior config, and tweaked it for compatibility/accessibility concerns.{{</ small >}}
+
+```sh
+### Parsing the Profile ###
+sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.nginx
+
+### Enforcing the Profile ###
+sudo aa-enforce /etc/apparmor.d/usr.sbin.nginx
+
+### Sanity Check ###
+sudo aa-status
+sudo systemctl restart nginx
 ```
 
 ## Outcomes
@@ -653,7 +746,7 @@ You can verify your security standpoint by utilizing a third-party tool such as 
 
 ```sh
 ### SNI Check ###
-myuser@masontuckett:~$ curl -vik https://gnu.org --resolve gnu.org:443:144.202.101.190
+me@masontuckett:~$ curl -vik https://gnu.org --resolve gnu.org:443:144.202.101.190
 * Added gnu.org:443:144.202.101.190 to DNS cache
 * Hostname gnu.org was found in DNS cache
 *   Trying 144.202.101.190:443...
@@ -684,7 +777,9 @@ It doesn't impact my security whatsoever—*though I vehemently despise the bloa
 
 I am nearly complete with my migration to rootless Podman—so expect a detailed follow-up with deployable configs soon.
 
+{{< small >}}Note: Fail2Ban integration will be covered in a later systems hardening article.{{</ small >}}
+
 __Next Up:__ [Rootless Podman](/posts/podman/).
 
-{{< small >}}You'll see my hatred of Docker/Portainer/Tailscale and JS-laden MidwidtNAS on full display, haha!{{</ small >}}
+{{< small >}}You'll see my hatred of Docker/Portainer/Tailscale and JS-laden TrashNAS on full display, haha!{{</ small >}}
 

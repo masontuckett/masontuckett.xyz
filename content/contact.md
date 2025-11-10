@@ -10,8 +10,7 @@ description = "Mason Tuckett's Contact Page"
 # Contact
 Socials: [LinkedIn](https://linkedin.com/in/mason-tuckett), [GitHub](https://github.com/masontuckett)
 
-
-For professional opportunities, feel free to contact me via email: [mason@tuckett.xyz](mailto:mason@tuckett.xyz)
+Feel free to contact me via email: [mason@tuckett.xyz](mailto:mason@tuckett.xyz)
 
 ```
 https://github.com/masontuckett/masontuckett.gpg

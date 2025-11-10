@@ -360,13 +360,13 @@
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl"># Sane Value - Only Allows Strict Issuance From Let&#39;s Encrypt ###
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### Sane Value - Only Allows Strict Issuance From Let&#39;s Encrypt ###
 </span></span><span class="line"><span class="ln">2</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 issue &#34;letsencrypt.org&#34;
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
-</span></span><span class="line"><span class="ln">4</span><span class="cl"># Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
+</span></span><span class="line"><span class="ln">4</span><span class="cl">### Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
 </span></span><span class="line"><span class="ln">5</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 issuewild &#34;;&#34;
 </span></span><span class="line"><span class="ln">6</span><span class="cl">
-</span></span><span class="line"><span class="ln">7</span><span class="cl"># Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
+</span></span><span class="line"><span class="ln">7</span><span class="cl">### Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
 </span></span><span class="line"><span class="ln">8</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 iodef &#34;mailto:admin@tuckett.xyz&#34;</span></span></code></pre></div><h3 id="txt-records">TXT Records</h3>
 <p>It may be useful to include important information within your TXT records, as most text may be inserted.</p>
 <small><i><b>I included important statements, checksums, onion location(s) (if not pulled by HTTP header), and my GPG info.</b></i></small>
@@ -489,13 +489,13 @@
 <a href='https://masontuckett.xyz/index.xml'>
     <img id="rss" src="/images/rss.webp" alt="button for my RSS feed">
 </a>
-<a href="https://masontuckett.xyz">
+<a href="https://masontuckett.xyz/">
     <img id="clear" src="/images/clear.webp" alt="button for my clear net site">
 </a>
-<a href="http://mtuckod2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion">
+<a href="http://mtuckod2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion/">
     <img id="tor" src="/images/tor.webp" alt="button for my Onion site">
 </a>
-<a href="#WIP">
+<a href="http://mjnt7z23l6nhugddsn7yokk3veiegyozjw27kymzry7chjlriqiq.b32.i2p/">
 	<img id="i2p" src="/images/i2p.webp" alt="button for my Eepsite">
 </a>
 </footer>  

@@ -618,13 +618,106 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
-</span></span><span class="line"><span class="ln">2</span><span class="cl">server {
-</span></span><span class="line"><span class="ln">3</span><span class="cl">    # ! MAKE SURE TO ADD THIS ! #
-</span></span><span class="line"><span class="ln">4</span><span class="cl">    include /etc/nginx/snippets/error-pages.conf;
-</span></span><span class="line"><span class="ln">5</span><span class="cl">
-</span></span><span class="line"><span class="ln">6</span><span class="cl"># ! ↓ Site Config ↓ ! #
-</span></span><span class="line"><span class="ln">7</span><span class="cl">}</span></span></code></pre></div><h2 id="outcomes">Outcomes</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-enabled/tutorial ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    # ! MAKE SURE TO ADD THIS ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    include /etc/nginx/snippets/error-pages.conf;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    # ! Optionally Disable Logs for User Privacy ! #
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    access_log off;
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    error_log /var/log/nginx/example-error.log
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">11</span><span class="cl">}</span></span></code></pre></div><h3 id="apparmor">AppArmor</h3>
+<p>Because this is a bare-install, we&rsquo;ll need to configure a MAC solution for Nginx.</p>
+<p>Apparmor is a fantastic MAC tool, which is quite comparable to SELinux.</p>
+<small><i><b>Installing and configuring Apparmor is incredibly user-friendly—as the syntax is nearly foolproof.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Installing AppArmor ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt update
+</span></span><span class="line"><span class="ln">3</span><span class="cl">sudo apt install -y apparmor apparmor-utils 
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1">### Enable AppArmor ###</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now apparmor</span></span></code></pre></div><small><i><b>Now comes the profile!</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/apparmor.d/usr.sbin.nginx ###
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"># ! Basic AA Profile ! #
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"># ! Audit &amp; Tweak to Your Needs ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">#include &lt;tunables/global&gt;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">profile /usr/sbin/nginx flags=(attach_disconnected, mediate_deleted) {
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  include &lt;abstractions/base&gt;
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  include &lt;abstractions/nameservice&gt;
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  include &lt;abstractions/ssl_certs&gt;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  # ! Caps ! #
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  #  - net_bind_service: bind 80/443
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  #  - set{u,g}id: drop to www-data
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  #  - dac_*: let root master open/rotate logs owned 0640 www-data:adm
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  capability net_bind_service,
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  capability setgid,
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  capability setuid,
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  capability dac_override,
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  capability dac_read_search,
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  # ! Networking Settings ! #
+</span></span><span class="line"><span class="ln">24</span><span class="cl">  network inet stream,
+</span></span><span class="line"><span class="ln">25</span><span class="cl">  deny network raw,
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl">  # ! Binary Used ! #
+</span></span><span class="line"><span class="ln">28</span><span class="cl">  /usr/sbin/nginx mr,
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl">  # ! Read-Only Access ! #
+</span></span><span class="line"><span class="ln">31</span><span class="cl">  /etc/nginx/**                 r,
+</span></span><span class="line"><span class="ln">32</span><span class="cl">  /etc/letsencrypt/**           r,
+</span></span><span class="line"><span class="ln">33</span><span class="cl">  /usr/share/nginx/**           r,
+</span></span><span class="line"><span class="ln">34</span><span class="cl">  /etc/mime.types               r,
+</span></span><span class="line"><span class="ln">35</span><span class="cl">  /var/www/**                   r,
+</span></span><span class="line"><span class="ln">36</span><span class="cl">
+</span></span><span class="line"><span class="ln">37</span><span class="cl">  # ! Runtime Stats - PIDs ! #
+</span></span><span class="line"><span class="ln">38</span><span class="cl">  /run/nginx.pid                rw,
+</span></span><span class="line"><span class="ln">39</span><span class="cl">  /run/nginx/**                 rw,
+</span></span><span class="line"><span class="ln">40</span><span class="cl">  /var/lib/nginx/               rw,
+</span></span><span class="line"><span class="ln">41</span><span class="cl">  /var/lib/nginx/**             rwk,
+</span></span><span class="line"><span class="ln">42</span><span class="cl">  /var/cache/nginx/             rw,
+</span></span><span class="line"><span class="ln">43</span><span class="cl">  /var/cache/nginx/**           rwk,
+</span></span><span class="line"><span class="ln">44</span><span class="cl">
+</span></span><span class="line"><span class="ln">45</span><span class="cl">  # ! Logging ! #
+</span></span><span class="line"><span class="ln">46</span><span class="cl">  /var/log/nginx/               rw,
+</span></span><span class="line"><span class="ln">47</span><span class="cl">  /var/log/nginx/**             rwk,
+</span></span><span class="line"><span class="ln">48</span><span class="cl">
+</span></span><span class="line"><span class="ln">49</span><span class="cl">  # ! Denies External/Helper Binaries ! #
+</span></span><span class="line"><span class="ln">50</span><span class="cl">  deny /bin/**                  mrwklx,
+</span></span><span class="line"><span class="ln">51</span><span class="cl">  deny /usr/bin/**              mrwklx,
+</span></span><span class="line"><span class="ln">52</span><span class="cl">}</span></span></code></pre></div><p>The profile above should be more than adequate, but it&rsquo;s best to double-check the permissions and tweak if needed.</p>
+<small><i><b>Note: I spun this up from a prior config, and tweaked it for compatibility/accessibility concerns.</b></i></small>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">### Parsing the Profile ###</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.nginx
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">### Enforcing the Profile ###</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">sudo aa-enforce /etc/apparmor.d/usr.sbin.nginx
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1">### Sanity Check ###</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">sudo aa-status
+</span></span><span class="line"><span class="ln">9</span><span class="cl">sudo systemctl restart nginx</span></span></code></pre></div><h2 id="outcomes">Outcomes</h2>
 <p>You can verify your security standpoint by utilizing a third-party tool such as <a href="https://developer.mozilla.org/en-US/observatory/analyze?host=masontuckett.xyz">Mozilla&rsquo;s HTTP Observatory</a>.</p>
 <small><i><b>My relevant curl results:</b></i></small>
 
@@ -634,7 +727,7 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### SNI Check ###</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">myuser@masontuckett:~$ curl -vik https://gnu.org --resolve gnu.org:443:144.202.101.190
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">me@masontuckett:~$ curl -vik https://gnu.org --resolve gnu.org:443:144.202.101.190
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">* Added gnu.org:443:144.202.101.190 to DNS cache
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">* Hostname gnu.org was found in DNS cache
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl">*   Trying 144.202.101.190:443...
@@ -658,8 +751,10 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 </p>
 <p>It doesn&rsquo;t impact my security whatsoever—<em>though I vehemently despise the bloat.</em></p>
 <p>I am nearly complete with my migration to rootless Podman—so expect a detailed follow-up with deployable configs soon.</p>
+<small><i><b>Note: Fail2Ban integration will be covered in a later systems hardening article.</b></i></small>
+
 <p><strong>Next Up:</strong> <a href="/posts/podman/">Rootless Podman</a>.</p>
-<small><i><b>You'll see my hatred of Docker/Portainer/Tailscale and JS-laden MidwidtNAS on full display, haha!</b></i></small>
+<small><i><b>You'll see my hatred of Docker/Portainer/Tailscale and JS-laden TrashNAS on full display, haha!</b></i></small>
 
 ]]></content:encoded>
     </item>
@@ -1326,13 +1421,13 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 
 
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl"># Sane Value - Only Allows Strict Issuance From Let&#39;s Encrypt ###
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### Sane Value - Only Allows Strict Issuance From Let&#39;s Encrypt ###
 </span></span><span class="line"><span class="ln">2</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 issue &#34;letsencrypt.org&#34;
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
-</span></span><span class="line"><span class="ln">4</span><span class="cl"># Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
+</span></span><span class="line"><span class="ln">4</span><span class="cl">### Disable Wildcard Certs - Prevents Against Wildcard Abuse (; = NO CAs) ###
 </span></span><span class="line"><span class="ln">5</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 issuewild &#34;;&#34;
 </span></span><span class="line"><span class="ln">6</span><span class="cl">
-</span></span><span class="line"><span class="ln">7</span><span class="cl"># Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
+</span></span><span class="line"><span class="ln">7</span><span class="cl">### Incident Object Description Exchange Format - Instructs CAs Where to Send Reports ###
 </span></span><span class="line"><span class="ln">8</span><span class="cl">tuckettlab.xyz.		2103	IN	CAA	128 iodef &#34;mailto:admin@tuckett.xyz&#34;</span></span></code></pre></div><h3 id="txt-records">TXT Records</h3>
 <p>It may be useful to include important information within your TXT records, as most text may be inserted.</p>
 <small><i><b>I included important statements, checksums, onion location(s) (if not pulled by HTTP header), and my GPG info.</b></i></small>
