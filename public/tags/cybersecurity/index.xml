@@ -74,7 +74,8 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### Example Brave UA ###
-</span></span><span class="line"><span class="ln">2</span><span class="cl">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36</span></span></code></pre></div><small><i><b>Browser behavior IS NOTICEABLY different between Gecko and Chromium-based browsers.</b></i></small>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36</span></span></code></pre></div><p><strong>Browser Tests:</strong> <a href="https://coveryourtracks.eff.org/">Cover Your  Tracks (EFF)</a>, <a href="https://amiunique.org/">Am I Unique?</a>, <a href="https://browserleaks.com/">Browser Leaks</a>.</p>
+<small><i><b>Browser behavior IS NOTICEABLY different between Gecko and Chromium-based browsers.</b></i></small>
 
 <p>If you&rsquo;re even on Windows at all—<strong>you&rsquo;re ngmi</strong>; stop here and go <em>reinterpret</em> your threat model.</p>
 <small><i><b>I hope you enjoy Copilot+ Recall!!!</b></i></small>
@@ -540,7 +541,7 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">gpg --clear-sign miror-statement.txt</span></span></code></pre></div><h2 id="closing">Closing</h2>
 <p>The &ldquo;<em>dark web</em>&rdquo; obtains an insanely bad rep from &ldquo;<em>libertarian</em>&rdquo; types, but don&rsquo;t let that dissuade you.</p>
 <p>Every corner of the internet has its bad actors—though admittedly there is some truth about the &ldquo;<em>privacy</em>&rdquo; community and their collective behavior.</p>
-<p>Be wary of others online, especially in Fediverse <strong>cesspools</strong> like <a href="https://fsi.stanford.edu/news/addressing-child-exploitation-federated-social-media">Mastodon</a> and similar E2EE <strong><a href="https://news.ycombinator.com/item?id=44592603">CSAM-INFESTED</a></strong> messagers like Matrix.</p>
+<p>Be wary of others online, especially in Fediverse <strong>cesspools</strong> like <a href="https://fsi.stanford.edu/news/addressing-child-exploitation-federated-social-media">Mastodon</a> and similar E2EE <strong><a href="https://news.ycombinator.com/item?id=44592603">CSAM-INFESTED</a></strong> messengers like Matrix.</p>
 <p>Any private or E2EE service procures some level of &ldquo;<em>hacker</em>&rdquo; mystique, but deploying and maintaining mirrors is rather straightforward (not to mention boring).</p>
 <p>Architecting your own infrastructure provides a far better learning path than <em>lazily slapping</em> web files on GitHub/GitLab pages.</p>
 <p><small><i><b>Trust me, that is the work of a rock-bottom dullard; go lease a $5 VPS, you're better than that!</b></i></small>

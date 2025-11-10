@@ -97,6 +97,9 @@ It is quite foolish to use a third-party browser with Tor support, especially gi
 ### Example Brave UA ###
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36
 ```
+
+__Browser Tests:__ [Cover Your  Tracks (EFF)](https://coveryourtracks.eff.org/), [Am I Unique?](https://amiunique.org/), [Browser Leaks](https://browserleaks.com/).
+
 {{< small >}}Browser behavior IS NOTICEABLY different between Gecko and Chromium-based browsers.{{</ small >}}
 
 If you're even on Windows at all—__you're ngmi__; stop here and go *reinterpret* your threat model.
@@ -589,7 +592,7 @@ The "*dark web*" obtains an insanely bad rep from "*libertarian*" types, but don
 
 Every corner of the internet has its bad actors—though admittedly there is some truth about the "*privacy*" community and their collective behavior. 
 
-Be wary of others online, especially in Fediverse __cesspools__ like [Mastodon](https://fsi.stanford.edu/news/addressing-child-exploitation-federated-social-media) and similar E2EE __[CSAM-INFESTED](https://news.ycombinator.com/item?id=44592603)__ messagers like Matrix.
+Be wary of others online, especially in Fediverse __cesspools__ like [Mastodon](https://fsi.stanford.edu/news/addressing-child-exploitation-federated-social-media) and similar E2EE __[CSAM-INFESTED](https://news.ycombinator.com/item?id=44592603)__ messengers like Matrix.
 
 Any private or E2EE service procures some level of "*hacker*" mystique, but deploying and maintaining mirrors is rather straightforward (not to mention boring).
 
