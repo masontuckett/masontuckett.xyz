@@ -160,7 +160,7 @@ __I'll keep it germane:__ V2 utilizes its now antiquated SHA1/RSA-based PKI (102
 
 {{< small >}}V3 is far more resistant to the ever-present birthday attack and other adjacent collision-based attacks.{{</ small >}}
 
-__*Worth a read:*__ [SHAttered](https://shattered.io/).
+__*SHAttered Doc (Worth Reading)*:__ [SHAttered](https://shattered.io/).
 
 
 ```txt

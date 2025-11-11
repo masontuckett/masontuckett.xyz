@@ -130,7 +130,7 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 <p><strong>I&rsquo;ll keep it germane:</strong> V2 utilizes its now antiquated SHA1/RSA-based PKI (1024-bit keys)—<em><a href="https://gitlab.torproject.org/legacy/trac/-/wikis/doc/HiddenServiceNames">while V3 sports modern SHA3/Ed25519 tooling</a></em>.</p>
 <small><i><b>V3 is far more resistant to the ever-present birthday attack and other adjacent collision-based attacks.</b></i></small>
 
-<p><strong><em>Worth a read:</em></strong> <a href="https://shattered.io/">SHAttered</a>.</p>
+<p><strong><em>SHAttered Doc (Worth Reading)</em>:</strong> <a href="https://shattered.io/">SHAttered</a>.</p>
 
 
 
