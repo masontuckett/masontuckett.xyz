@@ -410,17 +410,23 @@ Tor has had existing support via the Onion-Location header, but seamless I2P dis
 
 Adding a custom header similar to Tor's onion-location or __Alt-Svc__ are the most sane options.
 
+__*Feel Free to Reference My Web Hardening Article for Further Security Considerations*:__ [Web Hardening](/posts/web-hardening).
+
 ### Headers
 
 ```txt
 ### /etc/nginx/sites-available/main ###
 server {
-# ! Tor - Onion Header ! #
-add_header Onion-Location "http://mtuckod2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion$request_uri" always;
+    # ! Tor - Onion Header ! #
+    add_header Onion-Location "http://mtuckod2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion$request_uri" always;
 
-# ! I2P - Eeepsite Header ! #
-# ! Optional (Not Yet Widely Adopted) ! #
-add_header Alt-Svc 'i2p="eepsite.b32.i2p:80"; ma=86400' always;
+    # ! I2P - Eeepsite Header ! #
+    # ! Optional (Not Yet Widely Adopted) ! #
+    add_header Alt-Svc 'i2p="eepsite.b32.i2p:80"; ma=86400' always;
+
+    # ! Inlcude Security Headers ! #
+    include /etc/nginx/snippets/security-headers.conf;
+    include /etc/nginx/snippets/error-pages.conf;
 
 # ! ↓ Site Config ↓ ! #
 }
@@ -451,6 +457,11 @@ server {
     # ! Blocks Local Leaks ! #
     allow 127.0.0.1;
     deny all;
+
+    # ! Inlcude Security Headers ! #
+    # ! Remove HTTPS Related Headers ! #
+    include /etc/nginx/snippets/hidden-security-headers.conf;
+    include /etc/nginx/snippets/hidden-error-pages.conf;
 
 # ! ↓ Site Config ↓ ! #
 }
@@ -497,6 +508,12 @@ server {
     allow 127.0.0.0/8;
     deny all;
 
+    # ! Inlcude Security Headers ! #
+    # ! Remove HTTPS Related Headers ! #
+    # ! Only Covering HTTP for I2P (for Now) ! #
+    include /etc/nginx/snippets/hidden-security-headers.conf;
+    include /etc/nginx/snippets/hidden-error-pages.conf;
+
 # ! ↓ Site Config ↓ ! #
 }
 ```
@@ -518,7 +535,7 @@ Because we aren't hosting on the conventional clearnet, we'll need to __LOCALLY_
 
 ```sh
 ### Tor ###
-# ! Useful for Auto-Updates ! #
+# ! Useful for Auto-Updates/Security ! #
 # ! Including Flatseal ! #
 flatpak install org.torproject.torbrowser-launcher com.github.tchx84.Flatseal
 

@@ -650,6 +650,7 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 <p>Headers help clients switch to their desired mirror without having to scrounge for addresses.</p>
 <p>Tor has had existing support via the Onion-Location header, but seamless I2P discovery is not as widely adopted.</p>
 <p>Adding a custom header similar to Tor&rsquo;s onion-location or <strong>Alt-Svc</strong> are the most sane options.</p>
+<p><strong><em>Feel Free to Reference My Web Hardening Article for Further Security Considerations</em>:</strong> <a href="/posts/web-hardening/">Web Hardening</a>.</p>
 <h3 id="headers">Headers</h3>
 
 
@@ -658,15 +659,19 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">### /etc/nginx/sites-available/main ###
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl"># ! Tor - Onion Header ! #
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">add_header Onion-Location &#34;http://mtuckod2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion$request_uri&#34; always;
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    # ! Tor - Onion Header ! #
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    add_header Onion-Location &#34;http://mtuckod2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion$request_uri&#34; always;
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl"># ! I2P - Eeepsite Header ! #
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl"># ! Optional (Not Yet Widely Adopted) ! #
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">add_header Alt-Svc &#39;i2p=&#34;eepsite.b32.i2p:80&#34;; ma=86400&#39; always;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    # ! I2P - Eeepsite Header ! #
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    # ! Optional (Not Yet Widely Adopted) ! #
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    add_header Alt-Svc &#39;i2p=&#34;eepsite.b32.i2p:80&#34;; ma=86400&#39; always;
 </span></span><span class="line"><span class="ln"> 9</span><span class="cl">
-</span></span><span class="line"><span class="ln">10</span><span class="cl"># ! ↓ Site Config ↓ ! #
-</span></span><span class="line"><span class="ln">11</span><span class="cl">}</span></span></code></pre></div><h3 id="tor-nginx-config">Tor Nginx Config</h3>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    # ! Inlcude Security Headers ! #
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    include /etc/nginx/snippets/security-headers.conf;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    include /etc/nginx/snippets/error-pages.conf;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">15</span><span class="cl">}</span></span></code></pre></div><h3 id="tor-nginx-config">Tor Nginx Config</h3>
 
 
 
@@ -696,8 +701,13 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 </span></span><span class="line"><span class="ln">22</span><span class="cl">    allow 127.0.0.1;
 </span></span><span class="line"><span class="ln">23</span><span class="cl">    deny all;
 </span></span><span class="line"><span class="ln">24</span><span class="cl">
-</span></span><span class="line"><span class="ln">25</span><span class="cl"># ! ↓ Site Config ↓ ! #
-</span></span><span class="line"><span class="ln">26</span><span class="cl">}</span></span></code></pre></div>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    # ! Inlcude Security Headers ! #
+</span></span><span class="line"><span class="ln">26</span><span class="cl">    # ! Remove HTTPS Related Headers ! #
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    include /etc/nginx/snippets/hidden-security-headers.conf;
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    include /etc/nginx/snippets/hidden-error-pages.conf;
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">31</span><span class="cl">}</span></span></code></pre></div>
 
 
 
@@ -742,8 +752,14 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 </span></span><span class="line"><span class="ln">24</span><span class="cl">    allow 127.0.0.0/8;
 </span></span><span class="line"><span class="ln">25</span><span class="cl">    deny all;
 </span></span><span class="line"><span class="ln">26</span><span class="cl">
-</span></span><span class="line"><span class="ln">27</span><span class="cl"># ! ↓ Site Config ↓ ! #
-</span></span><span class="line"><span class="ln">28</span><span class="cl">}</span></span></code></pre></div>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    # ! Inlcude Security Headers ! #
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    # ! Remove HTTPS Related Headers ! #
+</span></span><span class="line"><span class="ln">29</span><span class="cl">    # ! Only Covering HTTP for I2P (for Now) ! #
+</span></span><span class="line"><span class="ln">30</span><span class="cl">    include /etc/nginx/snippets/hidden-security-headers.conf;
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    include /etc/nginx/snippets/hidden-error-pages.conf;
+</span></span><span class="line"><span class="ln">32</span><span class="cl">
+</span></span><span class="line"><span class="ln">33</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">34</span><span class="cl">}</span></span></code></pre></div>
 
 
 
@@ -763,7 +779,7 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">### Tor ###</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! Useful for Auto-Updates ! #</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># ! Useful for Auto-Updates/Security ! #</span>
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1"># ! Including Flatseal ! #</span>
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">flatpak install org.torproject.torbrowser-launcher com.github.tchx84.Flatseal
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl">
