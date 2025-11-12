@@ -158,7 +158,7 @@ I cannot stress how crucial it is to select HiddenServiceVersion3 over prior ver
 
 __I'll keep it germane:__ V2 utilizes its now antiquated SHA1/RSA-based PKI (1024-bit keys)—*[while V3 sports modern SHA3/Ed25519 tooling](https://gitlab.torproject.org/legacy/trac/-/wikis/doc/HiddenServiceNames)*.
 
-{{< small >}}V3 is far more resistant to the ever-present birthday attack and other adjacent collision-based attacks.{{</ small >}}
+{{< small >}}V3 is far more resistant to the ever-present, increasingly viable birthday attack and other adjacent collision-based attacks.{{</ small >}}
 
 __*SHAttered Doc (Worth Reading)*:__ [SHAttered](https://shattered.io/).
 
