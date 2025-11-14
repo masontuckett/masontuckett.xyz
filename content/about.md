@@ -18,6 +18,8 @@ Despite my intensive technical background, my true goal is to both live and full
 
 In the near future, I will begin my [Post-Baccalaureate Certificate in Teaching (Secondary)](https://www.weber.edu/teachered/graduate-certificate-teaching.html)—aiming for licensure and [Cybersecurity/IT/CS endorsements](https://schools.utah.gov/cte/educatorendorsements) from the Utah State Board of Education. 
 
+*WGU kept messing up my financial aid, so it has been delayed yet again. :(*
+
 {{< small >}}Humility is the root, mother, nurse, foundation, and bond of all virtue — St. John Chrysostom{{< /small >}}
 
 ## Experience
@@ -67,7 +69,7 @@ __*Success in Education*__\
 ## Technical
 
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
-> December, 2025 - March, 2026
+> January, 2026 - April, 2026
 >
 > __[BS, Cybersecurity and Network Management - Weber State University](https://apps.weber.edu/verify/?dvid=J3SNL5PO)__\
 > August, 2022 - August, 2025
@@ -84,7 +86,7 @@ __*Success in Education*__\
 ### Educational Certificates
 
 > __CP, Web Essentials - Weber State University__\
-> August, 2025 - December, 2025
+> August, 2022 - December, 2026
 >
 > __[CP, Cybersecurity Policy and Management - Weber State University](https://apps.weber.edu/verify/?dvid=EZ4A6KOU)__\
 > August, 2022 - April, 2025
@@ -101,10 +103,12 @@ __*Success in Education*__\
 ## Liberal Arts
 
 > __BA, History - Weber State University__\
-> January, 2026 - December, 2027 (Exp.)
-
-### Educational Certificates
-
+> August, 2026 - December, 2027 (Exp.)
+>
 > __PBCT, Secondary Education - Weber State University__\
 > January, 2026 - December, 2026
 
+### Educational Certificates
+
+> __CP, Early Childhood Educator - Weber State University__\
+> August, 2026 - April, 2027
