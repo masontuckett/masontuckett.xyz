@@ -465,6 +465,10 @@ server {
     include /etc/nginx/snippets/hidden-security-headers.conf;
     include /etc/nginx/snippets/hidden-error-pages.conf;
 
+    # ! Logging - Respects Privacy (Hard to Correlate Anyways) ! #
+    access_log off;
+    error_log /var/log/i2p-error.log warn;
+
 # ! ↓ Site Config ↓ ! #
 }
 ```
@@ -515,6 +519,10 @@ server {
     # ! Only Covering HTTP for I2P (for Now) ! #
     include /etc/nginx/snippets/hidden-security-headers.conf;
     include /etc/nginx/snippets/hidden-error-pages.conf;
+
+    # ! Logging - Respects Privacy (Hard to Correlate Anyways) ! #
+    access_log off;
+    error_log /var/log/i2p-error.log warn;
 
 # ! ↓ Site Config ↓ ! #
 }

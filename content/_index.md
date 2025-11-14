@@ -8,6 +8,9 @@ description = "Mason Tuckett's Home Page"
 +++
 # Hello
 ## Welcome to My Webpage!
+
+![Spring Campus, Spring blossoms on the Ogden Campus - April 23, 2019 | Benjamin Zack - benjaminzack@weber.edu](/images/weber.webp)
+
 I am Mason Tuckett—__*a Cybersecurity Master's student*__ at [Western Governors University](https://www.wgu.edu/online-it-degrees/cybersecurity-information-assurance-masters-program.html).\
 This website serves as my personal portfolio and is intended to highlight my:
 - Projects

@@ -45,7 +45,7 @@
   <meta itemprop="description" content="A Basic Setup Guide for Tor/I2P Hidden Services">
   <meta itemprop="datePublished" content="2025-11-09T16:32:04-07:00">
   <meta itemprop="dateModified" content="2025-11-09T16:32:04-07:00">
-  <meta itemprop="wordCount" content="2837">
+  <meta itemprop="wordCount" content="2879">
   <meta itemprop="keywords" content="Privacy,Self-Hosting,Cybersecurity">
 
 <meta name="referrer" content="no-referrer" />
@@ -500,8 +500,12 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 </span></span><span class="line"><span class="ln">27</span><span class="cl">    include /etc/nginx/snippets/hidden-security-headers.conf;
 </span></span><span class="line"><span class="ln">28</span><span class="cl">    include /etc/nginx/snippets/hidden-error-pages.conf;
 </span></span><span class="line"><span class="ln">29</span><span class="cl">
-</span></span><span class="line"><span class="ln">30</span><span class="cl"># ! ↓ Site Config ↓ ! #
-</span></span><span class="line"><span class="ln">31</span><span class="cl">}</span></span></code></pre></div>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">    # ! Logging - Respects Privacy (Hard to Correlate Anyways) ! #
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    access_log off;
+</span></span><span class="line"><span class="ln">32</span><span class="cl">    error_log /var/log/i2p-error.log warn;
+</span></span><span class="line"><span class="ln">33</span><span class="cl">
+</span></span><span class="line"><span class="ln">34</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">35</span><span class="cl">}</span></span></code></pre></div>
 
 
 
@@ -552,8 +556,12 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 </span></span><span class="line"><span class="ln">30</span><span class="cl">    include /etc/nginx/snippets/hidden-security-headers.conf;
 </span></span><span class="line"><span class="ln">31</span><span class="cl">    include /etc/nginx/snippets/hidden-error-pages.conf;
 </span></span><span class="line"><span class="ln">32</span><span class="cl">
-</span></span><span class="line"><span class="ln">33</span><span class="cl"># ! ↓ Site Config ↓ ! #
-</span></span><span class="line"><span class="ln">34</span><span class="cl">}</span></span></code></pre></div>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">    # ! Logging - Respects Privacy (Hard to Correlate Anyways) ! #
+</span></span><span class="line"><span class="ln">34</span><span class="cl">    access_log off;
+</span></span><span class="line"><span class="ln">35</span><span class="cl">    error_log /var/log/i2p-error.log warn;
+</span></span><span class="line"><span class="ln">36</span><span class="cl">
+</span></span><span class="line"><span class="ln">37</span><span class="cl"># ! ↓ Site Config ↓ ! #
+</span></span><span class="line"><span class="ln">38</span><span class="cl">}</span></span></code></pre></div>
 
 
 
