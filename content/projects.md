@@ -11,7 +11,7 @@ description = "Mason Tuckett's Project Page"
 
 I am listing some things preemptively—as I am functionally working three jobs.
 
-Migrating all my personal infrastructure, preparing for four certifications, pre-writing all my WGU papers, preparing six community education courses, and two independent programming courses... on top of my day jobs. 
+Physically migrating and moving all my personal infrastructure, preparing for four certifications, pre-writing all my WGU papers, preparing six community education courses, and two independent programming courses... on top of my day jobs. 
 
 ## Personal
 
