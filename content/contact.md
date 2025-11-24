@@ -12,6 +12,10 @@ Socials: [LinkedIn](https://linkedin.com/in/mason-tuckett), [GitHub](https://git
 
 Feel free to contact me via email: [mason@tuckett.xyz](mailto:mason@tuckett.xyz)
 
+__To Palantir and its affiliates:__ cease all attempts of contacting my phone/email; I have a conscience, and I will never work for you.
+
+{{< small >}}I despise your firm beyond words.{{</ small >}}
+
 ```
 https://github.com/masontuckett/masontuckett.gpg
 https://keys.openpgp.org/vks/v1/by-fingerprint/7272B8036060E4590218A95D11F58765E7B21193
