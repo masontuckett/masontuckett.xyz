@@ -8,11 +8,11 @@ author = "Mason Tuckett"
 description = "Mason Tuckett's About Page"
 +++
 # About Me
-I am currently a 21-year-old teacher assistant, contract network deployment specialist, and full-time graduate student at Western Governors University—diligently pursuing an [MS in Cybersecurity and Information Assurance](https://www.wgu.edu/online-it-degrees/cybersecurity-information-assurance-masters-program.html).
+I am currently a 21-year-old teacher assistant, community educator, and full-time graduate student at Western Governors University—diligently pursuing an [MS in Cybersecurity and Information Assurance](https://www.wgu.edu/online-it-degrees/cybersecurity-information-assurance-masters-program.html).
 
 During my time at Weber State University, I completed my undergraduate degree in just under three years—with no incoming credits—undertaking heavy course loads, using summers and every spare hour to propel myself forward.
 
-In addition to a rigorous, year-round course schedule, I made a considerable effort toward accelerating my MS program through [pre-enrollment certification equivalency](https://partners.wgu.edu/master-of-science-in-cyber-security-and-information-assurance)—significantly expediting my degree.
+In addition to a rigorous, year-round course schedule, I made a considerable effort toward accelerating my graduate program through [pre-enrollment certification equivalency](https://partners.wgu.edu/master-of-science-in-cyber-security-and-information-assurance)—significantly expediting my degree.
 
 Despite my intensive technical background, my true goal is to both live and fully embody a life of service—meaningfully giving back to my community and empowering the youth; hence my ardent transition to education. 
 
@@ -23,17 +23,25 @@ In the near future, I will begin my [Post-Baccalaureate Certificate in Teaching 
 {{< small >}}Humility is the root, mother, nurse, foundation, and bond of all virtue — St. John Chrysostom{{< /small >}}
 
 ## Experience
+__Community Educator__\
+__*Davis School District*__\
+*January, 2026 - Present*
+- Independently developed cybersecurity and computer science pedagogy materials for both adult and minor learners. 
+- Instructed hands-on, practical, weekly [courses](https://github.com/masontuckett/dsd-community-ed-materials) spanning: cybersecurity, computer networking, ethical hacking, Linux administration, Python programming, and web development.
+- Partnered with district curriculum coordinators to structure courses around pertinent, underrepresented, high-impact, desired content areas. 
+- Collaborated with the district IT department to ensure courses were within policy and legal and ethical responsibilities were upheld. 
+
 __Teacher Assistant__\
 __*Davis School District*__\
 *October, 2025 - Present*
-- Conducted daily SIPPS lessons (Systematic Instruction in Phonological Awareness, Phonics, and Sight Words) to grades K-6—improving literacy, fluency, and decoding acquisition. 
+- Conducted daily SIPPS lessons (Systematic Instruction in Phonological Awareness, Phonics, and Sight Words) to grades 1-5—improving literacy, fluency, and decoding acquisition. 
 - Utilized Acadience assessments to track and monitor student progress—adjusting pacing and reading intervention methodology.
 - Prepared weekly SIPPS lesson plans—collaborating with teacher assistants and educational staff to ensure adequate direction. 
 - Facilitated small-group instruction for rounds of 5-10 students—maintaining engagement through positive reinforcement techniques and structured reading routines.
 
 __Network Deployment Specialist__\
 __*RAD WiFi*__\
-*June, 2025 - Present*
+*June, 2025 - January, 2026*
 
 __Ken Garff Esports - Summer Tech Track Mentorship__\
 __*Success in Education*__\
@@ -69,7 +77,7 @@ __*Success in Education*__\
 ## Technical
 
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
-> January, 2026 - April, 2026
+> December, 2025 - March, 2026
 >
 > __[BS, Cybersecurity and Network Management - Weber State University](https://apps.weber.edu/verify/?dvid=J3SNL5PO)__\
 > August, 2022 - August, 2025
@@ -103,7 +111,7 @@ __*Success in Education*__\
 ## Liberal Arts
 
 > __BA, History - Weber State University__\
-> August, 2026 - December, 2027 (Exp.)
+> January, 2026 - December, 2027 (Exp.)
 >
 > __PBCT, Secondary Education - Weber State University__\
 > January, 2026 - December, 2026
@@ -111,4 +119,4 @@ __*Success in Education*__\
 ### Educational Certificates
 
 > __CP, Early Childhood Educator - Weber State University__\
-> August, 2026 - April, 2027
+> January, 2026 - April, 2027

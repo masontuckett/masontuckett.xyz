@@ -17,7 +17,7 @@ This website serves as my personal portfolio and is intended to highlight my:
 - Publications
 - Professional Profile
 
-{{< small >}}I am constantly undertaking new projects and strive to self-study to the greatest extent I can.{{< /small >}}
+{{< small >}}I am constantly undertaking new projects and strive to self-study to the greatest extent I possibly can.{{< /small >}}
 
 ### Grad Map
 > __High School Diploma - Davis Connect 7-12__\
@@ -27,11 +27,7 @@ This website serves as my personal portfolio and is intended to highlight my:
 > August, 2022 - August, 2025
 >
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
-> January, 2025 - April, 2026 (Exp.)
+> December, 2025 - March, 2026 (Exp.)
 >
 > __PhD, Cybersecurity OR Information Systems__\
 > August, 2026 - May, 2030 (Exp. - Undecided)
-
-
-
-
