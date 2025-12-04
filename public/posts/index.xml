@@ -564,17 +564,19 @@ Replies use separate tunnels to avoid correlation attacks.</p>
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl">gpg --clear-sign privacy-policy.txt
 </span></span><span class="line"><span class="ln">2</span><span class="cl">gpg --clear-sign miror-statement.txt</span></span></code></pre></div><h2 id="closing">Closing</h2>
-<p>The &ldquo;<em>dark web</em>&rdquo; obtains an insanely bad rep from &ldquo;<em>libertarian</em>&rdquo; types, but don&rsquo;t let that dissuade you.</p>
+<p>The &ldquo;<em>dark web</em>&rdquo; connotes a notoriously poor impression from &ldquo;<em>privacy</em>&rdquo; types, but don&rsquo;t let that dissuade you.</p>
 <p>Every corner of the internet has its bad actors—though admittedly there is some truth about the &ldquo;<em>privacy</em>&rdquo; community and their collective behavior.</p>
-<p>Be wary of others online, especially in Fediverse <strong>cesspools</strong> like <a href="https://fsi.stanford.edu/news/addressing-child-exploitation-federated-social-media">Mastodon</a> and similar E2EE <strong><a href="https://news.ycombinator.com/item?id=44592603">CSAM-INFESTED</a></strong> messengers like Matrix.</p>
-<p>Any private or E2EE service procures some level of &ldquo;<em>hacker</em>&rdquo; mystique, but deploying and maintaining mirrors is rather straightforward (not to mention boring).</p>
+<p>Be wary of others online, especially in Fediverse <strong>cesspools</strong> like <a href="https://fsi.stanford.edu/news/addressing-child-exploitation-federated-social-media">Mastodon</a> and similar <strong><a href="https://news.ycombinator.com/item?id=44592603">(questionable)</a></strong> E2EE messengers like Matrix.</p>
+<p>Any private or E2EE service procures some level of &ldquo;<em>hacker</em>&rdquo; mystique, but deploying and maintaining mirrors is rather straightforward (<em>not to mention boring</em>).</p>
 <p>Architecting your own infrastructure provides a far better learning path than <em>lazily slapping</em> web files on GitHub/GitLab pages.</p>
-<p><small><i><b>Trust me, that is the work of a rock-bottom dullard; go lease a $5 VPS, you're better than that!</b></i></small>
+<p><small><i><b>Trust me, that labor bears menial fruit; go lease a $5 VPS, you're better than that!</b></i></small>
 
 <br>
 <small><i><b>Shoot for learning first and ditch performative "projects."</b></i></small>
 </p>
 <p><em>If you are operating a mirror or really any online service, I ask that you respect your users&rsquo; privacy.</em></p>
+<small><i><b>Why bother building a platform if you operate on hypocritical principles?</b></i></small>
+
 ]]></content:encoded>
     </item>
     <item>
@@ -1038,11 +1040,12 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/nginx.conf ###
 </span></span><span class="line"><span class="ln">2</span><span class="cl">http {
 </span></span><span class="line"><span class="ln">3</span><span class="cl"># ! 10 MB of Entries - 10 Requests a Second ! #
-</span></span><span class="line"><span class="ln">4</span><span class="cl">limit_req_zone  $binary_remote_addr  zone=request_rate_limit:10m  rate=10r/s;
-</span></span><span class="line"><span class="ln">5</span><span class="cl">limit_conn_zone $binary_remote_addr  zone=connections_rate_limit:10m;
-</span></span><span class="line"><span class="ln">6</span><span class="cl">
-</span></span><span class="line"><span class="ln">7</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
-</span></span><span class="line"><span class="ln">8</span><span class="cl">}</span></span></code></pre></div>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"># ! You May Also Subtitute r/s for r/m (Minute) ! #
+</span></span><span class="line"><span class="ln">5</span><span class="cl">limit_req_zone  $binary_remote_addr  zone=request_rate_limit:10m  rate=10r/s;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">limit_conn_zone $binary_remote_addr  zone=connections_rate_limit:10m;
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
+</span></span><span class="line"><span class="ln">9</span><span class="cl">}</span></span></code></pre></div>
 
 
 
@@ -1397,6 +1400,8 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 <li><em>Earn <a href="https://github.com/masontuckett/pcap-prep">PCAP</a>/<a href="https://github.com/masontuckett/cpe-prep">CPE</a> certs so I may better teach students.</em></li>
 <li><em>Earn CCNA/RHCSA for adjunct roles.</em></li>
 </ul>
+<small><i><b>Mammon will never halt my relentless pursuit of the windmill; I will never be an errand boy.</b></i></small>
+
 ]]></content:encoded>
     </item>
     <item>

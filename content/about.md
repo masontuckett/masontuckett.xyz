@@ -18,7 +18,7 @@ Despite my intensive technical background, my true goal is to both live and full
 
 In the near future, I will begin my [Post-Baccalaureate Certificate in Teaching (Secondary)](https://www.weber.edu/teachered/graduate-certificate-teaching.html)—aiming for licensure and [Cybersecurity/IT/CS endorsements](https://schools.utah.gov/cte/educatorendorsements) from the Utah State Board of Education. 
 
-*WGU kept messing up my financial aid, so it has been delayed yet again. :(*
+*WGU kept messing up my financial aid, so it has been delayed yet again (again). :(*
 
 {{< small >}}Humility is the root, mother, nurse, foundation, and bond of all virtue — St. John Chrysostom{{< /small >}}
 
@@ -77,7 +77,7 @@ __*Success in Education*__\
 ## Technical
 
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
-> December, 2025 - March, 2026
+> January, 2026 - March, 2026
 >
 > __[BS, Cybersecurity and Network Management - Weber State University](https://apps.weber.edu/verify/?dvid=J3SNL5PO)__\
 > August, 2022 - August, 2025

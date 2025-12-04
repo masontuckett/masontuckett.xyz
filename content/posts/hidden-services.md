@@ -615,18 +615,20 @@ gpg --clear-sign miror-statement.txt
 
 ## Closing
 
-The "*dark web*" obtains an insanely bad rep from "*libertarian*" types, but don't let that dissuade you. 
+The "*dark web*" connotes a notoriously poor impression from "*privacy*" types, but don't let that dissuade you. 
 
 Every corner of the internet has its bad actors—though admittedly there is some truth about the "*privacy*" community and their collective behavior. 
 
-Be wary of others online, especially in Fediverse __cesspools__ like [Mastodon](https://fsi.stanford.edu/news/addressing-child-exploitation-federated-social-media) and similar E2EE __[CSAM-INFESTED](https://news.ycombinator.com/item?id=44592603)__ messengers like Matrix.
+Be wary of others online, especially in Fediverse __cesspools__ like [Mastodon](https://fsi.stanford.edu/news/addressing-child-exploitation-federated-social-media) and similar __[(questionable)](https://news.ycombinator.com/item?id=44592603)__ E2EE messengers like Matrix.
 
-Any private or E2EE service procures some level of "*hacker*" mystique, but deploying and maintaining mirrors is rather straightforward (not to mention boring).
+Any private or E2EE service procures some level of "*hacker*" mystique, but deploying and maintaining mirrors is rather straightforward (*not to mention boring*).
 
 Architecting your own infrastructure provides a far better learning path than *lazily slapping* web files on GitHub/GitLab pages.
 
-{{< small >}}Trust me, that is the work of a rock-bottom dullard; go lease a $5 VPS, you're better than that!{{</ small >}}
+{{< small >}}Trust me, that labor bears menial fruit; go lease a $5 VPS, you're better than that!{{</ small >}}
 \
 {{< small >}}Shoot for learning first and ditch performative "projects."{{</ small >}} 
 
 *If you are operating a mirror or really any online service, I ask that you respect your users' privacy.*
+
+{{< small >}}Why bother building a platform if you operate on hypocritical principles?{{</ small >}}

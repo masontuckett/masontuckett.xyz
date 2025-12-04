@@ -472,11 +472,12 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/nginx.conf ###
 </span></span><span class="line"><span class="ln">2</span><span class="cl">http {
 </span></span><span class="line"><span class="ln">3</span><span class="cl"># ! 10 MB of Entries - 10 Requests a Second ! #
-</span></span><span class="line"><span class="ln">4</span><span class="cl">limit_req_zone  $binary_remote_addr  zone=request_rate_limit:10m  rate=10r/s;
-</span></span><span class="line"><span class="ln">5</span><span class="cl">limit_conn_zone $binary_remote_addr  zone=connections_rate_limit:10m;
-</span></span><span class="line"><span class="ln">6</span><span class="cl">
-</span></span><span class="line"><span class="ln">7</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
-</span></span><span class="line"><span class="ln">8</span><span class="cl">}</span></span></code></pre></div>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"># ! You May Also Subtitute r/s for r/m (Minute) ! #
+</span></span><span class="line"><span class="ln">5</span><span class="cl">limit_req_zone  $binary_remote_addr  zone=request_rate_limit:10m  rate=10r/s;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">limit_conn_zone $binary_remote_addr  zone=connections_rate_limit:10m;
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
+</span></span><span class="line"><span class="ln">9</span><span class="cl">}</span></span></code></pre></div>
 
 
 

@@ -45,7 +45,7 @@
   <meta itemprop="description" content="A Brief Overview of Web Hardening">
   <meta itemprop="datePublished" content="2025-11-07T00:38:44-07:00">
   <meta itemprop="dateModified" content="2025-11-07T00:38:44-07:00">
-  <meta itemprop="wordCount" content="3629">
+  <meta itemprop="wordCount" content="3641">
   <meta itemprop="keywords" content="Web,Self-Hosting,Cybersecurity">
 
 <meta name="referrer" content="no-referrer" />
@@ -544,11 +544,12 @@ A record (<strong>tuckett-test.xyz</strong>) signed by ZSK (private key).</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">### /etc/nginx/nginx.conf ###
 </span></span><span class="line"><span class="ln">2</span><span class="cl">http {
 </span></span><span class="line"><span class="ln">3</span><span class="cl"># ! 10 MB of Entries - 10 Requests a Second ! #
-</span></span><span class="line"><span class="ln">4</span><span class="cl">limit_req_zone  $binary_remote_addr  zone=request_rate_limit:10m  rate=10r/s;
-</span></span><span class="line"><span class="ln">5</span><span class="cl">limit_conn_zone $binary_remote_addr  zone=connections_rate_limit:10m;
-</span></span><span class="line"><span class="ln">6</span><span class="cl">
-</span></span><span class="line"><span class="ln">7</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
-</span></span><span class="line"><span class="ln">8</span><span class="cl">}</span></span></code></pre></div>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"># ! You May Also Subtitute r/s for r/m (Minute) ! #
+</span></span><span class="line"><span class="ln">5</span><span class="cl">limit_req_zone  $binary_remote_addr  zone=request_rate_limit:10m  rate=10r/s;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">limit_conn_zone $binary_remote_addr  zone=connections_rate_limit:10m;
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"># ! ↓ Nginx Config ↓ ! #
+</span></span><span class="line"><span class="ln">9</span><span class="cl">}</span></span></code></pre></div>
 
 
 

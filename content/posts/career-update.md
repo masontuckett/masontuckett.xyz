@@ -113,3 +113,5 @@ Hence my desire to become involved with the youth—*hopefully, in due time,* *_
 - *Finish my catalog of technical articles.*
 - *Earn [PCAP](https://github.com/masontuckett/pcap-prep)/[CPE](https://github.com/masontuckett/cpe-prep) certs so I may better teach students.*
 - *Earn CCNA/RHCSA for adjunct roles.*
+
+{{< small >}}Mammon will never halt my relentless pursuit of the windmill; I will never be an errand boy.{{</ small >}}

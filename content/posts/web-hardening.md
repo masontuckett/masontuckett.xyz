@@ -486,6 +486,7 @@ Astoundingly, it is somewhat rare to see operators implement this effectively.
 ### /etc/nginx/nginx.conf ###
 http {
 # ! 10 MB of Entries - 10 Requests a Second ! #
+# ! You May Also Subtitute r/s for r/m (Minute) ! #
 limit_req_zone  $binary_remote_addr  zone=request_rate_limit:10m  rate=10r/s;
 limit_conn_zone $binary_remote_addr  zone=connections_rate_limit:10m;
 
