@@ -9,8 +9,79 @@
     <managingEditor>mason@tuckett.xyz (Mason Tuckett)</managingEditor>
     <webMaster>mason@tuckett.xyz (Mason Tuckett)</webMaster>
     <copyright>Copyright ©2025 Mason Tuckett All Rights Reserved</copyright>
-    <lastBuildDate>Sat, 12 Jul 2025 21:50:48 -0600</lastBuildDate>
+    <lastBuildDate>Sat, 06 Dec 2025 21:27:32 -0700</lastBuildDate>
     <atom:link href="https://masontuckett.xyz/tags/home-lab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Podman</title>
+      <link>https://masontuckett.xyz/posts/podman/</link>
+      <pubDate>Sat, 06 Dec 2025 21:27:32 -0700</pubDate><author>mason@tuckett.xyz (Mason Tuckett)</author>
+      <guid>https://masontuckett.xyz/posts/podman/</guid>
+      <description>&lt;p&gt;A Brief Overview of Podman&lt;/p&gt;&#xA;&lt;h2 id=&#34;containerization&#34;&gt;Containerization&lt;/h2&gt;&#xA;&lt;h2 id=&#34;linux-namespace&#34;&gt;Linux Namespace&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://masontuckett.xyz/images/posts/podman/linux-kernel.webp&#34; alt=&#34;Linux Kernel Diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;&#xA;&lt;p&gt;Docker is an incredibly convenient and largely foolproof solution for implementing operating-system-level virtualization in the manner of streamlined packages (containers).&lt;/p&gt;&#xA;&lt;p&gt;By its nature, production environments rely upon fully packaged images with base sub-systems (e.g., Alpine/Bottlerocket/Ubuntu)—to bypass environmental complexity.&lt;/p&gt;&#xA;&lt;p&gt;Developers and system maintainers may simply deploy an immutable image, ensuring interoperability concerns are adequately addressed.&lt;/p&gt;&#xA;&lt;small&gt;&lt;i&gt;&lt;b&gt;No dependency hell, no version mismatch, and no cross-platform interference.&lt;/b&gt;&lt;/i&gt;&lt;/small&gt;&#xA;&#xA;&lt;p&gt;&lt;strong&gt;Typical Deployment Pattern:&lt;/strong&gt;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>A Brief Overview of Podman</p>
+<h2 id="containerization">Containerization</h2>
+<h2 id="linux-namespace">Linux Namespace</h2>
+<p><img src="/images/posts/podman/linux-kernel.webp" alt="Linux Kernel Diagram"></p>
+<h2 id="docker">Docker</h2>
+<p>Docker is an incredibly convenient and largely foolproof solution for implementing operating-system-level virtualization in the manner of streamlined packages (containers).</p>
+<p>By its nature, production environments rely upon fully packaged images with base sub-systems (e.g., Alpine/Bottlerocket/Ubuntu)—to bypass environmental complexity.</p>
+<p>Developers and system maintainers may simply deploy an immutable image, ensuring interoperability concerns are adequately addressed.</p>
+<small><i><b>No dependency hell, no version mismatch, and no cross-platform interference.</b></i></small>
+
+<p><strong>Typical Deployment Pattern:</strong></p>
+<ul>
+<li>A Unix-like host provides OS-level virtualization.</li>
+<li>Ansible playbook/Docker compose YMLs are configured.</li>
+<li>Containers are mediated/deployed via a web console.</li>
+<li>Often run as root, only application/container-specific variables are addressed.</li>
+</ul>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c">### Example Ansible Playbook ###</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="c"># ! Via docs.ansible.com ! #</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Update web servers</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">webservers</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">  </span><span class="nt">remote_user</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Ensure apache is at the latest version</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">    </span><span class="nt">ansible.builtin.yum</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">httpd</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">      </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">latest</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Write the apache config file</span><span class="w">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">    </span><span class="nt">ansible.builtin.template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="w">      </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l">/srv/httpd.j2</span><span class="w">
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="w">      </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/httpd.conf</span><span class="w">
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Update db servers</span><span class="w">
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">databases</span><span class="w">
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="w">  </span><span class="nt">remote_user</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Ensure postgresql is at the latest version</span><span class="w">
+</span></span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="w">    </span><span class="nt">ansible.builtin.yum</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">postgresql</span><span class="w">
+</span></span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="w">      </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">latest</span><span class="w">
+</span></span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Ensure that postgresql is started</span><span class="w">
+</span></span></span><span class="line"><span class="ln">29</span><span class="cl"><span class="w">    </span><span class="nt">ansible.builtin.service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">postgresql</span><span class="w">
+</span></span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="w">      </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">started</span></span></span></code></pre></div><h3 id="caveats">Caveats</h3>
+<p>Ironically, in common production environments, Docker configuration is often left unchanged—ignorantly left running as root.</p>
+<p>When left misconfigured, a containerized root environment <em>can</em> correspond to the host&rsquo;s underlying root user.</p>
+<p>In a rootful state, it presents a massive, glaringly obvious increase in post-exploit severity.</p>
+<small><i><b>Rootful containers will map to UID 0.</b></i></small>
+
+<h2 id="podman">Podman</h2>
+<h3 id="caveats-1">Caveats</h3>
+<h2 id="configuring-docker">Configuring Docker</h2>
+<h3 id="user-configuration">User Configuration</h3>
+<h2 id="configuring-podman">Configuring Podman</h2>
+]]></content:encoded>
+    </item>
     <item>
       <title>Mentee Lab</title>
       <link>https://masontuckett.xyz/posts/mentee-lab/</link>

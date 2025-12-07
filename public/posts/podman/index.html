@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="https://masontuckett.xyz/images/favicon.ico" />
+<title>Podman | masontuckett.xyz</title>
+<meta name="title" content="Podman" />
+<meta name="description" content="A Brief Overview of Podman" />
+<meta name="author" content="Mason Tuckett" />
+<meta name="keywords" content="self-hosting,home-lab,virtualization,cybersecurity," />
+
+
+
+
+
+
+  
+  <meta property="og:url" content="https://masontuckett.xyz/posts/podman/">
+  <meta property="og:site_name" content="masontuckett.xyz">
+  <meta property="og:title" content="Podman">
+  <meta property="og:description" content="A Brief Overview of Podman">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-12-06T21:27:32-07:00">
+    <meta property="article:modified_time" content="2025-12-06T21:27:32-07:00">
+    <meta property="article:tag" content="Self-Hosting">
+    <meta property="article:tag" content="Home-Lab">
+    <meta property="article:tag" content="Virtualization">
+    <meta property="article:tag" content="Cybersecurity">
+
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Podman">
+  <meta name="twitter:description" content="A Brief Overview of Podman">
+
+
+  
+  
+  <meta itemprop="name" content="Podman">
+  <meta itemprop="description" content="A Brief Overview of Podman">
+  <meta itemprop="datePublished" content="2025-12-06T21:27:32-07:00">
+  <meta itemprop="dateModified" content="2025-12-06T21:27:32-07:00">
+  <meta itemprop="wordCount" content="273">
+  <meta itemprop="keywords" content="Self-Hosting,Home-Lab,Virtualization,Cybersecurity">
+
+<meta name="referrer" content="no-referrer" />
+
+  <link href="/original.min.css" rel="stylesheet" integrity="sha512-3&#43;rWZ1EZNTUJKkANymeKlTYFxDvp4keOhNI/zxUEvuhsZ15EqKdqggRf9/hU/1Mj80xNXB3oRd6vJ1pkZFrGxA==">
+
+  <link href="/syntax.min.css" rel="stylesheet" integrity="sha512-jHaX4W&#43;/ifHclp1GMkp4mnpyn5cb2YtZ&#43;ecPuvPgg3h01AYHecRulaPn2hqZXTIv2NL7gqBFKpEylPlevYQW4w==">
+</head>
+
+<body>
+  <header><div class="brand">
+  <a class="title" href="/">
+    <div id="logo" aria-hidden="true"></div>
+    <h1 class="site-title">masontuckett.xyz</h1>
+  </a>
+</div>
+
+<nav>
+  <a href="/">Home</a>
+
+  <a href="/about/">About</a>
+
+  <a href="/contact/">Contact</a>
+
+  <a href="/projects/">Projects</a>
+
+  <a href="/posts/">Posts</a>
+
+  <a href="/services/">Services</a>
+
+
+
+
+
+
+
+
+</nav></header>
+  <main id="main-content">
+
+<h1>Podman</h1>
+
+<content>
+  <p>A Brief Overview of Podman</p>
+<h2 id="containerization">Containerization</h2>
+<h2 id="linux-namespace">Linux Namespace</h2>
+<p><img src="/images/posts/podman/linux-kernel.webp" alt="Linux Kernel Diagram"></p>
+<h2 id="docker">Docker</h2>
+<p>Docker is an incredibly convenient and largely foolproof solution for implementing operating-system-level virtualization in the manner of streamlined packages (containers).</p>
+<p>By its nature, production environments rely upon fully packaged images with base sub-systems (e.g., Alpine/Bottlerocket/Ubuntu)—to bypass environmental complexity.</p>
+<p>Developers and system maintainers may simply deploy an immutable image, ensuring interoperability concerns are adequately addressed.</p>
+<small><i><b>No dependency hell, no version mismatch, and no cross-platform interference.</b></i></small>
+
+<p><strong>Typical Deployment Pattern:</strong></p>
+<ul>
+<li>A Unix-like host provides OS-level virtualization.</li>
+<li>Ansible playbook/Docker compose YMLs are configured.</li>
+<li>Containers are mediated/deployed via a web console.</li>
+<li>Often run as root, only application/container-specific variables are addressed.</li>
+</ul>
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c">### Example Ansible Playbook ###</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="c"># ! Via docs.ansible.com ! #</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Update web servers</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">webservers</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">  </span><span class="nt">remote_user</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Ensure apache is at the latest version</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">    </span><span class="nt">ansible.builtin.yum</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">httpd</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">      </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">latest</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Write the apache config file</span><span class="w">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">    </span><span class="nt">ansible.builtin.template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="w">      </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l">/srv/httpd.j2</span><span class="w">
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="w">      </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/httpd.conf</span><span class="w">
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Update db servers</span><span class="w">
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">databases</span><span class="w">
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="w">  </span><span class="nt">remote_user</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Ensure postgresql is at the latest version</span><span class="w">
+</span></span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="w">    </span><span class="nt">ansible.builtin.yum</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">postgresql</span><span class="w">
+</span></span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="w">      </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">latest</span><span class="w">
+</span></span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Ensure that postgresql is started</span><span class="w">
+</span></span></span><span class="line"><span class="ln">29</span><span class="cl"><span class="w">    </span><span class="nt">ansible.builtin.service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">postgresql</span><span class="w">
+</span></span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="w">      </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l">started</span></span></span></code></pre></div><h3 id="caveats">Caveats</h3>
+<p>Ironically, in common production environments, Docker configuration is often left unchanged—ignorantly left running as root.</p>
+<p>When left misconfigured, a containerized root environment <em>can</em> correspond to the host&rsquo;s underlying root user.</p>
+<p>In a rootful state, it presents a massive, glaringly obvious increase in post-exploit severity.</p>
+<small><i><b>Rootful containers will map to UID 0.</b></i></small>
+
+<h2 id="podman">Podman</h2>
+<h3 id="caveats-1">Caveats</h3>
+<h2 id="configuring-docker">Configuring Docker</h2>
+<h3 id="user-configuration">User Configuration</h3>
+<h2 id="configuring-podman">Configuring Podman</h2>
+
+</content>
+
+<p class="byline">
+  <time datetime='2025-12-06' pubdate>
+    12-06-2025
+  </time>
+  · Mason Tuckett
+</p>
+
+<p>
+  
+    <a class="blog-tags" href="/tags/self-hosting/">#self-hosting</a>
+  
+    <a class="blog-tags" href="/tags/home-lab/">#home-lab</a>
+  
+    <a class="blog-tags" href="/tags/virtualization/">#virtualization</a>
+  
+    <a class="blog-tags" href="/tags/cybersecurity/">#cybersecurity</a>
+  
+</p>
+
+
+  </main>
+  <footer><div id="foot-border"></div>
+<small id="foot">
+  <a href="https://github.com/masontuckett/masontuckett.xyz">Copyright ©2025 Mason Tuckett All Rights Reserved</a><br>
+</small>
+<a href='https://masontuckett.xyz/index.xml'>
+    <img id="rss" src="/images/rss.webp" alt="button for my RSS feed">
+</a>
+<a href="https://masontuckett.xyz/">
+    <img id="clear" src="/images/clear.webp" alt="button for my clear net site">
+</a>
+<a href="http://mtuckod2ooelmftsiaxps3uod2fqwri5fmlh3opftl3aslk2jun3sgqd.onion/">
+    <img id="tor" src="/images/tor.webp" alt="button for my Onion site">
+</a>
+<a href="http://mjnt7z23l6nhugddsn7yokk3veiegyozjw27kymzry7chjlriqiq.b32.i2p/">
+	<img id="i2p" src="/images/i2p.webp" alt="button for my Eepsite">
+</a>
+</footer>  
+</body>
+
+</html>
+
