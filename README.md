@@ -14,7 +14,7 @@ This website serves as my personal portfolio and is intended to highlight my:
  - [Mozilla HTTP Observatory (CSP)](https://developer.mozilla.org/en-US/observatory/analyze?host=masontuckett.xyz)
  - [Google PageSpeed Insights](https://pagespeed.web.dev/analysis/https-masontuckett-xyz/0k9cax7axf?form_factor=mobile)
 
-*No AWS/Cloudflare/Google/Oracle, JS, or analytics; your privacy matters!*
+*No AWS/Cloudflare/Google/Oracle, JS; your privacy matters!*
 
 *Built locally using [Hugo](https://gohugo.io/) (pushing public); servers should be lean.*
 
