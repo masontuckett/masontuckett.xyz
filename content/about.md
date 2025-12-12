@@ -18,7 +18,7 @@ Despite my intensive technical background, my true goal is to both live and full
 
 In the near future, I will begin my [Post-Baccalaureate Certificate in Teaching (Secondary)](https://www.weber.edu/teachered/graduate-certificate-teaching.html)—aiming for licensure and [Cybersecurity/IT/CS endorsements](https://schools.utah.gov/cte/educatorendorsements) from the Utah State Board of Education. 
 
-*WGU kept messing up my financial aid, so it has been delayed yet again (again). :(*
+*WGU kept messing up my financial aid, so it has been delayed yet again (again, again but my fault circa Q1 '25). :(*
 
 {{< small >}}Humility is the root, mother, nurse, foundation, and bond of all virtue — St. John Chrysostom{{< /small >}}
 
@@ -41,7 +41,9 @@ __*Davis School District*__\
 
 __Network Deployment Specialist__\
 __*RAD WiFi*__\
-*June, 2025 - January, 2026*
+*June, 2025 - December, 2025*
+- My sole focus is becoming an educator; this position is not wholly relevant to my intended career path.
+- Email me for information regarding this role. 
 
 __Ken Garff Esports - Summer Tech Track Mentorship__\
 __*Success in Education*__\
@@ -77,7 +79,7 @@ __*Success in Education*__\
 ## Technical
 
 > __MS, Cybersecurity and Information Assurance - Western Governors University__\
-> January, 2026 - March, 2026
+> February, 2026 - April, 2026
 >
 > __[BS, Cybersecurity and Network Management - Weber State University](https://apps.weber.edu/verify/?dvid=J3SNL5PO)__\
 > August, 2022 - August, 2025
