@@ -40,8 +40,8 @@
 
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c">### Example Ansible Playbook ###</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="c"># ! Via docs.ansible.com ! #</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Update web servers</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c"># ! Via docs.ansible.com ! #</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Update web servers</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">webservers</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">  </span><span class="nt">remote_user</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">
@@ -56,7 +56,7 @@
 </span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="w">      </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l">/srv/httpd.j2</span><span class="w">
 </span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="w">      </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/httpd.conf</span><span class="w">
 </span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Update db servers</span><span class="w">
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Update db servers</span><span class="w">
 </span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">databases</span><span class="w">
 </span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="w">  </span><span class="nt">remote_user</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
 </span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="w">

@@ -8,7 +8,7 @@ author = "Mason Tuckett"
 description = "Mason Tuckett's Contact Page"
 +++
 # Contact
-Socials: [LinkedIn (Not Active)](https://linkedin.com/in/mason-tuckett), [GitHub](https://github.com/masontuckett)
+Socials: [LinkedIn (Inactive)](https://linkedin.com/in/mason-tuckett), [GitHub](https://github.com/masontuckett)
 
 Feel free to contact me via email: [mason@tuckett.xyz](mailto:mason@tuckett.xyz)
 
